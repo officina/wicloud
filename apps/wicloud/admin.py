@@ -20,7 +20,7 @@ class AddressAdmin(UserAdminMixin, import_export_admin.ImportExportModelAdmin):
 
     fieldsets = (
         (_('general information'), {
-           'fields': ('address_description', 'full_name')
+           'fields': ('address_description', 'full_name', 'city', 'country', 'zip_code')
         }),
 
         (_('visualization admin'), {
@@ -32,7 +32,7 @@ class AddressAdmin(UserAdminMixin, import_export_admin.ImportExportModelAdmin):
             'fields': ('creator', 'date_create', 'last_modifier', 'date_last_modify')
         }),
     )
-    list_display = ('get_status_display', 'ordering')
+    list_display = ('full_name', 'ordering')
     readonly_fields = ('creator', 'date_create', 'last_modifier', 'date_last_modify')
 
 
