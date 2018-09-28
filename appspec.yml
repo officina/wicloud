@@ -1,0 +1,22 @@
+version: 0.0
+os: linux
+files:
+ - source: /
+   destination: /home/ubuntu/mygenerali-bck
+permissions:
+  - object: /home/ubuntu/mygenerali-bck
+    owner: ubuntu
+    group: ubuntu
+    mode: 755 
+hooks:
+ ApplicationStop:
+  - location: codedeploy-scripts/stop.sh
+    runas: ubuntu
+ AfterInstall:
+  - location: codedeploy-scripts/build.sh
+    runas: ubuntu
+ ApplicationStart:
+  - location: codedeploy-scripts/start.sh
+    runas: ubuntu
+
+

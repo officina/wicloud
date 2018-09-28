@@ -1,0 +1,9 @@
+After cookiecutter execution remember to execute:
+
+mkvirtualenv --python=/usr/bin/python3 wicloud
+cd wicloud
+pip install .
+createdb wicloud
+dj migrate
+dj createsuperuser
+

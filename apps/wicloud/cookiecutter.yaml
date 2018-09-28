@@ -1,0 +1,12 @@
+default_context:
+    app_verbose_name: "Wicloud"
+    model_names: "Address, Customer, Energy_interval, Energy_Meter_Module, Energy_Meter_Peak_Measure, Error_Light_Level_And_Adc_mismatch, Error_Light_Level_And_Power_Mismatch, Error_Node_Offline, Gateway, Ime_Power_Counter, Ime_Power_Measure, Installation, Light_Management_Measure, Light_Management_Module, Light_Profile, Light_Profile_Slot, Motion_event, Node, Node_Module, WiLamp_Alert, Feeder_Pillar, Twilight_Management_Module, Twilight_Measure, Motion_Management_Module,"
+    model_plural_names: "Addresses, Customers, Energy_intervals, Energy_Meter_Modules, Energy_Meter_Peak_Measures, Error_Light_Level_And_Adc_mismatchs, Error_Light_Level_And_Power_Mismatchs, Error_Node_Offlines, Gateways, Ime_Power_Counters, Ime_Power_Measures, Installations, Light_Management_Measures, Light_Management_Module, Light_Profiles, Light_Profile_Slots, Motion_events, Nodes, Node_Modules, WiLamp_Alerts, Feeder_Pillars, Twilight_Management_Modules, Twilight_Measure, Motion_Management_Modules,"
+    app_name: "wicloud"
+    author: "Officina S.r.l."
+    year: "2018"
+    djangorestframework: "yes"
+    reusable_app: "no"
+    version: "0.0.1"
+    license: "No License"
+    absolute_import_path: "apps.wicloud"

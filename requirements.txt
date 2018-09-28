@@ -1,0 +1,12 @@
+Django
+django-application-settings==0.2
+ipdb
+ipython==5.0.0
+django-extensions
+django-debug-toolbar
+django-flat-responsive
+djangorestframework
+django-cors-headers
+docutils
+dj-cmd
+psycopg2
