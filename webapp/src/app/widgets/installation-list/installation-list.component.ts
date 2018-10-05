@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Installation} from "../../_models/installation";
+import {InstallationService} from "../../_services/installation.service";
 
 @Component({
   selector: 'app-installation-list',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InstallationListComponent implements OnInit {
 
-  constructor() { }
+  installations:Array<Installation>;
 
-  ngOnInit() {
+  constructor(private installationservice:InstallationService) { }
+
+  ngOnInit(){
+
+    this.installationservice.getInstallationsForUser().subscribe(installations => {
+
+            console.log("got installations: " + installations.results);
+            this.installations = installations.results;
+        });
   }
+
+
 
 }

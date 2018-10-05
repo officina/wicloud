@@ -25,7 +25,7 @@ from django.contrib import admin
 
 from web.api import views as permission_views
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
-
+from web import views
 
 
 urlpatterns = [
@@ -49,6 +49,8 @@ urlpatterns = [
     url(r'^rest-auth/', include('rest_auth.urls')),
 
     url(r'^wicloud/', include('apps.wicloud.urls')),
+
+    url(r'^$',views.home),
     # url('^$', RedirectView.as_view(url='/admin/', permanent=False)),
 ]
 

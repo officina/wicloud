@@ -1,13 +1,13 @@
 {
-  "name": "angular-6-registration-login-example",
+  "name": "Wicloud",
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cornflourblue/angular-6-registration-login-example.git"
+    "url": "https://github.com/officina/wicloud.git"
   },
   "scripts": {
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --mode development --open --proxy-config proxy.conf.json"
+    "start": "webpack-dev-server --mode development --open"
   },
   "license": "MIT",
   "dependencies": {
