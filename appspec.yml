@@ -2,12 +2,12 @@ version: 0.0
 os: linux
 files:
  - source: /
-   destination: /home/ubuntu/mygenerali-bck
+   destination: /home/ubuntu/wicloud-bck
 permissions:
-  - object: /home/ubuntu/mygenerali-bck
+  - object: /home/ubuntu/wicloud-bck
     owner: ubuntu
     group: ubuntu
-    mode: 755 
+    mode: 755
 hooks:
  ApplicationStop:
   - location: codedeploy-scripts/stop.sh

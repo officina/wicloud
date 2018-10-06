@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import datetime
-
+import os
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -11,4 +11,7 @@ EMAIL_SUBJECT_PREFIX = '[MYGENERALI_dev]'
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=86400),
 }
-PLAYOFF_HOSTNAME = 'playoff.cc'
+
+
+
+

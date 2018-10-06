@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Mygenerali Exceptions tree
-+-- MygeneraliException
+Wicloud Exceptions tree
++-- WicloudException
     +-- YourCustomException
 """
 
@@ -9,18 +9,18 @@ import logging
 
 
 # GENERIC EXCEPTION
-class MygeneraliException(Exception):
+class WicloudException(Exception):
     """
     To import:
         from web import exceptions
 
     To raise:
-        raise exceptions.MygeneraliException('text of error')
+        raise exceptions.WicloudException('text of error')
 
     To capture:
         try:
             [code]
-        except exceptions.MygeneraliException as e:
+        except exceptions.WicloudException as e:
             [code]
     """
     msg = ''
@@ -28,7 +28,7 @@ class MygeneraliException(Exception):
     def __init__(self, msg=None, write_log=True, level='ERROR'):
         """
         :param msg: error text message
-        :param write_log: if true a log is written in /var/log/django/mygenerali-exceptions.log
+        :param write_log: if true a log is written in /var/log/django/wicloud-exceptions.log
         """
         self.exception_logger = logging.getLogger('exceptions')
         self.log_level = level
@@ -54,7 +54,7 @@ class MygeneraliException(Exception):
 
 
 # CUSTOM EXCEPTIONS
-class YourCustomException(MygeneraliException):
+class YourCustomException(WicloudException):
     """
     To import:
         from web import exceptions
