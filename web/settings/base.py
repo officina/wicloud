@@ -25,7 +25,7 @@ SETTINGS_PATH = os.path.abspath(os.path.dirname(__file__))
 
 PROJECT_PATH = os.path.dirname(SETTINGS_PATH)
 
-BASE_SITE_DOMAIN = 'www.wicloud.it'
+BASE_SITE_DOMAIN = 'www.wicloud.com'
 
 LOGIN_URL = '/admin/login/'
 
@@ -128,7 +128,7 @@ LOCALE_PATHS = (
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 # STATIC_URL will be the url to serve the static files
-STATIC_URL = '/static2/'
+STATIC_URL = '/static/'
 # STATIC_ROOT will be used as the path to serve the static files in production
 # and will be used when using collectstatic command
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
@@ -244,7 +244,9 @@ TEST_RUNNER = 'web.runner.GeneraliDiscoverRunner'
 
 WEBPACK_LOADER = {
     'DEFAULT': {
-        'BUNDLE_DIR_NAME': '',
+        'BUNDLE_DIR_NAME': 'webpack_bundles/',
         'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+        'TIMEOUT': None,
+        'IGNORE': ['.+\.hot-update.js', '.+\.map']
     }
 }

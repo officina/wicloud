@@ -24,7 +24,6 @@ export class AuthenticationService {
 
     logout() {
         // remove user from local storage to log user out
-      debugger;
-        localStorage.removeItem('currentUser');
+      localStorage.removeItem('currentUser');
     }
 }

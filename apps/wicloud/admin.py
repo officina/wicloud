@@ -18,21 +18,21 @@ class AddressAdmin(UserAdminMixin, import_export_admin.ImportExportModelAdmin):
         import_export_admin.base_formats.JSON,
     )
 
-    fieldsets = (
-        (_('general information'), {
-           'fields': ('address_description', 'full_name', 'city', 'country', 'zip_code')
-        }),
-
-        (_('visualization admin'), {
-            'classes': ('collapse',),
-            'fields': ('ordering', 'status')
-        }),
-        (_('logs admin'), {
-            'classes': ('collapse',),
-            'fields': ('creator', 'date_create', 'last_modifier', 'date_last_modify')
-        }),
-    )
-    list_display = ('full_name', 'ordering')
+    # fieldsets = (
+    #     (_('general information'), {
+    #        'fields': ()
+    #     }),
+    #
+    #     (_('visualization admin'), {
+    #         'classes': ('collapse',),
+    #         'fields': ('ordering', 'status')
+    #     }),
+    #     (_('logs admin'), {
+    #         'classes': ('collapse',),
+    #         'fields': ('creator', 'date_create', 'last_modifier', 'date_last_modify')
+    #     }),
+    # )
+    list_display = ('id', 'full_name','description', 'city', 'country', 'lat', 'lng', 'installation')
     readonly_fields = ('creator', 'date_create', 'last_modifier', 'date_last_modify')
 
 
@@ -47,20 +47,20 @@ class CustomerAdmin(UserAdminMixin, import_export_admin.ImportExportModelAdmin):
         import_export_admin.base_formats.JSON,
     )
 
-    fieldsets = (
-        # (_('general information'), {
-        #    'fields': ()
-        # }),
-        (_('visualization admin'), {
-            'classes': ('collapse',),
-            'fields': ('ordering', 'status')
-        }),
-        (_('logs admin'), {
-            'classes': ('collapse',),
-            'fields': ('creator', 'date_create', 'last_modifier', 'date_last_modify')
-        }),
-    )
-    list_display = ('get_status_display', 'ordering')
+    # fieldsets = (
+    #     # (_('general information'), {
+    #     #    'fields': ()
+    #     # }),
+    #     (_('visualization admin'), {
+    #         'classes': ('collapse',),
+    #         'fields': ('ordering', 'status')
+    #     }),
+    #     (_('logs admin'), {
+    #         'classes': ('collapse',),
+    #         'fields': ('creator', 'date_create', 'last_modifier', 'date_last_modify')
+    #     }),
+    # )
+    list_display = ('id', 'company_name', 'description')
     readonly_fields = ('creator', 'date_create', 'last_modifier', 'date_last_modify')
 
 
@@ -75,20 +75,20 @@ class Energy_intervalAdmin(UserAdminMixin, import_export_admin.ImportExportModel
         import_export_admin.base_formats.JSON,
     )
 
-    fieldsets = (
-        # (_('general information'), {
-        #    'fields': ()
-        # }),
-        (_('visualization admin'), {
-            'classes': ('collapse',),
-            'fields': ('ordering', 'status')
-        }),
-        (_('logs admin'), {
-            'classes': ('collapse',),
-            'fields': ('creator', 'date_create', 'last_modifier', 'date_last_modify')
-        }),
-    )
-    list_display = ('get_status_display', 'ordering')
+    # fieldsets = (
+    #     # (_('general information'), {
+    #     #    'fields': ()
+    #     # }),
+    #     (_('visualization admin'), {
+    #         'classes': ('collapse',),
+    #         'fields': ('ordering', 'status')
+    #     }),
+    #     (_('logs admin'), {
+    #         'classes': ('collapse',),
+    #         'fields': ('creator', 'date_create', 'last_modifier', 'date_last_modify')
+    #     }),
+    # )
+    list_display = ('id', 'mac', 'installation')
     readonly_fields = ('creator', 'date_create', 'last_modifier', 'date_last_modify')
 
 
@@ -103,19 +103,19 @@ class Energy_meter_moduleAdmin(UserAdminMixin, import_export_admin.ImportExportM
         import_export_admin.base_formats.JSON,
     )
 
-    fieldsets = (
-        # (_('general information'), {
-        #    'fields': ()
-        # }),
-        (_('visualization admin'), {
-            'classes': ('collapse',),
-            'fields': ('ordering', 'status')
-        }),
-        (_('logs admin'), {
-            'classes': ('collapse',),
-            'fields': ('creator', 'date_create', 'last_modifier', 'date_last_modify')
-        }),
-    )
+    # fieldsets = (
+    #     # (_('general information'), {
+    #     #    'fields': ()
+    #     # }),
+    #     (_('visualization admin'), {
+    #         'classes': ('collapse',),
+    #         'fields': ('ordering', 'status')
+    #     }),
+    #     (_('logs admin'), {
+    #         'classes': ('collapse',),
+    #         'fields': ('creator', 'date_create', 'last_modifier', 'date_last_modify')
+    #     }),
+    # )
     list_display = ('get_status_display', 'ordering')
     readonly_fields = ('creator', 'date_create', 'last_modifier', 'date_last_modify')
 
@@ -131,19 +131,19 @@ class Energy_meter_peak_measureAdmin(UserAdminMixin, import_export_admin.ImportE
         import_export_admin.base_formats.JSON,
     )
 
-    fieldsets = (
-        # (_('general information'), {
-        #    'fields': ()
-        # }),
-        (_('visualization admin'), {
-            'classes': ('collapse',),
-            'fields': ('ordering', 'status')
-        }),
-        (_('logs admin'), {
-            'classes': ('collapse',),
-            'fields': ('creator', 'date_create', 'last_modifier', 'date_last_modify')
-        }),
-    )
+    # fieldsets = (
+    #     # (_('general information'), {
+    #     #    'fields': ()
+    #     # }),
+    #     (_('visualization admin'), {
+    #         'classes': ('collapse',),
+    #         'fields': ('ordering', 'status')
+    #     }),
+    #     (_('logs admin'), {
+    #         'classes': ('collapse',),
+    #         'fields': ('creator', 'date_create', 'last_modifier', 'date_last_modify')
+    #     }),
+    # )
     list_display = ('get_status_display', 'ordering')
     readonly_fields = ('creator', 'date_create', 'last_modifier', 'date_last_modify')
 
@@ -159,19 +159,19 @@ class Error_light_level_and_adc_mismatchAdmin(UserAdminMixin, import_export_admi
         import_export_admin.base_formats.JSON,
     )
 
-    fieldsets = (
-        # (_('general information'), {
-        #    'fields': ()
-        # }),
-        (_('visualization admin'), {
-            'classes': ('collapse',),
-            'fields': ('ordering', 'status')
-        }),
-        (_('logs admin'), {
-            'classes': ('collapse',),
-            'fields': ('creator', 'date_create', 'last_modifier', 'date_last_modify')
-        }),
-    )
+    # fieldsets = (
+    #     # (_('general information'), {
+    #     #    'fields': ()
+    #     # }),
+    #     (_('visualization admin'), {
+    #         'classes': ('collapse',),
+    #         'fields': ('ordering', 'status')
+    #     }),
+    #     (_('logs admin'), {
+    #         'classes': ('collapse',),
+    #         'fields': ('creator', 'date_create', 'last_modifier', 'date_last_modify')
+    #     }),
+    # )
     list_display = ('get_status_display', 'ordering')
     readonly_fields = ('creator', 'date_create', 'last_modifier', 'date_last_modify')
 
@@ -188,19 +188,19 @@ class Error_light_level_and_power_mismatchAdmin(UserAdminMixin, import_export_ad
         import_export_admin.base_formats.JSON,
     )
 
-    fieldsets = (
-        # (_('general information'), {
-        #    'fields': ()
-        # }),
-        (_('visualization admin'), {
-            'classes': ('collapse',),
-            'fields': ('ordering', 'status')
-        }),
-        (_('logs admin'), {
-            'classes': ('collapse',),
-            'fields': ('creator', 'date_create', 'last_modifier', 'date_last_modify')
-        }),
-    )
+    # fieldsets = (
+    #     # (_('general information'), {
+    #     #    'fields': ()
+    #     # }),
+    #     (_('visualization admin'), {
+    #         'classes': ('collapse',),
+    #         'fields': ('ordering', 'status')
+    #     }),
+    #     (_('logs admin'), {
+    #         'classes': ('collapse',),
+    #         'fields': ('creator', 'date_create', 'last_modifier', 'date_last_modify')
+    #     }),
+    # )
     list_display = ('get_status_display', 'ordering')
     readonly_fields = ('creator', 'date_create', 'last_modifier', 'date_last_modify')
 
@@ -216,19 +216,19 @@ class Error_node_offlineAdmin(UserAdminMixin, import_export_admin.ImportExportMo
         import_export_admin.base_formats.JSON,
     )
 
-    fieldsets = (
-        # (_('general information'), {
-        #    'fields': ()
-        # }),
-        (_('visualization admin'), {
-            'classes': ('collapse',),
-            'fields': ('ordering', 'status')
-        }),
-        (_('logs admin'), {
-            'classes': ('collapse',),
-            'fields': ('creator', 'date_create', 'last_modifier', 'date_last_modify')
-        }),
-    )
+    # fieldsets = (
+    #     # (_('general information'), {
+    #     #    'fields': ()
+    #     # }),
+    #     (_('visualization admin'), {
+    #         'classes': ('collapse',),
+    #         'fields': ('ordering', 'status')
+    #     }),
+    #     (_('logs admin'), {
+    #         'classes': ('collapse',),
+    #         'fields': ('creator', 'date_create', 'last_modifier', 'date_last_modify')
+    #     }),
+    # )
     list_display = ('get_status_display', 'ordering')
     readonly_fields = ('creator', 'date_create', 'last_modifier', 'date_last_modify')
 
@@ -244,19 +244,19 @@ class GatewayAdmin(UserAdminMixin, import_export_admin.ImportExportModelAdmin):
         import_export_admin.base_formats.JSON,
     )
 
-    fieldsets = (
-        # (_('general information'), {
-        #    'fields': ()
-        # }),
-        (_('visualization admin'), {
-            'classes': ('collapse',),
-            'fields': ('ordering', 'status')
-        }),
-        (_('logs admin'), {
-            'classes': ('collapse',),
-            'fields': ('creator', 'date_create', 'last_modifier', 'date_last_modify')
-        }),
-    )
+    # fieldsets = (
+    #     # (_('general information'), {
+    #     #    'fields': ()
+    #     # }),
+    #     (_('visualization admin'), {
+    #         'classes': ('collapse',),
+    #         'fields': ('ordering', 'status')
+    #     }),
+    #     (_('logs admin'), {
+    #         'classes': ('collapse',),
+    #         'fields': ('creator', 'date_create', 'last_modifier', 'date_last_modify')
+    #     }),
+    # )
     list_display = ('get_status_display', 'ordering')
     readonly_fields = ('creator', 'date_create', 'last_modifier', 'date_last_modify')
 
@@ -272,19 +272,19 @@ class Ime_power_counterAdmin(UserAdminMixin, import_export_admin.ImportExportMod
         import_export_admin.base_formats.JSON,
     )
 
-    fieldsets = (
-        # (_('general information'), {
-        #    'fields': ()
-        # }),
-        (_('visualization admin'), {
-            'classes': ('collapse',),
-            'fields': ('ordering', 'status')
-        }),
-        (_('logs admin'), {
-            'classes': ('collapse',),
-            'fields': ('creator', 'date_create', 'last_modifier', 'date_last_modify')
-        }),
-    )
+    # fieldsets = (
+    #     # (_('general information'), {
+    #     #    'fields': ()
+    #     # }),
+    #     (_('visualization admin'), {
+    #         'classes': ('collapse',),
+    #         'fields': ('ordering', 'status')
+    #     }),
+    #     (_('logs admin'), {
+    #         'classes': ('collapse',),
+    #         'fields': ('creator', 'date_create', 'last_modifier', 'date_last_modify')
+    #     }),
+    # )
     list_display = ('get_status_display', 'ordering')
     readonly_fields = ('creator', 'date_create', 'last_modifier', 'date_last_modify')
 
@@ -328,20 +328,20 @@ class InstallationAdmin(UserAdminMixin, import_export_admin.ImportExportModelAdm
         import_export_admin.base_formats.JSON,
     )
 
-    fieldsets = (
-        # (_('general information'), {
-        #    'fields': ()
-        # }),
-        (_('visualization admin'), {
-            'classes': ('collapse',),
-            'fields': ('ordering', 'status')
-        }),
-        (_('logs admin'), {
-            'classes': ('collapse',),
-            'fields': ('creator', 'date_create', 'last_modifier', 'date_last_modify')
-        }),
-    )
-    list_display = ('get_status_display', 'ordering')
+    # fieldsets = (
+    #     # (_('general information'), {
+    #     #    'fields': ()
+    #     # }),
+    #     (_('visualization admin'), {
+    #         'classes': ('collapse',),
+    #         'fields': ('ordering', 'status')
+    #     }),
+    #     (_('logs admin'), {
+    #         'classes': ('collapse',),
+    #         'fields': ('creator', 'date_create', 'last_modifier', 'date_last_modify')
+    #     }),
+    # )
+    list_display = ('id', 'name', 'description', 'customer', 'address')
     readonly_fields = ('creator', 'date_create', 'last_modifier', 'date_last_modify')
 
 

@@ -4,6 +4,7 @@ const BundleTracker = require('webpack-bundle-tracker');
 var path = require('path');
 
 module.exports = {
+  context: __dirname,
   entry: './src/main.ts',
   module: {
     rules: [
@@ -30,23 +31,23 @@ module.exports = {
     new webpack.DefinePlugin({
       // global app config object
       config: JSON.stringify({
-        apiUrl: 'http://localhost:8000'
+        apiUrl: 'http://localhost.charlesproxy.com:8000'
       })
     }),
     new BundleTracker({filename: '../webpack-stats.json'})
   ],
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-    },
-    runtimeChunk: true
-  },
+  // optimization: {
+  //   splitChunks: {
+  //     chunks: 'all',
+  //   },
+  //   runtimeChunk: true
+  // },
   output: {
-    path:  path.join(process.cwd(), "dist"),
+    path:  path.resolve('../web/static/webpack_bundles/'),
     filename:  "[name].bundle.js",
     chunkFilename:  "[id].chunk.js",
     crossOriginLoading:  false,
-    publicPath:"http://127.0.0.1:8080/"//1
+    publicPath:"/static/webpack_bundles/"//1
 },
   devServer: {
     historyApiFallback: true
