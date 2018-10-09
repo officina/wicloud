@@ -244,7 +244,7 @@ TEST_RUNNER = 'web.runner.GeneraliDiscoverRunner'
 
 WEBPACK_LOADER = {
     'DEFAULT': {
-        'BUNDLE_DIR_NAME': 'webpack_bundles/',
+        'BUNDLE_DIR_NAME': 'bundles/',
         'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
         'TIMEOUT': None,
         'IGNORE': ['.+\.hot-update.js', '.+\.map']
