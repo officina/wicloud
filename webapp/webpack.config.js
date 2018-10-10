@@ -24,7 +24,9 @@ module.exports = {
     extensions: ['.ts', '.js']
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
 
+    //new CleanWebpackPlugin(['dist']),
     new webpack.DefinePlugin({
       // global app config object
       config: JSON.stringify({
@@ -41,14 +43,19 @@ module.exports = {
   // },
   output: {
     path:  path.resolve('../web/static/bundles/'),
-    filename:  "[name].[hash].js",
-    chunkFilename:  "[id].[hash].js",
+    filename:  "[name].bundle.js",
+    chunkFilename:  "[id].bundle.js",
     crossOriginLoading:  false,
     publicPath:"/static/bundles/"//1
 },
   devServer: {
+    contentBase:  path.resolve('../web/static/bundles/'),
     historyApiFallback: true,
-    publicPath: "http://127.0.0.1:4200/",//2,
+
+    hot: true,
+    //publicPath: "http://127.0.0.1:4200/",//2,
+    publicPath:"http://127.0.0.1:8000/static/bundles/",
+
     headers: {
       'Access-Control-Allow-Origin': '\\*'//3
     }

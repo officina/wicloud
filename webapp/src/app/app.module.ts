@@ -20,6 +20,7 @@ import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 import {DashboardComponent} from "./dashboard/dashboard.component";;
 import { InstallationListComponent } from './widgets/installation-list/installation-list.component'
+;
 
 @NgModule({
     imports: [
@@ -35,9 +36,10 @@ import { InstallationListComponent } from './widgets/installation-list/installat
         HomeComponent,
         LoginComponent,
         RegisterComponent,
-        DashboardComponent
-,
-        InstallationListComponent    ],
+        DashboardComponent,
+        InstallationListComponent ,
+
+         ],
     providers: [
         AuthGuard,
         AlertService,
