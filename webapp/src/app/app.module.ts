@@ -1,10 +1,12 @@
 ﻿import { NgModule }      from '@angular/core';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule }    from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+
 // used to create fake backend
-import { fakeBackendProvider } from './_helpers';
+
 
 import { AppComponent }  from './app.component';
 import { routing }        from './app.routing';
@@ -18,12 +20,14 @@ import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 import {DashboardComponent} from "./dashboard/dashboard.component";;
 import { InstallationListComponent } from './widgets/installation-list/installation-list.component'
+;
 
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
+        NgbModule,
         routing
     ],
     declarations: [
@@ -32,9 +36,10 @@ import { InstallationListComponent } from './widgets/installation-list/installat
         HomeComponent,
         LoginComponent,
         RegisterComponent,
-        DashboardComponent
-,
-        InstallationListComponent    ],
+        DashboardComponent,
+        InstallationListComponent ,
+
+         ],
     providers: [
         AuthGuard,
         AlertService,
@@ -43,8 +48,6 @@ import { InstallationListComponent } from './widgets/installation-list/installat
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
-        // provider used to create fake backend
-        fakeBackendProvider
     ],
     bootstrap: [AppComponent]
 })

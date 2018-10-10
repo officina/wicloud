@@ -1,20 +1,18 @@
 {% load render_bundle from webpack_loader %}
+{% load webpack_static from webpack_loader %}
 
 <html  lang="en">
 <head>
 <meta  charset="UTF-8">
 <base  href="/">
-<title>A Simple CRM with Django and Angular 6</title>
+<title>Wicloud</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- bootstrap css -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-
-<app-root></app-root>
-
-{% render_bundle 'inline' %}
-{% render_bundle 'polyfills' %}
-{% render_bundle 'styles' %}
-{% render_bundle 'vendor' %}
+<h1>Wicloud</h1>
+<app></app>
 {% render_bundle 'main' %}
-
 </body>
 </html>
