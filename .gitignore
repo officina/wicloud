@@ -19,3 +19,4 @@ build/
 tests/report/
 .idea/*
 web/static/bundles/
+venv/
