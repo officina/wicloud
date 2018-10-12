@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'web',
     'apps.wicloud',
     'webpack_loader',
+    'import_export',
 ]
 
 MIDDLEWARE = [

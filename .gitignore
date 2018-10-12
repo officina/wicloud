@@ -19,3 +19,6 @@ build/
 tests/report/
 .idea/*
 web/static/bundles/
+/.env
+/.idea/misc.xml
+/.idea/wicloud.iml
