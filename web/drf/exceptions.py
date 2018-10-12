@@ -19,7 +19,7 @@ from web import exceptions
 
 
 # API EXCEPTION HANDLER
-def mygenerali_exception_handler(exc, context):
+def wicloud_exception_handler(exc, context):
     # Call REST framework's default exception handler first,
     # to get the standard error response.
     response = exception_handler(exc, context)
@@ -58,7 +58,7 @@ class MygeneraliAPIException(APIException):
         :param status_code: HTTP status code
         :param request: view's request
         :param msg: error description
-        :param write_log: if true a log is written in /var/log/django/mygenerali-api_exceptions.log
+        :param write_log: if true a log is written in /var/log/django/wicloud-api_exceptions.log
         """
         self.logger = logging.getLogger('api_exceptions')
         self.status_code = status_code

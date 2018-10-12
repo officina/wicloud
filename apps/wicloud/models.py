@@ -6,8 +6,8 @@ from web.core.models import UserModel, DateModel, StatusModel, OrderedModel, Cle
 
 
 class Address(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
-    id = models.BigIntegerField(primary_key=True)
-    address_description = models.CharField(max_length=255, null=True)
+
+    description = models.CharField(max_length=255, null=True)
     full_name = models.CharField(max_length=255,null=True)
     street = models.CharField(max_length=255, blank=True, null=True)
     house_number = models.CharField(max_length=255, blank=True, null=True)
@@ -29,13 +29,13 @@ class Address(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
         )
 
     def __str__(self):
-        return 'Address'
+        return self.description
 
 
 class Customer(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
-    id = models.BigIntegerField(primary_key=True)
+
     company_name = models.CharField(max_length=255, null=True)
-    description = models.CharField(max_length=255, blank=True, null=True)
+    description = models.CharField(max_length=255, blank=True)
 
     class Meta:
         verbose_name = _('customer')
@@ -48,14 +48,14 @@ class Customer(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
         )
 
     def __str__(self):
-        return 'Customer'
+        return self.description
 
 
 class Energy_interval(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
-    id = models.BigIntegerField(primary_key=True)
+
     mac = models.CharField(max_length=255, null=True)
-    light_management_module_id = models.BigIntegerField(blank=True, null=True)
-    installation_id = models.BigIntegerField(blank=True, null=True)
+    light_management_module = models.ForeignKey('Light_management_module', models.DO_NOTHING, blank=True, null=True)
+    installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True)
     start_interval = models.DateTimeField(null=True)
     end_interval = models.DateTimeField(blank=True, null=True)
     start_interval_measure_timestamp = models.DateTimeField(blank=True, null=True)
@@ -93,7 +93,7 @@ class Energy_interval(CleanModel, UserModel, DateModel, StatusModel, OrderedMode
 
 
 class Energy_meter_module(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
-    id = models.BigIntegerField(primary_key=True)
+
     name = models.CharField(max_length=255,null=True)
     description = models.CharField(max_length=255, blank=True, null=True)
     iac_calibration = models.FloatField(blank=True, null=True)
@@ -119,7 +119,7 @@ class Energy_meter_module(CleanModel, UserModel, DateModel, StatusModel, Ordered
 
 
 class Energy_meter_peak_measure(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
-    id = models.BigIntegerField(primary_key=True)
+
     mac = models.CharField(max_length=255,null=True)
     node_date = models.CharField(max_length=255, blank=True, null=True)
     node_hms = models.CharField(max_length=255, blank=True, null=True)
@@ -136,7 +136,7 @@ class Energy_meter_peak_measure(CleanModel, UserModel, DateModel, StatusModel, O
     measure_timestamp = models.DateTimeField(blank=True, null=True)
     created_timestamp = models.DateTimeField(blank=True, null=True)
     source_module = models.CharField(max_length=255, blank=True, null=True)
-    installation_id = models.BigIntegerField(blank=True, null=True)
+    installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True)
     energy_meter_module = models.ForeignKey(Energy_meter_module, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
@@ -154,7 +154,7 @@ class Energy_meter_peak_measure(CleanModel, UserModel, DateModel, StatusModel, O
 
 
 class Error_light_level_and_adc_mismatch(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
-    id = models.BigIntegerField(primary_key=True)
+
     error_timestamp = models.DateTimeField(blank=True, null=True)
     error_resolved_timestamp = models.DateTimeField(blank=True, null=True)
     is_in_error = models.BooleanField(blank=True, null=True)
@@ -184,7 +184,7 @@ class Error_light_level_and_adc_mismatch(CleanModel, UserModel, DateModel, Statu
 
 
 class Error_light_level_and_power_mismatch(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
-    id = models.BigIntegerField(primary_key=True)
+
     error_timestamp = models.DateTimeField(blank=True, null=True)
     error_resolved_timestamp = models.DateTimeField(blank=True, null=True)
     is_in_error = models.BooleanField(blank=True, null=True)
@@ -212,7 +212,7 @@ class Error_light_level_and_power_mismatch(CleanModel, UserModel, DateModel, Sta
 
 
 class Error_node_offline(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
-    id = models.BigIntegerField(primary_key=True)
+
     error_timestamp = models.DateTimeField(blank=True, null=True)
     error_resolved_timestamp = models.DateTimeField(blank=True, null=True)
     is_in_error = models.BooleanField(blank=True, null=True)
@@ -235,7 +235,7 @@ class Error_node_offline(CleanModel, UserModel, DateModel, StatusModel, OrderedM
 
 
 class Gateway(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
-    id = models.BigIntegerField(primary_key=True)
+
     name = models.CharField(max_length=255,blank=True, null=True)
     description = models.CharField(max_length=255, blank=True, null=True)
     gateway_uuid = models.CharField(unique=True, max_length=255,null=True)
@@ -270,11 +270,11 @@ class Gateway(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
 
 class Ime_power_counter(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
-    id = models.BigIntegerField(primary_key=True)
+
     name = models.CharField(max_length=255, blank=True, null=True)
     description = models.CharField(max_length=255, blank=True, null=True)
     gateway_uuid = models.CharField(max_length=255, blank=True, null=True)
-    installation_id = models.BigIntegerField(blank=True, null=True)
+    installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True)
     counter_id = models.CharField(unique=True, max_length=255, null=True)
     location = models.CharField(max_length=255, blank=True, null=True)
     lat = models.FloatField(blank=True, null=True)
@@ -299,10 +299,10 @@ class Ime_power_counter(CleanModel, UserModel, DateModel, StatusModel, OrderedMo
 
 
 class Ime_power_measure(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
-    id = models.BigIntegerField(primary_key=True)
+
     power_counter_id = models.CharField(max_length=255, blank=True, null=True)
     jhi_timestamp = models.DateTimeField(blank=True, null=True)
-    installation_id = models.BigIntegerField(blank=True, null=True)
+    installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True)
     voltage = models.FloatField(blank=True, null=True)
     jhi_current = models.FloatField(blank=True, null=True)
     active_power = models.FloatField(blank=True, null=True)
@@ -329,7 +329,7 @@ class Ime_power_measure(CleanModel, UserModel, DateModel, StatusModel, OrderedMo
 
 
 class Installation(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
-    id = models.BigIntegerField(primary_key=True)
+
     name = models.CharField(max_length=255, blank=True, null=True)
     description = models.CharField(max_length=255, blank=True, null=True)
     preparation_date = models.DateTimeField(blank=True, null=True)
@@ -349,11 +349,11 @@ class Installation(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
         )
 
     def __str__(self):
-        return 'Installation'
+        return self.description
 
 
 class Light_management_measure(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
-    id = models.BigIntegerField(primary_key=True)
+
     mac = models.CharField(max_length=255, blank=True, null=True)
     processing_status = models.IntegerField(blank=True, null=True)
     node_hms = models.CharField(max_length=255, blank=True, null=True)
@@ -393,7 +393,7 @@ class Light_management_measure(CleanModel, UserModel, DateModel, StatusModel, Or
     lamp_life = models.FloatField(blank=True, null=True)
     node_life = models.FloatField(blank=True, null=True)
     active_power_counter = models.FloatField(blank=True, null=True)
-    installation_id = models.BigIntegerField(blank=True, null=True)
+    installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True)
     light_management_module = models.ForeignKey('Light_management_module', models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
@@ -407,11 +407,11 @@ class Light_management_measure(CleanModel, UserModel, DateModel, StatusModel, Or
         )
 
     def __str__(self):
-        return 'Light_management_measure'
+        return f'Light_management_measure {self.id}'
 
 
 class Light_management_module(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
-    id = models.BigIntegerField(primary_key=True)
+
     name = models.CharField(max_length=255, blank=True, null=True)
     description = models.CharField(max_length=255, blank=True, null=True)
     device_type = models.IntegerField(blank=True, null=True)
@@ -437,14 +437,14 @@ class Light_management_module(CleanModel, UserModel, DateModel, StatusModel, Ord
 
 
 class Light_profile(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
-    id = models.BigIntegerField(primary_key=True)
+
     name = models.CharField(max_length=255, blank=True, null=True)
     description = models.CharField(max_length=255, blank=True, null=True)
     jhi_type = models.CharField(max_length=255, blank=True, null=True)
     reference = models.CharField(max_length=255, blank=True, null=True)
     profile_crc = models.FloatField(blank=True, null=True)
     light_profile_id = models.IntegerField(blank=True, null=True)
-    gateway_id = models.IntegerField(blank=True, null=True)
+    gateway = models.ForeignKey('Gateway', models.DO_NOTHING, blank=True, null=True)
     enabled = models.BooleanField(blank=True, null=True)
 
     class Meta:
@@ -462,7 +462,7 @@ class Light_profile(CleanModel, UserModel, DateModel, StatusModel, OrderedModel)
 
 
 class Light_profile_slot(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
-    id = models.BigIntegerField(primary_key=True)
+
     name = models.CharField(max_length=255, blank=True, null=True)
     description = models.CharField(max_length=255, blank=True, null=True)
     don = models.IntegerField(blank=True, null=True)
@@ -508,7 +508,7 @@ class Light_profile_slot(CleanModel, UserModel, DateModel, StatusModel, OrderedM
 
 
 class Motion_event(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
-    id = models.BigIntegerField(primary_key=True)
+
     mac = models.CharField(max_length=255, blank=True, null=True)
     motion_mode = models.IntegerField(blank=True, null=True)
     motion_group = models.IntegerField(blank=True, null=True)
@@ -533,7 +533,7 @@ class Motion_event(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
 
 class Node(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
-    id = models.BigIntegerField(primary_key=True)
+
     name = models.CharField(max_length=255, blank=True, null=True)
     description = models.CharField(max_length=255, blank=True, null=True)
     node_type = models.IntegerField(blank=True, null=True)
@@ -568,7 +568,7 @@ class Node(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
 
 class Node_module(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
-    id = models.BigIntegerField(primary_key=True)
+
     name = models.CharField(max_length=255, blank=True, null=True)
     light_management = models.OneToOneField(Light_management_module, models.DO_NOTHING,  blank=True, null=True)
     energy_meter = models.OneToOneField(Energy_meter_module, models.DO_NOTHING,  blank=True, null=True)
@@ -591,7 +591,7 @@ class Node_module(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
 
 class Wilamp_alert(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
-    id = models.BigIntegerField(primary_key=True)
+
     alert_timestamp = models.DateTimeField(blank=True, null=True)
     jhi_type = models.IntegerField(blank=True, null=True)
     severity = models.IntegerField(blank=True, null=True)
@@ -601,7 +601,7 @@ class Wilamp_alert(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
     logged_entity_id = models.CharField(max_length=255, blank=True, null=True)
     logged_entity = models.CharField(max_length=255, blank=True, null=True)
     message = models.CharField(max_length=1000, blank=True, null=True)
-    jhi_comment = models.CharField(max_length=5000, blank=True, null=True)
+    comment = models.CharField(max_length=5000, blank=True, null=True)
     log_class = models.CharField(max_length=1000, blank=True, null=True)
     note = models.CharField(max_length=5000, blank=True, null=True)
 
@@ -620,7 +620,7 @@ class Wilamp_alert(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
 
 class Feeder_pillar(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
-    id = models.BigIntegerField(primary_key=True)
+
     name = models.CharField(max_length=255, blank=True, null=True)
     description = models.CharField(max_length=255, blank=True, null=True)
     reference_code = models.CharField(max_length=255, blank=True, null=True)
@@ -644,7 +644,7 @@ class Feeder_pillar(CleanModel, UserModel, DateModel, StatusModel, OrderedModel)
 
 
 class Twilight_management_module(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
-    id = models.BigIntegerField(primary_key=True)
+
     name = models.CharField(max_length=255, blank=True, null=True)
     description = models.CharField(max_length=255, blank=True, null=True)
     tw_mode = models.IntegerField(blank=True, null=True)
@@ -680,7 +680,7 @@ class Twilight_management_module(CleanModel, UserModel, DateModel, StatusModel, 
 
 
 class Twilight_measure(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
-    id = models.BigIntegerField(primary_key=True)
+
     lux_value = models.FloatField(blank=True, null=True)
     adc_value = models.FloatField(blank=True, null=True)
     measure_timestamp = models.DateTimeField(blank=True, null=True)
@@ -701,7 +701,7 @@ class Twilight_measure(CleanModel, UserModel, DateModel, StatusModel, OrderedMod
 
 
 class Motion_management_module(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
-    id = models.BigIntegerField(primary_key=True)
+
     name = models.CharField(max_length=255, blank=True, null=True)
     description = models.CharField(max_length=255, blank=True, null=True)
     motion_mode = models.IntegerField(blank=True, null=True)

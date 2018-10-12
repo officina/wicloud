@@ -25,7 +25,7 @@ SETTINGS_PATH = os.path.abspath(os.path.dirname(__file__))
 
 PROJECT_PATH = os.path.dirname(SETTINGS_PATH)
 
-BASE_SITE_DOMAIN = 'www.mygenerali.it'
+BASE_SITE_DOMAIN = 'www.wicloud.com'
 
 LOGIN_URL = '/admin/login/'
 
@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'storages',
     'web',
     'apps.wicloud',
+    'webpack_loader',
 ]
 
 MIDDLEWARE = [
@@ -127,7 +128,7 @@ LOCALE_PATHS = (
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 # STATIC_URL will be the url to serve the static files
-STATIC_URL = '/static2/'
+STATIC_URL = '/static/'
 # STATIC_ROOT will be used as the path to serve the static files in production
 # and will be used when using collectstatic command
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
@@ -162,14 +163,14 @@ LOGGING = {
         'exceptions': {
             'class': 'logging.FileHandler',
             'formatter': 'verbose',
-            'filename': '/var/log/django/mygenerali-exceptions.log',
+            'filename': '/var/log/django/wicloud-exceptions.log',
             'level': 'DEBUG',
         },
         'api_exceptions': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
             'formatter': 'verbose',
-            'filename': '/var/log/django/mygenerali-api_exceptions.log',
+            'filename': '/var/log/django/wicloud-api_exceptions.log',
         },
         'console': {
             'class': 'logging.StreamHandler',
@@ -180,7 +181,7 @@ LOGGING = {
         'file': {
             'class': 'logging.FileHandler',
             'formatter': 'verbose',
-            'filename': '/var/log/django/mygenerali.log',
+            'filename': '/var/log/django/wicloud.log',
             'level': 'INFO',
         },
         'mail_admins': {
@@ -189,12 +190,12 @@ LOGGING = {
         },
     },
     'loggers': {
-        # tail -f /var/log/django/mygenerali-exceptions.log
+        # tail -f /var/log/django/wicloud-exceptions.log
         'exceptions': {
             'handlers': ['exceptions'],
             'level': 'DEBUG',
         },
-        # tail -f /var/log/django/mygenerali-api_exceptions.log
+        # tail -f /var/log/django/wicloud-api_exceptions.log
         'api_exceptions': {
             'handlers': ['api_exceptions'],
             'propagate': True,
@@ -205,7 +206,7 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
-        # tail -f /var/log/django/mygenerali.log
+        # tail -f /var/log/django/wicloud.log
         'file': {
             'handlers': ['file'],
             'level': 'INFO',
@@ -228,7 +229,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
     ),
     'PAGE_SIZE_QUERY_PARAM': 'per_page',
-    'EXCEPTION_HANDLER': 'web.drf.exceptions.mygenerali_exception_handler'
+    'EXCEPTION_HANDLER': 'web.drf.exceptions.wicloud_exception_handler'
 }
 CORS_ORIGIN_WHITELIST = [
     'wicloud'
@@ -237,22 +238,15 @@ JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
 }
 
-# AWS SETTINGS
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_ACCESS_KEY_ID = '< set in local >'
-AWS_SECRET_ACCESS_KEY = '< set in local >'
-AWS_STORAGE_BUCKET_NAME = 'published'
-AWS_DEFAULT_ACL = 'public-read'
-AWS_QUERYSTRING_AUTH = False
-AWS_AUTO_CREATE_BUCKET = True
-AWS_S3_FILE_OVERWRITE = False
-
-# PLAYOFF SETTINGS
-PRODUCTION_PLAYOFF_CLIENT_ID = ''
-PRODUCTION_PLAYOFF_CLIENT_SECRET = ''
-STAGING_PLAYOFF_CLIENT_ID = ''
-STAGING_PLAYOFF_CLIENT_SECRET = ''
-PLAYOFF_HOSTNAME = 'playoffgenerali.it'
 
 
 TEST_RUNNER = 'web.runner.GeneraliDiscoverRunner'
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'bundles/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+        'TIMEOUT': None,
+        'IGNORE': ['.+\.hot-update.js', '.+\.map']
+    }
+}

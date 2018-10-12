@@ -1,7 +1,7 @@
 #!python
 import datetime
 # -*- coding: utf-8 -*-
-SECRET_KEY = 'asdkasdlkjadlkjasldjasldkjalkdjhf798s7df87s98df7sfd897asdasd'
+SECRET_KEY = 'afgdaasdlkja8s74dfdfd897a3sddlkjaasds45jasldkjalkdjhf79'
 DEBUG = True
 DATABASES = {
     'default': {
@@ -19,7 +19,7 @@ EMAIL_PORT = ''
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = True
-EMAIL_SUBJECT_PREFIX = ['mygenerali']
+EMAIL_SUBJECT_PREFIX = ['wicloud']
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # non usa AWS - usa default
@@ -48,14 +48,14 @@ LOGGING = {
         'exceptions': {
             'class': 'logging.FileHandler',
             'formatter': 'verbose',
-            'filename': './logs/mygenerali-exceptions.log',
+            'filename': './logs/wicloud-exceptions.log',
             'level': 'DEBUG',
         },
         'api_exceptions': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
             'formatter': 'verbose',
-            'filename': './logs/mygenerali-api_exceptions.log',
+            'filename': './logs/wicloud-api_exceptions.log',
         },
         'console': {
             'class': 'logging.StreamHandler',
@@ -66,7 +66,7 @@ LOGGING = {
         'file': {
             'class': 'logging.FileHandler',
             'formatter': 'verbose',
-            'filename': './logs/mygenerali.log',
+            'filename': './logs/wicloud.log',
             'level': 'INFO',
         },
         'mail_admins': {
@@ -75,12 +75,12 @@ LOGGING = {
         },
     },
     'loggers': {
-        # tail -f ./logs/mygenerali-exceptions.log
+        # tail -f ./logs/wicloud-exceptions.log
         'exceptions': {
             'handlers': ['exceptions'],
             'level': 'DEBUG',
         },
-        # tail -f ./logs/mygenerali-api_exceptions.log
+        # tail -f ./logs/wicloud-api_exceptions.log
         'api_exceptions': {
             'handlers': ['api_exceptions'],
             'propagate': True,
@@ -91,7 +91,7 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
-        # tail -f ./logs/mygenerali.log
+        # tail -f ./logs/wicloud.log
         'file': {
             'handlers': ['file'],
             'level': 'INFO',
@@ -106,7 +106,7 @@ LOGGING = {
 
 AWS_ACCESS_KEY_ID = 'AKIAJI7KKFRWWRE6JRYQ'
 AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'mygenerali-development-andrea'
+AWS_STORAGE_BUCKET_NAME = 'wicloud-development-andrea'
 AWS_DEFAULT_ACL = 'public-read'
 AWS_QUERYSTRING_AUTH = False
 AWS_AUTO_CREATE_BUCKET = True
@@ -118,15 +118,9 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 DEBUG = True
 
-CORS_ORIGIN_ALLOW_ALL = True
-
-EMAIL_SUBJECT_PREFIX = '[MYGENERALI_dev]'
+EMAIL_SUBJECT_PREFIX = '[Wicloud_dev]'
 
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=86400),
 }
-PRODUCTION_PLAYOFF_CLIENT_ID = ''
-PRODUCTION_PLAYOFF_CLIENT_SECRET = ''
-STAGING_PLAYOFF_CLIENT_ID = ''
-STAGING_PLAYOFF_CLIENT_SECRET = ''
-PLAYOFF_HOSTNAME = 'playoff.cc'
+

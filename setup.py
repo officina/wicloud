@@ -77,6 +77,7 @@ setup(
         'boto3',
         'django-storages',  # to upload file on S3
         'Playoff',
+        'jsonschema'
     ],
     package_data=get_data_files('web')
 )

@@ -2,7 +2,7 @@
 
 ## Clone the respository
 ```
-hg clone ssh://hg@bitbucket.org/thux/wicloud
+git clone ssh://github.com/officina/wicloud
 ```
 
 ## Use Virtualenv and Virtualenvwrapper
