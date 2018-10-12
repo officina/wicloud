@@ -24,3 +24,5 @@ venv/
 /.idea/misc.xml
 /.idea/wicloud.iml
 /web/settings/local.py
+/npm-debug.log
+/webpack-stats.json
