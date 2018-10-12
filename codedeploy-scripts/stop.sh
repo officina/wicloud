@@ -1,2 +1,3 @@
 #!/bin/sh
-sudo pkill -f runserver
+#sudo pkill -f runserver
+sudo service httpd start

@@ -60,3 +60,4 @@ class MyGeneraliDiscoverRunner(DiscoverRunner):
         del settings._original_media_root
         del settings._original_file_storage
         del settings._original_fields_storages
+
