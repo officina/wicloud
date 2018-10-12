@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
  - source: /
-   destination: /var/www/wicloud
+   destination: /var/www/html/wicloud
 permissions:
   - object: /var/www/html/wicloud
     owner: ec2-user
