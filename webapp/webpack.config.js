@@ -26,7 +26,12 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
 
-    //new CleanWebpackPlugin(['dist']),
+    //new CleanWebpackPlugin(path.resolve('../web/static/bundles/')),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      filename: 'index.html',
+      inject: 'body'
+    }),
     new webpack.DefinePlugin({
       // global app config object
       config: JSON.stringify({

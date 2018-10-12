@@ -20,5 +20,6 @@ tests/report/
 .idea/*
 web/static/bundles/
 /.env
+venv/
 /.idea/misc.xml
 /.idea/wicloud.iml
