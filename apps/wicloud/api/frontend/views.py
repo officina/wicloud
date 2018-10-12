@@ -9,11 +9,18 @@ from rest_framework.reverse import reverse
 from web.api import views
 from . import serializers
 from ... import models
+from django.contrib.auth.models import User
 
 
 @api_view(('GET',))
 def api_root(request, format=None):
     url_dict = collections.OrderedDict()
+    url_dict['users_list'] = reverse(
+        'wicloud:api:frontend:users_list', request=request, format=format
+    )
+    url_dict['users_register'] = reverse(
+        'wicloud:api:frontend:users_register', request=request, format=format
+    )
     url_dict['address_list'] = reverse(
         'wicloud:api:frontend:address_list', request=request, format=format
     )
@@ -1720,3 +1727,12 @@ class Motion_management_moduleDisableView(views.ThuxStatusViewMixin, generics.Re
     queryset = models.Motion_management_module.objects.filter(status=1)
     serializer_class = serializers.Motion_management_moduleStatusSerializer
     new_status = 0
+
+class UserListView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = serializers.UserSerializer
+
+
+class UserCreateView(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = serializers.UserSerializer
