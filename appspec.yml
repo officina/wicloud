@@ -11,12 +11,12 @@ permissions:
 hooks:
  ApplicationStop:
   - location: codedeploy-scripts/stop.sh
-    runas: ubuntu
+    runas: ec2-user
  AfterInstall:
   - location: codedeploy-scripts/build.sh
-    runas: ubuntu
+    runas: ec2-user
  ApplicationStart:
   - location: codedeploy-scripts/start.sh
-    runas: ubuntu
+    runas: ec2-user
 
 
