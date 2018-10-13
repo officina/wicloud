@@ -492,6 +492,7 @@ class Light_profile_slot(CleanModel, UserModel, DateModel, StatusModel, OrderedM
     motion_fade_in = models.FloatField(blank=True, null=True)
     motion_fade_out = models.FloatField(blank=True, null=True)
     light_profile = models.ForeignKey(Light_profile, models.DO_NOTHING, blank=True, null=True)
+    
 
     class Meta:
         verbose_name = _('light_profile_slot')
