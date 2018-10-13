@@ -77,7 +77,7 @@ setup(
         'boto3',
         'django-storages',  # to upload file on S3
         'jsonschema',
-        'django-webpack-loader==0.6.0'
+        'django-webpack-loader==0.6.0',
         'django-import-export==1.0.1',
     ],
     package_data=get_data_files('web')
