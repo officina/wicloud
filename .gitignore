@@ -20,3 +20,5 @@ tests/report/
 .idea/*
 web/static/bundles/
 venv/
+web/settings/local.py
+web.settings/settings.py
