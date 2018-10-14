@@ -1,6 +1,5 @@
 #!/bin/sh
-LD_LIBRARY_PATH=/usr/local/lib
-export LD_LIBRARY_PATH
+source ~/.bash_profile
 cd /var/www/html/wicloud/web/settings
 cp /home/ec2-user/wicloud-local/local.py .
 ln -s local.py settings.py
