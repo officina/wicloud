@@ -11,7 +11,7 @@ pip3 install .
 dj migrate
 dj collectstatic --noinput
 deactivate
-cd cd /var/www/html/wicloud/webapp
+cd /var/www/html/wicloud/webapp
 npm install
 webpack
 
