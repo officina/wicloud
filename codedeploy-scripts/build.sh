@@ -8,4 +8,9 @@ cd /var/www/html/wicloud
 . django/bin/activate
 pip3 install .
 dj migrate
+dj collectstatic --noinput
 deactivate
+cd webapp
+npm install
+webpack
+
