@@ -27,7 +27,7 @@ cd /var/www/html/wicloud/webapp
 npm install
 webpack
 # after building the frontend, upload to s3
-dj collectstatic --noinput --clear # temporary fix 
+dj collectstatic --noinput
 
 # deactivate virtualenv
 deactivate
