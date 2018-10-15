@@ -25,7 +25,7 @@ dj migrate
 #frontend
 cd /var/www/html/wicloud/webapp
 npm install
-webpack --env.NODE_ENV=production
+NODE_ENV=production webpack --mode=production
 # after building the frontend, upload to s3
 dj collectstatic --noinput
 

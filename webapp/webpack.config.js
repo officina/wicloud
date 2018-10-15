@@ -6,7 +6,7 @@ var path = require('path');
 var environment = process.env.NODE_ENV === 'production' ? 'production' : 'development';
 var API_URL = {
     production: 'http://wicloud-test.wi4b.it',
-    development: 'http://localhost.charlesproxy.com:8000'
+    development: 'http://127.0.0.1:8000'
 }
 
 module.exports = {
