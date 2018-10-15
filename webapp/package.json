@@ -21,7 +21,6 @@
     "@ng-bootstrap/ng-bootstrap": "^3.3.0",
     "core-js": "^2.5.5",
     "rxjs": "^6.1.0",
-    "webpack-bundle-tracker": "^0.4.2-beta",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

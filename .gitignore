@@ -23,3 +23,4 @@ venv/
 web/settings/local.py
 web.settings/settings.py
 /web/settings/settings.py
+/static/bundles
