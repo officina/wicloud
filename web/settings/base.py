@@ -40,6 +40,7 @@ ADMIN_LANGUAGE_CODE = 'it'
 # Application definition
 
 INSTALLED_APPS = [
+    'collectfast',
     'flat_responsive',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -58,6 +59,7 @@ INSTALLED_APPS = [
     'web',
     'apps.wicloud',
     'webpack_loader',
+
 ]
 
 MIDDLEWARE = [
