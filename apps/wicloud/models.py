@@ -157,7 +157,7 @@ class Error_light_level_and_adc_mismatch(CleanModel, UserModel, DateModel, Statu
 
     error_timestamp = models.DateTimeField(blank=True, null=True)
     error_resolved_timestamp = models.DateTimeField(blank=True, null=True)
-    is_in_error = models.BooleanField(blank=True, null=True)
+    is_in_error = models.BooleanField(blank=True, default=False)
     light_level_value = models.FloatField(blank=True, null=True)
     adc_value = models.FloatField(blank=True, null=True)
     active_power = models.FloatField(blank=True, null=True)
@@ -187,7 +187,7 @@ class Error_light_level_and_power_mismatch(CleanModel, UserModel, DateModel, Sta
 
     error_timestamp = models.DateTimeField(blank=True, null=True)
     error_resolved_timestamp = models.DateTimeField(blank=True, null=True)
-    is_in_error = models.BooleanField(blank=True, null=True)
+    is_in_error = models.BooleanField(blank=True, default=False)
     light_level_value = models.FloatField(blank=True, null=True)
     adc_value = models.FloatField(blank=True, null=True)
     active_power = models.FloatField(blank=True, null=True)
@@ -215,7 +215,7 @@ class Error_node_offline(CleanModel, UserModel, DateModel, StatusModel, OrderedM
 
     error_timestamp = models.DateTimeField(blank=True, null=True)
     error_resolved_timestamp = models.DateTimeField(blank=True, null=True)
-    is_in_error = models.BooleanField(blank=True, null=True)
+    is_in_error = models.BooleanField(blank=True, default=False)
     logged_entity = models.BigIntegerField(blank=True, null=True)
     logged_entity_mac = models.CharField(max_length=255, blank=True, null=True)
     entity_json = models.CharField(max_length=255, blank=True, null=True)
@@ -250,7 +250,7 @@ class Gateway(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
     coordinator_mac = models.CharField(max_length=255, blank=True, null=True)
     file_name_encryption_info = models.CharField(max_length=255, blank=True, null=True)
     hardware_informations = models.CharField(max_length=255, blank=True, null=True)
-    ready_to_receive_data = models.BooleanField(blank=True, null=True)
+    ready_to_receive_data = models.BooleanField(blank=True, default=False)
     installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True)
     # shipping = models.ForeignKey('Shipping', models.DO_NOTHING, blank=True, null=True)
     # order = models.ForeignKey('JhiOrder', models.DO_NOTHING, blank=True, null=True)
@@ -445,7 +445,7 @@ class Light_profile(CleanModel, UserModel, DateModel, StatusModel, OrderedModel)
     profile_crc = models.FloatField(blank=True, null=True)
     light_profile_id = models.IntegerField(blank=True, null=True)
     gateway = models.ForeignKey('Gateway', models.DO_NOTHING, blank=True, null=True)
-    enabled = models.BooleanField(blank=True, null=True)
+    enabled = models.BooleanField(blank=True, default=False)
 
     class Meta:
         verbose_name = _('light_profile')
@@ -469,11 +469,11 @@ class Light_profile_slot(CleanModel, UserModel, DateModel, StatusModel, OrderedM
     dof = models.IntegerField(blank=True, null=True)
     ton = models.CharField(max_length=255, blank=True, null=True)
     tof = models.CharField(max_length=255, blank=True, null=True)
-    eas = models.BooleanField(blank=True, null=True)
-    ecr = models.BooleanField(blank=True, null=True)
-    emo = models.BooleanField(blank=True, null=True)
+    eas = models.BooleanField(blank=True, default=False)
+    ecr = models.BooleanField(blank=True, default=False)
+    emo = models.BooleanField(blank=True, default=False)
     edw = models.IntegerField(blank=True, null=True)
-    enabled = models.BooleanField(blank=True, null=True)
+    enabled = models.BooleanField(blank=True, default=False)
     light_profile_index = models.IntegerField(blank=True, null=True)
     pw_0 = models.FloatField(blank=True, null=True)
     pw_1 = models.FloatField(blank=True, null=True)
@@ -492,6 +492,7 @@ class Light_profile_slot(CleanModel, UserModel, DateModel, StatusModel, OrderedM
     motion_fade_in = models.FloatField(blank=True, null=True)
     motion_fade_out = models.FloatField(blank=True, null=True)
     light_profile = models.ForeignKey(Light_profile, models.DO_NOTHING, blank=True, null=True)
+
 
     class Meta:
         verbose_name = _('light_profile_slot')

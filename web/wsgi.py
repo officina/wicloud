@@ -17,6 +17,6 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "web.settings")
 # add the hellodjango project path into the sys.path
 sys.path.append('/var/www/html/wicloud/')
 # add the virtualenv site-packages path to the sys.path
-sys.path.append('/var/www/html/wicloud/django/lib/python3.7/site-packages')
+sys.path.append('/var/www/html/wicloud/django/lib/python3.6/site-packages')
 
 application = get_wsgi_application()

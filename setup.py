@@ -59,7 +59,7 @@ setup(
     cmdclass={"test": TestRunner},
     install_requires=[
         'setuptools',
-        'django==1.11.13',
+        'django==2',
         'django-application-settings',
         'django-extensions',
         'django-debug-toolbar',
@@ -76,8 +76,10 @@ setup(
         'pathlib',
         'boto3',
         'django-storages',  # to upload file on S3
-        'Playoff',
-        'jsonschema'
+        'jsonschema',
+        'django-webpack-loader==0.6.0',
+        'django-import-export==1.0.1',
+        'Collectfast'
     ],
     package_data=get_data_files('web')
 )
