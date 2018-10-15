@@ -21,13 +21,15 @@ cd /var/www/html/wicloud
 pip3 install .
 # db migrations
 dj migrate
-# deactivate virtualenv
-deactivate
+
 #frontend
 cd /var/www/html/wicloud/webapp
 npm install
 webpack
 # after building the frontend, upload to s3
 dj collectstatic --noinput
+
+# deactivate virtualenv
+deactivate
 
 
