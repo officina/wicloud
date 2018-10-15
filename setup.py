@@ -79,6 +79,7 @@ setup(
         'jsonschema',
         'django-webpack-loader==0.6.0',
         'django-import-export==1.0.1',
+        'Collectfast'
     ],
     package_data=get_data_files('web')
 )
