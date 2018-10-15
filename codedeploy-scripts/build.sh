@@ -17,7 +17,7 @@ cd /var/www/html/wicloud
 /usr/local/bin/virtualenv django --python /usr/local/bin/python3
 # activate virtualenv
 . django/bin/activate
-# package instalaltion
+# package installation
 pip3 install .
 # db migrations
 dj migrate
@@ -25,9 +25,9 @@ dj migrate
 #frontend
 cd /var/www/html/wicloud/webapp
 npm install
-webpack
+NODE_ENV=production webpack --mode=production
 # after building the frontend, upload to s3
-dj collectstatic --noinput --clear # temporary fix
+dj collectstatic --noinput
 
 # deactivate virtualenv
 deactivate

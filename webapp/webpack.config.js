@@ -3,6 +3,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleTracker = require('webpack-bundle-tracker');
 
 var path = require('path');
+var environment = process.env.NODE_ENV === 'production' ? 'production' : 'development';
+var API_URL = {
+    production: 'http://wicloud-test.wi4b.it',
+    development: 'http://127.0.0.1:8000'
+}
 
 module.exports = {
   context: __dirname,
@@ -35,7 +40,7 @@ module.exports = {
     new webpack.DefinePlugin({
       // global app config object
       config: JSON.stringify({
-        apiUrl: 'http://localhost.charlesproxy.com:8000'
+        apiUrl: API_URL[environment]
       })
     }),
     new BundleTracker({filename: '../webpack-stats.json'}),
@@ -47,14 +52,14 @@ module.exports = {
   //   runtimeChunk: true
   // },
   output: {
-    path:  path.resolve('../web/static/bundles/'),
+    path:  path.resolve('../static/bundles/'),
     filename:  "[name].bundle.js",
     chunkFilename:  "[id].bundle.js",
     crossOriginLoading:  false,
     publicPath:"/static/bundles/"//1
 },
   devServer: {
-    contentBase:  path.resolve('../web/static/bundles/'),
+    contentBase:  path.resolve('../static/bundles/'),
     historyApiFallback: true,
 
     hot: true,
