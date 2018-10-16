@@ -61,7 +61,6 @@ module.exports = {
   devServer: {
     contentBase:  path.resolve('../web/static/bundles/'),
     historyApiFallback: true,
-
     hot: true,
     //publicPath: "http://127.0.0.1:4200/",//2,
     publicPath:"http://127.0.0.1:8000/static/bundles/",
