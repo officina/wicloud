@@ -64,7 +64,6 @@ if settings.DEBUG:
 
     # MEDIA
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
     # DEBUG TOOLBAR
     import debug_toolbar
     urlpatterns = [

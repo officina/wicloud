@@ -136,6 +136,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 # STATICFILES_DIRS are the extra paths to fetch the static file for project
 STATICFILES_DIRS = [
+    # os.path.join(STATIC_ROOT, "bundles"),
     os.path.join(BASE_DIR, "web", "static"),
 ]
 

@@ -5,7 +5,7 @@ const BundleTracker = require('webpack-bundle-tracker');
 var path = require('path');
 var environment = process.env.NODE_ENV === 'production' ? 'production' : 'development';
 var API_URL = {
-    production: 'http://wicloud-test.wi4b.it',
+    production: 'http://wicloud-test.wi4b.it/wicloud/api',
     development: 'http://127.0.0.1:8000'
 }
 
@@ -52,14 +52,14 @@ module.exports = {
   //   runtimeChunk: true
   // },
   output: {
-    path:  path.resolve('../static/bundles/'),
+    path:  path.resolve('../web/static/bundles/'),
     filename:  "[name].bundle.js",
     chunkFilename:  "[id].bundle.js",
     crossOriginLoading:  false,
     publicPath:"/static/bundles/"//1
 },
   devServer: {
-    contentBase:  path.resolve('../static/bundles/'),
+    contentBase:  path.resolve('../web/static/bundles/'),
     historyApiFallback: true,
 
     hot: true,
