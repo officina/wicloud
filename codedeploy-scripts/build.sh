@@ -15,7 +15,7 @@ npm install
 NODE_ENV=production webpack --mode=production
 
 # .. excluded the log folders
-sudo chown apache:apache /var/www/html/wicloud/logs/*
+
 # back to the main project folder
 cd /var/www/html/wicloud
 # initialize virtualenv
@@ -35,5 +35,5 @@ dj collectstatic --noinput
 
 # deactivate virtualenv
 deactivate
-
+sudo chown apache:apache /var/www/html/wicloud/logs/*
 
