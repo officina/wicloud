@@ -13,7 +13,7 @@
 <body>
 <h1>Wicloud</h1>
 <app></app>
-{% if DEBUGs %}
+{% if not DEBUG %}
 <script src="{% static '/bundles/main.bundle.js' %}"></script>
 {% else %}
     {% render_bundle 'main' %}
