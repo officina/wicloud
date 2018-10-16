@@ -38,15 +38,16 @@ INTERNAL_IPS = ['127.0.0.1']
 ADMIN_LANGUAGE_CODE = 'it'
 
 # Application definition
-
+AWS_PRELOAD_METADATA = True
 INSTALLED_APPS = [
-    'collectfast',
+
     'flat_responsive',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'collectfast',
     'django.contrib.staticfiles',
     'django.contrib.admindocs',
     'django_extensions',
