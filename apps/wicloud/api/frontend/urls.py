@@ -9,11 +9,15 @@ urlpatterns = [
     url(r'^users/list',
         views.UserListView.as_view(),
         name='users_list'
-    ),
+        ),
     url(r'^users/register',
         views.UserCreateView.as_view(),
         name='users_register'
-    ),
+        ),
+    url(r'^users/change-password',
+        views.UserChangePasswordView.as_view(),
+        name='users_change_password'
+        ),
     url(
         r'^address/list/$',
         views.AddressListView.as_view(),

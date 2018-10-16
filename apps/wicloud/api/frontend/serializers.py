@@ -1145,3 +1145,10 @@ class UserSerializer(serializers.ModelSerializer):
         if len(value) < 5:
             raise serializers.ValidationError("Invalid username")
         return value
+
+class ChangePasswordSerializer(serializers.Serializer):
+    """
+    Serializer for password change endpoint.
+    """
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)

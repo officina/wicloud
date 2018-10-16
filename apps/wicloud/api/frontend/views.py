@@ -22,6 +22,12 @@ def api_root(request, format=None):
     url_dict['users_register'] = reverse(
         'wicloud:api:frontend:users_register', request=request, format=format
     )
+    url_dict['users_change_password'] = reverse(
+        'wicloud:api:frontend:users_change_password', request=request, format=format
+    )
+    url_dict['users_register'] = reverse(
+        'wicloud:api:frontend:users_register', request=request, format=format
+    )
     url_dict['address_list'] = reverse(
         'wicloud:api:frontend:address_list', request=request, format=format
     )
@@ -1729,14 +1735,36 @@ class Motion_management_moduleDisableView(views.ThuxStatusViewMixin, generics.Re
     serializer_class = serializers.Motion_management_moduleStatusSerializer
     new_status = 0
 
+
 class UserListView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = serializers.UserSerializer
-
 
 
 class UserCreateView(generics.CreateAPIView):
     authentication_classes = []
     permission_classes = []
     serializer_class = serializers.UserSerializer
+
+
+class UserChangePasswordView(generics.UpdateAPIView):
+    serializer_class = serializers.ChangePasswordSerializer
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def update(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        serializer = self.get_serializer(data=request.data)
+
+        if serializer.is_valid():
+            # Check old password
+            if not self.object.check_password(serializer.data.get("old_password")):
+                return Response({"old_password": ["Wrong password."]}, status=status.HTTP_400_BAD_REQUEST)
+            # set_password also hashes the password that the user will get
+            self.object.set_password(serializer.data.get("new_password"))
+            self.object.save()
+            return Response("Success.", status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
