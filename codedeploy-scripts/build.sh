@@ -27,6 +27,7 @@ cd /var/www/html/wicloud/webapp
 npm install
 NODE_ENV=production webpack --mode=production
 # after building the frontend, upload to s3 the different files (see Collectfast plugin for django-storage)
+cd /var/www/html/wicloud/
 dj collectstatic --noinput
 
 # deactivate virtualenv
