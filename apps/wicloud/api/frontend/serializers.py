@@ -4,6 +4,7 @@ from rest_framework import serializers
 from ... import models
 from django.contrib.auth.models import User
 from rest_framework.validators import ValidationError
+from rest_framework.response import Response
 
 
 class AddressListSerializer(serializers.ModelSerializer):
@@ -1133,18 +1134,14 @@ class Motion_management_moduleStatusSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         return Motion_management_moduleRetrieveSerializer(instance).data
 
+
 class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
         fields = '__all__'
 
-    def create(self, validated_data):
-        print("**********************")
-        print(len(self.validated_data['username']) < 5)
-        print(type(self.validated_data['username']))
-        if len(self.validated_data['username']) < 5:
-            raise ValidationError(detail='username too short')
-            # raise ValidationError('username too short')
-        user = super(UserSerializer, self).create(validated_data)
-        return user
+    def validate_username(self, value):
+        if len(value) < 5:
+            raise serializers.ValidationError("Invalid username")
+        return value

@@ -10,6 +10,7 @@ from web.api import views
 from . import serializers
 from ... import models
 from django.contrib.auth.models import User
+from rest_framework import status
 
 
 @api_view(('GET',))
@@ -1733,6 +1734,9 @@ class UserListView(generics.ListAPIView):
     serializer_class = serializers.UserSerializer
 
 
-class UserCreateView(generics.ListCreateAPIView):
-    queryset = User.objects.all()
+
+class UserCreateView(generics.CreateAPIView):
+    authentication_classes = []
+    permission_classes = []
     serializer_class = serializers.UserSerializer
+
