@@ -28,7 +28,7 @@ def wicloud_exception_handler(exc, context):
     if response is not None:
         response.data['status_code'] = response.status_code
     else:
-        if isinstance(exc, exceptions.MygeneraliException):
+        if isinstance(exc, exceptions.WicloudException):
             data = {'detail': _(exc.msg)}
             response = Response(data, status=status.HTTP_400_BAD_REQUEST)
         if isinstance(exc, django_exceptions.ValidationError):
@@ -38,7 +38,7 @@ def wicloud_exception_handler(exc, context):
 
 
 # GENERIC CUSTOM API EXCEPTION
-class MygeneraliAPIException(APIException):
+class WicloudAPIException(APIException):
     """
     To import:
         from web.drf import exceptions
@@ -68,7 +68,7 @@ class MygeneraliAPIException(APIException):
             self.request = self.request._request
         self.http_method = request.method
 
-        super(MygeneraliAPIException, self).__init__(msg)
+        super(WicloudAPIException, self).__init__(msg)
         if write_log:
             log_string = """{detail}\nurl: {url}\nmethod: {method}\nuser: {user}\ndata: {data}\n""".format(
                 detail=self.detail,

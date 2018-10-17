@@ -38,16 +38,14 @@ INTERNAL_IPS = ['127.0.0.1']
 ADMIN_LANGUAGE_CODE = 'it'
 
 # Application definition
-AWS_PRELOAD_METADATA = True
-INSTALLED_APPS = [
 
+INSTALLED_APPS = [
     'flat_responsive',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'collectfast',
     'django.contrib.staticfiles',
     'django.contrib.admindocs',
     'django_extensions',
@@ -60,7 +58,7 @@ INSTALLED_APPS = [
     'web',
     'apps.wicloud',
     'webpack_loader',
-
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -137,10 +135,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 # STATICFILES_DIRS are the extra paths to fetch the static file for project
 STATICFILES_DIRS = [
-    # os.path.join(STATIC_ROOT, "bundles"),
     os.path.join(BASE_DIR, "web", "static"),
 ]
-
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
