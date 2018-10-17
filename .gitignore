@@ -19,9 +19,14 @@ build/
 tests/report/
 .idea/*
 web/static/bundles/
+/.env
 venv/
 web/settings/local.py
 web.settings/settings.py
 /web/settings/settings.py
 /static/bundles
+/.idea/misc.xml
+/.idea/wicloud.iml
+/web/settings/local.py
+/npm-debug.log
 /webpack-stats.json

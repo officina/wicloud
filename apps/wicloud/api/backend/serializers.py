@@ -1130,4 +1130,3 @@ class Motion_management_moduleStatusSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         return Motion_management_moduleRetrieveSerializer(instance).data
-
