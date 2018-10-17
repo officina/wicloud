@@ -17,7 +17,11 @@ module.exports = {
     rules: [
       {
         test: /\.ts$/,
-        use: ['ts-loader', 'angular2-template-loader'],
+        use: [
+          'ts-loader',
+          'angular2-template-loader',
+          'angular-router-loader?aot=true&genDir=aot/',
+        ],
         exclude: /node_modules/
       },
       {
@@ -46,6 +50,17 @@ module.exports = {
            },
          }
        ],
+      },
+      {
+        test: /\.(png|jpg|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192
+            }
+          }
+        ]
       }
     ]
   },
@@ -69,16 +84,16 @@ module.exports = {
     }),
     new BundleTracker({filename: '../webpack-stats.json'}),
   ],
-  // optimization: {
-  //   splitChunks: {
-  //     chunks: 'all',
-  //   },
-  //   runtimeChunk: true
-  // },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+    runtimeChunk: true
+  },
   output: {
     path:  path.resolve('../web/static/bundles/'),
-    filename:  "[name].bundle.js",
-    chunkFilename:  "[id].bundle.js",
+    filename:  "[name].[hash].bundle.js",
+    chunkFilename:  "[id].[hash].bundle.js",
     crossOriginLoading:  false,
     publicPath:"/static/bundles/"//1
 },
