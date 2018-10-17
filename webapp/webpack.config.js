@@ -34,7 +34,15 @@ module.exports = {
          {
            loader: 'sass-resources-loader',
            options: {
-             resources: ['./styles/global/_common.scss', './styles/global/_mixins.scss']
+             resources: [
+               '.src/app/@theme/styles/styles.scss',
+               './src/app/@theme/components/theme-switcher/themes-switcher-list/theme-switcher-list.component.scss',
+               './src/app/@theme/layouts/sample/sample.layout.scss',
+
+               './src/app/@theme/components/header/header.component.scss',
+               './src/app/@theme/components/header/header.component.scss',
+               './src/app/@theme/components/header/header.component.scss',
+             ]
            },
          }
        ],
