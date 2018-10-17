@@ -24,14 +24,15 @@ cd /var/www/html/wicloud
 . django/bin/activate
 # package installation
 pip3 install .
-# db migrations
-dj migrate
+
 
 #frontend
 
 # after building the frontend, upload to s3 the different files (see Collectfast plugin for django-storage)
 cd /var/www/html/wicloud/
 dj collectstatic --noinput
+# db migrations
+dj migrate
 
 # deactivate virtualenv
 deactivate
