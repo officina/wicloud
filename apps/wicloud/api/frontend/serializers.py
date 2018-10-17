@@ -1142,7 +1142,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def validate_username(self, value):
-        if len(value) < 5:
+        if len(value) < 3:
             raise serializers.ValidationError("Invalid username")
         return value
 
