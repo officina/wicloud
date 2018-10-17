@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleTracker = require('webpack-bundle-tracker');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var path = require('path');
 var environment = process.env.NODE_ENV === 'production' ? 'production' : 'development';
@@ -20,16 +21,23 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.(html|css)$/,
+        test: /\.(html)$/,
         loader: 'raw-loader'
       },
       {
-        test: /\.scss$/,
-            use: [
-                "style-loader", // creates style nodes from JS strings
-                "css-loader", // translates CSS into CommonJS
-                "sass-loader" // compiles Sass to CSS, using Node Sass by default
-            ]
+        test: /\.(css|sass)$/,
+        use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader!sass-loader' })
+      },
+      {
+         test: /\.scss$/,
+       loader: ["raw-loader", "sass-loader",
+         {
+           loader: 'sass-resources-loader',
+           options: {
+             resources: ['./styles/global/_common.scss', './styles/global/_mixins.scss']
+           },
+         }
+       ],
       }
     ]
   },
@@ -38,7 +46,7 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-
+    new ExtractTextPlugin('.src/app/@theme/styles/styles.scss'),
     //new CleanWebpackPlugin(path.resolve('../web/static/bundles/')),
     new HtmlWebpackPlugin({
       template: './src/index.html',
