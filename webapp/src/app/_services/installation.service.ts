@@ -22,6 +22,6 @@ export class InstallationService {
   getInstallationsForUser() {
 
         console.log("calling installation list service");
-        return this.http.get<any>(`${config.apiUrl}/wicloud/api/backend/installation/list/`);
+        return this.http.get<any>(`${config.apiUrl}/backend/installation/list/`);
     }
 }

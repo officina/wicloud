@@ -2,6 +2,10 @@
 
 from rest_framework import serializers
 from ... import models
+from django.contrib.auth.models import User
+from rest_framework.validators import ValidationError
+from rest_framework.response import Response
+
 
 
 class AddressListSerializer(serializers.ModelSerializer):
@@ -1130,4 +1134,28 @@ class Motion_management_moduleStatusSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         return Motion_management_moduleRetrieveSerializer(instance).data
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = '__all__'
+
+    def validate_username(self, value):
+        if len(value) < 3:
+            raise serializers.ValidationError("Invalid username")
+        return value
+
+class ChangePasswordSerializer(serializers.Serializer):
+    """
+    Serializer for password change endpoint.
+    """
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+
+
+
+
+
 

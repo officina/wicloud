@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""My Generali URL Configuration
+"""Wicloud URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.10/topics/http/urls/
@@ -26,7 +26,8 @@ from django.contrib import admin
 from web.api import views as permission_views
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 from web import views
-
+from rest_framework_jwt.views import ObtainJSONWebToken
+from web.core.serializers import CustomJWTSerializer
 
 urlpatterns = [
     # ADMIN URL
@@ -42,7 +43,7 @@ urlpatterns = [
         permission_views.PermissionListView.as_view(), name='permission_model_root'),
 
     # JWT TOKEN URL
-    url(r'^api-token-auth/', obtain_jwt_token),
+    url(r'^api-token-auth/', ObtainJSONWebToken.as_view(serializer_class=CustomJWTSerializer), name='api-jwt-auth'),
     url(r'^api-token-refresh/', refresh_jwt_token),
     url(r'^api-token-verify/', verify_jwt_token),
     # REST AUTH URL
@@ -64,7 +65,6 @@ if settings.DEBUG:
 
     # MEDIA
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
     # DEBUG TOOLBAR
     import debug_toolbar
     urlpatterns = [

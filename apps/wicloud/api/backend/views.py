@@ -1721,4 +1721,3 @@ class Motion_management_moduleDisableView(views.ThuxStatusViewMixin, generics.Re
     serializer_class = serializers.Motion_management_moduleStatusSerializer
     new_status = 0
 
-

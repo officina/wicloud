@@ -40,7 +40,6 @@ ADMIN_LANGUAGE_CODE = 'it'
 # Application definition
 
 INSTALLED_APPS = [
-    'collectfast',
     'flat_responsive',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -59,7 +58,7 @@ INSTALLED_APPS = [
     'web',
     'apps.wicloud',
     'webpack_loader',
-
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -238,6 +237,8 @@ CORS_ORIGIN_WHITELIST = [
 ]
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'web.core.serializers.jwt_response_payload_handler',
+    'JWT_AUTH_HEADER_PREFIX' : 'Bearer',
 }
 
 
@@ -252,3 +253,9 @@ WEBPACK_LOADER = {
         'IGNORE': ['.+\.hot-update.js', '.+\.map']
     }
 }
+AUTHENTICATION_BACKENDS =['django.contrib.auth.backends.ModelBackend', 'web.core.backends.EmailBackend']
+# ACCOUNT_AUTHENTICATION_METHOD = 'email'
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_USERNAME_REQUIRED = False
+
+
