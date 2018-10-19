@@ -10,4 +10,3 @@ django-cors-headers
 docutils
 dj-cmd
 psycopg2
-webpack_loader
