@@ -26,7 +26,8 @@ from django.contrib import admin
 from web.api import views as permission_views
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 from web import views
-
+from rest_framework_jwt.views import ObtainJSONWebToken
+from apps.wicloud.api.frontend.serializers import CustomJWTSerializer
 
 urlpatterns = [
     # ADMIN URL
@@ -42,7 +43,7 @@ urlpatterns = [
         permission_views.PermissionListView.as_view(), name='permission_model_root'),
 
     # JWT TOKEN URL
-    url(r'^api-token-auth/', obtain_jwt_token, name='api-jwt-auth'),
+    url(r'^api-token-auth/', ObtainJSONWebToken.as_view(serializer_class=CustomJWTSerializer), name='api-jwt-auth'),
     url(r'^api-token-refresh/', refresh_jwt_token),
     url(r'^api-token-verify/', verify_jwt_token),
     # REST AUTH URL
