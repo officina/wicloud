@@ -251,3 +251,7 @@ WEBPACK_LOADER = {
         'IGNORE': ['.+\.hot-update.js', '.+\.map']
     }
 }
+AUTHENTICATION_BACKENDS =['django.contrib.auth.backends.ModelBackend', 'web.core.backends.EmailBackend']
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
