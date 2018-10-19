@@ -27,7 +27,7 @@ from web.api import views as permission_views
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 from web import views
 from rest_framework_jwt.views import ObtainJSONWebToken
-from apps.wicloud.api.frontend.serializers import CustomJWTSerializer
+from web.core.serializers import CustomJWTSerializer
 
 urlpatterns = [
     # ADMIN URL
