@@ -44,3 +44,16 @@ class CustomJWTSerializer(JSONWebTokenSerializer):
         else:
             msg = _('Account with this email/username does not exists')
             raise serializers.ValidationError(msg)
+
+
+class CustomTokenResponseSerializer(serializers.Serializer):
+    email = serializers.CharField()
+    first_name = serializers.CharField()
+    last_name = serializers.CharField()
+    username = serializers.CharField()
+
+def jwt_response_payload_handler(token, user=None, request=None):
+    return {
+        'token': token,
+        'user': CustomTokenResponseSerializer(user, context={'request':request}).data
+    }

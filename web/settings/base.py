@@ -237,6 +237,7 @@ CORS_ORIGIN_WHITELIST = [
 ]
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'web.core.serializers.jwt_response_payload_handler',
 }
 
 
@@ -252,6 +253,7 @@ WEBPACK_LOADER = {
     }
 }
 AUTHENTICATION_BACKENDS =['django.contrib.auth.backends.ModelBackend', 'web.core.backends.EmailBackend']
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
+# ACCOUNT_AUTHENTICATION_METHOD = 'email'
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_USERNAME_REQUIRED = False
+
