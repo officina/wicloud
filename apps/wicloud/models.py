@@ -29,7 +29,7 @@ class Address(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
         )
 
     def __str__(self):
-        return self.description
+        return f'{self.description}'
 
 
 class Customer(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
@@ -349,7 +349,7 @@ class Installation(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
         )
 
     def __str__(self):
-        return self.description
+        return f'{self.description}'
 
 
 class Light_management_measure(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):

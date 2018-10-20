@@ -10,14 +10,7 @@ ln -sf local.py settings.py
 # change permissions to the main project folder..
 sudo chown -R ec2-user:ec2-user /var/www/html/wicloud/
 
-cd /var/www/html/wicloud/webapp
-npm install
-NODE_ENV=production webpack --mode=production
 
-# .. excluded the log folders
-
-# back to the main project folder
-cd /var/www/html/wicloud
 # initialize virtualenv
 /usr/local/bin/virtualenv django --python /usr/local/bin/python3
 # activate virtualenv

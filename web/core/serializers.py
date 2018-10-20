@@ -1,3 +1,4 @@
+from django.utils.translation import gettext as _
 from rest_framework_jwt.serializers import JSONWebTokenSerializer
 
 from rest_framework_jwt.utils import jwt_payload_handler
