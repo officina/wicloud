@@ -1,7 +1,12 @@
 # -*- coding: utf-8 -*-
 
 from rest_framework import serializers
+
+from apps.wicloud.models import Address
 from ... import models
+from rest_framework import serializers
+from rest_framework.serializers import  ModelSerializer
+
 
 
 class AddressListSerializer(serializers.ModelSerializer):
@@ -525,6 +530,20 @@ class InstallationListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Installation
         fields = '__all__'
+
+    address = serializers.SerializerMethodField()
+
+    def get_address(self, obj):
+        "obj is a Member instance. Returns list of dicts"""
+        qset = models.Address.objects.filter(installation=obj).first()
+        return AddressRetrieveSerializer(qset).data
+
+    customer = serializers.SerializerMethodField()
+
+    def get_customer(self, obj):
+        "obj is a Member instance. Returns list of dicts"""
+        q = models.Customer.objects.filter(installation=obj).first()
+        return CustomerRetrieveSerializer(q).data
 
 
 class InstallationRetrieveSerializer(serializers.ModelSerializer):
