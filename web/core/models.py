@@ -26,13 +26,13 @@ class UserModel(models.Model):
 
 
 class DateModel(models.Model):
-    date_create = models.DateTimeField(
+    created_date = models.DateTimeField(
         auto_now_add=True,
-        verbose_name=_('date create'),
+        verbose_name=_('Created date'),
     )
-    date_last_modify = models.DateTimeField(
+    last_modified_date = models.DateTimeField(
         auto_now=True,
-        verbose_name=_('date last modify'),
+        verbose_name=_('Last modified date'),
     )
 
     class Meta:
@@ -41,8 +41,8 @@ class DateModel(models.Model):
 
 class StatusModel(models.Model):
     STATUS_CODES = (
-        (0, _('disable')),
-        (1, _('enable')),
+        (0, _('disabled')),
+        (1, _('enabled')),
     )
     status = models.IntegerField(
         choices=STATUS_CODES,

@@ -7,7 +7,7 @@ cd /var/www/html/wicloud/web/settings
 cp /home/ec2-user/wicloud-local/local.py .
 # symobolic link overriding existing link
 ln -sf local.py settings.py
-# change permissions to the main prject folder..
+# change permissions to the main project folder..
 sudo chown -R ec2-user:ec2-user /var/www/html/wicloud/
 
 
