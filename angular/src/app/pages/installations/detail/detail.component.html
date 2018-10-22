@@ -1,0 +1,51 @@
+<nb-card>
+
+  <nb-card-body>
+    <div class="row">
+      <!-- COL INFO INSTALLAZIONE -->
+      <div class="col-6">
+        <!-- ROW TITOLO INSTALLAZIONE -->
+        <div class="row block">
+          <div class="col">
+            <div class="row">
+              <h3>{{installation.name}}</h3>
+            </div>
+            <div class="row">
+              <h3>{{installation.customer.description}}</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW INDIRIZZO INSTALLAZIONE -->
+        <div class="row block">
+          <div class="col-4">
+            <i class="nb-location icon-full-height"></i>
+          </div>
+          <div class="col">
+            <div class="row">
+              <h4>{{installation.address.full_name}}</h4>
+            </div>
+            <div class="col">
+            <div class="row">
+              {{installation.address.city}}
+            </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <!-- COL MAPPA -->
+      <div class="col-6">
+        <div class="col">
+          <div class="row">
+            <h1>{{installation.customer.company_name}}</h1>
+          </div>
+          <div class="row">
+            <h3>{{installation.customer.description}}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
