@@ -23,12 +23,14 @@ phases:
         # - yarn global add @angular/cli@6.0.8
         # Install node dependancies.
         # - yarn install
+        - cd angular
         - echo Installing npm
         - npm install -g @angular/cli@6.0.0
         - echo Installing npm modules
         - npm install
   build:
     commands:
+       - cd angular
        - echo Build started on `date`
        - ng build --prod --build-optimizer
        - echo Build ended on `date`
@@ -38,11 +40,11 @@ phases:
           - aws s3 rm s3://${S3_BUCKET} --recursive
           - echo S3 bucket is cleared.
           # Copy dist folder to S3 bucket, As of Angular 6, builds are stored inside an app folder in distribution and not at the root of the dist folder
-          - aws s3 cp dist s3://${S3_BUCKET} --recursive
+          - aws s3 cp angular/dist s3://${S3_BUCKET} --recursive
           - echo Build completed on `date`
 
 artifacts:
     files:
         - '**/*'
     discard-paths: yes
-    base-directory: 'dist*'
+    base-directory: 'angular/dist*'
