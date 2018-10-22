@@ -6,13 +6,13 @@ environment_variables:
 phases:
   install:
     commands:
-        - install.sh
+        - codebuild-scripts/install.sh
   build:
     commands:
-       - build.sh
+       - codebuild-scripts/build.sh
   post_build:
          commands:
-          - postbuild.sh
+          - codebuild-scripts/postbuild.sh
 #artifacts:
 #    files:
 #        - '**/*'
