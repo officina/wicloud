@@ -6,13 +6,13 @@ environment_variables:
 phases:
   install:
     commands:
-        - codebuild-scripts/install.sh
+        - angular/codebuild-scripts/install.sh
   build:
     commands:
-       - codebuild-scripts/build.sh
+       - angular/codebuild-scripts/build.sh
   post_build:
          commands:
-          - codebuild-scripts/postbuild.sh
+          - angular/codebuild-scripts/postbuild.sh
 #artifacts:
 #    files:
 #        - '**/*'
