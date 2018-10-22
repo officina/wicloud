@@ -6,12 +6,15 @@ environment_variables:
 phases:
   install:
     commands:
+        - chmod +x angular/codebuild-scripts/install.sh
         - angular/codebuild-scripts/install.sh
   build:
     commands:
+       - chmod +x angular/codebuild-scripts/build.sh
        - angular/codebuild-scripts/build.sh
   post_build:
          commands:
+          - chmod +x angular/codebuild-scripts/postbuild.sh
           - angular/codebuild-scripts/postbuild.sh
 #artifacts:
 #    files:
