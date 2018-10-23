@@ -1,0 +1,23 @@
+version: 0.2
+environment_variables:
+    plaintext:
+        S3_BUCKET: "wicloud-test.wi4b.com"
+        BUILD_ENV: "prod"
+phases:
+  install:
+    commands:
+        - chmod +x angular/codebuild-scripts/install.sh
+        - angular/codebuild-scripts/install.sh
+  build:
+    commands:
+       - chmod +x angular/codebuild-scripts/build.sh
+       - angular/codebuild-scripts/build.sh
+  post_build:
+         commands:
+          - chmod +x angular/codebuild-scripts/postbuild.sh
+          - angular/codebuild-scripts/postbuild.sh
+#artifacts:
+#    files:
+#        - '**/*'
+#    discard-paths: yes
+#    base-directory: 'angular/dist*'
