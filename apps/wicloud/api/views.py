@@ -9,7 +9,7 @@ from rest_framework.reverse import reverse
 from web.api import views
 from . import serializers
 from .. import models
-
+from . import permissions
 
 @api_view(('GET',))
 def api_root(request, format=None):
@@ -883,6 +883,8 @@ class InstallationListView(views.ThuxListViewMixin, generics.ListAPIView):
     """
     queryset = models.Installation.objects.all()
     serializer_class = serializers.InstallationListSerializer
+    permission_classes = (permissions.IsAssetsManager, permissions.IsInstallationManager, permissions.IsInstaller,
+                          permissions.IsViewer)
 
 
 class InstallationRetrieveView(views.ThuxRetrieveViewMixin, generics.RetrieveAPIView):
