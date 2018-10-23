@@ -10,6 +10,6 @@ export class AddressService {
   constructor(private http: HttpClient) { }
 
   getAddressById(id: number) {
-    return this.http.get<any>(`${environment.apiUrl}/wicloud/api/backend/address/retrieve/${id}/`);
+    return this.http.get<any>(`${environment.apiUrl}/api/address/${id}/`);
   }
 }

@@ -166,15 +166,15 @@ dj r
  rt.login('admin', 'password)
  rt.backend_wicloud_address_list()
  In [5]: rt.backend_wicloud_address_list()
-'http://127.0.0.1:8000/wicloud/api/backend/address/list/'
+'http://127.0.0.1:8000/wicloud/api/address/list/'
 200
 'OK'
 {'count': 1,
  'current': 1,
  'first': 1,
- 'first_link': 'http://127.0.0.1:8000/wicloud/api/backend/address/list/?page=1',
+ 'first_link': 'http://127.0.0.1:8000/wicloud/api/address/list/?page=1',
  'last': 1,
- 'last_link': 'http://127.0.0.1:8000/wicloud/api/backend/address/list/?page=1',
+ 'last_link': 'http://127.0.0.1:8000/wicloud/api/address/list/?page=1',
  'next': None,
  'next_link': None,
  'per_page': 10,

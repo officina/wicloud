@@ -49,7 +49,7 @@ urlpatterns = [
     # REST AUTH URL
     url(r'^rest-auth/', include('rest_auth.urls')),
 
-    url(r'^wicloud/', include('apps.wicloud.urls')),
+    url(r'^api/', include('apps.wicloud.api.urls')),
 
     url(r'^$',views.home),
     # url('^$', RedirectView.as_view(url='/admin/', permanent=False)),

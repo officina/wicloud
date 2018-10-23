@@ -17,6 +17,6 @@ export class InstallationService {
 
 
   getInstallationsForUser() {
-        return this.http.get<any>(`${environment.apiUrl}/wicloud/api/backend/installation/list/`);
+        return this.http.get<any>(`${environment.apiUrl}/api/installation/list/`);
     }
 }

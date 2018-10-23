@@ -9,11 +9,11 @@ from rest_framework.reverse import reverse
 
 
 @api_view(('GET',))
-def wicloud_root(request, format=None):
+def wicloud_root(request, format= None):
     url_dict = collections.OrderedDict()
 
     url_dict['api'] = reverse(
-        'wicloud:api:api_wicloud_root',
+        'wicloud:api:api_root',
         request=request, format=format
     )
     return Response(url_dict)

@@ -3,7 +3,7 @@
 from rest_framework import serializers
 
 from apps.wicloud.models import Address
-from ... import models
+from .. import models
 from rest_framework import serializers
 from rest_framework.serializers import  ModelSerializer
 

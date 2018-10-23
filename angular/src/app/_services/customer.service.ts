@@ -11,6 +11,6 @@ export class CustomerService {
 
   getCustomerById(id: number) {
 
-    return this.http.get<any>(`${environment.apiUrl}/wicloud/api/backend/customer/retrieve/${id}/`);
+    return this.http.get<any>(`${environment.apiUrl}/api/customer/${id}/`);
   }
 }
