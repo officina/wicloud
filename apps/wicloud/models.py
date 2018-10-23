@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 from web.core.models import UserModel, DateModel, StatusModel, OrderedModel, CleanModel
@@ -337,6 +338,11 @@ class Installation(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
     notes = models.CharField(max_length=255, blank=True, null=True)
     address = models.OneToOneField(Address, models.DO_NOTHING,  blank=True, null=True)
     customer = models.ForeignKey(Customer, models.DO_NOTHING, blank=True, null=True)
+
+    installator = models.ForeignKey(User, related_name='installator', blank=True, null=True)
+    viewers = models.ManyToManyField(User, related_name='viewers')
+    installation_managers = models.ManyToManyField(User, related_name='installation_managers')
+    assets_managers = models.ManyToManyField(User, related_name='assets_manager')
 
     class Meta:
         verbose_name = _('installation')
