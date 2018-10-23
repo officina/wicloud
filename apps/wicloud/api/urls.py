@@ -7,7 +7,7 @@ app_name = 'api'
 
 urlpatterns = [
     url(
-        r'^address/list/$',
+        r'^address/$',
         views.AddressListView.as_view(),
         name='address_list'
     ),
@@ -47,7 +47,7 @@ urlpatterns = [
         name='address_disable'
     ),
     url(
-        r'^customer/list/$',
+        r'^customer/$',
         views.CustomerListView.as_view(),
         name='customer_list'
     ),
@@ -87,7 +87,7 @@ urlpatterns = [
         name='customer_disable'
     ),
     url(
-        r'^energy_interval/list/$',
+        r'^energy_interval/$',
         views.Energy_intervalListView.as_view(),
         name='energy_interval_list'
     ),
@@ -127,7 +127,7 @@ urlpatterns = [
         name='energy_interval_disable'
     ),
     url(
-        r'^energy_meter_module/list/$',
+        r'^energy_meter_module/$',
         views.Energy_meter_moduleListView.as_view(),
         name='energy_meter_module_list'
     ),
@@ -167,7 +167,7 @@ urlpatterns = [
         name='energy_meter_module_disable'
     ),
     url(
-        r'^energy_meter_peak_measure/list/$',
+        r'^energy_meter_peak_measure/$',
         views.Energy_meter_peak_measureListView.as_view(),
         name='energy_meter_peak_measure_list'
     ),
@@ -207,7 +207,7 @@ urlpatterns = [
         name='energy_meter_peak_measure_disable'
     ),
     url(
-        r'^error_light_level_and_adc_mismatch/list/$',
+        r'^error_light_level_and_adc_mismatch/$',
         views.Error_light_level_and_adc_mismatchListView.as_view(),
         name='error_light_level_and_adc_mismatch_list'
     ),
@@ -247,7 +247,7 @@ urlpatterns = [
         name='error_light_level_and_adc_mismatch_disable'
     ),
     url(
-        r'^error_light_level_and_power_mismatch/list/$',
+        r'^error_light_level_and_power_mismatch/$',
         views.Error_light_level_and_power_mismatchListView.as_view(),
         name='error_light_level_and_power_mismatch_list'
     ),
@@ -287,7 +287,7 @@ urlpatterns = [
         name='error_light_level_and_power_mismatch_disable'
     ),
     url(
-        r'^error_node_offline/list/$',
+        r'^error_node_offline/$',
         views.Error_node_offlineListView.as_view(),
         name='error_node_offline_list'
     ),
@@ -327,7 +327,7 @@ urlpatterns = [
         name='error_node_offline_disable'
     ),
     url(
-        r'^gateway/list/$',
+        r'^gateway/$',
         views.GatewayListView.as_view(),
         name='gateway_list'
     ),
@@ -367,7 +367,7 @@ urlpatterns = [
         name='gateway_disable'
     ),
     url(
-        r'^ime_power_counter/list/$',
+        r'^ime_power_counter/$',
         views.Ime_power_counterListView.as_view(),
         name='ime_power_counter_list'
     ),
@@ -407,7 +407,7 @@ urlpatterns = [
         name='ime_power_counter_disable'
     ),
     url(
-        r'^ime_power_measure/list/$',
+        r'^ime_power_measure/$',
         views.Ime_power_measureListView.as_view(),
         name='ime_power_measure_list'
     ),
@@ -447,7 +447,7 @@ urlpatterns = [
         name='ime_power_measure_disable'
     ),
     url(
-        r'^installation/list/$',
+        r'^installation/$',
         views.InstallationListView.as_view(),
         name='installation_list'
     ),
@@ -487,7 +487,7 @@ urlpatterns = [
         name='installation_disable'
     ),
     url(
-        r'^light_management_measure/list/$',
+        r'^light_management_measure/$',
         views.Light_management_measureListView.as_view(),
         name='light_management_measure_list'
     ),
@@ -527,7 +527,7 @@ urlpatterns = [
         name='light_management_measure_disable'
     ),
     url(
-        r'^light_management_module/list/$',
+        r'^light_management_module/$',
         views.Light_management_moduleListView.as_view(),
         name='light_management_module_list'
     ),
@@ -567,7 +567,7 @@ urlpatterns = [
         name='light_management_module_disable'
     ),
     url(
-        r'^light_profile/list/$',
+        r'^light_profile/$',
         views.Light_profileListView.as_view(),
         name='light_profile_list'
     ),
@@ -607,7 +607,7 @@ urlpatterns = [
         name='light_profile_disable'
     ),
     url(
-        r'^light_profile_slot/list/$',
+        r'^light_profile_slot/$',
         views.Light_profile_slotListView.as_view(),
         name='light_profile_slot_list'
     ),
@@ -647,7 +647,7 @@ urlpatterns = [
         name='light_profile_slot_disable'
     ),
     url(
-        r'^motion_event/list/$',
+        r'^motion_event/$',
         views.Motion_eventListView.as_view(),
         name='motion_event_list'
     ),
@@ -687,7 +687,7 @@ urlpatterns = [
         name='motion_event_disable'
     ),
     url(
-        r'^node/list/$',
+        r'^node/$',
         views.NodeListView.as_view(),
         name='node_list'
     ),
@@ -727,7 +727,7 @@ urlpatterns = [
         name='node_disable'
     ),
     url(
-        r'^node_module/list/$',
+        r'^node_module/$',
         views.Node_moduleListView.as_view(),
         name='node_module_list'
     ),
@@ -767,7 +767,7 @@ urlpatterns = [
         name='node_module_disable'
     ),
     url(
-        r'^wilamp_alert/list/$',
+        r'^wilamp_alert/$',
         views.Wilamp_alertListView.as_view(),
         name='wilamp_alert_list'
     ),
@@ -807,7 +807,7 @@ urlpatterns = [
         name='wilamp_alert_disable'
     ),
     url(
-        r'^feeder_pillar/list/$',
+        r'^feeder_pillar/$',
         views.Feeder_pillarListView.as_view(),
         name='feeder_pillar_list'
     ),
@@ -847,7 +847,7 @@ urlpatterns = [
         name='feeder_pillar_disable'
     ),
     url(
-        r'^twilight_management_module/list/$',
+        r'^twilight_management_module/$',
         views.Twilight_management_moduleListView.as_view(),
         name='twilight_management_module_list'
     ),
@@ -887,7 +887,7 @@ urlpatterns = [
         name='twilight_management_module_disable'
     ),
     url(
-        r'^twilight_measure/list/$',
+        r'^twilight_measure/$',
         views.Twilight_measureListView.as_view(),
         name='twilight_measure_list'
     ),
@@ -927,7 +927,7 @@ urlpatterns = [
         name='twilight_measure_disable'
     ),
     url(
-        r'^motion_management_module/list/$',
+        r'^motion_management_module/$',
         views.Motion_management_moduleListView.as_view(),
         name='motion_management_module_list'
     ),
