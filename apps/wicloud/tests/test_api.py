@@ -9,28 +9,29 @@ from rest_framework import status
 from django.urls import reverse
 from django.conf import settings
 import tempfile
-
+import datetime
 
 
 class TestInstallation(TestCase):
 
     apiClient = APIClient()
+    u:UserModel
 
 
     def setUp(self):
         settings.MEDIA_ROOT = tempfile.mkdtemp()
 
         url = reverse('api-jwt-auth')
-        u = self.make_user(username='apitest', password='apitest')
-        u.is_active = False
-        u.save()
+        self.u = self.make_user(username='apitest', password='apitest')
+        self.u.is_active = False
+        self.u.save()
 
         resp = self.client.post(url, {'email': 'testuser', 'password': 'password'}, format='json')
         self.assertEqual(resp.status_code, status.HTTP_400_BAD_REQUEST)
 
-        u.is_active = True
-        u.must_change_password = False
-        u.save()
+        self.u.is_active = True
+        self.u.must_change_password = False
+        self.u.save()
 
         resp = self.client.post(url, {'email': 'apitest', 'password': 'apitest'}, format='json')
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
@@ -57,11 +58,16 @@ class TestInstallation(TestCase):
         original_desc = "installation base"
         modified_desc = "installation modified"
 
-        d = Installation.objects.create()
+        d = Installation.objects.create(
+            creator=self.u,
+            created_date=datetime.datetime.now(),
+            creator_id=self.u.id,
+            last_modifier=self.u
+        )
         d.description = original_desc
         d.save()
         id = d.id
-        url = reverse('api:installation_retrieve', kwargs={'id': id})
+        url = reverse('api:installation_retrieve', kwargs={'pk': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.patch(url, data)
@@ -90,8 +96,13 @@ class TestInstallation(TestCase):
 
     def test_list_installation(self):
         for i in range(0, 5):
-            d = Installation.objects.create()
-            d.title = "employee {}".format(i)
+            d  = Installation.objects.create(
+            creator=self.u,
+            created_date=datetime.datetime.now(),
+            creator_id=self.u.id,
+            last_modifier=self.u
+        )
+            d.title = "installation {}".format(i)
             d.save()
 
         url = reverse('api:installation_list')
@@ -104,7 +115,7 @@ class TestInstallation(TestCase):
 
         installation_desc = 'installation description'
 
-        url = reverse('api:installation_list')
+        url = reverse('api:installation_create')
 
         data = {'description': installation_desc} #, 'last_name': 'last name', "title": "doctor"}
 
@@ -124,13 +135,18 @@ class TestInstallation(TestCase):
         # customer.last_name = "Rossi"
         # customer.save()
 
-        installation = Installation.objects.create()
+        installation = Installation.objects.create(
+            creator=self.u,
+            created_date=datetime.datetime.now(),
+            creator_id=self.u.id,
+            last_modifier=self.u
+        )
         installation.description = installation_desc
         # you could assign it here after creation
         #d.customer = customer
         installation.save()
         id = installation.id
-        url = reverse('installation_retrieve', kwargs={'id': id})
+        url = reverse('api:installation_retrieve', kwargs={'pk': id})
 
 
         # example on how to create child entities that belongs to this entity
@@ -158,7 +174,7 @@ class TestInstallation(TestCase):
         data = response.data
 
         self.assertEqual(data['description'], installation.description)
-        m = data['manager']
+
         # self.assertEqual(len(dep['structured_doctors']), 5)
         # self.assertEqual(len(dep['employees']), 5)
 
