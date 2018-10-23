@@ -8,6 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class UserModel(models.Model):
+
     creator = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         related_name="%(app_label)s_%(class)s_creator",
@@ -20,6 +21,10 @@ class UserModel(models.Model):
         verbose_name=_("last modifier"),
         on_delete=models.CASCADE
     )
+    description = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True)
 
     class Meta:
         abstract = True
