@@ -4489,7 +4489,7 @@ class TestMotion_management_module(TestCase):
         # if you assign a customer
         #self.assertEqual(m, customer.id)
 
-    def test03_change_password(self):
+    def test_change_password(self):
 
         old_password = 'password123'
         new_password = 'password321'
