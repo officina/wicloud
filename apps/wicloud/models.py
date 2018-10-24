@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 from web.core.models import UserModel, DateModel, StatusModel, OrderedModel, CleanModel
@@ -338,6 +339,11 @@ class Installation(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
     address = models.OneToOneField(Address, models.DO_NOTHING,  blank=True, null=True)
     customer = models.ForeignKey(Customer, models.DO_NOTHING, blank=True, null=True)
 
+    installer = models.ForeignKey(User, models.SET_NULL, related_name='installator', blank=True, null=True)
+    viewers = models.ManyToManyField(User, related_name='viewers', blank=True)
+    installation_managers = models.ManyToManyField(User, related_name='installation_managers', blank=True)
+    assets_managers = models.ManyToManyField(User, related_name='assets_manager', blank=True)
+
     class Meta:
         verbose_name = _('installation')
         verbose_name_plural = _('installations')
@@ -350,6 +356,28 @@ class Installation(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
     def __str__(self):
         return f'{self.description}'
+
+    @property
+    def is_installer(self, user: User):
+        return user == self.installer
+
+    def is_installation_manager(self, user: User):
+        for installation_manager in self.installation_managers:
+            if installation_manager == user:
+                return True
+        return False
+
+    def is_viewer(self, user: User):
+        for viewer in self.viewers:
+            if viewer == user:
+                return True
+        return False
+
+    def is_assets_manager(self, user: User):
+        for assets_manager in self.assets_managers:
+            if assets_manager == user:
+                return True
+        return False
 
 
 class Light_management_measure(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):

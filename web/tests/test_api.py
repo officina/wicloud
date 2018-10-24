@@ -46,7 +46,7 @@ class TestUsers(APITestCase):
 
     def test03_change_password(self):
         u = User.objects.create_user(username='nicola', password='password123')
-        endpoint = reverse('wicloud:api:users_change_password')
+        endpoint = reverse('api:users_change_password')
         print(endpoint)
         old_password = 'password123'
         new_password = 'password321'
