@@ -9,7 +9,7 @@ from rest_framework.reverse import reverse
 from web.api import views
 from . import serializers
 from .. import models
-from . import permissions
+from django.db.models import Q
 
 @api_view(('GET',))
 def api_root(request, format=None):
@@ -876,7 +876,6 @@ class Ime_power_measureDisableView(views.ThuxStatusViewMixin, generics.RetrieveU
     serializer_class = serializers.Ime_power_measureStatusSerializer
     new_status = 0
 
-from django.db.models import Q
 
 class InstallationListView(views.ThuxListViewMixin, generics.ListAPIView):
     """
