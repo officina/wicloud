@@ -8,7 +8,7 @@ from web.core.models import UserModel, DateModel, StatusModel, OrderedModel, Cle
 
 class Address(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
-    description = models.CharField(max_length=255, null=True)
+
     full_name = models.CharField(max_length=255,null=True)
     street = models.CharField(max_length=255, blank=True, null=True)
     house_number = models.CharField(max_length=255, blank=True, null=True)
@@ -36,7 +36,7 @@ class Address(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 class Customer(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
     company_name = models.CharField(max_length=255, null=True)
-    description = models.CharField(max_length=255, blank=True)
+
 
     class Meta:
         verbose_name = _('customer')
@@ -57,7 +57,7 @@ class Energy_interval(CleanModel, UserModel, DateModel, StatusModel, OrderedMode
     mac = models.CharField(max_length=255, null=True)
     light_management_module = models.ForeignKey('Light_management_module', models.DO_NOTHING, blank=True, null=True)
     installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True)
-    start_interval = models.DateTimeField(null=True)
+    start_interval = models.DateTimeField(blank=True,null=True)
     end_interval = models.DateTimeField(blank=True, null=True)
     start_interval_measure_timestamp = models.DateTimeField(blank=True, null=True)
     end_interval_measure_timestamp = models.DateTimeField(blank=True, null=True)
@@ -95,8 +95,8 @@ class Energy_interval(CleanModel, UserModel, DateModel, StatusModel, OrderedMode
 
 class Energy_meter_module(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
-    name = models.CharField(max_length=255,null=True)
-    description = models.CharField(max_length=255, blank=True, null=True)
+    name = models.CharField(max_length=255,  blank=True, null=True)
+
     iac_calibration = models.FloatField(blank=True, null=True)
     vac_calibration = models.FloatField(blank=True, null=True)
     pat_calibration = models.FloatField(blank=True, null=True)
@@ -238,7 +238,7 @@ class Error_node_offline(CleanModel, UserModel, DateModel, StatusModel, OrderedM
 class Gateway(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
     name = models.CharField(max_length=255,blank=True, null=True)
-    description = models.CharField(max_length=255, blank=True, null=True)
+
     gateway_uuid = models.CharField(unique=True, max_length=255,null=True)
     gateway_hostname = models.CharField(max_length=255, blank=True, null=True)
     gateway_type = models.IntegerField(blank=True,  null=True)
@@ -273,7 +273,7 @@ class Gateway(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 class Ime_power_counter(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
     name = models.CharField(max_length=255, blank=True, null=True)
-    description = models.CharField(max_length=255, blank=True, null=True)
+
     gateway_uuid = models.CharField(max_length=255, blank=True, null=True)
     installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True)
     counter_id = models.CharField(unique=True, max_length=255, null=True)
@@ -332,7 +332,7 @@ class Ime_power_measure(CleanModel, UserModel, DateModel, StatusModel, OrderedMo
 class Installation(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
     name = models.CharField(max_length=255, blank=True, null=True)
-    description = models.CharField(max_length=255, blank=True, null=True)
+
     preparation_date = models.DateTimeField(blank=True, null=True)
     installation_date = models.DateTimeField(blank=True, null=True)
     notes = models.CharField(max_length=255, blank=True, null=True)
@@ -440,7 +440,7 @@ class Light_management_measure(CleanModel, UserModel, DateModel, StatusModel, Or
 class Light_management_module(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
     name = models.CharField(max_length=255, blank=True, null=True)
-    description = models.CharField(max_length=255, blank=True, null=True)
+
     device_type = models.IntegerField(blank=True, null=True)
     lamp_type = models.IntegerField(blank=True, null=True)
     timer_auto_mode = models.IntegerField(blank=True, null=True)
@@ -466,7 +466,7 @@ class Light_management_module(CleanModel, UserModel, DateModel, StatusModel, Ord
 class Light_profile(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
     name = models.CharField(max_length=255, blank=True, null=True)
-    description = models.CharField(max_length=255, blank=True, null=True)
+
     jhi_type = models.CharField(max_length=255, blank=True, null=True)
     reference = models.CharField(max_length=255, blank=True, null=True)
     profile_crc = models.FloatField(blank=True, null=True)
@@ -491,7 +491,7 @@ class Light_profile(CleanModel, UserModel, DateModel, StatusModel, OrderedModel)
 class Light_profile_slot(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
     name = models.CharField(max_length=255, blank=True, null=True)
-    description = models.CharField(max_length=255, blank=True, null=True)
+
     don = models.IntegerField(blank=True, null=True)
     dof = models.IntegerField(blank=True, null=True)
     ton = models.CharField(max_length=255, blank=True, null=True)
@@ -563,7 +563,7 @@ class Motion_event(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 class Node(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
     name = models.CharField(max_length=255, blank=True, null=True)
-    description = models.CharField(max_length=255, blank=True, null=True)
+
     node_type = models.IntegerField(blank=True, null=True)
     mac = models.CharField(unique=True, max_length=255, blank=True, null=True)
     log_time_ist = models.IntegerField(blank=True, null=True)
@@ -650,7 +650,7 @@ class Wilamp_alert(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 class Feeder_pillar(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
     name = models.CharField(max_length=255, blank=True, null=True)
-    description = models.CharField(max_length=255, blank=True, null=True)
+
     reference_code = models.CharField(max_length=255, blank=True, null=True)
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
@@ -674,7 +674,7 @@ class Feeder_pillar(CleanModel, UserModel, DateModel, StatusModel, OrderedModel)
 class Twilight_management_module(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
     name = models.CharField(max_length=255, blank=True, null=True)
-    description = models.CharField(max_length=255, blank=True, null=True)
+
     tw_mode = models.IntegerField(blank=True, null=True)
     tw_type = models.IntegerField(blank=True, null=True)
     tw_group = models.IntegerField(blank=True, null=True)
@@ -731,7 +731,7 @@ class Twilight_measure(CleanModel, UserModel, DateModel, StatusModel, OrderedMod
 class Motion_management_module(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
     name = models.CharField(max_length=255, blank=True, null=True)
-    description = models.CharField(max_length=255, blank=True, null=True)
+
     motion_mode = models.IntegerField(blank=True, null=True)
     motion_type = models.IntegerField(blank=True, null=True)
     motion_group = models.IntegerField(blank=True, null=True)

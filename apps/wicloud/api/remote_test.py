@@ -10,17 +10,17 @@ from django.urls import reverse
 class RemoteTestMixin:
     # ADDRESS
     def backend_wicloud_address_list(self, filters=None):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:address_list')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:address_list')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.get(url, headers=headers, params=filters)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_address_retrieve(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:address_retrieve',
+            'api:address_retrieve',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -29,17 +29,17 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_address_create(self, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:address_create')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:address_create')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.post(url, headers=headers, json=post_dict)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_address_partial_update(self, pk, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:address_partial_update',
+            'api:address_partial_update',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -48,9 +48,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_address_enable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:address_set_status',
+            'api:address_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -60,9 +60,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_address_disable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:address_set_status',
+            'api:address_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -73,17 +73,17 @@ class RemoteTestMixin:
     # CUSTOMER
 
     def backend_wicloud_customer_list(self, filters=None):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:customer_list')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:customer_list')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.get(url, headers=headers, params=filters)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_customer_retrieve(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:customer_retrieve',
+            'api:customer_retrieve',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -92,17 +92,17 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_customer_create(self, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:customer_create')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:customer_create')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.post(url, headers=headers, json=post_dict)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_customer_partial_update(self, pk, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:customer_partial_update',
+            'api:customer_partial_update',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -111,9 +111,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_customer_enable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:customer_set_status',
+            'api:customer_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -123,9 +123,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_customer_disable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:customer_set_status',
+            'api:customer_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -136,17 +136,17 @@ class RemoteTestMixin:
     # ENERGY_INTERVAL
 
     def backend_wicloud_energy_interval_list(self, filters=None):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:energy_interval_list')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:energy_interval_list')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.get(url, headers=headers, params=filters)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_energy_interval_retrieve(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:energy_interval_retrieve',
+            'api:energy_interval_retrieve',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -155,17 +155,17 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_energy_interval_create(self, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:energy_interval_create')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:energy_interval_create')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.post(url, headers=headers, json=post_dict)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_energy_interval_partial_update(self, pk, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:energy_interval_partial_update',
+            'api:energy_interval_partial_update',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -174,9 +174,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_energy_interval_enable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:energy_interval_set_status',
+            'api:energy_interval_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -186,9 +186,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_energy_interval_disable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:energy_interval_set_status',
+            'api:energy_interval_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -199,17 +199,17 @@ class RemoteTestMixin:
     # ENERGY_METER_MODULE
 
     def backend_wicloud_energy_meter_module_list(self, filters=None):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:energy_meter_module_list')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:energy_meter_module_list')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.get(url, headers=headers, params=filters)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_energy_meter_module_retrieve(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:energy_meter_module_retrieve',
+            'api:energy_meter_module_retrieve',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -218,17 +218,17 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_energy_meter_module_create(self, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:energy_meter_module_create')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:energy_meter_module_create')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.post(url, headers=headers, json=post_dict)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_energy_meter_module_partial_update(self, pk, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:energy_meter_module_partial_update',
+            'api:energy_meter_module_partial_update',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -237,9 +237,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_energy_meter_module_enable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:energy_meter_module_set_status',
+            'api:energy_meter_module_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -249,9 +249,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_energy_meter_module_disable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:energy_meter_module_set_status',
+            'api:energy_meter_module_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -262,17 +262,17 @@ class RemoteTestMixin:
     # ENERGY_METER_PEAK_MEASURE
 
     def backend_wicloud_energy_meter_peak_measure_list(self, filters=None):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:energy_meter_peak_measure_list')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:energy_meter_peak_measure_list')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.get(url, headers=headers, params=filters)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_energy_meter_peak_measure_retrieve(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:energy_meter_peak_measure_retrieve',
+            'api:energy_meter_peak_measure_retrieve',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -281,17 +281,17 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_energy_meter_peak_measure_create(self, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:energy_meter_peak_measure_create')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:energy_meter_peak_measure_create')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.post(url, headers=headers, json=post_dict)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_energy_meter_peak_measure_partial_update(self, pk, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:energy_meter_peak_measure_partial_update',
+            'api:energy_meter_peak_measure_partial_update',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -300,9 +300,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_energy_meter_peak_measure_enable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:energy_meter_peak_measure_set_status',
+            'api:energy_meter_peak_measure_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -312,9 +312,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_energy_meter_peak_measure_disable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:energy_meter_peak_measure_set_status',
+            'api:energy_meter_peak_measure_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -325,17 +325,17 @@ class RemoteTestMixin:
     # ERROR_LIGHT_LEVEL_AND_ADC_mismatch
 
     def backend_wicloud_error_light_level_and_adc_mismatch_list(self, filters=None):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:error_light_level_and_adc_mismatch_list')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:error_light_level_and_adc_mismatch_list')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.get(url, headers=headers, params=filters)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_error_light_level_and_adc_mismatch_retrieve(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:error_light_level_and_adc_mismatch_retrieve',
+            'api:error_light_level_and_adc_mismatch_retrieve',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -344,17 +344,17 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_error_light_level_and_adc_mismatch_create(self, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:error_light_level_and_adc_mismatch_create')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:error_light_level_and_adc_mismatch_create')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.post(url, headers=headers, json=post_dict)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_error_light_level_and_adc_mismatch_partial_update(self, pk, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:error_light_level_and_adc_mismatch_partial_update',
+            'api:error_light_level_and_adc_mismatch_partial_update',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -363,9 +363,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_error_light_level_and_adc_mismatch_enable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:error_light_level_and_adc_mismatch_set_status',
+            'api:error_light_level_and_adc_mismatch_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -375,9 +375,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_error_light_level_and_adc_mismatch_disable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:error_light_level_and_adc_mismatch_set_status',
+            'api:error_light_level_and_adc_mismatch_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -388,17 +388,17 @@ class RemoteTestMixin:
     # ERROR_LIGHT_LEVEL_AND_POWER_MISMATCH
 
     def backend_wicloud_error_light_level_and_power_mismatch_list(self, filters=None):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:error_light_level_and_power_mismatch_list')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:error_light_level_and_power_mismatch_list')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.get(url, headers=headers, params=filters)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_error_light_level_and_power_mismatch_retrieve(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:error_light_level_and_power_mismatch_retrieve',
+            'api:error_light_level_and_power_mismatch_retrieve',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -407,17 +407,17 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_error_light_level_and_power_mismatch_create(self, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:error_light_level_and_power_mismatch_create')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:error_light_level_and_power_mismatch_create')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.post(url, headers=headers, json=post_dict)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_error_light_level_and_power_mismatch_partial_update(self, pk, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:error_light_level_and_power_mismatch_partial_update',
+            'api:error_light_level_and_power_mismatch_partial_update',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -426,9 +426,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_error_light_level_and_power_mismatch_enable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:error_light_level_and_power_mismatch_set_status',
+            'api:error_light_level_and_power_mismatch_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -438,9 +438,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_error_light_level_and_power_mismatch_disable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:error_light_level_and_power_mismatch_set_status',
+            'api:error_light_level_and_power_mismatch_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -451,17 +451,17 @@ class RemoteTestMixin:
     # ERROR_NODE_OFFLINE
 
     def backend_wicloud_error_node_offline_list(self, filters=None):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:error_node_offline_list')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:error_node_offline_list')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.get(url, headers=headers, params=filters)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_error_node_offline_retrieve(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:error_node_offline_retrieve',
+            'api:error_node_offline_retrieve',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -470,17 +470,17 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_error_node_offline_create(self, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:error_node_offline_create')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:error_node_offline_create')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.post(url, headers=headers, json=post_dict)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_error_node_offline_partial_update(self, pk, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:error_node_offline_partial_update',
+            'api:error_node_offline_partial_update',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -489,9 +489,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_error_node_offline_enable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:error_node_offline_set_status',
+            'api:error_node_offline_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -501,9 +501,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_error_node_offline_disable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:error_node_offline_set_status',
+            'api:error_node_offline_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -514,17 +514,17 @@ class RemoteTestMixin:
     # GATEWAY
 
     def backend_wicloud_gateway_list(self, filters=None):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:gateway_list')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:gateway_list')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.get(url, headers=headers, params=filters)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_gateway_retrieve(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:gateway_retrieve',
+            'api:gateway_retrieve',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -533,17 +533,17 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_gateway_create(self, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:gateway_create')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:gateway_create')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.post(url, headers=headers, json=post_dict)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_gateway_partial_update(self, pk, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:gateway_partial_update',
+            'api:gateway_partial_update',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -552,9 +552,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_gateway_enable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:gateway_set_status',
+            'api:gateway_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -564,9 +564,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_gateway_disable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:gateway_set_status',
+            'api:gateway_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -577,17 +577,17 @@ class RemoteTestMixin:
     # IME_POWER_COUNTER
 
     def backend_wicloud_ime_power_counter_list(self, filters=None):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:ime_power_counter_list')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:ime_power_counter_list')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.get(url, headers=headers, params=filters)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_ime_power_counter_retrieve(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:ime_power_counter_retrieve',
+            'api:ime_power_counter_retrieve',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -596,17 +596,17 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_ime_power_counter_create(self, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:ime_power_counter_create')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:ime_power_counter_create')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.post(url, headers=headers, json=post_dict)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_ime_power_counter_partial_update(self, pk, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:ime_power_counter_partial_update',
+            'api:ime_power_counter_partial_update',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -615,9 +615,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_ime_power_counter_enable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:ime_power_counter_set_status',
+            'api:ime_power_counter_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -627,9 +627,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_ime_power_counter_disable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:ime_power_counter_set_status',
+            'api:ime_power_counter_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -640,17 +640,17 @@ class RemoteTestMixin:
     # IME_POWER_MEASURE
 
     def backend_wicloud_ime_power_measure_list(self, filters=None):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:ime_power_measure_list')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:ime_power_measure_list')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.get(url, headers=headers, params=filters)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_ime_power_measure_retrieve(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:ime_power_measure_retrieve',
+            'api:ime_power_measure_retrieve',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -659,17 +659,17 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_ime_power_measure_create(self, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:ime_power_measure_create')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:ime_power_measure_create')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.post(url, headers=headers, json=post_dict)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_ime_power_measure_partial_update(self, pk, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:ime_power_measure_partial_update',
+            'api:ime_power_measure_partial_update',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -678,9 +678,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_ime_power_measure_enable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:ime_power_measure_set_status',
+            'api:ime_power_measure_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -690,9 +690,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_ime_power_measure_disable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:ime_power_measure_set_status',
+            'api:ime_power_measure_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -703,17 +703,17 @@ class RemoteTestMixin:
     # INSTALLATION
 
     def backend_wicloud_installation_list(self, filters=None):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:installation_list')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:installation_list')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.get(url, headers=headers, params=filters)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_installation_retrieve(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:installation_retrieve',
+            'api:installation_retrieve',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -722,17 +722,17 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_installation_create(self, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:installation_create')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:installation_create')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.post(url, headers=headers, json=post_dict)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_installation_partial_update(self, pk, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:installation_partial_update',
+            'api:installation_partial_update',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -741,9 +741,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_installation_enable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:installation_set_status',
+            'api:installation_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -753,9 +753,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_installation_disable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:installation_set_status',
+            'api:installation_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -766,17 +766,17 @@ class RemoteTestMixin:
     # LIGHT_MANAGEMENT_MEASURE
 
     def backend_wicloud_light_management_measure_list(self, filters=None):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:light_management_measure_list')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:light_management_measure_list')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.get(url, headers=headers, params=filters)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_light_management_measure_retrieve(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:light_management_measure_retrieve',
+            'api:light_management_measure_retrieve',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -785,17 +785,17 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_light_management_measure_create(self, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:light_management_measure_create')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:light_management_measure_create')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.post(url, headers=headers, json=post_dict)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_light_management_measure_partial_update(self, pk, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:light_management_measure_partial_update',
+            'api:light_management_measure_partial_update',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -804,9 +804,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_light_management_measure_enable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:light_management_measure_set_status',
+            'api:light_management_measure_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -816,9 +816,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_light_management_measure_disable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:light_management_measure_set_status',
+            'api:light_management_measure_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -829,17 +829,17 @@ class RemoteTestMixin:
     # LIGHT_MANAGEMENT_MODULE
 
     def backend_wicloud_light_management_module_list(self, filters=None):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:light_management_module_list')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:light_management_module_list')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.get(url, headers=headers, params=filters)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_light_management_module_retrieve(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:light_management_module_retrieve',
+            'api:light_management_module_retrieve',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -848,17 +848,17 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_light_management_module_create(self, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:light_management_module_create')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:light_management_module_create')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.post(url, headers=headers, json=post_dict)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_light_management_module_partial_update(self, pk, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:light_management_module_partial_update',
+            'api:light_management_module_partial_update',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -867,9 +867,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_light_management_module_enable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:light_management_module_set_status',
+            'api:light_management_module_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -879,9 +879,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_light_management_module_disable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:light_management_module_set_status',
+            'api:light_management_module_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -892,17 +892,17 @@ class RemoteTestMixin:
     # LIGHT_PROFILE
 
     def backend_wicloud_light_profile_list(self, filters=None):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:light_profile_list')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:light_profile_list')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.get(url, headers=headers, params=filters)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_light_profile_retrieve(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:light_profile_retrieve',
+            'api:light_profile_retrieve',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -911,17 +911,17 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_light_profile_create(self, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:light_profile_create')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:light_profile_create')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.post(url, headers=headers, json=post_dict)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_light_profile_partial_update(self, pk, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:light_profile_partial_update',
+            'api:light_profile_partial_update',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -930,9 +930,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_light_profile_enable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:light_profile_set_status',
+            'api:light_profile_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -942,9 +942,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_light_profile_disable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:light_profile_set_status',
+            'api:light_profile_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -955,17 +955,17 @@ class RemoteTestMixin:
     # LIGHT_PROFILE_SLOT
 
     def backend_wicloud_light_profile_slot_list(self, filters=None):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:light_profile_slot_list')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:light_profile_slot_list')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.get(url, headers=headers, params=filters)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_light_profile_slot_retrieve(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:light_profile_slot_retrieve',
+            'api:light_profile_slot_retrieve',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -974,17 +974,17 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_light_profile_slot_create(self, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:light_profile_slot_create')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:light_profile_slot_create')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.post(url, headers=headers, json=post_dict)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_light_profile_slot_partial_update(self, pk, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:light_profile_slot_partial_update',
+            'api:light_profile_slot_partial_update',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -993,9 +993,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_light_profile_slot_enable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:light_profile_slot_set_status',
+            'api:light_profile_slot_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1005,9 +1005,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_light_profile_slot_disable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:light_profile_slot_set_status',
+            'api:light_profile_slot_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1018,17 +1018,17 @@ class RemoteTestMixin:
     # MOTION_EVENT
 
     def backend_wicloud_motion_event_list(self, filters=None):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:motion_event_list')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:motion_event_list')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.get(url, headers=headers, params=filters)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_motion_event_retrieve(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:motion_event_retrieve',
+            'api:motion_event_retrieve',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1037,17 +1037,17 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_motion_event_create(self, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:motion_event_create')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:motion_event_create')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.post(url, headers=headers, json=post_dict)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_motion_event_partial_update(self, pk, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:motion_event_partial_update',
+            'api:motion_event_partial_update',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1056,9 +1056,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_motion_event_enable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:motion_event_set_status',
+            'api:motion_event_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1068,9 +1068,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_motion_event_disable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:motion_event_set_status',
+            'api:motion_event_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1081,17 +1081,17 @@ class RemoteTestMixin:
     # NODE
 
     def backend_wicloud_node_list(self, filters=None):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:node_list')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:node_list')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.get(url, headers=headers, params=filters)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_node_retrieve(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:node_retrieve',
+            'api:node_retrieve',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1100,17 +1100,17 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_node_create(self, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:node_create')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:node_create')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.post(url, headers=headers, json=post_dict)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_node_partial_update(self, pk, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:node_partial_update',
+            'api:node_partial_update',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1119,9 +1119,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_node_enable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:node_set_status',
+            'api:node_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1131,9 +1131,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_node_disable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:node_set_status',
+            'api:node_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1144,17 +1144,17 @@ class RemoteTestMixin:
     # NODE_MODULE
 
     def backend_wicloud_node_module_list(self, filters=None):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:node_module_list')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:node_module_list')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.get(url, headers=headers, params=filters)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_node_module_retrieve(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:node_module_retrieve',
+            'api:node_module_retrieve',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1163,17 +1163,17 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_node_module_create(self, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:node_module_create')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:node_module_create')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.post(url, headers=headers, json=post_dict)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_node_module_partial_update(self, pk, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:node_module_partial_update',
+            'api:node_module_partial_update',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1182,9 +1182,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_node_module_enable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:node_module_set_status',
+            'api:node_module_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1194,9 +1194,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_node_module_disable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:node_module_set_status',
+            'api:node_module_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1207,17 +1207,17 @@ class RemoteTestMixin:
     # WILAMP_ALERT
 
     def backend_wicloud_wilamp_alert_list(self, filters=None):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:wilamp_alert_list')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:wilamp_alert_list')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.get(url, headers=headers, params=filters)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_wilamp_alert_retrieve(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:wilamp_alert_retrieve',
+            'api:wilamp_alert_retrieve',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1226,17 +1226,17 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_wilamp_alert_create(self, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:wilamp_alert_create')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:wilamp_alert_create')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.post(url, headers=headers, json=post_dict)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_wilamp_alert_partial_update(self, pk, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:wilamp_alert_partial_update',
+            'api:wilamp_alert_partial_update',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1245,9 +1245,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_wilamp_alert_enable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:wilamp_alert_set_status',
+            'api:wilamp_alert_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1257,9 +1257,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_wilamp_alert_disable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:wilamp_alert_set_status',
+            'api:wilamp_alert_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1270,17 +1270,17 @@ class RemoteTestMixin:
     # FEEDER_PILLAR
 
     def backend_wicloud_feeder_pillar_list(self, filters=None):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:feeder_pillar_list')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:feeder_pillar_list')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.get(url, headers=headers, params=filters)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_feeder_pillar_retrieve(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:feeder_pillar_retrieve',
+            'api:feeder_pillar_retrieve',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1289,17 +1289,17 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_feeder_pillar_create(self, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:feeder_pillar_create')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:feeder_pillar_create')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.post(url, headers=headers, json=post_dict)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_feeder_pillar_partial_update(self, pk, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:feeder_pillar_partial_update',
+            'api:feeder_pillar_partial_update',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1308,9 +1308,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_feeder_pillar_enable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:feeder_pillar_set_status',
+            'api:feeder_pillar_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1320,9 +1320,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_feeder_pillar_disable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:feeder_pillar_set_status',
+            'api:feeder_pillar_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1333,17 +1333,17 @@ class RemoteTestMixin:
     # TWILIGHT_MANAGEMENT_MODULE
 
     def backend_wicloud_twilight_management_module_list(self, filters=None):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:twilight_management_module_list')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:twilight_management_module_list')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.get(url, headers=headers, params=filters)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_twilight_management_module_retrieve(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:twilight_management_module_retrieve',
+            'api:twilight_management_module_retrieve',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1352,17 +1352,17 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_twilight_management_module_create(self, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:twilight_management_module_create')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:twilight_management_module_create')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.post(url, headers=headers, json=post_dict)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_twilight_management_module_partial_update(self, pk, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:twilight_management_module_partial_update',
+            'api:twilight_management_module_partial_update',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1371,9 +1371,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_twilight_management_module_enable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:twilight_management_module_set_status',
+            'api:twilight_management_module_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1383,9 +1383,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_twilight_management_module_disable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:twilight_management_module_set_status',
+            'api:twilight_management_module_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1396,17 +1396,17 @@ class RemoteTestMixin:
     # TWILIGHT_MEASURE
 
     def backend_wicloud_twilight_measure_list(self, filters=None):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:twilight_measure_list')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:twilight_measure_list')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.get(url, headers=headers, params=filters)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_twilight_measure_retrieve(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:twilight_measure_retrieve',
+            'api:twilight_measure_retrieve',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1415,17 +1415,17 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_twilight_measure_create(self, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:twilight_measure_create')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:twilight_measure_create')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.post(url, headers=headers, json=post_dict)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_twilight_measure_partial_update(self, pk, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:twilight_measure_partial_update',
+            'api:twilight_measure_partial_update',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1434,9 +1434,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_twilight_measure_enable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:twilight_measure_set_status',
+            'api:twilight_measure_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1446,9 +1446,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_twilight_measure_disable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:twilight_measure_set_status',
+            'api:twilight_measure_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1459,17 +1459,17 @@ class RemoteTestMixin:
     # MOTION_MANAGEMENT_MODULE
 
     def backend_wicloud_motion_management_module_list(self, filters=None):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:motion_management_module_list')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:motion_management_module_list')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.get(url, headers=headers, params=filters)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_motion_management_module_retrieve(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:motion_management_module_retrieve',
+            'api:motion_management_module_retrieve',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1478,17 +1478,17 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_motion_management_module_create(self, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
-        endpoint = reverse('wicloud:api:motion_management_module_create')
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+        endpoint = reverse('api:motion_management_module_create')
         url = urllib.parse.urljoin(self.base_url, endpoint)
         resp = requests.post(url, headers=headers, json=post_dict)
         self.rprint(resp)
         return resp
 
     def backend_wicloud_motion_management_module_partial_update(self, pk, post_dict):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:motion_management_module_partial_update',
+            'api:motion_management_module_partial_update',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1497,9 +1497,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_motion_management_module_enable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:motion_management_module_set_status',
+            'api:motion_management_module_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)
@@ -1509,9 +1509,9 @@ class RemoteTestMixin:
         return resp
 
     def backend_wicloud_motion_management_module_disable(self, pk):
-        headers = {'Authorization': 'JWT {}'.format(self.jwt)}
+        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
         endpoint = reverse(
-            'wicloud:api:motion_management_module_set_status',
+            'api:motion_management_module_set_status',
             args=(pk,)
         )
         url = urllib.parse.urljoin(self.base_url, endpoint)

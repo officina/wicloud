@@ -13,9 +13,9 @@ phases:
        - chmod +x angular/codebuild-scripts/build.sh
        - angular/codebuild-scripts/build.sh
   post_build:
-         commands:
-          - chmod +x angular/codebuild-scripts/postbuild.sh
-          - angular/codebuild-scripts/postbuild.sh
+     commands:
+      - chmod +x angular/codebuild-scripts/postbuild.sh
+      - angular/codebuild-scripts/postbuild.sh
 #artifacts:
 #    files:
 #        - '**/*'

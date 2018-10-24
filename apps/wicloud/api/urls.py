@@ -12,7 +12,7 @@ urlpatterns = [
         name='address_list'
     ),
     url(
-        r'^address/(?P<pk>\w+)/$',
+        r'^address/retrieve/(?P<pk>\w+)/$',
         views.AddressRetrieveView.as_view(),
         name='address_retrieve'
     ),
@@ -52,7 +52,7 @@ urlpatterns = [
         name='customer_list'
     ),
     url(
-        r'^customer/(?P<pk>\w+)/$',
+        r'^customer/retrieve/(?P<pk>\w+)/$',
         views.CustomerRetrieveView.as_view(),
         name='customer_retrieve'
     ),
@@ -92,7 +92,7 @@ urlpatterns = [
         name='energy_interval_list'
     ),
     url(
-        r'^energy_interval/(?P<pk>\w+)/$',
+        r'^energy_interval/retrieve/(?P<pk>\w+)/$',
         views.Energy_intervalRetrieveView.as_view(),
         name='energy_interval_retrieve'
     ),
@@ -132,7 +132,7 @@ urlpatterns = [
         name='energy_meter_module_list'
     ),
     url(
-        r'^energy_meter_module/(?P<pk>\w+)/$',
+        r'^energy_meter_module/retrieve/(?P<pk>\w+)/$',
         views.Energy_meter_moduleRetrieveView.as_view(),
         name='energy_meter_module_retrieve'
     ),
@@ -172,7 +172,7 @@ urlpatterns = [
         name='energy_meter_peak_measure_list'
     ),
     url(
-        r'^energy_meter_peak_measure/(?P<pk>\w+)/$',
+        r'^energy_meter_peak_measure/retrieve/(?P<pk>\w+)/$',
         views.Energy_meter_peak_measureRetrieveView.as_view(),
         name='energy_meter_peak_measure_retrieve'
     ),
@@ -212,7 +212,7 @@ urlpatterns = [
         name='error_light_level_and_adc_mismatch_list'
     ),
     url(
-        r'^error_light_level_and_adc_mismatch/(?P<pk>\w+)/$',
+        r'^error_light_level_and_adc_mismatch/retrieve/(?P<pk>\w+)/$',
         views.Error_light_level_and_adc_mismatchRetrieveView.as_view(),
         name='error_light_level_and_adc_mismatch_retrieve'
     ),
@@ -252,7 +252,7 @@ urlpatterns = [
         name='error_light_level_and_power_mismatch_list'
     ),
     url(
-        r'^error_light_level_and_power_mismatch/(?P<pk>\w+)/$',
+        r'^error_light_level_and_power_mismatch/retrieve/(?P<pk>\w+)/$',
         views.Error_light_level_and_power_mismatchRetrieveView.as_view(),
         name='error_light_level_and_power_mismatch_retrieve'
     ),
@@ -292,7 +292,7 @@ urlpatterns = [
         name='error_node_offline_list'
     ),
     url(
-        r'^error_node_offline/(?P<pk>\w+)/$',
+        r'^error_node_offline/retrieve/(?P<pk>\w+)/$',
         views.Error_node_offlineRetrieveView.as_view(),
         name='error_node_offline_retrieve'
     ),
@@ -332,7 +332,7 @@ urlpatterns = [
         name='gateway_list'
     ),
     url(
-        r'^gateway/(?P<pk>\w+)/$',
+        r'^gateway/retrieve/(?P<pk>\w+)/$',
         views.GatewayRetrieveView.as_view(),
         name='gateway_retrieve'
     ),
@@ -372,7 +372,7 @@ urlpatterns = [
         name='ime_power_counter_list'
     ),
     url(
-        r'^ime_power_counter/(?P<pk>\w+)/$',
+        r'^ime_power_counter/retrieve/(?P<pk>\w+)/$',
         views.Ime_power_counterRetrieveView.as_view(),
         name='ime_power_counter_retrieve'
     ),
@@ -412,7 +412,7 @@ urlpatterns = [
         name='ime_power_measure_list'
     ),
     url(
-        r'^ime_power_measure/(?P<pk>\w+)/$',
+        r'^ime_power_measure/retrieve/(?P<pk>\w+)/$',
         views.Ime_power_measureRetrieveView.as_view(),
         name='ime_power_measure_retrieve'
     ),
@@ -452,7 +452,7 @@ urlpatterns = [
         name='installation_list'
     ),
     url(
-        r'^installation/(?P<pk>\w+)/$',
+        r'^installation/retrieve/(?P<pk>\w+)/$',
         views.InstallationRetrieveView.as_view(),
         name='installation_retrieve'
     ),
@@ -492,7 +492,7 @@ urlpatterns = [
         name='light_management_measure_list'
     ),
     url(
-        r'^light_management_measure/(?P<pk>\w+)/$',
+        r'^light_management_measure/retrieve/(?P<pk>\w+)/$',
         views.Light_management_measureRetrieveView.as_view(),
         name='light_management_measure_retrieve'
     ),
@@ -532,7 +532,7 @@ urlpatterns = [
         name='light_management_module_list'
     ),
     url(
-        r'^light_management_module/(?P<pk>\w+)/$',
+        r'^light_management_module/retrieve/(?P<pk>\w+)/$',
         views.Light_management_moduleRetrieveView.as_view(),
         name='light_management_module_retrieve'
     ),
@@ -572,7 +572,7 @@ urlpatterns = [
         name='light_profile_list'
     ),
     url(
-        r'^light_profile/(?P<pk>\w+)/$',
+        r'^light_profile/retrieve/(?P<pk>\w+)/$',
         views.Light_profileRetrieveView.as_view(),
         name='light_profile_retrieve'
     ),
@@ -612,7 +612,7 @@ urlpatterns = [
         name='light_profile_slot_list'
     ),
     url(
-        r'^light_profile_slot/(?P<pk>\w+)/$',
+        r'^light_profile_slot/retrieve/(?P<pk>\w+)/$',
         views.Light_profile_slotRetrieveView.as_view(),
         name='light_profile_slot_retrieve'
     ),
@@ -652,7 +652,7 @@ urlpatterns = [
         name='motion_event_list'
     ),
     url(
-        r'^motion_event/(?P<pk>\w+)/$',
+        r'^motion_event/retrieve/(?P<pk>\w+)/$',
         views.Motion_eventRetrieveView.as_view(),
         name='motion_event_retrieve'
     ),
@@ -692,7 +692,7 @@ urlpatterns = [
         name='node_list'
     ),
     url(
-        r'^node/(?P<pk>\w+)/$',
+        r'^node/retrieve/(?P<pk>\w+)/$',
         views.NodeRetrieveView.as_view(),
         name='node_retrieve'
     ),
@@ -732,7 +732,7 @@ urlpatterns = [
         name='node_module_list'
     ),
     url(
-        r'^node_module/(?P<pk>\w+)/$',
+        r'^node_module/retrieve/(?P<pk>\w+)/$',
         views.Node_moduleRetrieveView.as_view(),
         name='node_module_retrieve'
     ),
@@ -772,7 +772,7 @@ urlpatterns = [
         name='wilamp_alert_list'
     ),
     url(
-        r'^wilamp_alert/(?P<pk>\w+)/$',
+        r'^wilamp_alert/retrieve/(?P<pk>\w+)/$',
         views.Wilamp_alertRetrieveView.as_view(),
         name='wilamp_alert_retrieve'
     ),
@@ -812,7 +812,7 @@ urlpatterns = [
         name='feeder_pillar_list'
     ),
     url(
-        r'^feeder_pillar/(?P<pk>\w+)/$',
+        r'^feeder_pillar/retrieve/(?P<pk>\w+)/$',
         views.Feeder_pillarRetrieveView.as_view(),
         name='feeder_pillar_retrieve'
     ),
@@ -852,7 +852,7 @@ urlpatterns = [
         name='twilight_management_module_list'
     ),
     url(
-        r'^twilight_management_module/(?P<pk>\w+)/$',
+        r'^twilight_management_module/retrieve/(?P<pk>\w+)/$',
         views.Twilight_management_moduleRetrieveView.as_view(),
         name='twilight_management_module_retrieve'
     ),
@@ -892,7 +892,7 @@ urlpatterns = [
         name='twilight_measure_list'
     ),
     url(
-        r'^twilight_measure/(?P<pk>\w+)/$',
+        r'^twilight_measure/retrieve/(?P<pk>\w+)/$',
         views.Twilight_measureRetrieveView.as_view(),
         name='twilight_measure_retrieve'
     ),
@@ -932,7 +932,7 @@ urlpatterns = [
         name='motion_management_module_list'
     ),
     url(
-        r'^motion_management_module/(?P<pk>\w+)/$',
+        r'^motion_management_module/retrieve/(?P<pk>\w+)/$',
         views.Motion_management_moduleRetrieveView.as_view(),
         name='motion_management_module_retrieve'
     ),
