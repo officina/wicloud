@@ -2269,6 +2269,45 @@ class TestInstallation(TestCase):
 
         # if you assign a customer
         #self.assertEqual(m, customer.id)
+
+
+    def installation_visibility(self):
+        password = 'password'
+        installator1 = self.make_user(username='installator1', password=password)
+        installator2 = self.make_user(username='installator2', password=password)
+        assets_manager = self.make_user(username='assets_manager', password=password)
+        viewer = self.make_user(username='viewer', password=password)
+        installation_manager = self.make_user(username='installation_manager', password=password)
+
+        installation1 = Installation.objects.create(
+            creator=self.u,
+            last_modifier=self.u,
+        )
+        installation1.description = "Installazione 1"
+        installation1.installator = installator1
+        installation1.save()
+        installation2 = Installation.objects.create(
+            creator=self.u,
+            last_modifier=self.u,
+        )
+        installation2.description = "Installazione 2"
+        installation2.installator = installator2
+        installation2.save()
+        url_list = reverse('api:installation_list')
+        print(url_list)
+        # mi autentico come installatore 1
+        resp = self.client.post(reverse('api-jwt-auth'), {'email': "installator1", 'password': password},
+                                format='json')
+        token = resp.data['token']
+        self.apiClient.credentials(HTTP_AUTHORIZATION='Bearer ' + token)
+        response = self.apiClient.get(url_list)
+        print(response.data['results'])
+        print(response.data['results'][0]['description'])
+        print(response.data['results'][1]['description'])
+        print(response.data['results'][0])
+
+
+
 from apps.wicloud.models import Light_management_measure
 
 
@@ -4488,6 +4527,10 @@ class TestMotion_management_module(TestCase):
 
         # if you assign a customer
         #self.assertEqual(m, customer.id)
+
+
+class TestUser(TestCase):
+    apiClient = APIClient()
 
     def test_change_password(self):
 

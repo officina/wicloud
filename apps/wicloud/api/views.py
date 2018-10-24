@@ -155,8 +155,8 @@ def api_root(request, format=None):
     url_dict['motion_management_module_list'] = reverse(
         'api:motion_management_module_list', request=request, format=format
     )
-    url_dict['motion_management_module_create'] = reverse(
-        'api:motion_management_module_create', request=request, format=format
+    url_dict['user_change_password'] = reverse(
+        'api:users_change_password', request=request, format=format
     )
     return Response(url_dict)
 
@@ -881,10 +881,13 @@ class InstallationListView(views.ThuxListViewMixin, generics.ListAPIView):
     """
     Get all  installations
     """
-    queryset = models.Installation.objects.all()
+    # queryset = models.Installation.objects.all()
     serializer_class = serializers.InstallationListSerializer
-    permission_classes = (permissions.IsAssetsManager, permissions.IsInstallationManager, permissions.IsInstaller,
-                          permissions.IsViewer)
+
+    def get_queryset(self):
+        queryset = models.Installation.objects.all()
+        user = self.request.user
+        return queryset.filter(installator=user)
 
 
 class InstallationRetrieveView(views.ThuxRetrieveViewMixin, generics.RetrieveAPIView):

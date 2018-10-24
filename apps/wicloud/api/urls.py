@@ -966,7 +966,7 @@ urlpatterns = [
         views.Motion_management_moduleDisableView.as_view(),
         name='motion_management_module_disable'
     ),
-    url(r'^users/change-password',
+    url(r'^user/change-password/',
         views.UserChangePasswordView.as_view(),
         name='users_change_password'
         ),

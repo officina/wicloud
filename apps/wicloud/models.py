@@ -357,7 +357,7 @@ class Installation(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
     def __str__(self):
         return f'{self.description}'
 
-    def is_installer(self, user:User):
+    def is_installer(self, user: User):
         return user == self.installator
 
     def is_installation_manager(self, user: User):
