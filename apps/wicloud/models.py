@@ -339,7 +339,7 @@ class Installation(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
     address = models.OneToOneField(Address, models.DO_NOTHING,  blank=True, null=True)
     customer = models.ForeignKey(Customer, models.DO_NOTHING, blank=True, null=True)
 
-    installator = models.ForeignKey(User, related_name='installator', blank=True, null=True)
+    installator = models.ForeignKey(User, models.SET_NULL, related_name='installator', blank=True, null=True)
     viewers = models.ManyToManyField(User, related_name='viewers', blank=True)
     installation_managers = models.ManyToManyField(User, related_name='installation_managers', blank=True)
     assets_managers = models.ManyToManyField(User, related_name='assets_manager', blank=True)
