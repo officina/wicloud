@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import collections
 
-from rest_framework import generics
+from rest_framework import generics, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
@@ -1722,4 +1722,26 @@ class Motion_management_moduleDisableView(views.ThuxStatusViewMixin, generics.Re
     queryset = models.Motion_management_module.objects.filter(status=1)
     serializer_class = serializers.Motion_management_moduleStatusSerializer
     new_status = 0
+
+
+class UserChangePasswordView(generics.UpdateAPIView):
+    serializer_class = serializers.ChangePasswordSerializer
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def update(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        serializer = self.get_serializer(data=request.data)
+
+        if serializer.is_valid():
+            # Check old password
+            if not self.object.check_password(serializer.data.get("old_password")):
+                return Response({"old_password": ["Wrong password."]}, status=status.HTTP_400_BAD_REQUEST)
+            # set_password also hashes the password that the user will get
+            self.object.set_password(serializer.data.get("new_password"))
+            self.object.save()
+            return Response("Success.", status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

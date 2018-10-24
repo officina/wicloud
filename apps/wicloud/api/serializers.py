@@ -1149,3 +1149,10 @@ class Motion_management_moduleStatusSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         return Motion_management_moduleRetrieveSerializer(instance).data
+
+class ChangePasswordSerializer(serializers.Serializer):
+    """
+    Serializer for password change endpoint.
+    """
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)

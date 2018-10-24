@@ -3,6 +3,7 @@ from test_plus.test import TestCase
 from unittest import mock
 
 from web.core.models import UserModel
+from django.contrib.auth.models import User
 from rest_framework.test import APIRequestFactory, APIClient
 from rest_framework.test import force_authenticate
 from rest_framework import status
@@ -11,7 +12,6 @@ from django.conf import settings
 import tempfile
 import datetime
 from apps.wicloud.models import Address
-
 
 class TestAddress(TestCase):
 
@@ -4488,3 +4488,27 @@ class TestMotion_management_module(TestCase):
 
         # if you assign a customer
         #self.assertEqual(m, customer.id)
+
+    def test03_change_password(self):
+
+        old_password = 'password123'
+        new_password = 'password321'
+        username = 'apitest_password'
+        self.make_user(username='apitest_password', password=old_password)
+        resp = self.client.post(reverse('api-jwt-auth'), {'email': username, 'password': old_password},
+                                format='json')
+        token = resp.data['token']
+        self.apiClient.credentials(HTTP_AUTHORIZATION='Bearer ' + token)
+        endpoint = reverse('api:users_change_password')
+        print(endpoint)
+        resp = self.apiClient.put(endpoint, {'old_password': old_password, 'new_password': new_password})
+        print(resp.data)
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
+        # l'autenticazione fallisce con la vecchia password
+        resp = self.apiClient.post(reverse('api-jwt-auth'), {'email': username, 'password': old_password},
+                                    format='json')
+        self.assertEqual(resp.status_code, status.HTTP_400_BAD_REQUEST)
+        # l'autenticazione NON fallisce con la NUOVA password
+        resp = self.apiClient.post(reverse('api-jwt-auth'), {'email': username, 'password': new_password},
+                                    format='json')
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
