@@ -2296,16 +2296,24 @@ class TestInstallation(TestCase):
         url_list = reverse('api:installation_list')
         print(url_list)
         # mi autentico come installatore 1
-        resp = self.client.post(reverse('api-jwt-auth'), {'email': "installator1", 'password': password},
+        resp = self.client.post(reverse('api-jwt-auth'), {'email': "installer2", 'password': password},
                                 format='json')
         token = resp.data['token']
         self.apiClient.credentials(HTTP_AUTHORIZATION='Bearer ' + token)
         response = self.apiClient.get(url_list)
-        print(response.data['results'])
-        print(response.data['results'][0]['description'])
-        print(response.data['results'][1]['description'])
-        print(response.data['results'][0])
+        self.assertEqual(len(response.data['results']), 1)
+        self.assertEqual(response.data['results'][0]['description'], installation2.description)
 
+        installation3 = Installation.objects.create(
+            creator=self.u,
+            last_modifier=self.u,
+        )
+        installation3.description = "Installazione 3"
+        installation3.assets_managers.add(installer2)
+        installation3.save()
+        print(installation3.assets_managers.get())
+        response = self.apiClient.get(url_list)
+        self.assertEqual(len(response.data['results']), 2)
 
 
 from apps.wicloud.models import Light_management_measure
