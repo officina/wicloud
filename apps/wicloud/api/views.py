@@ -876,18 +876,19 @@ class Ime_power_measureDisableView(views.ThuxStatusViewMixin, generics.RetrieveU
     serializer_class = serializers.Ime_power_measureStatusSerializer
     new_status = 0
 
+from django.db.models import Q
 
 class InstallationListView(views.ThuxListViewMixin, generics.ListAPIView):
     """
     Get all  installations
     """
-    # queryset = models.Installation.objects.all()
     serializer_class = serializers.InstallationListSerializer
 
     def get_queryset(self):
         queryset = models.Installation.objects.all()
         user = self.request.user
-        return queryset.filter(installator=user)
+        return queryset.filter(Q(installer=user) | Q(installation_managers__in=[user]) | Q(viewers__in=[user])
+                               | Q(assets_managers__in=[user]))
 
 
 class InstallationRetrieveView(views.ThuxRetrieveViewMixin, generics.RetrieveAPIView):

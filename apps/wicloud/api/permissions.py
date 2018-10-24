@@ -1,10 +1,9 @@
 from rest_framework.permissions import BasePermission
 from ..models import Installation
 
-class IsInstallator(BasePermission):
+class IsInstaller(BasePermission):
 
     def has_object_permission(self, request, view, obj: Installation):
-        print("*************")
         return obj.is_installer(self, request.user)
 
 

@@ -2273,8 +2273,8 @@ class TestInstallation(TestCase):
 
     def installation_visibility(self):
         password = 'password'
-        installator1 = self.make_user(username='installator1', password=password)
-        installator2 = self.make_user(username='installator2', password=password)
+        installer1 = self.make_user(username='installer1', password=password)
+        installer2 = self.make_user(username='installer2', password=password)
         assets_manager = self.make_user(username='assets_manager', password=password)
         viewer = self.make_user(username='viewer', password=password)
         installation_manager = self.make_user(username='installation_manager', password=password)
@@ -2284,14 +2284,14 @@ class TestInstallation(TestCase):
             last_modifier=self.u,
         )
         installation1.description = "Installazione 1"
-        installation1.installator = installator1
+        installation1.installer = installer1
         installation1.save()
         installation2 = Installation.objects.create(
             creator=self.u,
             last_modifier=self.u,
         )
         installation2.description = "Installazione 2"
-        installation2.installator = installator2
+        installation2.installer = installer2
         installation2.save()
         url_list = reverse('api:installation_list')
         print(url_list)
