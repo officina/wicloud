@@ -9,6 +9,7 @@ export class Installation {
         public preparationDate?: any,
         public installationDate?: any,
         public notes?: string,
+        public country?: string,
         public address?: Address,
         public customer?: Customer,
         public customerId?: number,
