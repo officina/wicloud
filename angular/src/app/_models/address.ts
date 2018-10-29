@@ -5,11 +5,13 @@ export class Address {
     public full_name?: any,
     public street?: any,
     public notes?: string,
+    public country?: string,
     public house_number?: string,
     public zip_code?: number,
     public city?: string,
     public lat?: number,
     public lng?: any[],
+    public country?: string,
   ) {
   }
 }
