@@ -1,4 +1,4 @@
-<div *ngFor="let installation of installations">
-  <ngx-installation-detail [installation]="installation"></ngx-installation-detail>
+<div class="row">
+    <ngx-installation-detail *ngFor="let installation of installations;" class="col-6" [installation]="installation"></ngx-installation-detail>
 </div>
 

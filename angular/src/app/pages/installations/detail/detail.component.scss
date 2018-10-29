@@ -3,7 +3,15 @@
 }
 .block {
   border-bottom: 1px solid #c7c7c7;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
-.icon-full-height {
-  font-size: 100px;
+.icon-full-width {
+  font-size: 5vw;
+}
+.icon-mid-width {
+  font-size: 2.5vw;
+}
+.icon-small-width {
+  font-size: 1vw;
 }
