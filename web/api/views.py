@@ -83,6 +83,7 @@ class PermissionListView(generics.ListAPIView):
         return qs
 
 
+
 class ThuxListViewMixin(QuerysetMixin):
     pass
 
