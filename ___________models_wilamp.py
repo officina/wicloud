@@ -8,6 +8,7 @@
 from django.db import models
 
 
+
 class Address(models.Model):
     id = models.BigIntegerField(primary_key=True)
     address_description = models.CharField(max_length=255)
