@@ -11,7 +11,6 @@ export class Address {
     public city?: string,
     public lat?: number,
     public lng?: any[],
-    public country?: string,
   ) {
   }
 }
