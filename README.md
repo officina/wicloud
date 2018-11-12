@@ -38,7 +38,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 
         `virtualenv wicloud/venv --python /usr/bin/python3`
 
- - virtualenvwrapper:
+ - virtualenvwrapper (suggested :
     - python3:
 
         `mkvirtualenv --python=/usr/bin/python3 wicloud`
@@ -77,15 +77,6 @@ echo "workon wicloud" > .env
 The complete autoenv documentation can be found [here](https://github.com/kennethreitz/autoenv).
 
 
-
-## Configure pip for Thux pypi
-
-Any package are developed internal in Thux, to automataically check correct repo cretate `.pip/pip.conf`:
-```
-[global]
-find-links = https://pypi.thux.it/
-```
-
 ## Install the requirements
 
 ```
@@ -100,7 +91,7 @@ createdb wicloud
 ## Create local.py file inside web/settings
 
 ```
-gedit web/settings/local.py
+vi web/settings/local.py
 ```
 ## Copy the following settings into the local.py file
 
@@ -156,6 +147,12 @@ mkdir static
 dj r
 ```
 
+# Launch the angular frontend (in another pycharm terminal tab):
+
+```
+cd angular
+yarn start
+```
 # Have fun!
 
 # Remote tests

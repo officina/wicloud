@@ -80,7 +80,8 @@ setup(
         'django-import-export==1.0.1',
         'Collectfast',
         'pytest-django',
-        'django-test-plus'
+        'django-test-plus',
+        'ipython',
     ],
     package_data=get_data_files('web')
 )
