@@ -88,6 +88,11 @@ pip install .
 ```
 createdb wicloud
 ```
+
+## Link settings.py with the desired configuration
+```
+ln -s web/settings/dev.py web/settings/settings.py
+```
 ## Create local.py file inside web/settings
 
 ```
@@ -151,6 +156,7 @@ dj r
 
 ```
 cd angular
+yarn install
 yarn start
 ```
 # Have fun!
