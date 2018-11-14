@@ -7,6 +7,8 @@
 *.pot
 *.py[co]
 .tox/
+angular/yarn.lock
+yarn.lock
 __pycache__
 MANIFEST
 dist/
