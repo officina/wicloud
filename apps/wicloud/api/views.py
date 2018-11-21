@@ -886,7 +886,7 @@ class InstallationListView(views.ThuxListViewMixin, generics.ListAPIView):
     def get_queryset(self):
         queryset = models.Installation.objects.all()
         user = self.request.user
-        return queryset.filter(Q(installer=user) | Q(installation_managers__in=[user]) | Q(viewers__in=[user])
+        return queryset.distinct().filter(Q(installer=user) | Q(installation_managers__in=[user]) | Q(viewers__in=[user])
                                | Q(assets_managers__in=[user]))
 
 
