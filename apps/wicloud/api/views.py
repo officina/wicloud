@@ -5,7 +5,10 @@ from rest_framework import generics, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
-
+from rest_framework.generics import (
+    ListCreateAPIView,
+    RetrieveUpdateDestroyAPIView
+)
 from web.api import views
 from . import serializers
 from .. import models
@@ -17,188 +20,161 @@ def api_root(request, format=None):
     url_dict['address_list'] = reverse(
         'api:address_list', request=request, format=format
     )
-    url_dict['address_create'] = reverse(
-        'api:address_create', request=request, format=format
+    url_dict['address_detail'] = reverse(
+        'api:address_detail', request=request, format=format, kwargs={'id': 1}
     )
     url_dict['customer_list'] = reverse(
         'api:customer_list', request=request, format=format
     )
-    url_dict['customer_create'] = reverse(
-        'api:customer_create', request=request, format=format
+    url_dict['customer_detail'] = reverse(
+        'api:customer_detail', request=request, format=format, kwargs={'id': 1}
     )
     url_dict['energy_interval_list'] = reverse(
         'api:energy_interval_list', request=request, format=format
     )
-    url_dict['energy_interval_create'] = reverse(
-        'api:energy_interval_create', request=request, format=format
+    url_dict['energy_interval_detail'] = reverse(
+        'api:energy_interval_detail', request=request, format=format, kwargs={'id': 1}
     )
     url_dict['energy_meter_module_list'] = reverse(
         'api:energy_meter_module_list', request=request, format=format
     )
-    url_dict['energy_meter_module_create'] = reverse(
-        'api:energy_meter_module_create', request=request, format=format
+    url_dict['energy_meter_module_detail'] = reverse(
+        'api:energy_meter_module_detail', request=request, format=format, kwargs={'id': 1}
     )
     url_dict['energy_meter_peak_measure_list'] = reverse(
         'api:energy_meter_peak_measure_list', request=request, format=format
     )
-    url_dict['energy_meter_peak_measure_create'] = reverse(
-        'api:energy_meter_peak_measure_create', request=request, format=format
+    url_dict['energy_meter_peak_measure_detail'] = reverse(
+        'api:energy_meter_peak_measure_detail', request=request, format=format, kwargs={'id': 1}
     )
     url_dict['error_light_level_and_adc_mismatch_list'] = reverse(
         'api:error_light_level_and_adc_mismatch_list', request=request, format=format
     )
-    url_dict['error_light_level_and_adc_mismatch_create'] = reverse(
-        'api:error_light_level_and_adc_mismatch_create', request=request, format=format
+    url_dict['error_light_level_and_adc_mismatch_detail'] = reverse(
+        'api:error_light_level_and_adc_mismatch_detail', request=request, format=format, kwargs={'id': 1}
     )
     url_dict['error_light_level_and_power_mismatch_list'] = reverse(
         'api:error_light_level_and_power_mismatch_list', request=request, format=format
     )
-    url_dict['error_light_level_and_power_mismatch_create'] = reverse(
-        'api:error_light_level_and_power_mismatch_create', request=request, format=format
+    url_dict['error_light_level_and_power_mismatch_detail'] = reverse(
+        'api:error_light_level_and_power_mismatch_detail', request=request, format=format, kwargs={'id': 1}
     )
     url_dict['error_node_offline_list'] = reverse(
         'api:error_node_offline_list', request=request, format=format
     )
-    url_dict['error_node_offline_create'] = reverse(
-        'api:error_node_offline_create', request=request, format=format
+    url_dict['error_node_offline_detail'] = reverse(
+        'api:error_node_offline_detail', request=request, format=format, kwargs={'id': 1}
     )
     url_dict['gateway_list'] = reverse(
         'api:gateway_list', request=request, format=format
     )
-    url_dict['gateway_create'] = reverse(
-        'api:gateway_create', request=request, format=format
+    url_dict['gateway_detail'] = reverse(
+        'api:gateway_detail', request=request, format=format, kwargs={'id': 1}
     )
     url_dict['ime_power_counter_list'] = reverse(
         'api:ime_power_counter_list', request=request, format=format
     )
-    url_dict['ime_power_counter_create'] = reverse(
-        'api:ime_power_counter_create', request=request, format=format
+    url_dict['ime_power_counter_detail'] = reverse(
+        'api:ime_power_counter_detail', request=request, format=format, kwargs={'id': 1}
     )
     url_dict['ime_power_measure_list'] = reverse(
         'api:ime_power_measure_list', request=request, format=format
     )
-    url_dict['ime_power_measure_create'] = reverse(
-        'api:ime_power_measure_create', request=request, format=format
+    url_dict['ime_power_measure_detail'] = reverse(
+        'api:ime_power_measure_detail', request=request, format=format, kwargs={'id': 1}
     )
     url_dict['installation_list'] = reverse(
         'api:installation_list', request=request, format=format
     )
-    url_dict['installation_create'] = reverse(
-        'api:installation_create', request=request, format=format
+    url_dict['installation_detail'] = reverse(
+        'api:installation_detail', request=request, format=format, kwargs={'id': 1}
     )
     url_dict['light_management_measure_list'] = reverse(
         'api:light_management_measure_list', request=request, format=format
     )
-    url_dict['light_management_measure_create'] = reverse(
-        'api:light_management_measure_create', request=request, format=format
+    url_dict['light_management_measure_detail'] = reverse(
+        'api:light_management_measure_detail', request=request, format=format, kwargs={'id': 1}
     )
     url_dict['light_management_module_list'] = reverse(
         'api:light_management_module_list', request=request, format=format
     )
-    url_dict['light_management_module_create'] = reverse(
-        'api:light_management_module_create', request=request, format=format
+    url_dict['light_management_module_detail'] = reverse(
+        'api:light_management_module_detail', request=request, format=format, kwargs={'id': 1}
     )
     url_dict['light_profile_list'] = reverse(
         'api:light_profile_list', request=request, format=format
     )
-    url_dict['light_profile_create'] = reverse(
-        'api:light_profile_create', request=request, format=format
+    url_dict['light_profile_detail'] = reverse(
+        'api:light_profile_detail', request=request, format=format, kwargs={'id': 1}
     )
     url_dict['light_profile_slot_list'] = reverse(
         'api:light_profile_slot_list', request=request, format=format
     )
-    url_dict['light_profile_slot_create'] = reverse(
-        'api:light_profile_slot_create', request=request, format=format
+    url_dict['light_profile_slot_detail'] = reverse(
+        'api:light_profile_slot_detail', request=request, format=format, kwargs={'id': 1}
     )
     url_dict['motion_event_list'] = reverse(
         'api:motion_event_list', request=request, format=format
     )
-    url_dict['motion_event_create'] = reverse(
-        'api:motion_event_create', request=request, format=format
+    url_dict['motion_event_detail'] = reverse(
+        'api:motion_event_detail', request=request, format=format, kwargs={'id': 1}
     )
     url_dict['node_list'] = reverse(
         'api:node_list', request=request, format=format
     )
-    url_dict['node_create'] = reverse(
-        'api:node_create', request=request, format=format
+    url_dict['node_detail'] = reverse(
+        'api:node_detail', request=request, format=format, kwargs={'id': 1}
     )
     url_dict['node_module_list'] = reverse(
         'api:node_module_list', request=request, format=format
     )
-    url_dict['node_module_create'] = reverse(
-        'api:node_module_create', request=request, format=format
+    url_dict['node_module_detail'] = reverse(
+        'api:node_module_detail', request=request, format=format, kwargs={'id': 1}
     )
     url_dict['wilamp_alert_list'] = reverse(
         'api:wilamp_alert_list', request=request, format=format
     )
-    url_dict['wilamp_alert_create'] = reverse(
-        'api:wilamp_alert_create', request=request, format=format
+    url_dict['wilamp_alert_detail'] = reverse(
+        'api:wilamp_alert_detail', request=request, format=format, kwargs={'id': 1}
     )
     url_dict['feeder_pillar_list'] = reverse(
         'api:feeder_pillar_list', request=request, format=format
     )
-    url_dict['feeder_pillar_create'] = reverse(
-        'api:feeder_pillar_create', request=request, format=format
+    url_dict['feeder_pillar_detail'] = reverse(
+        'api:feeder_pillar_detail', request=request, format=format, kwargs={'id': 1}
     )
     url_dict['twilight_management_module_list'] = reverse(
         'api:twilight_management_module_list', request=request, format=format
     )
-    url_dict['twilight_management_module_create'] = reverse(
-        'api:twilight_management_module_create', request=request, format=format
+    url_dict['twilight_management_module_detail'] = reverse(
+        'api:twilight_management_module_detail', request=request, format=format, kwargs={'id': 1}
     )
     url_dict['twilight_measure_list'] = reverse(
         'api:twilight_measure_list', request=request, format=format
     )
-    url_dict['twilight_measure_create'] = reverse(
-        'api:twilight_measure_create', request=request, format=format
+    url_dict['twilight_measure_detail'] = reverse(
+        'api:twilight_measure_detail', request=request, format=format, kwargs={'id': 1}
     )
     url_dict['motion_management_module_list'] = reverse(
         'api:motion_management_module_list', request=request, format=format
     )
     url_dict['user_change_password'] = reverse(
-        'api:users_change_password', request=request, format=format
+        'api:users_change_password', request=request, format=format,
     )
     return Response(url_dict)
 
-
-class AddressListView(views.ThuxListViewMixin, generics.ListAPIView):
-    """
-    Get all addresses
-    """
+class  AddressListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     queryset = models.Address.objects.all()
+    #permission_classes = (IsAuthenticated,)
     serializer_class = serializers.AddressListSerializer
+    lookup_field = 'id'
 
 
-class AddressRetrieveView(views.ThuxRetrieveViewMixin, generics.RetrieveAPIView):
-    """
-    Get a single address
-    """
+class  AddressRetrieveUpdateDestroyAPIView(views.ThuxUpdateViewMixin, RetrieveUpdateDestroyAPIView):
     queryset = models.Address.objects.all()
+    #permission_classes = (IsAuthenticated,)
     serializer_class = serializers.AddressRetrieveSerializer
-
-
-class AddressCreateView(views.ThuxCreateViewMixin, generics.CreateAPIView):
-    """
-    Create a single address
-    """
-    queryset = models.Address.objects.all()
-    serializer_class = serializers.AddressCreateSerializer
-
-
-class AddressPartialUpdateView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
-    """
-    Update a single address
-    """
-    queryset = models.Address.objects.all()
-    serializer_class = serializers.AddressPartialUpdateSerializer
-
-
-class AddressDestroyView(views.ThuxDestroyViewMixin, generics.DestroyAPIView):
-    """
-    Delete a single address
-    """
-    queryset = models.Address.objects.all()
-
+    lookup_field = 'id'
 
 class AddressSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
     """
@@ -226,43 +202,21 @@ class AddressDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdateAPIVi
     new_status = 0
 
 
-class CustomerListView(views.ThuxListViewMixin, generics.ListAPIView):
+class CustomerListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  customers
     """
     queryset = models.Customer.objects.all()
     serializer_class = serializers.CustomerListSerializer
+    lookup_field = 'id'
 
-
-class CustomerRetrieveView(views.ThuxRetrieveViewMixin, generics.RetrieveAPIView):
+class CustomerRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
     Get a single customer
     """
     queryset = models.Customer.objects.all()
     serializer_class = serializers.CustomerRetrieveSerializer
-
-
-class CustomerCreateView(views.ThuxCreateViewMixin, generics.CreateAPIView):
-    """
-    Create a single customer
-    """
-    queryset = models.Customer.objects.all()
-    serializer_class = serializers.CustomerCreateSerializer
-
-
-class CustomerPartialUpdateView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
-    """
-    Update a single customer
-    """
-    queryset = models.Customer.objects.all()
-    serializer_class = serializers.CustomerPartialUpdateSerializer
-
-
-class CustomerDestroyView(views.ThuxDestroyViewMixin, generics.DestroyAPIView):
-    """
-    Delete a single customer
-    """
-    queryset = models.Customer.objects.all()
+    lookup_field = 'id'
 
 
 class CustomerSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
@@ -291,7 +245,7 @@ class CustomerDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdateAPIV
     new_status = 0
 
 
-class Energy_intervalListView(views.ThuxListViewMixin, generics.ListAPIView):
+class Energy_intervalListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  energy_intervals
     """
@@ -299,35 +253,13 @@ class Energy_intervalListView(views.ThuxListViewMixin, generics.ListAPIView):
     serializer_class = serializers.Energy_intervalListSerializer
 
 
-class Energy_intervalRetrieveView(views.ThuxRetrieveViewMixin, generics.RetrieveAPIView):
+class Energy_intervalRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
     Get a single energy_interval
     """
     queryset = models.Energy_interval.objects.all()
     serializer_class = serializers.Energy_intervalRetrieveSerializer
-
-
-class Energy_intervalCreateView(views.ThuxCreateViewMixin, generics.CreateAPIView):
-    """
-    Create a single energy_interval
-    """
-    queryset = models.Energy_interval.objects.all()
-    serializer_class = serializers.Energy_intervalCreateSerializer
-
-
-class Energy_intervalPartialUpdateView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
-    """
-    Update a single energy_interval
-    """
-    queryset = models.Energy_interval.objects.all()
-    serializer_class = serializers.Energy_intervalPartialUpdateSerializer
-
-
-class Energy_intervalDestroyView(views.ThuxDestroyViewMixin, generics.DestroyAPIView):
-    """
-    Delete a single energy_interval
-    """
-    queryset = models.Energy_interval.objects.all()
+    lookup_field = 'id'
 
 
 class Energy_intervalSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
@@ -336,7 +268,7 @@ class Energy_intervalSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPI
     """
     queryset = models.Energy_interval.objects.all()
     serializer_class = serializers.Energy_intervalSetStatusSerializer
-
+    lookup_field = 'id'
 
 class Energy_intervalEnableView(views.ThuxStatusViewMixin, generics.RetrieveUpdateAPIView):
     """
@@ -356,44 +288,21 @@ class Energy_intervalDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpd
     new_status = 0
 
 
-class Energy_meter_moduleListView(views.ThuxListViewMixin, generics.ListAPIView):
+class Energy_meter_moduleListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  energy_meter_modules
     """
     queryset = models.Energy_meter_module.objects.all()
     serializer_class = serializers.Energy_meter_moduleListSerializer
+    lookup_field = 'id'
 
-
-class Energy_meter_moduleRetrieveView(views.ThuxRetrieveViewMixin, generics.RetrieveAPIView):
+class Energy_meter_moduleRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
     Get a single energy_meter_module
     """
     queryset = models.Energy_meter_module.objects.all()
     serializer_class = serializers.Energy_meter_moduleRetrieveSerializer
-
-
-class Energy_meter_moduleCreateView(views.ThuxCreateViewMixin, generics.CreateAPIView):
-    """
-    Create a single energy_meter_module
-    """
-    queryset = models.Energy_meter_module.objects.all()
-    serializer_class = serializers.Energy_meter_moduleCreateSerializer
-
-
-class Energy_meter_modulePartialUpdateView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
-    """
-    Update a single energy_meter_module
-    """
-    queryset = models.Energy_meter_module.objects.all()
-    serializer_class = serializers.Energy_meter_modulePartialUpdateSerializer
-
-
-class Energy_meter_moduleDestroyView(views.ThuxDestroyViewMixin, generics.DestroyAPIView):
-    """
-    Delete a single energy_meter_module
-    """
-    queryset = models.Energy_meter_module.objects.all()
-
+    lookup_field = 'id'
 
 class Energy_meter_moduleSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
     """
@@ -421,43 +330,21 @@ class Energy_meter_moduleDisableView(views.ThuxStatusViewMixin, generics.Retriev
     new_status = 0
 
 
-class Energy_meter_peak_measureListView(views.ThuxListViewMixin, generics.ListAPIView):
+class Energy_meter_peak_measureListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  energy_meter_peak_measures
     """
     queryset = models.Energy_meter_peak_measure.objects.all()
     serializer_class = serializers.Energy_meter_peak_measureListSerializer
+    lookup_field = 'id'
 
-
-class Energy_meter_peak_measureRetrieveView(views.ThuxRetrieveViewMixin, generics.RetrieveAPIView):
+class Energy_meter_peak_measureRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
     Get a single energy_meter_peak_measure
     """
     queryset = models.Energy_meter_peak_measure.objects.all()
     serializer_class = serializers.Energy_meter_peak_measureRetrieveSerializer
-
-
-class Energy_meter_peak_measureCreateView(views.ThuxCreateViewMixin, generics.CreateAPIView):
-    """
-    Create a single energy_meter_peak_measure
-    """
-    queryset = models.Energy_meter_peak_measure.objects.all()
-    serializer_class = serializers.Energy_meter_peak_measureCreateSerializer
-
-
-class Energy_meter_peak_measurePartialUpdateView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
-    """
-    Update a single energy_meter_peak_measure
-    """
-    queryset = models.Energy_meter_peak_measure.objects.all()
-    serializer_class = serializers.Energy_meter_peak_measurePartialUpdateSerializer
-
-
-class Energy_meter_peak_measureDestroyView(views.ThuxDestroyViewMixin, generics.DestroyAPIView):
-    """
-    Delete a single energy_meter_peak_measure
-    """
-    queryset = models.Energy_meter_peak_measure.objects.all()
+    lookup_field = 'id'
 
 
 class Energy_meter_peak_measureSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
@@ -486,43 +373,21 @@ class Energy_meter_peak_measureDisableView(views.ThuxStatusViewMixin, generics.R
     new_status = 0
 
 
-class Error_light_level_and_adc_mismatchListView(views.ThuxListViewMixin, generics.ListAPIView):
+class Error_light_level_and_adc_mismatchListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  error_light_level_and_adc_mismatchs
     """
     queryset = models.Error_light_level_and_adc_mismatch.objects.all()
     serializer_class = serializers.Error_light_level_and_adc_mismatchListSerializer
+    lookup_field = 'id'
 
-
-class Error_light_level_and_adc_mismatchRetrieveView(views.ThuxRetrieveViewMixin, generics.RetrieveAPIView):
+class Error_light_level_and_adc_mismatchRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
     Get a single error_light_level_and_adc_mismatch
     """
     queryset = models.Error_light_level_and_adc_mismatch.objects.all()
     serializer_class = serializers.Error_light_level_and_adc_mismatchRetrieveSerializer
-
-
-class Error_light_level_and_adc_mismatchCreateView(views.ThuxCreateViewMixin, generics.CreateAPIView):
-    """
-    Create a single error_light_level_and_adc_mismatch
-    """
-    queryset = models.Error_light_level_and_adc_mismatch.objects.all()
-    serializer_class = serializers.Error_light_level_and_adc_mismatchCreateSerializer
-
-
-class Error_light_level_and_adc_mismatchPartialUpdateView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
-    """
-    Update a single error_light_level_and_adc_mismatch
-    """
-    queryset = models.Error_light_level_and_adc_mismatch.objects.all()
-    serializer_class = serializers.Error_light_level_and_adc_mismatchPartialUpdateSerializer
-
-
-class Error_light_level_and_adc_mismatchDestroyView(views.ThuxDestroyViewMixin, generics.DestroyAPIView):
-    """
-    Delete a single error_light_level_and_adc_mismatch
-    """
-    queryset = models.Error_light_level_and_adc_mismatch.objects.all()
+    lookup_field = 'id'
 
 
 class Error_light_level_and_adc_mismatchSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
@@ -552,44 +417,21 @@ class Error_light_level_and_adc_mismatchDisableView(
     new_status = 0
 
 
-class Error_light_level_and_power_mismatchListView(views.ThuxListViewMixin, generics.ListAPIView):
+class Error_light_level_and_power_mismatchListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  error_light_level_and_power_mismatchs
     """
     queryset = models.Error_light_level_and_power_mismatch.objects.all()
     serializer_class = serializers.Error_light_level_and_power_mismatchListSerializer
+    lookup_field = 'id'
 
-
-class Error_light_level_and_power_mismatchRetrieveView(views.ThuxRetrieveViewMixin, generics.RetrieveAPIView):
+class Error_light_level_and_power_mismatchRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
     Get a single error_light_level_and_power_mismatch
     """
     queryset = models.Error_light_level_and_power_mismatch.objects.all()
     serializer_class = serializers.Error_light_level_and_power_mismatchRetrieveSerializer
-
-
-class Error_light_level_and_power_mismatchCreateView(views.ThuxCreateViewMixin, generics.CreateAPIView):
-    """
-    Create a single error_light_level_and_power_mismatch
-    """
-    queryset = models.Error_light_level_and_power_mismatch.objects.all()
-    serializer_class = serializers.Error_light_level_and_power_mismatchCreateSerializer
-
-
-class Error_light_level_and_power_mismatchPartialUpdateView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
-    """
-    Update a single error_light_level_and_power_mismatch
-    """
-    queryset = models.Error_light_level_and_power_mismatch.objects.all()
-    serializer_class = serializers.Error_light_level_and_power_mismatchPartialUpdateSerializer
-
-
-class Error_light_level_and_power_mismatchDestroyView(views.ThuxDestroyViewMixin, generics.DestroyAPIView):
-    """
-    Delete a single error_light_level_and_power_mismatch
-    """
-    queryset = models.Error_light_level_and_power_mismatch.objects.all()
-
+    lookup_field = 'id'
 
 class Error_light_level_and_power_mismatchSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
     """
@@ -617,43 +459,21 @@ class Error_light_level_and_power_mismatchDisableView(views.ThuxStatusViewMixin,
     new_status = 0
 
 
-class Error_node_offlineListView(views.ThuxListViewMixin, generics.ListAPIView):
+class Error_node_offlineListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  error_node_offlines
     """
     queryset = models.Error_node_offline.objects.all()
     serializer_class = serializers.Error_node_offlineListSerializer
+    lookup_field = 'id'
 
-
-class Error_node_offlineRetrieveView(views.ThuxRetrieveViewMixin, generics.RetrieveAPIView):
+class Error_node_offlineRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
     Get a single error_node_offline
     """
     queryset = models.Error_node_offline.objects.all()
     serializer_class = serializers.Error_node_offlineRetrieveSerializer
-
-
-class Error_node_offlineCreateView(views.ThuxCreateViewMixin, generics.CreateAPIView):
-    """
-    Create a single error_node_offline
-    """
-    queryset = models.Error_node_offline.objects.all()
-    serializer_class = serializers.Error_node_offlineCreateSerializer
-
-
-class Error_node_offlinePartialUpdateView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
-    """
-    Update a single error_node_offline
-    """
-    queryset = models.Error_node_offline.objects.all()
-    serializer_class = serializers.Error_node_offlinePartialUpdateSerializer
-
-
-class Error_node_offlineDestroyView(views.ThuxDestroyViewMixin, generics.DestroyAPIView):
-    """
-    Delete a single error_node_offline
-    """
-    queryset = models.Error_node_offline.objects.all()
+    lookup_field = 'id'
 
 
 class Error_node_offlineSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
@@ -682,43 +502,21 @@ class Error_node_offlineDisableView(views.ThuxStatusViewMixin, generics.Retrieve
     new_status = 0
 
 
-class GatewayListView(views.ThuxListViewMixin, generics.ListAPIView):
+class GatewayListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  gateways
     """
     queryset = models.Gateway.objects.all()
     serializer_class = serializers.GatewayListSerializer
+    lookup_field = 'id'
 
-
-class GatewayRetrieveView(views.ThuxRetrieveViewMixin, generics.RetrieveAPIView):
+class GatewayRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
     Get a single gateway
     """
     queryset = models.Gateway.objects.all()
     serializer_class = serializers.GatewayRetrieveSerializer
-
-
-class GatewayCreateView(views.ThuxCreateViewMixin, generics.CreateAPIView):
-    """
-    Create a single gateway
-    """
-    queryset = models.Gateway.objects.all()
-    serializer_class = serializers.GatewayCreateSerializer
-
-
-class GatewayPartialUpdateView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
-    """
-    Update a single gateway
-    """
-    queryset = models.Gateway.objects.all()
-    serializer_class = serializers.GatewayPartialUpdateSerializer
-
-
-class GatewayDestroyView(views.ThuxDestroyViewMixin, generics.DestroyAPIView):
-    """
-    Delete a single gateway
-    """
-    queryset = models.Gateway.objects.all()
+    lookup_field = 'id'
 
 
 class GatewaySetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
@@ -747,44 +545,21 @@ class GatewayDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdateAPIVi
     new_status = 0
 
 
-class Ime_power_counterListView(views.ThuxListViewMixin, generics.ListAPIView):
+class Ime_power_counterListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  ime_power_counters
     """
     queryset = models.Ime_power_counter.objects.all()
     serializer_class = serializers.Ime_power_counterListSerializer
+    lookup_field = 'id'
 
-
-class Ime_power_counterRetrieveView(views.ThuxRetrieveViewMixin, generics.RetrieveAPIView):
+class Ime_power_counterRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
     Get a single ime_power_counter
     """
     queryset = models.Ime_power_counter.objects.all()
     serializer_class = serializers.Ime_power_counterRetrieveSerializer
-
-
-class Ime_power_counterCreateView(views.ThuxCreateViewMixin, generics.CreateAPIView):
-    """
-    Create a single ime_power_counter
-    """
-    queryset = models.Ime_power_counter.objects.all()
-    serializer_class = serializers.Ime_power_counterCreateSerializer
-
-
-class Ime_power_counterPartialUpdateView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
-    """
-    Update a single ime_power_counter
-    """
-    queryset = models.Ime_power_counter.objects.all()
-    serializer_class = serializers.Ime_power_counterPartialUpdateSerializer
-
-
-class Ime_power_counterDestroyView(views.ThuxDestroyViewMixin, generics.DestroyAPIView):
-    """
-    Delete a single ime_power_counter
-    """
-    queryset = models.Ime_power_counter.objects.all()
-
+    lookup_field = 'id'
 
 class Ime_power_counterSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
     """
@@ -812,43 +587,21 @@ class Ime_power_counterDisableView(views.ThuxStatusViewMixin, generics.RetrieveU
     new_status = 0
 
 
-class Ime_power_measureListView(views.ThuxListViewMixin, generics.ListAPIView):
+class Ime_power_measureListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  ime_power_measures
     """
     queryset = models.Ime_power_measure.objects.all()
     serializer_class = serializers.Ime_power_measureListSerializer
+    lookup_field = 'id'
 
-
-class Ime_power_measureRetrieveView(views.ThuxRetrieveViewMixin, generics.RetrieveAPIView):
+class Ime_power_measureRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
     Get a single ime_power_measure
     """
     queryset = models.Ime_power_measure.objects.all()
     serializer_class = serializers.Ime_power_measureRetrieveSerializer
-
-
-class Ime_power_measureCreateView(views.ThuxCreateViewMixin, generics.CreateAPIView):
-    """
-    Create a single ime_power_measure
-    """
-    queryset = models.Ime_power_measure.objects.all()
-    serializer_class = serializers.Ime_power_measureCreateSerializer
-
-
-class Ime_power_measurePartialUpdateView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
-    """
-    Update a single ime_power_measure
-    """
-    queryset = models.Ime_power_measure.objects.all()
-    serializer_class = serializers.Ime_power_measurePartialUpdateSerializer
-
-
-class Ime_power_measureDestroyView(views.ThuxDestroyViewMixin, generics.DestroyAPIView):
-    """
-    Delete a single ime_power_measure
-    """
-    queryset = models.Ime_power_measure.objects.all()
+    lookup_field = 'id'
 
 
 class Ime_power_measureSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
@@ -877,11 +630,12 @@ class Ime_power_measureDisableView(views.ThuxStatusViewMixin, generics.RetrieveU
     new_status = 0
 
 
-class InstallationListView(views.ThuxListViewMixin, generics.ListAPIView):
+class InstallationListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  installations
     """
     serializer_class = serializers.InstallationListSerializer
+    lookup_field = 'id'
 
     def get_queryset(self):
         queryset = models.Installation.objects.all()
@@ -890,35 +644,13 @@ class InstallationListView(views.ThuxListViewMixin, generics.ListAPIView):
                                | Q(assets_managers__in=[user]))
 
 
-class InstallationRetrieveView(views.ThuxRetrieveViewMixin, generics.RetrieveAPIView):
+class InstallationRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
     Get a single installation
     """
     queryset = models.Installation.objects.all()
     serializer_class = serializers.InstallationRetrieveSerializer
-
-
-class InstallationCreateView(views.ThuxCreateViewMixin, generics.CreateAPIView):
-    """
-    Create a single installation
-    """
-    queryset = models.Installation.objects.all()
-    serializer_class = serializers.InstallationCreateSerializer
-
-
-class InstallationPartialUpdateView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
-    """
-    Update a single installation
-    """
-    queryset = models.Installation.objects.all()
-    serializer_class = serializers.InstallationPartialUpdateSerializer
-
-
-class InstallationDestroyView(views.ThuxDestroyViewMixin, generics.DestroyAPIView):
-    """
-    Delete a single installation
-    """
-    queryset = models.Installation.objects.all()
+    lookup_field = 'id'
 
 
 class InstallationSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
@@ -947,43 +679,21 @@ class InstallationDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdate
     new_status = 0
 
 
-class Light_management_measureListView(views.ThuxListViewMixin, generics.ListAPIView):
+class Light_management_measureListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  light_management_measures
     """
     queryset = models.Light_management_measure.objects.all()
     serializer_class = serializers.Light_management_measureListSerializer
+    lookup_field = 'id'
 
-
-class Light_management_measureRetrieveView(views.ThuxRetrieveViewMixin, generics.RetrieveAPIView):
+class Light_management_measureRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
     Get a single light_management_measure
     """
     queryset = models.Light_management_measure.objects.all()
     serializer_class = serializers.Light_management_measureRetrieveSerializer
-
-
-class Light_management_measureCreateView(views.ThuxCreateViewMixin, generics.CreateAPIView):
-    """
-    Create a single light_management_measure
-    """
-    queryset = models.Light_management_measure.objects.all()
-    serializer_class = serializers.Light_management_measureCreateSerializer
-
-
-class Light_management_measurePartialUpdateView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
-    """
-    Update a single light_management_measure
-    """
-    queryset = models.Light_management_measure.objects.all()
-    serializer_class = serializers.Light_management_measurePartialUpdateSerializer
-
-
-class Light_management_measureDestroyView(views.ThuxDestroyViewMixin, generics.DestroyAPIView):
-    """
-    Delete a single light_management_measure
-    """
-    queryset = models.Light_management_measure.objects.all()
+    lookup_field = 'id'
 
 
 class Light_management_measureSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
@@ -1012,43 +722,21 @@ class Light_management_measureDisableView(views.ThuxStatusViewMixin, generics.Re
     new_status = 0
 
 
-class Light_management_moduleListView(views.ThuxListViewMixin, generics.ListAPIView):
+class Light_management_moduleListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  light_management_module
     """
     queryset = models.Light_management_module.objects.all()
     serializer_class = serializers.Light_management_moduleListSerializer
+    lookup_field = 'id'
 
-
-class Light_management_moduleRetrieveView(views.ThuxRetrieveViewMixin, generics.RetrieveAPIView):
+class Light_management_moduleRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
     Get a single light_management_module
     """
     queryset = models.Light_management_module.objects.all()
     serializer_class = serializers.Light_management_moduleRetrieveSerializer
-
-
-class Light_management_moduleCreateView(views.ThuxCreateViewMixin, generics.CreateAPIView):
-    """
-    Create a single light_management_module
-    """
-    queryset = models.Light_management_module.objects.all()
-    serializer_class = serializers.Light_management_moduleCreateSerializer
-
-
-class Light_management_modulePartialUpdateView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
-    """
-    Update a single light_management_module
-    """
-    queryset = models.Light_management_module.objects.all()
-    serializer_class = serializers.Light_management_modulePartialUpdateSerializer
-
-
-class Light_management_moduleDestroyView(views.ThuxDestroyViewMixin, generics.DestroyAPIView):
-    """
-    Delete a single light_management_module
-    """
-    queryset = models.Light_management_module.objects.all()
+    lookup_field = 'id'
 
 
 class Light_management_moduleSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
@@ -1077,43 +765,21 @@ class Light_management_moduleDisableView(views.ThuxStatusViewMixin, generics.Ret
     new_status = 0
 
 
-class Light_profileListView(views.ThuxListViewMixin, generics.ListAPIView):
+class Light_profileListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  light_profiles
     """
     queryset = models.Light_profile.objects.all()
     serializer_class = serializers.Light_profileListSerializer
+    lookup_field = 'id'
 
-
-class Light_profileRetrieveView(views.ThuxRetrieveViewMixin, generics.RetrieveAPIView):
+class Light_profileRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
     Get a single light_profile
     """
     queryset = models.Light_profile.objects.all()
     serializer_class = serializers.Light_profileRetrieveSerializer
-
-
-class Light_profileCreateView(views.ThuxCreateViewMixin, generics.CreateAPIView):
-    """
-    Create a single light_profile
-    """
-    queryset = models.Light_profile.objects.all()
-    serializer_class = serializers.Light_profileCreateSerializer
-
-
-class Light_profilePartialUpdateView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
-    """
-    Update a single light_profile
-    """
-    queryset = models.Light_profile.objects.all()
-    serializer_class = serializers.Light_profilePartialUpdateSerializer
-
-
-class Light_profileDestroyView(views.ThuxDestroyViewMixin, generics.DestroyAPIView):
-    """
-    Delete a single light_profile
-    """
-    queryset = models.Light_profile.objects.all()
+    lookup_field = 'id'
 
 
 class Light_profileSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
@@ -1142,43 +808,21 @@ class Light_profileDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdat
     new_status = 0
 
 
-class Light_profile_slotListView(views.ThuxListViewMixin, generics.ListAPIView):
+class Light_profile_slotListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  light_profile_slots
     """
     queryset = models.Light_profile_slot.objects.all()
     serializer_class = serializers.Light_profile_slotListSerializer
+    lookup_field = 'id'
 
-
-class Light_profile_slotRetrieveView(views.ThuxRetrieveViewMixin, generics.RetrieveAPIView):
+class Light_profile_slotRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
     Get a single light_profile_slot
     """
     queryset = models.Light_profile_slot.objects.all()
     serializer_class = serializers.Light_profile_slotRetrieveSerializer
-
-
-class Light_profile_slotCreateView(views.ThuxCreateViewMixin, generics.CreateAPIView):
-    """
-    Create a single light_profile_slot
-    """
-    queryset = models.Light_profile_slot.objects.all()
-    serializer_class = serializers.Light_profile_slotCreateSerializer
-
-
-class Light_profile_slotPartialUpdateView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
-    """
-    Update a single light_profile_slot
-    """
-    queryset = models.Light_profile_slot.objects.all()
-    serializer_class = serializers.Light_profile_slotPartialUpdateSerializer
-
-
-class Light_profile_slotDestroyView(views.ThuxDestroyViewMixin, generics.DestroyAPIView):
-    """
-    Delete a single light_profile_slot
-    """
-    queryset = models.Light_profile_slot.objects.all()
+    lookup_field = 'id'
 
 
 class Light_profile_slotSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
@@ -1207,43 +851,21 @@ class Light_profile_slotDisableView(views.ThuxStatusViewMixin, generics.Retrieve
     new_status = 0
 
 
-class Motion_eventListView(views.ThuxListViewMixin, generics.ListAPIView):
+class Motion_eventListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  motion_events
     """
     queryset = models.Motion_event.objects.all()
     serializer_class = serializers.Motion_eventListSerializer
+    lookup_field = 'id'
 
-
-class Motion_eventRetrieveView(views.ThuxRetrieveViewMixin, generics.RetrieveAPIView):
+class Motion_eventRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
     Get a single motion_event
     """
     queryset = models.Motion_event.objects.all()
     serializer_class = serializers.Motion_eventRetrieveSerializer
-
-
-class Motion_eventCreateView(views.ThuxCreateViewMixin, generics.CreateAPIView):
-    """
-    Create a single motion_event
-    """
-    queryset = models.Motion_event.objects.all()
-    serializer_class = serializers.Motion_eventCreateSerializer
-
-
-class Motion_eventPartialUpdateView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
-    """
-    Update a single motion_event
-    """
-    queryset = models.Motion_event.objects.all()
-    serializer_class = serializers.Motion_eventPartialUpdateSerializer
-
-
-class Motion_eventDestroyView(views.ThuxDestroyViewMixin, generics.DestroyAPIView):
-    """
-    Delete a single motion_event
-    """
-    queryset = models.Motion_event.objects.all()
+    lookup_field = 'id'
 
 
 class Motion_eventSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
@@ -1272,43 +894,21 @@ class Motion_eventDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdate
     new_status = 0
 
 
-class NodeListView(views.ThuxListViewMixin, generics.ListAPIView):
+class NodeListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  nodes
     """
     queryset = models.Node.objects.all()
     serializer_class = serializers.NodeListSerializer
+    lookup_field = 'id'
 
-
-class NodeRetrieveView(views.ThuxRetrieveViewMixin, generics.RetrieveAPIView):
+class NodeRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
     Get a single node
     """
     queryset = models.Node.objects.all()
     serializer_class = serializers.NodeRetrieveSerializer
-
-
-class NodeCreateView(views.ThuxCreateViewMixin, generics.CreateAPIView):
-    """
-    Create a single node
-    """
-    queryset = models.Node.objects.all()
-    serializer_class = serializers.NodeCreateSerializer
-
-
-class NodePartialUpdateView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
-    """
-    Update a single node
-    """
-    queryset = models.Node.objects.all()
-    serializer_class = serializers.NodePartialUpdateSerializer
-
-
-class NodeDestroyView(views.ThuxDestroyViewMixin, generics.DestroyAPIView):
-    """
-    Delete a single node
-    """
-    queryset = models.Node.objects.all()
+    lookup_field = 'id'
 
 
 class NodeSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
@@ -1337,43 +937,21 @@ class NodeDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdateAPIView)
     new_status = 0
 
 
-class Node_moduleListView(views.ThuxListViewMixin, generics.ListAPIView):
+class Node_moduleListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  node_modules
     """
     queryset = models.Node_module.objects.all()
     serializer_class = serializers.Node_moduleListSerializer
+    lookup_field = 'id'
 
-
-class Node_moduleRetrieveView(views.ThuxRetrieveViewMixin, generics.RetrieveAPIView):
+class Node_moduleRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
     Get a single node_module
     """
     queryset = models.Node_module.objects.all()
     serializer_class = serializers.Node_moduleRetrieveSerializer
-
-
-class Node_moduleCreateView(views.ThuxCreateViewMixin, generics.CreateAPIView):
-    """
-    Create a single node_module
-    """
-    queryset = models.Node_module.objects.all()
-    serializer_class = serializers.Node_moduleCreateSerializer
-
-
-class Node_modulePartialUpdateView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
-    """
-    Update a single node_module
-    """
-    queryset = models.Node_module.objects.all()
-    serializer_class = serializers.Node_modulePartialUpdateSerializer
-
-
-class Node_moduleDestroyView(views.ThuxDestroyViewMixin, generics.DestroyAPIView):
-    """
-    Delete a single node_module
-    """
-    queryset = models.Node_module.objects.all()
+    lookup_field = 'id'
 
 
 class Node_moduleSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
@@ -1402,44 +980,21 @@ class Node_moduleDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdateA
     new_status = 0
 
 
-class Wilamp_alertListView(views.ThuxListViewMixin, generics.ListAPIView):
+class Wilamp_alertListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  wilamp_alerts
     """
     queryset = models.Wilamp_alert.objects.all()
     serializer_class = serializers.Wilamp_alertListSerializer
+    lookup_field = 'id'
 
-
-class Wilamp_alertRetrieveView(views.ThuxRetrieveViewMixin, generics.RetrieveAPIView):
+class Wilamp_alertRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
     Get a single wilamp_alert
     """
     queryset = models.Wilamp_alert.objects.all()
     serializer_class = serializers.Wilamp_alertRetrieveSerializer
-
-
-class Wilamp_alertCreateView(views.ThuxCreateViewMixin, generics.CreateAPIView):
-    """
-    Create a single wilamp_alert
-    """
-    queryset = models.Wilamp_alert.objects.all()
-    serializer_class = serializers.Wilamp_alertCreateSerializer
-
-
-class Wilamp_alertPartialUpdateView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
-    """
-    Update a single wilamp_alert
-    """
-    queryset = models.Wilamp_alert.objects.all()
-    serializer_class = serializers.Wilamp_alertPartialUpdateSerializer
-
-
-class Wilamp_alertDestroyView(views.ThuxDestroyViewMixin, generics.DestroyAPIView):
-    """
-    Delete a single wilamp_alert
-    """
-    queryset = models.Wilamp_alert.objects.all()
-
+    lookup_field = 'id'
 
 class Wilamp_alertSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
     """
@@ -1467,44 +1022,21 @@ class Wilamp_alertDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdate
     new_status = 0
 
 
-class Feeder_pillarListView(views.ThuxListViewMixin, generics.ListAPIView):
+class Feeder_pillarListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  feeder_pillars
     """
     queryset = models.Feeder_pillar.objects.all()
     serializer_class = serializers.Feeder_pillarListSerializer
+    lookup_field = 'id'
 
-
-class Feeder_pillarRetrieveView(views.ThuxRetrieveViewMixin, generics.RetrieveAPIView):
+class Feeder_pillarRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
     Get a single feeder_pillar
     """
     queryset = models.Feeder_pillar.objects.all()
     serializer_class = serializers.Feeder_pillarRetrieveSerializer
-
-
-class Feeder_pillarCreateView(views.ThuxCreateViewMixin, generics.CreateAPIView):
-    """
-    Create a single feeder_pillar
-    """
-    queryset = models.Feeder_pillar.objects.all()
-    serializer_class = serializers.Feeder_pillarCreateSerializer
-
-
-class Feeder_pillarPartialUpdateView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
-    """
-    Update a single feeder_pillar
-    """
-    queryset = models.Feeder_pillar.objects.all()
-    serializer_class = serializers.Feeder_pillarPartialUpdateSerializer
-
-
-class Feeder_pillarDestroyView(views.ThuxDestroyViewMixin, generics.DestroyAPIView):
-    """
-    Delete a single feeder_pillar
-    """
-    queryset = models.Feeder_pillar.objects.all()
-
+    lookup_field = 'id'
 
 class Feeder_pillarSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
     """
@@ -1532,43 +1064,21 @@ class Feeder_pillarDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdat
     new_status = 0
 
 
-class Twilight_management_moduleListView(views.ThuxListViewMixin, generics.ListAPIView):
+class Twilight_management_moduleListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  twilight_management_modules
     """
     queryset = models.Twilight_management_module.objects.all()
     serializer_class = serializers.Twilight_management_moduleListSerializer
+    lookup_field = 'id'
 
-
-class Twilight_management_moduleRetrieveView(views.ThuxRetrieveViewMixin, generics.RetrieveAPIView):
+class Twilight_management_moduleRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
     Get a single twilight_management_module
     """
     queryset = models.Twilight_management_module.objects.all()
     serializer_class = serializers.Twilight_management_moduleRetrieveSerializer
-
-
-class Twilight_management_moduleCreateView(views.ThuxCreateViewMixin, generics.CreateAPIView):
-    """
-    Create a single twilight_management_module
-    """
-    queryset = models.Twilight_management_module.objects.all()
-    serializer_class = serializers.Twilight_management_moduleCreateSerializer
-
-
-class Twilight_management_modulePartialUpdateView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
-    """
-    Update a single twilight_management_module
-    """
-    queryset = models.Twilight_management_module.objects.all()
-    serializer_class = serializers.Twilight_management_modulePartialUpdateSerializer
-
-
-class Twilight_management_moduleDestroyView(views.ThuxDestroyViewMixin, generics.DestroyAPIView):
-    """
-    Delete a single twilight_management_module
-    """
-    queryset = models.Twilight_management_module.objects.all()
+    lookup_field = 'id'
 
 
 class Twilight_management_moduleSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
@@ -1597,43 +1107,21 @@ class Twilight_management_moduleDisableView(views.ThuxStatusViewMixin, generics.
     new_status = 0
 
 
-class Twilight_measureListView(views.ThuxListViewMixin, generics.ListAPIView):
+class Twilight_measureListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  twilight_measure
     """
     queryset = models.Twilight_measure.objects.all()
     serializer_class = serializers.Twilight_measureListSerializer
+    lookup_field = 'id'
 
-
-class Twilight_measureRetrieveView(views.ThuxRetrieveViewMixin, generics.RetrieveAPIView):
+class Twilight_measureRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
     Get a single twilight_measure
     """
     queryset = models.Twilight_measure.objects.all()
     serializer_class = serializers.Twilight_measureRetrieveSerializer
-
-
-class Twilight_measureCreateView(views.ThuxCreateViewMixin, generics.CreateAPIView):
-    """
-    Create a single twilight_measure
-    """
-    queryset = models.Twilight_measure.objects.all()
-    serializer_class = serializers.Twilight_measureCreateSerializer
-
-
-class Twilight_measurePartialUpdateView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
-    """
-    Update a single twilight_measure
-    """
-    queryset = models.Twilight_measure.objects.all()
-    serializer_class = serializers.Twilight_measurePartialUpdateSerializer
-
-
-class Twilight_measureDestroyView(views.ThuxDestroyViewMixin, generics.DestroyAPIView):
-    """
-    Delete a single twilight_measure
-    """
-    queryset = models.Twilight_measure.objects.all()
+    lookup_field = 'id'
 
 
 class Twilight_measureSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
@@ -1662,44 +1150,21 @@ class Twilight_measureDisableView(views.ThuxStatusViewMixin, generics.RetrieveUp
     new_status = 0
 
 
-class Motion_management_moduleListView(views.ThuxListViewMixin, generics.ListAPIView):
+class Motion_management_moduleListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  motion_management_modules
     """
     queryset = models.Motion_management_module.objects.all()
     serializer_class = serializers.Motion_management_moduleListSerializer
+    lookup_field = 'id'
 
-
-class Motion_management_moduleRetrieveView(views.ThuxRetrieveViewMixin, generics.RetrieveAPIView):
+class Motion_management_moduleRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
     Get a single motion_management_module
     """
     queryset = models.Motion_management_module.objects.all()
     serializer_class = serializers.Motion_management_moduleRetrieveSerializer
-
-
-class Motion_management_moduleCreateView(views.ThuxCreateViewMixin, generics.CreateAPIView):
-    """
-    Create a single motion_management_module
-    """
-    queryset = models.Motion_management_module.objects.all()
-    serializer_class = serializers.Motion_management_moduleCreateSerializer
-
-
-class Motion_management_modulePartialUpdateView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
-    """
-    Update a single motion_management_module
-    """
-    queryset = models.Motion_management_module.objects.all()
-    serializer_class = serializers.Motion_management_modulePartialUpdateSerializer
-
-
-class Motion_management_moduleDestroyView(views.ThuxDestroyViewMixin, generics.DestroyAPIView):
-    """
-    Delete a single motion_management_module
-    """
-    queryset = models.Motion_management_module.objects.all()
-
+    lookup_field = 'id'
 
 class Motion_management_moduleSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
     """

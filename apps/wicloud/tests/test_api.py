@@ -64,7 +64,7 @@ class TestAddress(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:address_partial_update', kwargs={'pk': id})
+        url = reverse('api:address_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.patch(url, data)
@@ -86,7 +86,7 @@ class TestAddress(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:address_partial_update', kwargs={'pk': id})
+        url = reverse('api:address_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.put(url, data)
@@ -108,7 +108,7 @@ class TestAddress(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:address_destroy', kwargs={'pk': id})
+        url = reverse('api:address_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         self.assertEqual(Address.objects.count(), 1)
@@ -138,7 +138,7 @@ class TestAddress(TestCase):
         full_name = 'Via roma'
         address_desc = 'Address description'
 
-        url = reverse('api:address_create')
+        url = reverse('api:address_list')
 
         data = {'description': address_desc, 'full_name': full_name}  # , 'last_name': 'last name', "title": "doctor"}
 
@@ -170,7 +170,7 @@ class TestAddress(TestCase):
         obj.description = address_desc
         obj.save()
         id = obj.id
-        url = reverse('api:address_retrieve', kwargs={'pk': id})
+        url = reverse('api:address_detail', kwargs={'id': id})
 
         # example on how to create child entities that belongs to this entity
         # for i in range(0, 5):
@@ -257,7 +257,7 @@ class TestCustomer(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:customer_partial_update', kwargs={'pk': id})
+        url = reverse('api:customer_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.patch(url, data)
@@ -279,7 +279,7 @@ class TestCustomer(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:customer_partial_update', kwargs={'pk': id})
+        url = reverse('api:customer_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.put(url, data)
@@ -301,7 +301,7 @@ class TestCustomer(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:customer_destroy', kwargs={'pk': id})
+        url = reverse('api:customer_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         self.assertEqual(Customer.objects.count(), 1)
@@ -331,7 +331,7 @@ class TestCustomer(TestCase):
 
         customer_desc = 'Customer description'
 
-        url = reverse('api:customer_create')
+        url = reverse('api:customer_list')
 
         data = {'description': customer_desc, 'company_name':'Company_name'}  # , 'last_name': 'last name', "title": "doctor"}
 
@@ -360,7 +360,7 @@ class TestCustomer(TestCase):
         obj.description = customer_desc
         obj.save()
         id = obj.id
-        url = reverse('api:customer_retrieve', kwargs={'pk': id})
+        url = reverse('api:customer_detail', kwargs={'id': id})
 
         # example on how to create child entities that belongs to this entity
         # for i in range(0, 5):
@@ -447,7 +447,7 @@ class TestEnergy_interval(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:energy_interval_partial_update', kwargs={'pk': id})
+        url = reverse('api:energy_interval_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.patch(url, data)
@@ -469,7 +469,7 @@ class TestEnergy_interval(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:energy_interval_partial_update', kwargs={'pk': id})
+        url = reverse('api:energy_interval_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.put(url, data)
@@ -491,7 +491,7 @@ class TestEnergy_interval(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:energy_interval_destroy', kwargs={'pk': id})
+        url = reverse('api:energy_interval_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         self.assertEqual(Energy_interval.objects.count(), 1)
@@ -521,7 +521,7 @@ class TestEnergy_interval(TestCase):
 
         energy_interval_desc = 'Energy_interval description'
 
-        url = reverse('api:energy_interval_create')
+        url = reverse('api:energy_interval_list')
 
         data = {'description': energy_interval_desc, 'mac': '1234567890'}  # , 'last_name': 'last name', "title": "doctor"}
 
@@ -550,7 +550,7 @@ class TestEnergy_interval(TestCase):
         obj.description = energy_interval_desc
         obj.save()
         id = obj.id
-        url = reverse('api:energy_interval_retrieve', kwargs={'pk': id})
+        url = reverse('api:energy_interval_detail', kwargs={'id': id})
 
         # example on how to create child entities that belongs to this entity
         # for i in range(0, 5):
@@ -636,7 +636,7 @@ class TestEnergy_meter_module(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:energy_meter_module_partial_update', kwargs={'pk': id})
+        url = reverse('api:energy_meter_module_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.patch(url, data)
@@ -657,7 +657,7 @@ class TestEnergy_meter_module(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:energy_meter_module_partial_update', kwargs={'pk': id})
+        url = reverse('api:energy_meter_module_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.put(url, data)
@@ -678,7 +678,7 @@ class TestEnergy_meter_module(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:energy_meter_module_destroy', kwargs={'pk': id})
+        url = reverse('api:energy_meter_module_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         self.assertEqual(Energy_meter_module.objects.count(), 1)
@@ -707,7 +707,7 @@ class TestEnergy_meter_module(TestCase):
 
         energy_meter_module_desc = 'Energy_meter_module description'
 
-        url = reverse('api:energy_meter_module_create')
+        url = reverse('api:energy_meter_module_list')
 
         data = {'description': energy_meter_module_desc}  # , 'last_name': 'last name', "title": "doctor"}
 
@@ -735,7 +735,7 @@ class TestEnergy_meter_module(TestCase):
         obj.description = energy_meter_module_desc
         obj.save()
         id = obj.id
-        url = reverse('api:energy_meter_module_retrieve', kwargs={'pk': id})
+        url = reverse('api:energy_meter_module_detail', kwargs={'id': id})
 
         # example on how to create child entities that belongs to this entity
         # for i in range(0, 5):
@@ -822,7 +822,7 @@ class TestEnergy_meter_peak_measure(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:energy_meter_peak_measure_partial_update', kwargs={'pk': id})
+        url = reverse('api:energy_meter_peak_measure_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.patch(url, data)
@@ -844,7 +844,7 @@ class TestEnergy_meter_peak_measure(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:energy_meter_peak_measure_partial_update', kwargs={'pk': id})
+        url = reverse('api:energy_meter_peak_measure_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.put(url, data)
@@ -866,7 +866,7 @@ class TestEnergy_meter_peak_measure(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:energy_meter_peak_measure_destroy', kwargs={'pk': id})
+        url = reverse('api:energy_meter_peak_measure_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         self.assertEqual(Energy_meter_peak_measure.objects.count(), 1)
@@ -896,7 +896,7 @@ class TestEnergy_meter_peak_measure(TestCase):
 
         energy_meter_peak_measure_desc = 'Energy_meter_peak_measure description'
 
-        url = reverse('api:energy_meter_peak_measure_create')
+        url = reverse('api:energy_meter_peak_measure_list')
 
         data = {'description': energy_meter_peak_measure_desc,'mac':'1234567890'}  # , 'last_name': 'last name', "title": "doctor"}
 
@@ -925,7 +925,7 @@ class TestEnergy_meter_peak_measure(TestCase):
         obj.description = energy_meter_peak_measure_desc
         obj.save()
         id = obj.id
-        url = reverse('api:energy_meter_peak_measure_retrieve', kwargs={'pk': id})
+        url = reverse('api:energy_meter_peak_measure_detail', kwargs={'id': id})
 
         # example on how to create child entities that belongs to this entity
         # for i in range(0, 5):
@@ -1011,7 +1011,7 @@ class TestError_light_level_and_adc_mismatch(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:error_light_level_and_adc_mismatch_partial_update', kwargs={'pk': id})
+        url = reverse('api:error_light_level_and_adc_mismatch_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.patch(url, data)
@@ -1032,7 +1032,7 @@ class TestError_light_level_and_adc_mismatch(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:error_light_level_and_adc_mismatch_partial_update', kwargs={'pk': id})
+        url = reverse('api:error_light_level_and_adc_mismatch_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.put(url, data)
@@ -1053,7 +1053,7 @@ class TestError_light_level_and_adc_mismatch(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:error_light_level_and_adc_mismatch_destroy', kwargs={'pk': id})
+        url = reverse('api:error_light_level_and_adc_mismatch_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         self.assertEqual(Error_light_level_and_adc_mismatch.objects.count(), 1)
@@ -1082,7 +1082,7 @@ class TestError_light_level_and_adc_mismatch(TestCase):
 
         error_light_level_and_adc_mismatch_desc = 'Error_light_level_and_adc_mismatch description'
 
-        url = reverse('api:error_light_level_and_adc_mismatch_create')
+        url = reverse('api:error_light_level_and_adc_mismatch_list')
 
         # , 'last_name': 'last name', "title": "doctor"}
         data = {'description': error_light_level_and_adc_mismatch_desc}
@@ -1113,7 +1113,7 @@ class TestError_light_level_and_adc_mismatch(TestCase):
         obj.description = error_light_level_and_adc_mismatch_desc
         obj.save()
         id = obj.id
-        url = reverse('api:error_light_level_and_adc_mismatch_retrieve', kwargs={'pk': id})
+        url = reverse('api:error_light_level_and_adc_mismatch_detail', kwargs={'id': id})
 
         # example on how to create child entities that belongs to this entity
         # for i in range(0, 5):
@@ -1199,7 +1199,7 @@ class TestError_light_level_and_power_mismatch(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:error_light_level_and_power_mismatch_partial_update', kwargs={'pk': id})
+        url = reverse('api:error_light_level_and_power_mismatch_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.patch(url, data)
@@ -1220,7 +1220,7 @@ class TestError_light_level_and_power_mismatch(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:error_light_level_and_power_mismatch_partial_update', kwargs={'pk': id})
+        url = reverse('api:error_light_level_and_power_mismatch_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.put(url, data)
@@ -1241,7 +1241,7 @@ class TestError_light_level_and_power_mismatch(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:error_light_level_and_power_mismatch_destroy', kwargs={'pk': id})
+        url = reverse('api:error_light_level_and_power_mismatch_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         self.assertEqual(Error_light_level_and_power_mismatch.objects.count(), 1)
@@ -1270,7 +1270,7 @@ class TestError_light_level_and_power_mismatch(TestCase):
 
         error_light_level_and_power_mismatch_desc = 'Error_light_level_and_power_mismatch description'
 
-        url = reverse('api:error_light_level_and_power_mismatch_create')
+        url = reverse('api:error_light_level_and_power_mismatch_list')
 
         # , 'last_name': 'last name', "title": "doctor"}
         data = {'description': error_light_level_and_power_mismatch_desc}
@@ -1301,7 +1301,7 @@ class TestError_light_level_and_power_mismatch(TestCase):
         obj.description = error_light_level_and_power_mismatch_desc
         obj.save()
         id = obj.id
-        url = reverse('api:error_light_level_and_power_mismatch_retrieve', kwargs={'pk': id})
+        url = reverse('api:error_light_level_and_power_mismatch_detail', kwargs={'id': id})
 
         # example on how to create child entities that belongs to this entity
         # for i in range(0, 5):
@@ -1387,7 +1387,7 @@ class TestError_node_offline(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:error_node_offline_partial_update', kwargs={'pk': id})
+        url = reverse('api:error_node_offline_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.patch(url, data)
@@ -1408,7 +1408,7 @@ class TestError_node_offline(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:error_node_offline_partial_update', kwargs={'pk': id})
+        url = reverse('api:error_node_offline_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.put(url, data)
@@ -1429,7 +1429,7 @@ class TestError_node_offline(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:error_node_offline_destroy', kwargs={'pk': id})
+        url = reverse('api:error_node_offline_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         self.assertEqual(Error_node_offline.objects.count(), 1)
@@ -1458,7 +1458,7 @@ class TestError_node_offline(TestCase):
 
         error_node_offline_desc = 'Error_node_offline description'
 
-        url = reverse('api:error_node_offline_create')
+        url = reverse('api:error_node_offline_list')
 
         data = {'description': error_node_offline_desc}  # , 'last_name': 'last name', "title": "doctor"}
 
@@ -1486,7 +1486,7 @@ class TestError_node_offline(TestCase):
         obj.description = error_node_offline_desc
         obj.save()
         id = obj.id
-        url = reverse('api:error_node_offline_retrieve', kwargs={'pk': id})
+        url = reverse('api:error_node_offline_detail', kwargs={'id': id})
 
         # example on how to create child entities that belongs to this entity
         # for i in range(0, 5):
@@ -1573,7 +1573,7 @@ class TestGateway(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:gateway_partial_update', kwargs={'pk': id})
+        url = reverse('api:gateway_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.patch(url, data)
@@ -1595,7 +1595,7 @@ class TestGateway(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:gateway_partial_update', kwargs={'pk': id})
+        url = reverse('api:gateway_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.put(url, data)
@@ -1617,7 +1617,7 @@ class TestGateway(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:gateway_destroy', kwargs={'pk': id})
+        url = reverse('api:gateway_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         self.assertEqual(Gateway.objects.count(), 1)
@@ -1647,7 +1647,7 @@ class TestGateway(TestCase):
 
         gateway_desc = 'Gateway description'
 
-        url = reverse('api:gateway_create')
+        url = reverse('api:gateway_list')
 
         data = {'description': gateway_desc,'gateway_uuid':'1234567890'}  # , 'last_name': 'last name', "title": "doctor"}
 
@@ -1676,7 +1676,7 @@ class TestGateway(TestCase):
         obj.description = gateway_desc
         obj.save()
         id = obj.id
-        url = reverse('api:gateway_retrieve', kwargs={'pk': id})
+        url = reverse('api:gateway_detail', kwargs={'id': id})
 
         # example on how to create child entities that belongs to this entity
         # for i in range(0, 5):
@@ -1763,7 +1763,7 @@ class TestIme_power_counter(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:ime_power_counter_partial_update', kwargs={'pk': id})
+        url = reverse('api:ime_power_counter_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.patch(url, data)
@@ -1785,7 +1785,7 @@ class TestIme_power_counter(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:ime_power_counter_partial_update', kwargs={'pk': id})
+        url = reverse('api:ime_power_counter_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.put(url, data)
@@ -1807,7 +1807,7 @@ class TestIme_power_counter(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:ime_power_counter_destroy', kwargs={'pk': id})
+        url = reverse('api:ime_power_counter_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         self.assertEqual(Ime_power_counter.objects.count(), 1)
@@ -1837,7 +1837,7 @@ class TestIme_power_counter(TestCase):
 
         ime_power_counter_desc = 'Ime_power_counter description'
 
-        url = reverse('api:ime_power_counter_create')
+        url = reverse('api:ime_power_counter_list')
 
         data = {'description': ime_power_counter_desc, 'counter_id':'1234567890'}  # , 'last_name': 'last name', "title": "doctor"}
 
@@ -1866,7 +1866,7 @@ class TestIme_power_counter(TestCase):
         obj.description = ime_power_counter_desc
         obj.save()
         id = obj.id
-        url = reverse('api:ime_power_counter_retrieve', kwargs={'pk': id})
+        url = reverse('api:ime_power_counter_detail', kwargs={'id': id})
 
         # example on how to create child entities that belongs to this entity
         # for i in range(0, 5):
@@ -1952,7 +1952,7 @@ class TestIme_power_measure(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:ime_power_measure_partial_update', kwargs={'pk': id})
+        url = reverse('api:ime_power_measure_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.patch(url, data)
@@ -1973,7 +1973,7 @@ class TestIme_power_measure(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:ime_power_measure_partial_update', kwargs={'pk': id})
+        url = reverse('api:ime_power_measure_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.put(url, data)
@@ -1994,7 +1994,7 @@ class TestIme_power_measure(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:ime_power_measure_destroy', kwargs={'pk': id})
+        url = reverse('api:ime_power_measure_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         self.assertEqual(Ime_power_measure.objects.count(), 1)
@@ -2023,7 +2023,7 @@ class TestIme_power_measure(TestCase):
 
         ime_power_measure_desc = 'Ime_power_measure description'
 
-        url = reverse('api:ime_power_measure_create')
+        url = reverse('api:ime_power_measure_list')
 
         data = {'description': ime_power_measure_desc}  # , 'last_name': 'last name', "title": "doctor"}
 
@@ -2051,7 +2051,7 @@ class TestIme_power_measure(TestCase):
         obj.description = ime_power_measure_desc
         obj.save()
         id = obj.id
-        url = reverse('api:ime_power_measure_retrieve', kwargs={'pk': id})
+        url = reverse('api:ime_power_measure_detail', kwargs={'id': id})
 
         # example on how to create child entities that belongs to this entity
         # for i in range(0, 5):
@@ -2137,7 +2137,7 @@ class TestInstallation(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:installation_partial_update', kwargs={'pk': id})
+        url = reverse('api:installation_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.patch(url, data)
@@ -2158,7 +2158,7 @@ class TestInstallation(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:installation_partial_update', kwargs={'pk': id})
+        url = reverse('api:installation_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.put(url, data)
@@ -2179,7 +2179,7 @@ class TestInstallation(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:installation_destroy', kwargs={'pk': id})
+        url = reverse('api:installation_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         self.assertEqual(Installation.objects.count(), 1)
@@ -2208,7 +2208,7 @@ class TestInstallation(TestCase):
 
         installation_desc = 'Installation description'
 
-        url = reverse('api:installation_create')
+        url = reverse('api:installation_list')
 
         data = {'description': installation_desc}  # , 'last_name': 'last name', "title": "doctor"}
 
@@ -2236,7 +2236,7 @@ class TestInstallation(TestCase):
         obj.description = installation_desc
         obj.save()
         id = obj.id
-        url = reverse('api:installation_retrieve', kwargs={'pk': id})
+        url = reverse('api:installation_detail', kwargs={'id': id})
 
         # example on how to create child entities that belongs to this entity
         # for i in range(0, 5):
@@ -2369,7 +2369,7 @@ class TestLight_management_measure(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:light_management_measure_partial_update', kwargs={'pk': id})
+        url = reverse('api:light_management_measure_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.patch(url, data)
@@ -2390,7 +2390,7 @@ class TestLight_management_measure(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:light_management_measure_partial_update', kwargs={'pk': id})
+        url = reverse('api:light_management_measure_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.put(url, data)
@@ -2411,7 +2411,7 @@ class TestLight_management_measure(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:light_management_measure_destroy', kwargs={'pk': id})
+        url = reverse('api:light_management_measure_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         self.assertEqual(Light_management_measure.objects.count(), 1)
@@ -2440,7 +2440,7 @@ class TestLight_management_measure(TestCase):
 
         light_management_measure_desc = 'Light_management_measure description'
 
-        url = reverse('api:light_management_measure_create')
+        url = reverse('api:light_management_measure_list')
 
         data = {'description': light_management_measure_desc}  # , 'last_name': 'last name', "title": "doctor"}
 
@@ -2468,7 +2468,7 @@ class TestLight_management_measure(TestCase):
         obj.description = light_management_measure_desc
         obj.save()
         id = obj.id
-        url = reverse('api:light_management_measure_retrieve', kwargs={'pk': id})
+        url = reverse('api:light_management_measure_detail', kwargs={'id': id})
 
         # example on how to create child entities that belongs to this entity
         # for i in range(0, 5):
@@ -2554,7 +2554,7 @@ class TestLight_management_module(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:light_management_module_partial_update', kwargs={'pk': id})
+        url = reverse('api:light_management_module_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.patch(url, data)
@@ -2575,7 +2575,7 @@ class TestLight_management_module(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:light_management_module_partial_update', kwargs={'pk': id})
+        url = reverse('api:light_management_module_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.put(url, data)
@@ -2596,7 +2596,7 @@ class TestLight_management_module(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:light_management_module_destroy', kwargs={'pk': id})
+        url = reverse('api:light_management_module_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         self.assertEqual(Light_management_module.objects.count(), 1)
@@ -2625,7 +2625,7 @@ class TestLight_management_module(TestCase):
 
         light_management_module_desc = 'Light_management_module description'
 
-        url = reverse('api:light_management_module_create')
+        url = reverse('api:light_management_module_list')
 
         data = {'description': light_management_module_desc}  # , 'last_name': 'last name', "title": "doctor"}
 
@@ -2653,7 +2653,7 @@ class TestLight_management_module(TestCase):
         obj.description = light_management_module_desc
         obj.save()
         id = obj.id
-        url = reverse('api:light_management_module_retrieve', kwargs={'pk': id})
+        url = reverse('api:light_management_module_detail', kwargs={'id': id})
 
         # example on how to create child entities that belongs to this entity
         # for i in range(0, 5):
@@ -2739,7 +2739,7 @@ class TestLight_profile(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:light_profile_partial_update', kwargs={'pk': id})
+        url = reverse('api:light_profile_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.patch(url, data)
@@ -2760,7 +2760,7 @@ class TestLight_profile(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:light_profile_partial_update', kwargs={'pk': id})
+        url = reverse('api:light_profile_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.put(url, data)
@@ -2781,7 +2781,7 @@ class TestLight_profile(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:light_profile_destroy', kwargs={'pk': id})
+        url = reverse('api:light_profile_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         self.assertEqual(Light_profile.objects.count(), 1)
@@ -2810,7 +2810,7 @@ class TestLight_profile(TestCase):
 
         light_profile_desc = 'Light_profile description'
 
-        url = reverse('api:light_profile_create')
+        url = reverse('api:light_profile_list')
 
         data = {'description': light_profile_desc}  # , 'last_name': 'last name', "title": "doctor"}
 
@@ -2838,7 +2838,7 @@ class TestLight_profile(TestCase):
         obj.description = light_profile_desc
         obj.save()
         id = obj.id
-        url = reverse('api:light_profile_retrieve', kwargs={'pk': id})
+        url = reverse('api:light_profile_detail', kwargs={'id': id})
 
         # example on how to create child entities that belongs to this entity
         # for i in range(0, 5):
@@ -2924,7 +2924,7 @@ class TestLight_profile_slot(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:light_profile_slot_partial_update', kwargs={'pk': id})
+        url = reverse('api:light_profile_slot_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.patch(url, data)
@@ -2945,7 +2945,7 @@ class TestLight_profile_slot(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:light_profile_slot_partial_update', kwargs={'pk': id})
+        url = reverse('api:light_profile_slot_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.put(url, data)
@@ -2966,7 +2966,7 @@ class TestLight_profile_slot(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:light_profile_slot_destroy', kwargs={'pk': id})
+        url = reverse('api:light_profile_slot_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         self.assertEqual(Light_profile_slot.objects.count(), 1)
@@ -2995,7 +2995,7 @@ class TestLight_profile_slot(TestCase):
 
         light_profile_slot_desc = 'Light_profile_slot description'
 
-        url = reverse('api:light_profile_slot_create')
+        url = reverse('api:light_profile_slot_list')
 
         data = {'description': light_profile_slot_desc}  # , 'last_name': 'last name', "title": "doctor"}
 
@@ -3023,7 +3023,7 @@ class TestLight_profile_slot(TestCase):
         obj.description = light_profile_slot_desc
         obj.save()
         id = obj.id
-        url = reverse('api:light_profile_slot_retrieve', kwargs={'pk': id})
+        url = reverse('api:light_profile_slot_detail', kwargs={'id': id})
 
         # example on how to create child entities that belongs to this entity
         # for i in range(0, 5):
@@ -3109,7 +3109,7 @@ class TestMotion_event(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:motion_event_partial_update', kwargs={'pk': id})
+        url = reverse('api:motion_event_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.patch(url, data)
@@ -3130,7 +3130,7 @@ class TestMotion_event(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:motion_event_partial_update', kwargs={'pk': id})
+        url = reverse('api:motion_event_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.put(url, data)
@@ -3151,7 +3151,7 @@ class TestMotion_event(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:motion_event_destroy', kwargs={'pk': id})
+        url = reverse('api:motion_event_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         self.assertEqual(Motion_event.objects.count(), 1)
@@ -3180,7 +3180,7 @@ class TestMotion_event(TestCase):
 
         motion_event_desc = 'Motion_event description'
 
-        url = reverse('api:motion_event_create')
+        url = reverse('api:motion_event_list')
 
         data = {'description': motion_event_desc}  # , 'last_name': 'last name', "title": "doctor"}
 
@@ -3208,7 +3208,7 @@ class TestMotion_event(TestCase):
         obj.description = motion_event_desc
         obj.save()
         id = obj.id
-        url = reverse('api:motion_event_retrieve', kwargs={'pk': id})
+        url = reverse('api:motion_event_detail', kwargs={'id': id})
 
         # example on how to create child entities that belongs to this entity
         # for i in range(0, 5):
@@ -3294,7 +3294,7 @@ class TestNode(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:node_partial_update', kwargs={'pk': id})
+        url = reverse('api:node_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.patch(url, data)
@@ -3315,7 +3315,7 @@ class TestNode(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:node_partial_update', kwargs={'pk': id})
+        url = reverse('api:node_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.put(url, data)
@@ -3336,7 +3336,7 @@ class TestNode(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:node_destroy', kwargs={'pk': id})
+        url = reverse('api:node_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         self.assertEqual(Node.objects.count(), 1)
@@ -3365,7 +3365,7 @@ class TestNode(TestCase):
 
         node_desc = 'Node description'
 
-        url = reverse('api:node_create')
+        url = reverse('api:node_list')
 
         data = {'description': node_desc}  # , 'last_name': 'last name', "title": "doctor"}
 
@@ -3393,7 +3393,7 @@ class TestNode(TestCase):
         obj.description = node_desc
         obj.save()
         id = obj.id
-        url = reverse('api:node_retrieve', kwargs={'pk': id})
+        url = reverse('api:node_detail', kwargs={'id': id})
 
         # example on how to create child entities that belongs to this entity
         # for i in range(0, 5):
@@ -3479,7 +3479,7 @@ class TestNode_module(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:node_module_partial_update', kwargs={'pk': id})
+        url = reverse('api:node_module_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.patch(url, data)
@@ -3500,7 +3500,7 @@ class TestNode_module(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:node_module_partial_update', kwargs={'pk': id})
+        url = reverse('api:node_module_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.put(url, data)
@@ -3521,7 +3521,7 @@ class TestNode_module(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:node_module_destroy', kwargs={'pk': id})
+        url = reverse('api:node_module_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         self.assertEqual(Node_module.objects.count(), 1)
@@ -3550,7 +3550,7 @@ class TestNode_module(TestCase):
 
         node_module_desc = 'Node_module description'
 
-        url = reverse('api:node_module_create')
+        url = reverse('api:node_module_list')
 
         data = {'description': node_module_desc}  # , 'last_name': 'last name', "title": "doctor"}
 
@@ -3578,7 +3578,7 @@ class TestNode_module(TestCase):
         obj.description = node_module_desc
         obj.save()
         id = obj.id
-        url = reverse('api:node_module_retrieve', kwargs={'pk': id})
+        url = reverse('api:node_module_detail', kwargs={'id': id})
 
         # example on how to create child entities that belongs to this entity
         # for i in range(0, 5):
@@ -3664,7 +3664,7 @@ class TestWilamp_alert(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:wilamp_alert_partial_update', kwargs={'pk': id})
+        url = reverse('api:wilamp_alert_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.patch(url, data)
@@ -3685,7 +3685,7 @@ class TestWilamp_alert(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:wilamp_alert_partial_update', kwargs={'pk': id})
+        url = reverse('api:wilamp_alert_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.put(url, data)
@@ -3706,7 +3706,7 @@ class TestWilamp_alert(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:wilamp_alert_destroy', kwargs={'pk': id})
+        url = reverse('api:wilamp_alert_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         self.assertEqual(Wilamp_alert.objects.count(), 1)
@@ -3735,7 +3735,7 @@ class TestWilamp_alert(TestCase):
 
         wilamp_alert_desc = 'Wilamp_alert description'
 
-        url = reverse('api:wilamp_alert_create')
+        url = reverse('api:wilamp_alert_list')
 
         data = {'description': wilamp_alert_desc}  # , 'last_name': 'last name', "title": "doctor"}
 
@@ -3763,7 +3763,7 @@ class TestWilamp_alert(TestCase):
         obj.description = wilamp_alert_desc
         obj.save()
         id = obj.id
-        url = reverse('api:wilamp_alert_retrieve', kwargs={'pk': id})
+        url = reverse('api:wilamp_alert_detail', kwargs={'id': id})
 
         # example on how to create child entities that belongs to this entity
         # for i in range(0, 5):
@@ -3849,7 +3849,7 @@ class TestFeeder_pillar(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:feeder_pillar_partial_update', kwargs={'pk': id})
+        url = reverse('api:feeder_pillar_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.patch(url, data)
@@ -3870,7 +3870,7 @@ class TestFeeder_pillar(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:feeder_pillar_partial_update', kwargs={'pk': id})
+        url = reverse('api:feeder_pillar_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.put(url, data)
@@ -3891,7 +3891,7 @@ class TestFeeder_pillar(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:feeder_pillar_destroy', kwargs={'pk': id})
+        url = reverse('api:feeder_pillar_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         self.assertEqual(Feeder_pillar.objects.count(), 1)
@@ -3920,7 +3920,7 @@ class TestFeeder_pillar(TestCase):
 
         feeder_pillar_desc = 'Feeder_pillar description'
 
-        url = reverse('api:feeder_pillar_create')
+        url = reverse('api:feeder_pillar_list')
 
         data = {'description': feeder_pillar_desc}  # , 'last_name': 'last name', "title": "doctor"}
 
@@ -3948,7 +3948,7 @@ class TestFeeder_pillar(TestCase):
         obj.description = feeder_pillar_desc
         obj.save()
         id = obj.id
-        url = reverse('api:feeder_pillar_retrieve', kwargs={'pk': id})
+        url = reverse('api:feeder_pillar_detail', kwargs={'id': id})
 
         # example on how to create child entities that belongs to this entity
         # for i in range(0, 5):
@@ -4034,7 +4034,7 @@ class TestTwilight_management_module(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:twilight_management_module_partial_update', kwargs={'pk': id})
+        url = reverse('api:twilight_management_module_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.patch(url, data)
@@ -4055,7 +4055,7 @@ class TestTwilight_management_module(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:twilight_management_module_partial_update', kwargs={'pk': id})
+        url = reverse('api:twilight_management_module_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.put(url, data)
@@ -4076,7 +4076,7 @@ class TestTwilight_management_module(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:twilight_management_module_destroy', kwargs={'pk': id})
+        url = reverse('api:twilight_management_module_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         self.assertEqual(Twilight_management_module.objects.count(), 1)
@@ -4105,7 +4105,7 @@ class TestTwilight_management_module(TestCase):
 
         twilight_management_module_desc = 'Twilight_management_module description'
 
-        url = reverse('api:twilight_management_module_create')
+        url = reverse('api:twilight_management_module_list')
 
         data = {'description': twilight_management_module_desc}  # , 'last_name': 'last name', "title": "doctor"}
 
@@ -4133,7 +4133,7 @@ class TestTwilight_management_module(TestCase):
         obj.description = twilight_management_module_desc
         obj.save()
         id = obj.id
-        url = reverse('api:twilight_management_module_retrieve', kwargs={'pk': id})
+        url = reverse('api:twilight_management_module_detail', kwargs={'id': id})
 
         # example on how to create child entities that belongs to this entity
         # for i in range(0, 5):
@@ -4219,7 +4219,7 @@ class TestTwilight_measure(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:twilight_measure_partial_update', kwargs={'pk': id})
+        url = reverse('api:twilight_measure_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.patch(url, data)
@@ -4240,7 +4240,7 @@ class TestTwilight_measure(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:twilight_measure_partial_update', kwargs={'pk': id})
+        url = reverse('api:twilight_measure_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.put(url, data)
@@ -4261,7 +4261,7 @@ class TestTwilight_measure(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:twilight_measure_destroy', kwargs={'pk': id})
+        url = reverse('api:twilight_measure_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         self.assertEqual(Twilight_measure.objects.count(), 1)
@@ -4290,7 +4290,7 @@ class TestTwilight_measure(TestCase):
 
         twilight_measure_desc = 'Twilight_measure description'
 
-        url = reverse('api:twilight_measure_create')
+        url = reverse('api:twilight_measure_list')
 
         data = {'description': twilight_measure_desc}  # , 'last_name': 'last name', "title": "doctor"}
 
@@ -4318,7 +4318,7 @@ class TestTwilight_measure(TestCase):
         obj.description = twilight_measure_desc
         obj.save()
         id = obj.id
-        url = reverse('api:twilight_measure_retrieve', kwargs={'pk': id})
+        url = reverse('api:twilight_measure_detail', kwargs={'id': id})
 
         # example on how to create child entities that belongs to this entity
         # for i in range(0, 5):
@@ -4404,7 +4404,7 @@ class TestMotion_management_module(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:motion_management_module_partial_update', kwargs={'pk': id})
+        url = reverse('api:motion_management_module_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.patch(url, data)
@@ -4425,7 +4425,7 @@ class TestMotion_management_module(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:motion_management_module_partial_update', kwargs={'pk': id})
+        url = reverse('api:motion_management_module_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         response = self.apiClient.put(url, data)
@@ -4446,7 +4446,7 @@ class TestMotion_management_module(TestCase):
 
         d.save()
         id = d.id
-        url = reverse('api:motion_management_module_destroy', kwargs={'pk': id})
+        url = reverse('api:motion_management_module_detail', kwargs={'id': id})
         data = {'description': modified_desc, 'id': id}
 
         self.assertEqual(Motion_management_module.objects.count(), 1)
@@ -4475,7 +4475,7 @@ class TestMotion_management_module(TestCase):
 
         motion_management_module_desc = 'Motion_management_module description'
 
-        url = reverse('api:motion_management_module_create')
+        url = reverse('api:motion_management_module_list')
 
         data = {'description': motion_management_module_desc}  # , 'last_name': 'last name', "title": "doctor"}
 
@@ -4503,7 +4503,7 @@ class TestMotion_management_module(TestCase):
         obj.description = motion_management_module_desc
         obj.save()
         id = obj.id
-        url = reverse('api:motion_management_module_retrieve', kwargs={'pk': id})
+        url = reverse('api:motion_management_module_detail', kwargs={'id': id})
 
         # example on how to create child entities that belongs to this entity
         # for i in range(0, 5):
