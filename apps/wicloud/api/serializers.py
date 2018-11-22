@@ -12,13 +12,13 @@ from rest_framework.serializers import  ModelSerializer
 class AddressListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Address
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class AddressRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Address
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class AddressCreateSerializer(serializers.ModelSerializer):
@@ -59,13 +59,13 @@ class AddressStatusSerializer(serializers.ModelSerializer):
 class CustomerListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Customer
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class CustomerRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Customer
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class CustomerCreateSerializer(serializers.ModelSerializer):
@@ -106,13 +106,13 @@ class CustomerStatusSerializer(serializers.ModelSerializer):
 class Energy_intervalListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Energy_interval
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Energy_intervalRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Energy_interval
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Energy_intervalCreateSerializer(serializers.ModelSerializer):
@@ -153,13 +153,13 @@ class Energy_intervalStatusSerializer(serializers.ModelSerializer):
 class Energy_meter_moduleListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Energy_meter_module
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Energy_meter_moduleRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Energy_meter_module
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Energy_meter_moduleCreateSerializer(serializers.ModelSerializer):
@@ -200,13 +200,13 @@ class Energy_meter_moduleStatusSerializer(serializers.ModelSerializer):
 class Energy_meter_peak_measureListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Energy_meter_peak_measure
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Energy_meter_peak_measureRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Energy_meter_peak_measure
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Energy_meter_peak_measureCreateSerializer(serializers.ModelSerializer):
@@ -247,13 +247,13 @@ class Energy_meter_peak_measureStatusSerializer(serializers.ModelSerializer):
 class Error_light_level_and_adc_mismatchListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Error_light_level_and_adc_mismatch
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Error_light_level_and_adc_mismatchRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Error_light_level_and_adc_mismatch
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Error_light_level_and_adc_mismatchCreateSerializer(serializers.ModelSerializer):
@@ -294,13 +294,13 @@ class Error_light_level_and_adc_mismatchStatusSerializer(serializers.ModelSerial
 class Error_light_level_and_power_mismatchListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Error_light_level_and_power_mismatch
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Error_light_level_and_power_mismatchRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Error_light_level_and_power_mismatch
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Error_light_level_and_power_mismatchCreateSerializer(serializers.ModelSerializer):
@@ -341,13 +341,13 @@ class Error_light_level_and_power_mismatchStatusSerializer(serializers.ModelSeri
 class Error_node_offlineListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Error_node_offline
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Error_node_offlineRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Error_node_offline
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Error_node_offlineCreateSerializer(serializers.ModelSerializer):
@@ -388,13 +388,13 @@ class Error_node_offlineStatusSerializer(serializers.ModelSerializer):
 class GatewayListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Gateway
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class GatewayRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Gateway
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class GatewayCreateSerializer(serializers.ModelSerializer):
@@ -435,13 +435,13 @@ class GatewayStatusSerializer(serializers.ModelSerializer):
 class Ime_power_counterListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Ime_power_counter
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Ime_power_counterRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Ime_power_counter
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Ime_power_counterCreateSerializer(serializers.ModelSerializer):
@@ -482,13 +482,13 @@ class Ime_power_counterStatusSerializer(serializers.ModelSerializer):
 class Ime_power_measureListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Ime_power_measure
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Ime_power_measureRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Ime_power_measure
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Ime_power_measureCreateSerializer(serializers.ModelSerializer):
@@ -529,7 +529,7 @@ class Ime_power_measureStatusSerializer(serializers.ModelSerializer):
 class InstallationListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Installation
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
     address = serializers.SerializerMethodField()
 
@@ -549,7 +549,7 @@ class InstallationListSerializer(serializers.ModelSerializer):
 class InstallationRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Installation
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class InstallationCreateSerializer(serializers.ModelSerializer):
@@ -590,13 +590,13 @@ class InstallationStatusSerializer(serializers.ModelSerializer):
 class Light_management_measureListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Light_management_measure
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Light_management_measureRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Light_management_measure
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Light_management_measureCreateSerializer(serializers.ModelSerializer):
@@ -637,13 +637,13 @@ class Light_management_measureStatusSerializer(serializers.ModelSerializer):
 class Light_management_moduleListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Light_management_module
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Light_management_moduleRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Light_management_module
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Light_management_moduleCreateSerializer(serializers.ModelSerializer):
@@ -684,13 +684,13 @@ class Light_management_moduleStatusSerializer(serializers.ModelSerializer):
 class Light_profileListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Light_profile
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Light_profileRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Light_profile
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Light_profileCreateSerializer(serializers.ModelSerializer):
@@ -731,13 +731,13 @@ class Light_profileStatusSerializer(serializers.ModelSerializer):
 class Light_profile_slotListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Light_profile_slot
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Light_profile_slotRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Light_profile_slot
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Light_profile_slotCreateSerializer(serializers.ModelSerializer):
@@ -778,13 +778,13 @@ class Light_profile_slotStatusSerializer(serializers.ModelSerializer):
 class Motion_eventListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Motion_event
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Motion_eventRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Motion_event
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Motion_eventCreateSerializer(serializers.ModelSerializer):
@@ -825,13 +825,13 @@ class Motion_eventStatusSerializer(serializers.ModelSerializer):
 class NodeListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Node
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class NodeRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Node
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class NodeCreateSerializer(serializers.ModelSerializer):
@@ -872,13 +872,13 @@ class NodeStatusSerializer(serializers.ModelSerializer):
 class Node_moduleListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Node_module
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Node_moduleRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Node_module
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Node_moduleCreateSerializer(serializers.ModelSerializer):
@@ -919,13 +919,13 @@ class Node_moduleStatusSerializer(serializers.ModelSerializer):
 class Wilamp_alertListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Wilamp_alert
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Wilamp_alertRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Wilamp_alert
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Wilamp_alertCreateSerializer(serializers.ModelSerializer):
@@ -966,13 +966,13 @@ class Wilamp_alertStatusSerializer(serializers.ModelSerializer):
 class Feeder_pillarListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Feeder_pillar
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Feeder_pillarRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Feeder_pillar
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Feeder_pillarCreateSerializer(serializers.ModelSerializer):
@@ -1013,13 +1013,13 @@ class Feeder_pillarStatusSerializer(serializers.ModelSerializer):
 class Twilight_management_moduleListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Twilight_management_module
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Twilight_management_moduleRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Twilight_management_module
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Twilight_management_moduleCreateSerializer(serializers.ModelSerializer):
@@ -1060,13 +1060,13 @@ class Twilight_management_moduleStatusSerializer(serializers.ModelSerializer):
 class Twilight_measureListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Twilight_measure
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Twilight_measureRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Twilight_measure
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Twilight_measureCreateSerializer(serializers.ModelSerializer):
@@ -1107,13 +1107,13 @@ class Twilight_measureStatusSerializer(serializers.ModelSerializer):
 class Motion_management_moduleListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Motion_management_module
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Motion_management_moduleRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Motion_management_module
-        fields = '__all__'
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
 
 
 class Motion_management_moduleCreateSerializer(serializers.ModelSerializer):

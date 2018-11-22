@@ -163,14 +163,14 @@ def api_root(request, format=None):
     )
     return Response(url_dict)
 
-class  AddressListCreateAPIView(ListCreateAPIView):
+class  AddressListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     queryset = models.Address.objects.all()
     #permission_classes = (IsAuthenticated,)
     serializer_class = serializers.AddressListSerializer
     lookup_field = 'id'
 
 
-class  AddressRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+class  AddressRetrieveUpdateDestroyAPIView(views.ThuxUpdateViewMixin, RetrieveUpdateDestroyAPIView):
     queryset = models.Address.objects.all()
     #permission_classes = (IsAuthenticated,)
     serializer_class = serializers.AddressRetrieveSerializer
@@ -202,7 +202,7 @@ class AddressDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdateAPIVi
     new_status = 0
 
 
-class CustomerListCreateAPIView(ListCreateAPIView):
+class CustomerListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  customers
     """
@@ -245,7 +245,7 @@ class CustomerDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdateAPIV
     new_status = 0
 
 
-class Energy_intervalListCreateAPIView(ListCreateAPIView):
+class Energy_intervalListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  energy_intervals
     """
@@ -288,7 +288,7 @@ class Energy_intervalDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpd
     new_status = 0
 
 
-class Energy_meter_moduleListCreateAPIView(ListCreateAPIView):
+class Energy_meter_moduleListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  energy_meter_modules
     """
@@ -330,7 +330,7 @@ class Energy_meter_moduleDisableView(views.ThuxStatusViewMixin, generics.Retriev
     new_status = 0
 
 
-class Energy_meter_peak_measureListCreateAPIView(ListCreateAPIView):
+class Energy_meter_peak_measureListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  energy_meter_peak_measures
     """
@@ -373,7 +373,7 @@ class Energy_meter_peak_measureDisableView(views.ThuxStatusViewMixin, generics.R
     new_status = 0
 
 
-class Error_light_level_and_adc_mismatchListCreateAPIView(ListCreateAPIView):
+class Error_light_level_and_adc_mismatchListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  error_light_level_and_adc_mismatchs
     """
@@ -417,7 +417,7 @@ class Error_light_level_and_adc_mismatchDisableView(
     new_status = 0
 
 
-class Error_light_level_and_power_mismatchListCreateAPIView(ListCreateAPIView):
+class Error_light_level_and_power_mismatchListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  error_light_level_and_power_mismatchs
     """
@@ -459,7 +459,7 @@ class Error_light_level_and_power_mismatchDisableView(views.ThuxStatusViewMixin,
     new_status = 0
 
 
-class Error_node_offlineListCreateAPIView(ListCreateAPIView):
+class Error_node_offlineListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  error_node_offlines
     """
@@ -502,7 +502,7 @@ class Error_node_offlineDisableView(views.ThuxStatusViewMixin, generics.Retrieve
     new_status = 0
 
 
-class GatewayListCreateAPIView(ListCreateAPIView):
+class GatewayListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  gateways
     """
@@ -545,7 +545,7 @@ class GatewayDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdateAPIVi
     new_status = 0
 
 
-class Ime_power_counterListCreateAPIView(ListCreateAPIView):
+class Ime_power_counterListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  ime_power_counters
     """
@@ -587,7 +587,7 @@ class Ime_power_counterDisableView(views.ThuxStatusViewMixin, generics.RetrieveU
     new_status = 0
 
 
-class Ime_power_measureListCreateAPIView(ListCreateAPIView):
+class Ime_power_measureListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  ime_power_measures
     """
@@ -630,7 +630,7 @@ class Ime_power_measureDisableView(views.ThuxStatusViewMixin, generics.RetrieveU
     new_status = 0
 
 
-class InstallationListCreateAPIView(ListCreateAPIView):
+class InstallationListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  installations
     """
@@ -679,7 +679,7 @@ class InstallationDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdate
     new_status = 0
 
 
-class Light_management_measureListCreateAPIView(ListCreateAPIView):
+class Light_management_measureListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  light_management_measures
     """
@@ -722,7 +722,7 @@ class Light_management_measureDisableView(views.ThuxStatusViewMixin, generics.Re
     new_status = 0
 
 
-class Light_management_moduleListCreateAPIView(ListCreateAPIView):
+class Light_management_moduleListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  light_management_module
     """
@@ -765,7 +765,7 @@ class Light_management_moduleDisableView(views.ThuxStatusViewMixin, generics.Ret
     new_status = 0
 
 
-class Light_profileListCreateAPIView(ListCreateAPIView):
+class Light_profileListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  light_profiles
     """
@@ -808,7 +808,7 @@ class Light_profileDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdat
     new_status = 0
 
 
-class Light_profile_slotListCreateAPIView(ListCreateAPIView):
+class Light_profile_slotListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  light_profile_slots
     """
@@ -851,7 +851,7 @@ class Light_profile_slotDisableView(views.ThuxStatusViewMixin, generics.Retrieve
     new_status = 0
 
 
-class Motion_eventListCreateAPIView(ListCreateAPIView):
+class Motion_eventListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  motion_events
     """
@@ -894,7 +894,7 @@ class Motion_eventDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdate
     new_status = 0
 
 
-class NodeListCreateAPIView(ListCreateAPIView):
+class NodeListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  nodes
     """
@@ -937,7 +937,7 @@ class NodeDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdateAPIView)
     new_status = 0
 
 
-class Node_moduleListCreateAPIView(ListCreateAPIView):
+class Node_moduleListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  node_modules
     """
@@ -980,7 +980,7 @@ class Node_moduleDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdateA
     new_status = 0
 
 
-class Wilamp_alertListCreateAPIView(ListCreateAPIView):
+class Wilamp_alertListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  wilamp_alerts
     """
@@ -1022,7 +1022,7 @@ class Wilamp_alertDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdate
     new_status = 0
 
 
-class Feeder_pillarListCreateAPIView(ListCreateAPIView):
+class Feeder_pillarListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  feeder_pillars
     """
@@ -1064,7 +1064,7 @@ class Feeder_pillarDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdat
     new_status = 0
 
 
-class Twilight_management_moduleListCreateAPIView(ListCreateAPIView):
+class Twilight_management_moduleListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  twilight_management_modules
     """
@@ -1107,7 +1107,7 @@ class Twilight_management_moduleDisableView(views.ThuxStatusViewMixin, generics.
     new_status = 0
 
 
-class Twilight_measureListCreateAPIView(ListCreateAPIView):
+class Twilight_measureListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  twilight_measure
     """
@@ -1150,7 +1150,7 @@ class Twilight_measureDisableView(views.ThuxStatusViewMixin, generics.RetrieveUp
     new_status = 0
 
 
-class Motion_management_moduleListCreateAPIView(ListCreateAPIView):
+class Motion_management_moduleListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  motion_management_modules
     """
