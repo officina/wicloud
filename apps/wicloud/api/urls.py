@@ -6,30 +6,17 @@ from . import views
 app_name = 'api'
 
 urlpatterns = [
+   
     url(
-        r'^address/list/$',
-        views.AddressListView.as_view(),
+        regex=r'address/$',
+        view=views.AddressListCreateAPIView.as_view(),
         name='address_list'
     ),
+
     url(
-        r'^address/retrieve/(?P<pk>\w+)/$',
-        views.AddressRetrieveView.as_view(),
-        name='address_retrieve'
-    ),
-    url(
-        r'^address/create/$',
-        views.AddressCreateView.as_view(),
-        name='address_create'
-    ),
-    url(
-        r'^address/partial-update/(?P<pk>\w+)/$',
-        views.AddressPartialUpdateView.as_view(),
-        name='address_partial_update'
-    ),
-    url(
-        r'^address/destroy/(?P<pk>\w+)/$',
-        views.AddressDestroyView.as_view(),
-        name='address_destroy'
+        regex=r'address/(?P<id>[-\w]+)/$',
+        view=views.AddressRetrieveUpdateDestroyAPIView.as_view(),
+        name='address_detail'
     ),
     url(
         r'^address/set-status/(?P<pk>\w+)/$',
@@ -47,29 +34,14 @@ urlpatterns = [
         name='address_disable'
     ),
     url(
-        r'^customer/list/$',
-        views.CustomerListView.as_view(),
+        r'^customer/$',
+        views.CustomerListCreateAPIView.as_view(),
         name='customer_list'
     ),
     url(
-        r'^customer/retrieve/(?P<pk>\w+)/$',
-        views.CustomerRetrieveView.as_view(),
-        name='customer_retrieve'
-    ),
-    url(
-        r'^customer/create/$',
-        views.CustomerCreateView.as_view(),
-        name='customer_create'
-    ),
-    url(
-        r'^customer/partial-update/(?P<pk>\w+)/$',
-        views.CustomerPartialUpdateView.as_view(),
-        name='customer_partial_update'
-    ),
-    url(
-        r'^customer/destroy/(?P<pk>\w+)/$',
-        views.CustomerDestroyView.as_view(),
-        name='customer_destroy'
+        r'^customer/(?P<id>[-\w]+)/$',
+        views.CustomerRetrieveUpdateDestroyAPIView.as_view(),
+        name='customer_detail'
     ),
     url(
         r'^customer/set-status/(?P<pk>\w+)/$',
@@ -87,29 +59,14 @@ urlpatterns = [
         name='customer_disable'
     ),
     url(
-        r'^energy_interval/list/$',
-        views.Energy_intervalListView.as_view(),
+        r'^energy_interval/$',
+        views.Energy_intervalListCreateAPIView.as_view(),
         name='energy_interval_list'
     ),
     url(
-        r'^energy_interval/retrieve/(?P<pk>\w+)/$',
-        views.Energy_intervalRetrieveView.as_view(),
-        name='energy_interval_retrieve'
-    ),
-    url(
-        r'^energy_interval/create/$',
-        views.Energy_intervalCreateView.as_view(),
-        name='energy_interval_create'
-    ),
-    url(
-        r'^energy_interval/partial-update/(?P<pk>\w+)/$',
-        views.Energy_intervalPartialUpdateView.as_view(),
-        name='energy_interval_partial_update'
-    ),
-    url(
-        r'^energy_interval/destroy/(?P<pk>\w+)/$',
-        views.Energy_intervalDestroyView.as_view(),
-        name='energy_interval_destroy'
+        r'^energy_interval/(?P<id>[-\w]+)/$',
+        views.Energy_intervalRetrieveUpdateDestroyAPIView.as_view(),
+        name='energy_interval_detail'
     ),
     url(
         r'^energy_interval/set-status/(?P<pk>\w+)/$',
@@ -127,29 +84,14 @@ urlpatterns = [
         name='energy_interval_disable'
     ),
     url(
-        r'^energy_meter_module/list/$',
-        views.Energy_meter_moduleListView.as_view(),
+        r'^energy_meter_module/$',
+        views.Energy_meter_moduleListCreateAPIView.as_view(),
         name='energy_meter_module_list'
     ),
     url(
-        r'^energy_meter_module/retrieve/(?P<pk>\w+)/$',
-        views.Energy_meter_moduleRetrieveView.as_view(),
-        name='energy_meter_module_retrieve'
-    ),
-    url(
-        r'^energy_meter_module/create/$',
-        views.Energy_meter_moduleCreateView.as_view(),
-        name='energy_meter_module_create'
-    ),
-    url(
-        r'^energy_meter_module/partial-update/(?P<pk>\w+)/$',
-        views.Energy_meter_modulePartialUpdateView.as_view(),
-        name='energy_meter_module_partial_update'
-    ),
-    url(
-        r'^energy_meter_module/destroy/(?P<pk>\w+)/$',
-        views.Energy_meter_moduleDestroyView.as_view(),
-        name='energy_meter_module_destroy'
+        r'^energy_meter_module/(?P<id>[-\w]+)/$',
+        views.Energy_meter_moduleRetrieveUpdateDestroyAPIView.as_view(),
+        name='energy_meter_module_detail'
     ),
     url(
         r'^energy_meter_module/set-status/(?P<pk>\w+)/$',
@@ -167,29 +109,14 @@ urlpatterns = [
         name='energy_meter_module_disable'
     ),
     url(
-        r'^energy_meter_peak_measure/list/$',
-        views.Energy_meter_peak_measureListView.as_view(),
+        r'^energy_meter_peak_measure/$',
+        views.Energy_meter_peak_measureListCreateAPIView.as_view(),
         name='energy_meter_peak_measure_list'
     ),
     url(
-        r'^energy_meter_peak_measure/retrieve/(?P<pk>\w+)/$',
-        views.Energy_meter_peak_measureRetrieveView.as_view(),
-        name='energy_meter_peak_measure_retrieve'
-    ),
-    url(
-        r'^energy_meter_peak_measure/create/$',
-        views.Energy_meter_peak_measureCreateView.as_view(),
-        name='energy_meter_peak_measure_create'
-    ),
-    url(
-        r'^energy_meter_peak_measure/partial-update/(?P<pk>\w+)/$',
-        views.Energy_meter_peak_measurePartialUpdateView.as_view(),
-        name='energy_meter_peak_measure_partial_update'
-    ),
-    url(
-        r'^energy_meter_peak_measure/destroy/(?P<pk>\w+)/$',
-        views.Energy_meter_peak_measureDestroyView.as_view(),
-        name='energy_meter_peak_measure_destroy'
+        r'^energy_meter_peak_measure/(?P<id>[-\w]+)/$',
+        views.Energy_meter_peak_measureRetrieveUpdateDestroyAPIView.as_view(),
+        name='energy_meter_peak_measure_detail'
     ),
     url(
         r'^energy_meter_peak_measure/set-status/(?P<pk>\w+)/$',
@@ -207,29 +134,14 @@ urlpatterns = [
         name='energy_meter_peak_measure_disable'
     ),
     url(
-        r'^error_light_level_and_adc_mismatch/list/$',
-        views.Error_light_level_and_adc_mismatchListView.as_view(),
+        r'^error_light_level_and_adc_mismatch/$',
+        views.Error_light_level_and_adc_mismatchListCreateAPIView.as_view(),
         name='error_light_level_and_adc_mismatch_list'
     ),
     url(
-        r'^error_light_level_and_adc_mismatch/retrieve/(?P<pk>\w+)/$',
-        views.Error_light_level_and_adc_mismatchRetrieveView.as_view(),
-        name='error_light_level_and_adc_mismatch_retrieve'
-    ),
-    url(
-        r'^error_light_level_and_adc_mismatch/create/$',
-        views.Error_light_level_and_adc_mismatchCreateView.as_view(),
-        name='error_light_level_and_adc_mismatch_create'
-    ),
-    url(
-        r'^error_light_level_and_adc_mismatch/partial-update/(?P<pk>\w+)/$',
-        views.Error_light_level_and_adc_mismatchPartialUpdateView.as_view(),
-        name='error_light_level_and_adc_mismatch_partial_update'
-    ),
-    url(
-        r'^error_light_level_and_adc_mismatch/destroy/(?P<pk>\w+)/$',
-        views.Error_light_level_and_adc_mismatchDestroyView.as_view(),
-        name='error_light_level_and_adc_mismatch_destroy'
+        r'^error_light_level_and_adc_mismatch/(?P<id>[-\w]+)/$',
+        views.Error_light_level_and_adc_mismatchRetrieveUpdateDestroyAPIView.as_view(),
+        name='error_light_level_and_adc_mismatch_detail'
     ),
     url(
         r'^error_light_level_and_adc_mismatch/set-status/(?P<pk>\w+)/$',
@@ -247,29 +159,14 @@ urlpatterns = [
         name='error_light_level_and_adc_mismatch_disable'
     ),
     url(
-        r'^error_light_level_and_power_mismatch/list/$',
-        views.Error_light_level_and_power_mismatchListView.as_view(),
+        r'^error_light_level_and_power_mismatch/$',
+        views.Error_light_level_and_power_mismatchListCreateAPIView.as_view(),
         name='error_light_level_and_power_mismatch_list'
     ),
     url(
-        r'^error_light_level_and_power_mismatch/retrieve/(?P<pk>\w+)/$',
-        views.Error_light_level_and_power_mismatchRetrieveView.as_view(),
-        name='error_light_level_and_power_mismatch_retrieve'
-    ),
-    url(
-        r'^error_light_level_and_power_mismatch/create/$',
-        views.Error_light_level_and_power_mismatchCreateView.as_view(),
-        name='error_light_level_and_power_mismatch_create'
-    ),
-    url(
-        r'^error_light_level_and_power_mismatch/partial-update/(?P<pk>\w+)/$',
-        views.Error_light_level_and_power_mismatchPartialUpdateView.as_view(),
-        name='error_light_level_and_power_mismatch_partial_update'
-    ),
-    url(
-        r'^error_light_level_and_power_mismatch/destroy/(?P<pk>\w+)/$',
-        views.Error_light_level_and_power_mismatchDestroyView.as_view(),
-        name='error_light_level_and_power_mismatch_destroy'
+        r'^error_light_level_and_power_mismatch/(?P<id>[-\w]+)/$',
+        views.Error_light_level_and_power_mismatchRetrieveUpdateDestroyAPIView.as_view(),
+        name='error_light_level_and_power_mismatch_detail'
     ),
     url(
         r'^error_light_level_and_power_mismatch/set-status/(?P<pk>\w+)/$',
@@ -287,29 +184,14 @@ urlpatterns = [
         name='error_light_level_and_power_mismatch_disable'
     ),
     url(
-        r'^error_node_offline/list/$',
-        views.Error_node_offlineListView.as_view(),
+        r'^error_node_offline/$',
+        views.Error_node_offlineListCreateAPIView.as_view(),
         name='error_node_offline_list'
     ),
     url(
-        r'^error_node_offline/retrieve/(?P<pk>\w+)/$',
-        views.Error_node_offlineRetrieveView.as_view(),
-        name='error_node_offline_retrieve'
-    ),
-    url(
-        r'^error_node_offline/create/$',
-        views.Error_node_offlineCreateView.as_view(),
-        name='error_node_offline_create'
-    ),
-    url(
-        r'^error_node_offline/partial-update/(?P<pk>\w+)/$',
-        views.Error_node_offlinePartialUpdateView.as_view(),
-        name='error_node_offline_partial_update'
-    ),
-    url(
-        r'^error_node_offline/destroy/(?P<pk>\w+)/$',
-        views.Error_node_offlineDestroyView.as_view(),
-        name='error_node_offline_destroy'
+        r'^error_node_offline/(?P<id>[-\w]+)/$',
+        views.Error_node_offlineRetrieveUpdateDestroyAPIView.as_view(),
+        name='error_node_offline_detail'
     ),
     url(
         r'^error_node_offline/set-status/(?P<pk>\w+)/$',
@@ -327,29 +209,14 @@ urlpatterns = [
         name='error_node_offline_disable'
     ),
     url(
-        r'^gateway/list/$',
-        views.GatewayListView.as_view(),
+        r'^gateway/$',
+        views.GatewayListCreateAPIView.as_view(),
         name='gateway_list'
     ),
     url(
-        r'^gateway/retrieve/(?P<pk>\w+)/$',
-        views.GatewayRetrieveView.as_view(),
-        name='gateway_retrieve'
-    ),
-    url(
-        r'^gateway/create/$',
-        views.GatewayCreateView.as_view(),
-        name='gateway_create'
-    ),
-    url(
-        r'^gateway/partial-update/(?P<pk>\w+)/$',
-        views.GatewayPartialUpdateView.as_view(),
-        name='gateway_partial_update'
-    ),
-    url(
-        r'^gateway/destroy/(?P<pk>\w+)/$',
-        views.GatewayDestroyView.as_view(),
-        name='gateway_destroy'
+        r'^gateway/(?P<id>[-\w]+)/$',
+        views.GatewayRetrieveUpdateDestroyAPIView.as_view(),
+        name='gateway_detail'
     ),
     url(
         r'^gateway/set-status/(?P<pk>\w+)/$',
@@ -367,29 +234,14 @@ urlpatterns = [
         name='gateway_disable'
     ),
     url(
-        r'^ime_power_counter/list/$',
-        views.Ime_power_counterListView.as_view(),
+        r'^ime_power_counter/$',
+        views.Ime_power_counterListCreateAPIView.as_view(),
         name='ime_power_counter_list'
     ),
     url(
-        r'^ime_power_counter/retrieve/(?P<pk>\w+)/$',
-        views.Ime_power_counterRetrieveView.as_view(),
-        name='ime_power_counter_retrieve'
-    ),
-    url(
-        r'^ime_power_counter/create/$',
-        views.Ime_power_counterCreateView.as_view(),
-        name='ime_power_counter_create'
-    ),
-    url(
-        r'^ime_power_counter/partial-update/(?P<pk>\w+)/$',
-        views.Ime_power_counterPartialUpdateView.as_view(),
-        name='ime_power_counter_partial_update'
-    ),
-    url(
-        r'^ime_power_counter/destroy/(?P<pk>\w+)/$',
-        views.Ime_power_counterDestroyView.as_view(),
-        name='ime_power_counter_destroy'
+        r'^ime_power_counter/(?P<id>[-\w]+)/$',
+        views.Ime_power_counterRetrieveUpdateDestroyAPIView.as_view(),
+        name='ime_power_counter_detail'
     ),
     url(
         r'^ime_power_counter/set-status/(?P<pk>\w+)/$',
@@ -407,29 +259,14 @@ urlpatterns = [
         name='ime_power_counter_disable'
     ),
     url(
-        r'^ime_power_measure/list/$',
-        views.Ime_power_measureListView.as_view(),
+        r'^ime_power_measure/$',
+        views.Ime_power_measureListCreateAPIView.as_view(),
         name='ime_power_measure_list'
     ),
     url(
-        r'^ime_power_measure/retrieve/(?P<pk>\w+)/$',
-        views.Ime_power_measureRetrieveView.as_view(),
-        name='ime_power_measure_retrieve'
-    ),
-    url(
-        r'^ime_power_measure/create/$',
-        views.Ime_power_measureCreateView.as_view(),
-        name='ime_power_measure_create'
-    ),
-    url(
-        r'^ime_power_measure/partial-update/(?P<pk>\w+)/$',
-        views.Ime_power_measurePartialUpdateView.as_view(),
-        name='ime_power_measure_partial_update'
-    ),
-    url(
-        r'^ime_power_measure/destroy/(?P<pk>\w+)/$',
-        views.Ime_power_measureDestroyView.as_view(),
-        name='ime_power_measure_destroy'
+        r'^ime_power_measure/(?P<id>[-\w]+)/$',
+        views.Ime_power_measureRetrieveUpdateDestroyAPIView.as_view(),
+        name='ime_power_measure_detail'
     ),
     url(
         r'^ime_power_measure/set-status/(?P<pk>\w+)/$',
@@ -447,29 +284,14 @@ urlpatterns = [
         name='ime_power_measure_disable'
     ),
     url(
-        r'^installation/list/$',
-        views.InstallationListView.as_view(),
+        r'^installation/$',
+        views.InstallationListCreateAPIView.as_view(),
         name='installation_list'
     ),
     url(
-        r'^installation/retrieve/(?P<pk>\w+)/$',
-        views.InstallationRetrieveView.as_view(),
-        name='installation_retrieve'
-    ),
-    url(
-        r'^installation/create/$',
-        views.InstallationCreateView.as_view(),
-        name='installation_create'
-    ),
-    url(
-        r'^installation/partial-update/(?P<pk>\w+)/$',
-        views.InstallationPartialUpdateView.as_view(),
-        name='installation_partial_update'
-    ),
-    url(
-        r'^installation/destroy/(?P<pk>\w+)/$',
-        views.InstallationDestroyView.as_view(),
-        name='installation_destroy'
+        r'^installation/(?P<id>[-\w]+)/$',
+        views.InstallationRetrieveUpdateDestroyAPIView.as_view(),
+        name='installation_detail'
     ),
     url(
         r'^installation/set-status/(?P<pk>\w+)/$',
@@ -487,29 +309,14 @@ urlpatterns = [
         name='installation_disable'
     ),
     url(
-        r'^light_management_measure/list/$',
-        views.Light_management_measureListView.as_view(),
+        r'^light_management_measure/$',
+        views.Light_management_measureListCreateAPIView.as_view(),
         name='light_management_measure_list'
     ),
     url(
-        r'^light_management_measure/retrieve/(?P<pk>\w+)/$',
-        views.Light_management_measureRetrieveView.as_view(),
-        name='light_management_measure_retrieve'
-    ),
-    url(
-        r'^light_management_measure/create/$',
-        views.Light_management_measureCreateView.as_view(),
-        name='light_management_measure_create'
-    ),
-    url(
-        r'^light_management_measure/partial-update/(?P<pk>\w+)/$',
-        views.Light_management_measurePartialUpdateView.as_view(),
-        name='light_management_measure_partial_update'
-    ),
-    url(
-        r'^light_management_measure/destroy/(?P<pk>\w+)/$',
-        views.Light_management_measureDestroyView.as_view(),
-        name='light_management_measure_destroy'
+        r'^light_management_measure/(?P<id>[-\w]+)/$',
+        views.Light_management_measureRetrieveUpdateDestroyAPIView.as_view(),
+        name='light_management_measure_detail'
     ),
     url(
         r'^light_management_measure/set-status/(?P<pk>\w+)/$',
@@ -527,29 +334,14 @@ urlpatterns = [
         name='light_management_measure_disable'
     ),
     url(
-        r'^light_management_module/list/$',
-        views.Light_management_moduleListView.as_view(),
+        r'^light_management_module/$',
+        views.Light_management_moduleListCreateAPIView.as_view(),
         name='light_management_module_list'
     ),
     url(
-        r'^light_management_module/retrieve/(?P<pk>\w+)/$',
-        views.Light_management_moduleRetrieveView.as_view(),
-        name='light_management_module_retrieve'
-    ),
-    url(
-        r'^light_management_module/create/$',
-        views.Light_management_moduleCreateView.as_view(),
-        name='light_management_module_create'
-    ),
-    url(
-        r'^light_management_module/partial-update/(?P<pk>\w+)/$',
-        views.Light_management_modulePartialUpdateView.as_view(),
-        name='light_management_module_partial_update'
-    ),
-    url(
-        r'^light_management_module/destroy/(?P<pk>\w+)/$',
-        views.Light_management_moduleDestroyView.as_view(),
-        name='light_management_module_destroy'
+        r'^light_management_module/(?P<id>[-\w]+)/$',
+        views.Light_management_moduleRetrieveUpdateDestroyAPIView.as_view(),
+        name='light_management_module_detail'
     ),
     url(
         r'^light_management_module/set-status/(?P<pk>\w+)/$',
@@ -567,29 +359,14 @@ urlpatterns = [
         name='light_management_module_disable'
     ),
     url(
-        r'^light_profile/list/$',
-        views.Light_profileListView.as_view(),
+        r'^light_profile/$',
+        views.Light_profileListCreateAPIView.as_view(),
         name='light_profile_list'
     ),
     url(
-        r'^light_profile/retrieve/(?P<pk>\w+)/$',
-        views.Light_profileRetrieveView.as_view(),
-        name='light_profile_retrieve'
-    ),
-    url(
-        r'^light_profile/create/$',
-        views.Light_profileCreateView.as_view(),
-        name='light_profile_create'
-    ),
-    url(
-        r'^light_profile/partial-update/(?P<pk>\w+)/$',
-        views.Light_profilePartialUpdateView.as_view(),
-        name='light_profile_partial_update'
-    ),
-    url(
-        r'^light_profile/destroy/(?P<pk>\w+)/$',
-        views.Light_profileDestroyView.as_view(),
-        name='light_profile_destroy'
+        r'^light_profile/(?P<id>[-\w]+)/$',
+        views.Light_profileRetrieveUpdateDestroyAPIView.as_view(),
+        name='light_profile_detail'
     ),
     url(
         r'^light_profile/set-status/(?P<pk>\w+)/$',
@@ -607,29 +384,14 @@ urlpatterns = [
         name='light_profile_disable'
     ),
     url(
-        r'^light_profile_slot/list/$',
-        views.Light_profile_slotListView.as_view(),
+        r'^light_profile_slot/$',
+        views.Light_profile_slotListCreateAPIView.as_view(),
         name='light_profile_slot_list'
     ),
     url(
-        r'^light_profile_slot/retrieve/(?P<pk>\w+)/$',
-        views.Light_profile_slotRetrieveView.as_view(),
-        name='light_profile_slot_retrieve'
-    ),
-    url(
-        r'^light_profile_slot/create/$',
-        views.Light_profile_slotCreateView.as_view(),
-        name='light_profile_slot_create'
-    ),
-    url(
-        r'^light_profile_slot/partial-update/(?P<pk>\w+)/$',
-        views.Light_profile_slotPartialUpdateView.as_view(),
-        name='light_profile_slot_partial_update'
-    ),
-    url(
-        r'^light_profile_slot/destroy/(?P<pk>\w+)/$',
-        views.Light_profile_slotDestroyView.as_view(),
-        name='light_profile_slot_destroy'
+        r'^light_profile_slot/(?P<id>[-\w]+)/$',
+        views.Light_profile_slotRetrieveUpdateDestroyAPIView.as_view(),
+        name='light_profile_slot_detail'
     ),
     url(
         r'^light_profile_slot/set-status/(?P<pk>\w+)/$',
@@ -647,29 +409,14 @@ urlpatterns = [
         name='light_profile_slot_disable'
     ),
     url(
-        r'^motion_event/list/$',
-        views.Motion_eventListView.as_view(),
+        r'^motion_event/$',
+        views.Motion_eventListCreateAPIView.as_view(),
         name='motion_event_list'
     ),
     url(
-        r'^motion_event/retrieve/(?P<pk>\w+)/$',
-        views.Motion_eventRetrieveView.as_view(),
-        name='motion_event_retrieve'
-    ),
-    url(
-        r'^motion_event/create/$',
-        views.Motion_eventCreateView.as_view(),
-        name='motion_event_create'
-    ),
-    url(
-        r'^motion_event/partial-update/(?P<pk>\w+)/$',
-        views.Motion_eventPartialUpdateView.as_view(),
-        name='motion_event_partial_update'
-    ),
-    url(
-        r'^motion_event/destroy/(?P<pk>\w+)/$',
-        views.Motion_eventDestroyView.as_view(),
-        name='motion_event_destroy'
+        r'^motion_event/(?P<id>[-\w]+)/$',
+        views.Motion_eventRetrieveUpdateDestroyAPIView.as_view(),
+        name='motion_event_detail'
     ),
     url(
         r'^motion_event/set-status/(?P<pk>\w+)/$',
@@ -687,29 +434,14 @@ urlpatterns = [
         name='motion_event_disable'
     ),
     url(
-        r'^node/list/$',
-        views.NodeListView.as_view(),
+        r'^node/$',
+        views.NodeListCreateAPIView.as_view(),
         name='node_list'
     ),
     url(
-        r'^node/retrieve/(?P<pk>\w+)/$',
-        views.NodeRetrieveView.as_view(),
-        name='node_retrieve'
-    ),
-    url(
-        r'^node/create/$',
-        views.NodeCreateView.as_view(),
-        name='node_create'
-    ),
-    url(
-        r'^node/partial-update/(?P<pk>\w+)/$',
-        views.NodePartialUpdateView.as_view(),
-        name='node_partial_update'
-    ),
-    url(
-        r'^node/destroy/(?P<pk>\w+)/$',
-        views.NodeDestroyView.as_view(),
-        name='node_destroy'
+        r'^node/(?P<id>[-\w]+)/$',
+        views.NodeRetrieveUpdateDestroyAPIView.as_view(),
+        name='node_detail'
     ),
     url(
         r'^node/set-status/(?P<pk>\w+)/$',
@@ -727,29 +459,14 @@ urlpatterns = [
         name='node_disable'
     ),
     url(
-        r'^node_module/list/$',
-        views.Node_moduleListView.as_view(),
+        r'^node_module/$',
+        views.Node_moduleListCreateAPIView.as_view(),
         name='node_module_list'
     ),
     url(
-        r'^node_module/retrieve/(?P<pk>\w+)/$',
-        views.Node_moduleRetrieveView.as_view(),
-        name='node_module_retrieve'
-    ),
-    url(
-        r'^node_module/create/$',
-        views.Node_moduleCreateView.as_view(),
-        name='node_module_create'
-    ),
-    url(
-        r'^node_module/partial-update/(?P<pk>\w+)/$',
-        views.Node_modulePartialUpdateView.as_view(),
-        name='node_module_partial_update'
-    ),
-    url(
-        r'^node_module/destroy/(?P<pk>\w+)/$',
-        views.Node_moduleDestroyView.as_view(),
-        name='node_module_destroy'
+        r'^node_module/(?P<id>[-\w]+)/$',
+        views.Node_moduleRetrieveUpdateDestroyAPIView.as_view(),
+        name='node_module_detail'
     ),
     url(
         r'^node_module/set-status/(?P<pk>\w+)/$',
@@ -767,29 +484,14 @@ urlpatterns = [
         name='node_module_disable'
     ),
     url(
-        r'^wilamp_alert/list/$',
-        views.Wilamp_alertListView.as_view(),
+        r'^wilamp_alert/$',
+        views.Wilamp_alertListCreateAPIView.as_view(),
         name='wilamp_alert_list'
     ),
     url(
-        r'^wilamp_alert/retrieve/(?P<pk>\w+)/$',
-        views.Wilamp_alertRetrieveView.as_view(),
-        name='wilamp_alert_retrieve'
-    ),
-    url(
-        r'^wilamp_alert/create/$',
-        views.Wilamp_alertCreateView.as_view(),
-        name='wilamp_alert_create'
-    ),
-    url(
-        r'^wilamp_alert/partial-update/(?P<pk>\w+)/$',
-        views.Wilamp_alertPartialUpdateView.as_view(),
-        name='wilamp_alert_partial_update'
-    ),
-    url(
-        r'^wilamp_alert/destroy/(?P<pk>\w+)/$',
-        views.Wilamp_alertDestroyView.as_view(),
-        name='wilamp_alert_destroy'
+        r'^wilamp_alert/(?P<id>[-\w]+)/$',
+        views.Wilamp_alertRetrieveUpdateDestroyAPIView.as_view(),
+        name='wilamp_alert_detail'
     ),
     url(
         r'^wilamp_alert/set-status/(?P<pk>\w+)/$',
@@ -807,29 +509,14 @@ urlpatterns = [
         name='wilamp_alert_disable'
     ),
     url(
-        r'^feeder_pillar/list/$',
-        views.Feeder_pillarListView.as_view(),
+        r'^feeder_pillar/$',
+        views.Feeder_pillarListCreateAPIView.as_view(),
         name='feeder_pillar_list'
     ),
     url(
-        r'^feeder_pillar/retrieve/(?P<pk>\w+)/$',
-        views.Feeder_pillarRetrieveView.as_view(),
-        name='feeder_pillar_retrieve'
-    ),
-    url(
-        r'^feeder_pillar/create/$',
-        views.Feeder_pillarCreateView.as_view(),
-        name='feeder_pillar_create'
-    ),
-    url(
-        r'^feeder_pillar/partial-update/(?P<pk>\w+)/$',
-        views.Feeder_pillarPartialUpdateView.as_view(),
-        name='feeder_pillar_partial_update'
-    ),
-    url(
-        r'^feeder_pillar/destroy/(?P<pk>\w+)/$',
-        views.Feeder_pillarDestroyView.as_view(),
-        name='feeder_pillar_destroy'
+        r'^feeder_pillar/(?P<id>[-\w]+)/$',
+        views.Feeder_pillarRetrieveUpdateDestroyAPIView.as_view(),
+        name='feeder_pillar_detail'
     ),
     url(
         r'^feeder_pillar/set-status/(?P<pk>\w+)/$',
@@ -847,29 +534,14 @@ urlpatterns = [
         name='feeder_pillar_disable'
     ),
     url(
-        r'^twilight_management_module/list/$',
-        views.Twilight_management_moduleListView.as_view(),
+        r'^twilight_management_module/$',
+        views.Twilight_management_moduleListCreateAPIView.as_view(),
         name='twilight_management_module_list'
     ),
     url(
-        r'^twilight_management_module/retrieve/(?P<pk>\w+)/$',
-        views.Twilight_management_moduleRetrieveView.as_view(),
-        name='twilight_management_module_retrieve'
-    ),
-    url(
-        r'^twilight_management_module/create/$',
-        views.Twilight_management_moduleCreateView.as_view(),
-        name='twilight_management_module_create'
-    ),
-    url(
-        r'^twilight_management_module/partial-update/(?P<pk>\w+)/$',
-        views.Twilight_management_modulePartialUpdateView.as_view(),
-        name='twilight_management_module_partial_update'
-    ),
-    url(
-        r'^twilight_management_module/destroy/(?P<pk>\w+)/$',
-        views.Twilight_management_moduleDestroyView.as_view(),
-        name='twilight_management_module_destroy'
+        r'^twilight_management_module/(?P<id>[-\w]+)/$',
+        views.Twilight_management_moduleRetrieveUpdateDestroyAPIView.as_view(),
+        name='twilight_management_module_detail'
     ),
     url(
         r'^twilight_management_module/set-status/(?P<pk>\w+)/$',
@@ -887,29 +559,14 @@ urlpatterns = [
         name='twilight_management_module_disable'
     ),
     url(
-        r'^twilight_measure/list/$',
-        views.Twilight_measureListView.as_view(),
+        r'^twilight_measure/$',
+        views.Twilight_measureListCreateAPIView.as_view(),
         name='twilight_measure_list'
     ),
     url(
-        r'^twilight_measure/retrieve/(?P<pk>\w+)/$',
-        views.Twilight_measureRetrieveView.as_view(),
-        name='twilight_measure_retrieve'
-    ),
-    url(
-        r'^twilight_measure/create/$',
-        views.Twilight_measureCreateView.as_view(),
-        name='twilight_measure_create'
-    ),
-    url(
-        r'^twilight_measure/partial-update/(?P<pk>\w+)/$',
-        views.Twilight_measurePartialUpdateView.as_view(),
-        name='twilight_measure_partial_update'
-    ),
-    url(
-        r'^twilight_measure/destroy/(?P<pk>\w+)/$',
-        views.Twilight_measureDestroyView.as_view(),
-        name='twilight_measure_destroy'
+        r'^twilight_measure/(?P<id>[-\w]+)/$',
+        views.Twilight_measureRetrieveUpdateDestroyAPIView.as_view(),
+        name='twilight_measure_detail'
     ),
     url(
         r'^twilight_measure/set-status/(?P<pk>\w+)/$',
@@ -927,29 +584,14 @@ urlpatterns = [
         name='twilight_measure_disable'
     ),
     url(
-        r'^motion_management_module/list/$',
-        views.Motion_management_moduleListView.as_view(),
+        r'^motion_management_module/$',
+        views.Motion_management_moduleListCreateAPIView.as_view(),
         name='motion_management_module_list'
     ),
     url(
-        r'^motion_management_module/retrieve/(?P<pk>\w+)/$',
-        views.Motion_management_moduleRetrieveView.as_view(),
-        name='motion_management_module_retrieve'
-    ),
-    url(
-        r'^motion_management_module/create/$',
-        views.Motion_management_moduleCreateView.as_view(),
-        name='motion_management_module_create'
-    ),
-    url(
-        r'^motion_management_module/partial-update/(?P<pk>\w+)/$',
-        views.Motion_management_modulePartialUpdateView.as_view(),
-        name='motion_management_module_partial_update'
-    ),
-    url(
-        r'^motion_management_module/destroy/(?P<pk>\w+)/$',
-        views.Motion_management_moduleDestroyView.as_view(),
-        name='motion_management_module_destroy'
+        r'^motion_management_module/(?P<id>[-\w]+)/$',
+        views.Motion_management_moduleRetrieveUpdateDestroyAPIView.as_view(),
+        name='motion_management_module_detail'
     ),
     url(
         r'^motion_management_module/set-status/(?P<pk>\w+)/$',
