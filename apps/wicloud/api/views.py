@@ -640,8 +640,11 @@ class InstallationListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPI
     def get_queryset(self):
         queryset = models.Installation.objects.all()
         user = self.request.user
-        return queryset.distinct().filter(Q(installer=user) | Q(installation_managers__in=[user]) | Q(viewers__in=[user])
-                               | Q(assets_managers__in=[user]))
+        if self.request.user.is_superuser:
+            return queryset
+        else:
+            return queryset.distinct().filter(Q(installer=user) | Q(installation_managers__in=[user]) | Q(viewers__in=[user])
+                                   | Q(assets_managers__in=[user]))
 
 
 class InstallationRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):

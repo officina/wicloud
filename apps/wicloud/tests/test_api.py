@@ -2190,12 +2190,15 @@ class TestInstallation(TestCase):
         self.assertEqual(Installation.objects.count(), 0)
 
     def test_list_installation(self):
+        self.u.is_superuser = True
+        self.u.save()
         for i in range(0, 5):
             d = Installation.objects.create(
                 creator=self.u,
                 last_modifier=self.u,
             )
             d.title = "Installation {}".format(i)
+            # d.installer = self.u
             d.save()
 
         url = reverse('api:installation_list')
@@ -2203,6 +2206,12 @@ class TestInstallation(TestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertIs(len(response.data['results']), 5)
+
+        self.u.is_superuser = False
+        self.u.save()
+        response = self.apiClient.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIs(len(response.data['results']), 0)
 
     def test_create_installation(self):
 
