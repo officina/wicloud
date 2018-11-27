@@ -6,7 +6,7 @@ from . import views
 app_name = 'api'
 
 urlpatterns = [
-   
+
     url(
         regex=r'address/$',
         view=views.AddressListCreateAPIView.as_view(),
@@ -611,6 +611,10 @@ urlpatterns = [
     url(r'^user/change-password/',
         views.UserChangePasswordView.as_view(),
         name='users_change_password'
+        ),
+    url(r'^search/installations',
+        views.InstallationSearchView.as_view(),
+        name='search'
         ),
     url(r'^$', views.api_root, name='api_root'),
 ]

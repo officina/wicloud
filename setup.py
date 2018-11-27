@@ -82,6 +82,9 @@ setup(
         'pytest-django',
         'django-test-plus',
         'ipython',
+        'elasticsearch-dsl>=6.0,<6.2',
+        'django-elasticsearch-dsl',
+
     ],
     package_data=get_data_files('web')
 )

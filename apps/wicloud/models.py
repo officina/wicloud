@@ -354,6 +354,7 @@ class Installation(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
             ("disable_installation", "Can disable installation"),
         )
 
+
     def __str__(self):
         return f'{self.description}'
 

@@ -13,6 +13,8 @@ from web.api import views
 from . import serializers
 from .. import models
 from django.db.models import Q
+from elasticsearch import Elasticsearch
+from elasticsearch_dsl import Search
 
 @api_view(('GET',))
 def api_root(request, format=None):
@@ -1212,4 +1214,14 @@ class UserChangePasswordView(generics.UpdateAPIView):
             return Response("Success.", status=status.HTTP_200_OK)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+from ..documents import *
+class InstallationSearchView(generics.ListAPIView):
+
+
+    serializer_class = serializers.InstallationListSerializer
+
+    def get_queryset(self):
+        s = InstallationDocument.search().query("match", notes="banana")
+        return s.to_queryset()
 
