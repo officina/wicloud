@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from django.conf.urls import url
+
 from . import views
+
+from django.conf.urls import url, include
+from rest_framework.routers import DefaultRouter
+
 
 app_name = 'api'
 
@@ -611,10 +615,18 @@ urlpatterns = [
     url(r'^user/change-password/',
         views.UserChangePasswordView.as_view(),
         name='users_change_password'
-        ),
-    url(r'^search/installations',
-        views.InstallationSearchView.as_view(),
+    ),
+    url(r'^search/installations/',
+        views.InstallationSearchView.as_view({'get': 'list'}),
         name='search'
-        ),
+    ),
+    url(r'^search/gateways/',
+        views.GatewaySearchView.as_view({'get': 'list'}),
+        name='search'
+    ),
+    url(r'^search/nodes/',
+        views.NodeSearchView.as_view({'get': 'list'}),
+        name='search'
+    ),
     url(r'^$', views.api_root, name='api_root'),
 ]

@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'apps.wicloud',
     'import_export',
     'django_elasticsearch_dsl',
+    'django_elasticsearch_dsl_drf',
 ]
 
 MIDDLEWARE = [

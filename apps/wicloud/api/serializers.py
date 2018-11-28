@@ -1156,3 +1156,63 @@ class ChangePasswordSerializer(serializers.Serializer):
     """
     old_password = serializers.CharField(required=True)
     new_password = serializers.CharField(required=True)
+
+
+# Elastic search serializers
+from ..documents import InstallationDocument, GatewayDocument, NodeDocument
+from django_elasticsearch_dsl_drf.serializers import DocumentSerializer
+
+class InstallationDocumentSerializer(DocumentSerializer):
+    """Serializer for the Book document."""
+
+    class Meta(object):
+        """Meta options."""
+
+        # Specify the correspondent document class
+        document = InstallationDocument
+
+        # List the serializer fields. Note, that the order of the fields
+        # is preserved in the ViewSet.
+        fields = (
+            'id',
+            'name',
+            'description',
+            'notes',
+        )
+
+class GatewayDocumentSerializer(DocumentSerializer):
+    """Serializer for the Book document."""
+
+    class Meta(object):
+        """Meta options."""
+
+        # Specify the correspondent document class
+        document = GatewayDocument
+
+        # List the serializer fields. Note, that the order of the fields
+        # is preserved in the ViewSet.
+        fields = (
+            'id',
+            'name',
+            'description',
+            'notes',
+        )
+
+
+class NodeDocumentSerializer(DocumentSerializer):
+    """Serializer for the Book document."""
+
+    class Meta(object):
+        """Meta options."""
+
+        # Specify the correspondent document class
+        document = NodeDocument
+
+        # List the serializer fields. Note, that the order of the fields
+        # is preserved in the ViewSet.
+        fields = (
+            'id',
+            'name',
+            'description',
+            'notes',
+        )

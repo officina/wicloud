@@ -497,20 +497,20 @@ class NodeAdmin(UserAdminMixin, import_export_admin.ImportExportModelAdmin):
         import_export_admin_formats.base_formats.JSON,
     )
 
-    fieldsets = (
-        # (_('general information'), {
-        #    'fields': ()
-        # }),
-        (_('visualization admin'), {
-            'classes': ('collapse',),
-            'fields': ('ordering', 'status')
-        }),
-        (_('logs admin'), {
-            'classes': ('collapse',),
-            'fields': ('creator', 'created_date', 'last_modifier', 'last_modified_date')
-        }),
-    )
-    list_display = ('get_status_display', 'ordering')
+    # fieldsets = (
+    #     # (_('general information'), {
+    #     #    'fields': ()
+    #     # }),
+    #     (_('visualization admin'), {
+    #         'classes': ('collapse',),
+    #         'fields': ('ordering', 'status')
+    #     }),
+    #     (_('logs admin'), {
+    #         'classes': ('collapse',),
+    #         'fields': ('creator', 'created_date', 'last_modifier', 'last_modified_date')
+    #     }),
+    # )
+    list_display = ('id','name', 'mac', 'ordering', 'latitude', 'longitude', 'gateway')
     readonly_fields = ('creator', 'created_date', 'last_modifier', 'last_modified_date')
 
 
