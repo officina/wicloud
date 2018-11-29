@@ -3,9 +3,9 @@
 # Put here your production specific settings
 
 ADMINS = [
-    ('THUX Team', 'jumbo@thux.it'),
+    ('Wi4b Team', 'info@wi4b.it'),
 ]
-EMAIL_SUBJECT_PREFIX = '[MYGENERALI_prod]'
+EMAIL_SUBJECT_PREFIX = '[wicloud_prod]'
 
 ELASTICSEARCH_DSL={
     'default': {

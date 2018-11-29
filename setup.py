@@ -45,7 +45,7 @@ setup(
     description='Project Description',
     author='THUX Team',
     url='http://hg.thundersystems.it/jmb/setupTest',
-    author_email='jumbo@thux.it',
+    author_email='info@wi4b.it',
     packages=find_packages(exclude=['tests', 'tests.*']),
     platforms='any',
     zip_safe=False,
