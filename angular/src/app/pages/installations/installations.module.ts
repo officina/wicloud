@@ -3,6 +3,7 @@ import {InstallationsComponent} from './installations.component';
 import {ThemeModule} from '../../@theme/theme.module';
 import { DetailComponent } from './detail/detail.component';
 import {NbBadgeModule} from '@nebular/theme';
+import {TranslateModule} from '@ngx-translate/core';
 
 
 const PAGES_COMPONENTS = [
@@ -12,8 +13,9 @@ const PAGES_COMPONENTS = [
 
 @NgModule({
   imports: [
-    ThemeModule,
-    NbBadgeModule,
+      ThemeModule,
+      NbBadgeModule,
+      TranslateModule.forChild(),
   ],
   declarations: [
     ...PAGES_COMPONENTS,
