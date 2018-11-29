@@ -203,3 +203,33 @@ yarn start
 Out[5]: <Response [200]>
 
 ```
+
+# Elastic Search
+
+Per creare gli indici delle entità
+
+    ./manage.py search_index --create -f 
+    
+Per popolare gli indici
+
+    manage.py search_index --populate -f 
+    
+Per ricostruire gli indici
+
+    manage.py search_index --rebuild
+    
+Esempi di query
+
+    http://localhost:8000/api/search/installations/?ids=1__3
+    
+    http://localhost:8000/api/search/installations/?notes__wildcard=*tata
+    
+    localhost:8000/api/search/installations/?search=name:Seconda
+    
+    localhost:8000/api/search/installations/?search=banana
+    
+    localhost:8000/api/search/installations/?search=patata
+
+
+    
+

@@ -267,7 +267,7 @@ class Gateway(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
         )
 
     def __str__(self):
-        return 'Gateway'
+        return f'{self.description}'
 
 
 class Ime_power_counter(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
@@ -353,6 +353,7 @@ class Installation(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
             ("detail_installation", "Can detail installation"),
             ("disable_installation", "Can disable installation"),
         )
+
 
     def __str__(self):
         return f'{self.description}'
@@ -574,8 +575,16 @@ class Node(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
     log_time_3 = models.IntegerField(blank=True, null=True)
     time_zone = models.IntegerField(blank=True, null=True)
     time_zone_code = models.CharField(max_length=255, blank=True, null=True)
-    latitude = models.FloatField(blank=True, null=True)
-    longitude = models.FloatField(blank=True, null=True)
+    latitude = models.DecimalField(null=True,
+                                    blank=True,
+                                    decimal_places=15,
+                                    max_digits=19,
+                                    default=0)
+    longitude = models.DecimalField(null=True,
+                                    blank=True,
+                                    decimal_places=15,
+                                    max_digits=19,
+                                    default=0)
     altitude = models.FloatField(blank=True, null=True)
     modules = models.OneToOneField('Node_module', models.DO_NOTHING, blank=True, null=True)
     gateway = models.ForeignKey(Gateway, models.DO_NOTHING, blank=True, null=True)
@@ -594,6 +603,17 @@ class Node(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
     def __str__(self):
         return 'Node'
+
+    @property
+    def location_field_indexing(self):
+        """Location for indexing.
+
+        Used in Elasticsearch indexing/tests of `geo_distance` native filter.
+        """
+        return {
+            'lat': self.latitude,
+            'lon': self.longitude,
+        }
 
 
 class Node_module(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):

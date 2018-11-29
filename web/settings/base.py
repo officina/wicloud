@@ -58,6 +58,8 @@ INSTALLED_APPS = [
     'web',
     'apps.wicloud',
     'import_export',
+    'django_elasticsearch_dsl',
+    'django_elasticsearch_dsl_drf',
 ]
 
 MIDDLEWARE = [
@@ -250,5 +252,11 @@ AUTHENTICATION_BACKENDS =['django.contrib.auth.backends.ModelBackend', 'web.core
 # ACCOUNT_AUTHENTICATION_METHOD = 'email'
 # ACCOUNT_EMAIL_REQUIRED = True
 # ACCOUNT_USERNAME_REQUIRED = False
+
+ELASTICSEARCH_DSL={
+    'default': {
+        'hosts': 'localhost:9200'
+    },
+}
 
 

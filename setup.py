@@ -45,7 +45,7 @@ setup(
     description='Project Description',
     author='THUX Team',
     url='http://hg.thundersystems.it/jmb/setupTest',
-    author_email='jumbo@thux.it',
+    author_email='info@wi4b.it',
     packages=find_packages(exclude=['tests', 'tests.*']),
     platforms='any',
     zip_safe=False,
@@ -82,6 +82,10 @@ setup(
         'pytest-django',
         'django-test-plus',
         'ipython',
+        'elasticsearch-dsl>=6.0,<6.2',
+        'django-elasticsearch-dsl',
+        'django-elasticsearch-dsl-drf',
+
     ],
     package_data=get_data_files('web')
 )
