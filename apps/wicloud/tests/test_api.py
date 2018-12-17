@@ -1643,6 +1643,38 @@ class TestGateway(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertIs(len(response.data['results']), 5)
 
+    def test_filter_gateway(self):
+        for i in range(0, 5):
+            d = Gateway.objects.create(
+                creator=self.u,
+                last_modifier=self.u,
+                gateway_uuid=f'1234567890{i}',
+                serial_number=f'ABCDEFG{i}',
+                mac_address=f'123ABZGG4{i}'
+            )
+            d.title = "Gateway {}".format(i)
+            d.save()
+
+        url = reverse('api:gateway_list')
+        response = self.apiClient.get(url, {'mac': '123ABZGG41'})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIs(len(response.data['results']), 1)
+
+        url = reverse('api:gateway_list')
+        response = self.apiClient.get(url, {'serial':'ABCDEFG1'})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIs(len(response.data['results']), 1)
+
+        url = reverse('api:gateway_list')
+        response = self.apiClient.get(url, {'uuid':'12345678901'})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIs(len(response.data['results']), 1)
+
+        url = reverse('api:gateway_list')
+        response = self.apiClient.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIs(len(response.data['results']), 5)
+
     def test_create_gateway(self):
 
         gateway_desc = 'Gateway description'
@@ -2190,9 +2222,11 @@ class TestInstallation(TestCase):
         self.assertEqual(Installation.objects.count(), 0)
 
     def test_list_installation(self):
+
         for i in range(0, 5):
             d = Installation.objects.create(
                 creator=self.u,
+                installer=self.u,
                 last_modifier=self.u,
             )
             d.title = "Installation {}".format(i)
@@ -2421,20 +2455,7 @@ class TestLight_management_measure(TestCase):
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Light_management_measure.objects.count(), 0)
 
-    def test_list_light_management_measure(self):
-        for i in range(0, 5):
-            d = Light_management_measure.objects.create(
-                creator=self.u,
-                last_modifier=self.u,
-            )
-            d.title = "Light_management_measure {}".format(i)
-            d.save()
 
-        url = reverse('api:light_management_measure_list')
-        response = self.apiClient.get(url)
-
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertIs(len(response.data['results']), 5)
 
     def test_create_light_management_measure(self):
 
@@ -2498,7 +2519,69 @@ class TestLight_management_measure(TestCase):
         # self.assertEqual(len(dep['structured_doctors']), 5)
         # self.assertEqual(len(dep['employees']), 5)
 
+    def test_get_light_management_measure_with_filter(self):
+        light_management_measure_desc = 'Light_management_measure 1'
+        l1 = Light_management_module(
+            creator=self.u,
+            last_modifier=self.u
+        )
+        l2 = Light_management_module(
+            creator=self.u,
+            last_modifier=self.u
+        )
+        l1.save()
+        l2.save()
 
+        for i in range(0, 5):
+
+            obj = Light_management_measure.objects.create(
+                creator=self.u,
+                last_modifier=self.u,
+                light_management_module=  l1 if i<2 else l2,# three to l1 and 2 to l2
+            )
+
+        # you could assign it here after creation
+        # d.customer = customer
+        obj.description = light_management_measure_desc
+        obj.save()
+        id = obj.id
+        url = reverse('api:light_management_measure_list')
+
+        # example on how to create child entities that belongs to this entity
+        # for i in range(0, 5):
+        #     e = Employee.objects.create()
+        #     e.title = "employee {}".format(i)
+        #
+        #
+        #     e.save()
+        #
+        #     d.structured_doctors.add(e)
+        #
+        # for i in range(0, 5):
+        #     em = Employee.objects.create()
+        #     em.title = "employee {}".format(i)
+        #
+        #     em.save()
+        #     d.employees.add(em)
+
+        response = self.apiClient.get(url, {'light_management_module_id': l1.id})
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        data = response.data
+
+        self.assertEqual(len(data['results']), 2)
+
+        response = self.apiClient.get(url, {'light_management_module_id': l2.id})
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        data = response.data
+
+        self.assertEqual(len(data['results']), 3)
+
+            # self.assertEqual(len(dep['structured_doctors']), 5)
+            # self.assertEqual(len(dep['employees']), 5)
         # if you assign a customer
         #self.assertEqual(m, customer.id)
 from apps.wicloud.models import Light_management_module
@@ -4537,6 +4620,30 @@ class TestMotion_management_module(TestCase):
         #self.assertEqual(m, customer.id)
 
 
+
+    ## Elastic search test should be implemented in a test ES server
+    # def test_node_search(self):
+    #     obj = Node.objects.create(
+    #         creator=self.u,
+    #         last_modifier=self.u,
+    #     )
+    #
+    #     url = reverse('api:search_nodes')
+    #     response = self.apiClient.get(url, {'id':f'{obj.id}')
+    #
+    #     self.assertEqual(response.status_code, status.HTTP_200_OK)
+    #
+    #     data = response.data
+    #
+    #     self.assertEqual(data['description'], obj.description)
+    #     self.fail("Implement the integration test!")
+    #
+    # def test_gateway_search(self):
+    #     self.fail("Implement the integration test!")
+    #
+    # def test_installation_search(self):
+    #     self.fail("Implement the integration test!")
+
 class TestUser(TestCase):
     apiClient = APIClient()
 
@@ -4563,3 +4670,5 @@ class TestUser(TestCase):
         resp = self.apiClient.post(reverse('api-jwt-auth'), {'email': username, 'password': new_password},
                                     format='json')
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
+
+

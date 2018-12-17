@@ -6,8 +6,9 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from rest_framework.generics import (
+    ListAPIView,
     ListCreateAPIView,
-    RetrieveUpdateDestroyAPIView
+    RetrieveUpdateDestroyAPIView,
 )
 from web.api import views
 from . import serializers
@@ -15,7 +16,7 @@ from .. import models
 from django.db.models import Q
 from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search
-
+## Index
 @api_view(('GET',))
 def api_root(request, format=None):
     url_dict = collections.OrderedDict()
@@ -165,6 +166,9 @@ def api_root(request, format=None):
     )
     return Response(url_dict)
 
+## End of index
+
+## End of rest views
 class  AddressListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     queryset = models.Address.objects.all()
     #permission_classes = (IsAuthenticated,)
@@ -503,14 +507,38 @@ class Error_node_offlineDisableView(views.ThuxStatusViewMixin, generics.Retrieve
     serializer_class = serializers.Error_node_offlineStatusSerializer
     new_status = 0
 
+class GatewayGetView(ListAPIView):
+    """
+    Get a single motion_management_module
+    """
+
+
 
 class GatewayListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  gateways
     """
-    queryset = models.Gateway.objects.all()
     serializer_class = serializers.GatewayListSerializer
     lookup_field = 'id'
+
+    def get_queryset(self):
+
+        queryset = models.Gateway.objects.all()
+        uuid = self.request.query_params.get('uuid', None)
+        mac = self.request.query_params.get('mac', None)
+        serial = self.request.query_params.get('serial', None)
+
+        # /api/gateway/?uuid=123456789
+        if uuid is not None:
+            queryset = queryset.filter(gateway_uuid=uuid)
+        # /api/gateway/?mac=ABCDEFG
+        if mac is not None:
+            queryset =  queryset.filter(mac_address=mac)
+
+        if serial is not None:
+            queryset =  queryset.filter(serial_number=serial)
+
+        return queryset
 
 class GatewayRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
@@ -685,7 +713,21 @@ class Light_management_measureListCreateAPIView(views.ThuxListCreateViewMixin, L
     """
     Get all  light_management_measures
     """
-    queryset = models.Light_management_measure.objects.all()
+
+
+    def get_queryset(self):
+        queryset = models.Light_management_measure.objects.all()
+
+        light_management_module_id = self.request.query_params.get('light_management_module_id', None)
+    # mac = self.request.query_params.get('mac', None)
+    # serial = self.request.query_params.get('serial', None)
+
+    # /api/light_management_measure/?light_management_module_id=123456789
+        if light_management_module_id is not None:
+            queryset = queryset.filter(light_management_module_id=light_management_module_id)
+
+        return queryset
+
     serializer_class = serializers.Light_management_measureListSerializer
     lookup_field = 'id'
 
@@ -1215,15 +1257,11 @@ class UserChangePasswordView(generics.UpdateAPIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-from ..documents import *
-from django_elasticsearch_dsl_drf.serializers import DocumentSerializer
 
 
+## End of rest views
 
-
-
-from ..documents import InstallationDocument
-from .serializers import InstallationDocumentSerializer
+## Elastic search views
 from django_elasticsearch_dsl_drf.constants import (
     LOOKUP_FILTER_TERMS,
     LOOKUP_FILTER_RANGE,
@@ -1342,6 +1380,7 @@ class GatewaySearchView(BaseDocumentViewSet):
     ]
     # Define search fields
     search_fields = (
+        'id',
         'name',
         'description',
         'notes',

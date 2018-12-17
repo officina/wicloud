@@ -618,15 +618,15 @@ urlpatterns = [
     ),
     url(r'^search/installations/',
         views.InstallationSearchView.as_view({'get': 'list'}),
-        name='search'
+        name='search_installations'
     ),
     url(r'^search/gateways/',
         views.GatewaySearchView.as_view({'get': 'list'}),
-        name='search'
+        name='search_gateways'
     ),
     url(r'^search/nodes/',
         views.NodeSearchView.as_view({'get': 'list'}),
-        name='search'
+        name='search_nodes'
     ),
     url(r'^$', views.api_root, name='api_root'),
 ]
