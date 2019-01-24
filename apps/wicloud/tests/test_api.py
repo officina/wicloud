@@ -59,7 +59,7 @@ class TestAddress(TestCase):
         d = Address.objects.create(
             creator=self.u,
             last_modifier=self.u,
-            full_name='Full name address'
+            fullName='Full name address'
         )
 
         d.save()
@@ -81,7 +81,7 @@ class TestAddress(TestCase):
         d = Address.objects.create(
             creator=self.u,
             last_modifier=self.u,
-            full_name="fullname"
+            fullName="fullname"
         )
 
         d.save()
@@ -103,7 +103,7 @@ class TestAddress(TestCase):
         d = Address.objects.create(
             creator=self.u,
             last_modifier=self.u,
-            full_name="fullname"
+            fullName="fullname"
         )
 
         d.save()
@@ -123,7 +123,7 @@ class TestAddress(TestCase):
             d = Address.objects.create(
                 creator=self.u,
                 last_modifier=self.u,
-                full_name="Full name"
+                fullName="Full name"
             )
             d.title = "Address {}".format(i)
             d.save()
@@ -135,18 +135,18 @@ class TestAddress(TestCase):
         self.assertIs(len(response.data['results']), 5)
 
     def test_create_address(self):
-        full_name = 'Via roma'
+        fullName = 'Via roma'
         address_desc = 'Address description'
 
         url = reverse('api:address_list')
 
-        data = {'description': address_desc, 'full_name': full_name}  # , 'last_name': 'last name', "title": "doctor"}
+        data = {'description': address_desc, 'fullName': fullName}  # , 'last_name': 'last name', "title": "doctor"}
 
         response = self.apiClient.post(url, data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Address.objects.count(), 1)
         self.assertEqual(Address.objects.get().description, address_desc)
-        self.assertEqual(Address.objects.get().full_name, full_name)
+        self.assertEqual(Address.objects.get().fullName, fullName)
         ##self.assertEqual(response.data[role].count, 1)
 
     def test_get_address(self):
@@ -161,7 +161,7 @@ class TestAddress(TestCase):
         obj = Address.objects.create(
             creator=self.u,
             last_modifier=self.u,
-            full_name='Via roma'
+            fullName='Via roma'
         )
 
         # you could assign it here after creation
@@ -252,7 +252,7 @@ class TestCustomer(TestCase):
         d = Customer.objects.create(
             creator=self.u,
             last_modifier=self.u,
-            company_name='Company_name'
+            companyName='Company_name'
         )
 
         d.save()
@@ -274,7 +274,7 @@ class TestCustomer(TestCase):
         d = Customer.objects.create(
             creator=self.u,
             last_modifier=self.u,
-            company_name='Company_name'
+            companyName='Company_name'
         )
 
         d.save()
@@ -296,7 +296,7 @@ class TestCustomer(TestCase):
         d = Customer.objects.create(
             creator=self.u,
             last_modifier=self.u,
-            company_name='Company_name'
+            companyName='Company_name'
         )
 
         d.save()
@@ -316,7 +316,7 @@ class TestCustomer(TestCase):
             d = Customer.objects.create(
                 creator=self.u,
                 last_modifier=self.u,
-                company_name='Company_name'
+                companyName='Company_name'
             )
             d.title = "Customer {}".format(i)
             d.save()
@@ -333,7 +333,7 @@ class TestCustomer(TestCase):
 
         url = reverse('api:customer_list')
 
-        data = {'description': customer_desc, 'company_name':'Company_name'}  # , 'last_name': 'last name', "title": "doctor"}
+        data = {'description': customer_desc, 'companyName':'Company_name'}  # , 'last_name': 'last name', "title": "doctor"}
 
         response = self.apiClient.post(url, data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -352,7 +352,7 @@ class TestCustomer(TestCase):
         obj = Customer.objects.create(
             creator=self.u,
             last_modifier=self.u,
-            company_name='Company_name'
+            companyName='Company_name'
         )
 
         # you could assign it here after creation
@@ -768,6 +768,78 @@ class TestEnergy_meter_module(TestCase):
 
         # if you assign a customer
         #self.assertEqual(m, customer.id)
+
+    def test_get_energy_meter_module_by_mac(self):
+        energy_meter_module_desc = 'Energy_meter_module 1'
+        node_mac = "test"
+
+        # if you assign a customer or any other object
+        # customer = Customer.objects.create()
+        # customer.first_name = "Mario"
+        # customer.last_name = "Rossi"
+        # customer.save()
+
+        obj = Energy_meter_module.objects.create(
+            creator=self.u,
+            last_modifier=self.u,
+        )
+
+        # you could assign it here after creation
+        #d.customer = customer
+        obj.description = energy_meter_module_desc
+        obj.save()
+        id = obj.id
+
+        modules_obj = Node_module.objects.create(
+            creator=self.u,
+            last_modifier=self.u,
+            energyMeter_id=id
+        )
+        modules_obj.save()
+        node_modules_id = modules_obj.id
+
+        node_obj = Node.objects.create(
+            creator=self.u,
+            last_modifier=self.u,
+            mac=node_mac,
+            modules_id=node_modules_id
+        )
+        node_obj.save()
+
+        url = reverse('api:energy_meter_module_by_mac_detail', kwargs={'id': node_mac})
+
+        # example on how to create child entities that belongs to this entity
+        # for i in range(0, 5):
+        #     e = Employee.objects.create()
+        #     e.title = "employee {}".format(i)
+        #
+        #
+        #     e.save()
+        #
+        #     d.structured_doctors.add(e)
+        #
+        # for i in range(0, 5):
+        #     em = Employee.objects.create()
+        #     em.title = "employee {}".format(i)
+        #
+        #     em.save()
+        #     d.employees.add(em)
+
+        response = self.apiClient.get(url)
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        data = response.data
+
+        self.assertEqual(data['description'], obj.description)
+
+        # self.assertEqual(len(dep['structured_doctors']), 5)
+        # self.assertEqual(len(dep['employees']), 5)
+
+
+        # if you assign a customer
+        #self.assertEqual(m, customer.id)
+
 from apps.wicloud.models import Energy_meter_peak_measure
 
 
@@ -1568,7 +1640,7 @@ class TestGateway(TestCase):
         d = Gateway.objects.create(
             creator=self.u,
             last_modifier=self.u,
-            gateway_uuid='1234567890'
+            gatewayUUID='1234567890'
         )
 
         d.save()
@@ -1590,7 +1662,7 @@ class TestGateway(TestCase):
         d = Gateway.objects.create(
             creator=self.u,
             last_modifier=self.u,
-            gateway_uuid='1234567890'
+            gatewayUUID='1234567890'
         )
 
         d.save()
@@ -1612,7 +1684,7 @@ class TestGateway(TestCase):
         d = Gateway.objects.create(
             creator=self.u,
             last_modifier=self.u,
-            gateway_uuid='1234567890'
+            gatewayUUID='1234567890'
         )
 
         d.save()
@@ -1632,7 +1704,7 @@ class TestGateway(TestCase):
             d = Gateway.objects.create(
                 creator=self.u,
                 last_modifier=self.u,
-                gateway_uuid=f'1234567890{i}'
+                gatewayUUID=f'1234567890{i}'
             )
             d.title = "Gateway {}".format(i)
             d.save()
@@ -1649,7 +1721,7 @@ class TestGateway(TestCase):
 
         url = reverse('api:gateway_list')
 
-        data = {'description': gateway_desc,'gateway_uuid':'1234567890'}  # , 'last_name': 'last name', "title": "doctor"}
+        data = {'description': gateway_desc,'gatewayUUID':'1234567890'}  # , 'last_name': 'last name', "title": "doctor"}
 
         response = self.apiClient.post(url, data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -1668,7 +1740,7 @@ class TestGateway(TestCase):
         obj = Gateway.objects.create(
             creator=self.u,
             last_modifier=self.u,
-            gateway_uuid='1234567890'
+            gatewayUUID='1234567890'
         )
 
         # you could assign it here after creation
@@ -1758,7 +1830,7 @@ class TestIme_power_counter(TestCase):
         d = Ime_power_counter.objects.create(
             creator=self.u,
             last_modifier=self.u,
-            counter_id='1234567890'
+            counterId='1234567890'
         )
 
         d.save()
@@ -1780,7 +1852,7 @@ class TestIme_power_counter(TestCase):
         d = Ime_power_counter.objects.create(
             creator=self.u,
             last_modifier=self.u,
-            counter_id='1234567890'
+            counterId='1234567890'
         )
 
         d.save()
@@ -1802,7 +1874,7 @@ class TestIme_power_counter(TestCase):
         d = Ime_power_counter.objects.create(
             creator=self.u,
             last_modifier=self.u,
-            counter_id='1234567890'
+            counterId='1234567890'
         )
 
         d.save()
@@ -1822,7 +1894,7 @@ class TestIme_power_counter(TestCase):
             d = Ime_power_counter.objects.create(
                 creator=self.u,
                 last_modifier=self.u,
-                counter_id=f'123456789{i}'
+                counterId=f'123456789{i}'
             )
             d.title = "Ime_power_counter {}".format(i)
             d.save()
@@ -1839,7 +1911,7 @@ class TestIme_power_counter(TestCase):
 
         url = reverse('api:ime_power_counter_list')
 
-        data = {'description': ime_power_counter_desc, 'counter_id':'1234567890'}  # , 'last_name': 'last name', "title": "doctor"}
+        data = {'description': ime_power_counter_desc, 'counterId':'1234567890'}  # , 'last_name': 'last name', "title": "doctor"}
 
         response = self.apiClient.post(url, data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -1858,7 +1930,7 @@ class TestIme_power_counter(TestCase):
         obj = Ime_power_counter.objects.create(
             creator=self.u,
             last_modifier=self.u,
-            counter_id='1234567890'
+            counterId='1234567890'
         )
 
         # you could assign it here after creation
@@ -2309,9 +2381,9 @@ class TestInstallation(TestCase):
             last_modifier=self.u,
         )
         installation3.description = "Installazione 3"
-        installation3.assets_managers.add(installer2)
+        installation3.assetsManagers.add(installer2)
         installation3.save()
-        print(installation3.assets_managers.get())
+        print(installation3.assetsManagers.get())
         response = self.apiClient.get(url_list)
         self.assertEqual(len(response.data['results']), 2)
 

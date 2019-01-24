@@ -9,15 +9,15 @@ from web.core.models import UserModel, DateModel, StatusModel, OrderedModel, Cle
 class Address(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
 
-    full_name = models.CharField(max_length=255,null=True)
+    fullName = models.CharField(max_length=255, null=True)
     street = models.CharField(max_length=255, blank=True, null=True)
-    house_number = models.CharField(max_length=255, blank=True, null=True)
-    zip_code = models.CharField(max_length=255, blank=True, null=True)
+    houseNumber = models.CharField(max_length=255, blank=True, null=True)
+    zipCode = models.CharField(max_length=255, blank=True, null=True)
     city = models.CharField(max_length=255, blank=True, null=True)
     country = models.CharField(max_length=255, blank=True, null=True)
     lat = models.CharField(max_length=255, blank=True, null=True)
     lng = models.CharField(max_length=255, blank=True, null=True)
-    timezone_code = models.CharField(max_length=255, blank=True, null=True)
+    timezoneCode = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         verbose_name = _('address')
@@ -35,7 +35,7 @@ class Address(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
 class Customer(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
-    company_name = models.CharField(max_length=255, null=True)
+    companyName = models.CharField(max_length=255, null=True)
 
 
     class Meta:
@@ -55,29 +55,29 @@ class Customer(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 class Energy_interval(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
     mac = models.CharField(max_length=255, null=True)
-    light_management_module = models.ForeignKey('Light_management_module', models.DO_NOTHING, blank=True, null=True)
+    lightManagementModule = models.ForeignKey('Light_management_module', models.DO_NOTHING, blank=True, null=True)
     installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True)
-    start_interval = models.DateTimeField(blank=True,null=True)
-    end_interval = models.DateTimeField(blank=True, null=True)
-    start_interval_measure_timestamp = models.DateTimeField(blank=True, null=True)
-    end_interval_measure_timestamp = models.DateTimeField(blank=True, null=True)
-    active_power = models.FloatField(blank=True, null=True)
-    reactive_power = models.FloatField(blank=True, null=True)
-    start_interval_active_energy_counter_value = models.FloatField(blank=True, null=True)
-    end_interval_active_energy_counter_value = models.FloatField(blank=True, null=True)
-    active_energy = models.FloatField(blank=True, null=True)
-    start_interval_reactive_energy_counter_value = models.FloatField(blank=True, null=True)
-    end_interval_reactive_energy_counter_value = models.FloatField(blank=True, null=True)
-    reactive_energy = models.FloatField(blank=True, null=True)
-    active_energy_mty_0 = models.FloatField(blank=True, null=True)
-    active_energy_mty_1 = models.FloatField(blank=True, null=True)
-    active_energy_mty_2 = models.FloatField(blank=True, null=True)
-    active_energy_mty_3 = models.FloatField(blank=True, null=True)
-    active_energy_without_dim = models.FloatField(blank=True, null=True)
-    active_energy_without_control = models.FloatField(blank=True, null=True)
-    active_energy_old_lamps = models.FloatField(blank=True, null=True)
-    burning_time = models.FloatField(blank=True, null=True)
-    node_life = models.FloatField(blank=True, null=True)
+    startInterval = models.DateTimeField(blank=True, null=True)
+    endInterval = models.DateTimeField(blank=True, null=True)
+    startIintervalMeasureTimestamp = models.DateTimeField(blank=True, null=True)
+    endIntervalMeasureTimestamp = models.DateTimeField(blank=True, null=True)
+    activePower = models.FloatField(blank=True, null=True)
+    reactivePower = models.FloatField(blank=True, null=True)
+    startIntervalActiveEnergyCounterValue = models.FloatField(blank=True, null=True)
+    endIntervalActiveEnergyCounterValue = models.FloatField(blank=True, null=True)
+    activeEnergy = models.FloatField(blank=True, null=True)
+    startIntervalReactiveEnergyCounterValue = models.FloatField(blank=True, null=True)
+    endIntervalReactiveEnergyCounterValue = models.FloatField(blank=True, null=True)
+    reactiveEnergy = models.FloatField(blank=True, null=True)
+    activeEnergyMty0 = models.FloatField(blank=True, null=True)
+    activeEnergyMty1 = models.FloatField(blank=True, null=True)
+    activeEnergyMty2 = models.FloatField(blank=True, null=True)
+    activeEnergyMty3 = models.FloatField(blank=True, null=True)
+    activeEnergyWithoutDim = models.FloatField(blank=True, null=True)
+    activeEnergyWithoutControl = models.FloatField(blank=True, null=True)
+    activeEnergyOldLamps = models.FloatField(blank=True, null=True)
+    burningTime = models.FloatField(blank=True, null=True)
+    nodeLife = models.FloatField(blank=True, null=True)
 
     class Meta:
         verbose_name = _('energy_interval')
@@ -97,13 +97,13 @@ class Energy_meter_module(CleanModel, UserModel, DateModel, StatusModel, Ordered
 
     name = models.CharField(max_length=255,  blank=True, null=True)
 
-    iac_calibration = models.FloatField(blank=True, null=True)
-    vac_calibration = models.FloatField(blank=True, null=True)
-    pat_calibration = models.FloatField(blank=True, null=True)
-    pre_calibration = models.CharField(max_length=255, blank=True, null=True)
-    nominal_power = models.FloatField(blank=True, null=True)
-    old_lamp_power = models.FloatField(blank=True, null=True)
-    power_losses = models.FloatField(blank=True, null=True)
+    iacCalibration = models.FloatField(blank=True, null=True)
+    vacCalibration = models.FloatField(blank=True, null=True)
+    patCalibration = models.FloatField(blank=True, null=True)
+    preCalibration = models.CharField(max_length=255, blank=True, null=True)
+    nominalPower = models.FloatField(blank=True, null=True)
+    oldLampPower = models.FloatField(blank=True, null=True)
+    powerLosses = models.FloatField(blank=True, null=True)
 
     class Meta:
         verbose_name = _('energy_meter_module')
@@ -122,23 +122,23 @@ class Energy_meter_module(CleanModel, UserModel, DateModel, StatusModel, Ordered
 class Energy_meter_peak_measure(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
     mac = models.CharField(max_length=255,null=True)
-    node_date = models.CharField(max_length=255, blank=True, null=True)
-    node_hms = models.CharField(max_length=255, blank=True, null=True)
-    vac_rms_low = models.FloatField(blank=True, null=True)
-    vac_rms_high = models.FloatField(blank=True, null=True)
-    vac_peak = models.FloatField(blank=True, null=True)
-    vac_rms_absolute_max = models.FloatField(blank=True, null=True)
-    vac_rms_absolute_min = models.FloatField(blank=True, null=True)
-    iac_high = models.FloatField(blank=True, null=True)
-    iac_low = models.FloatField(blank=True, null=True)
-    iac_peak = models.FloatField(blank=True, null=True)
-    iac_hh = models.FloatField(blank=True, null=True)
-    iac_ll = models.FloatField(blank=True, null=True)
-    measure_timestamp = models.DateTimeField(blank=True, null=True)
-    created_timestamp = models.DateTimeField(blank=True, null=True)
-    source_module = models.CharField(max_length=255, blank=True, null=True)
+    nodeDate = models.CharField(max_length=255, blank=True, null=True)
+    nodeHms = models.CharField(max_length=255, blank=True, null=True)
+    vacRmsLow = models.FloatField(blank=True, null=True)
+    vacRmsHigh = models.FloatField(blank=True, null=True)
+    vacPeak = models.FloatField(blank=True, null=True)
+    vacRMSAbsoluteMax = models.FloatField(blank=True, null=True)
+    vacRMSAbsoluteMin = models.FloatField(blank=True, null=True)
+    iacHigh = models.FloatField(blank=True, null=True)
+    iacLow = models.FloatField(blank=True, null=True)
+    iacPeak = models.FloatField(blank=True, null=True)
+    iacHH = models.FloatField(blank=True, null=True)
+    iacLL = models.FloatField(blank=True, null=True)
+    measureTimestamp = models.DateTimeField(blank=True, null=True)
+    createdTimestamp = models.DateTimeField(blank=True, null=True)
+    sourceModule = models.CharField(max_length=255, blank=True, null=True)
     installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True)
-    energy_meter_module = models.ForeignKey(Energy_meter_module, models.DO_NOTHING, blank=True, null=True)
+    energyMeterModule = models.ForeignKey(Energy_meter_module, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         verbose_name = _('energy_meter_peak_measure')
@@ -156,17 +156,17 @@ class Energy_meter_peak_measure(CleanModel, UserModel, DateModel, StatusModel, O
 
 class Error_light_level_and_adc_mismatch(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
-    error_timestamp = models.DateTimeField(blank=True, null=True)
-    error_resolved_timestamp = models.DateTimeField(blank=True, null=True)
-    is_in_error = models.BooleanField(blank=True, default=False)
-    light_level_value = models.FloatField(blank=True, null=True)
-    adc_value = models.FloatField(blank=True, null=True)
-    active_power = models.FloatField(blank=True, null=True)
-    jhi_current = models.FloatField(blank=True, null=True)
+    errorTimestamp = models.DateTimeField(blank=True, null=True)
+    errorResolvedTimestamp = models.DateTimeField(blank=True, null=True)
+    isInError = models.BooleanField(blank=True, default=False)
+    lightLevelValue = models.FloatField(blank=True, null=True)
+    adcValue = models.FloatField(blank=True, null=True)
+    activePower = models.FloatField(blank=True, null=True)
+    current = models.FloatField(blank=True, null=True)
     voltage = models.FloatField(blank=True, null=True)
-    logged_entity = models.BigIntegerField(blank=True, null=True)
-    logged_entity_mac = models.CharField(max_length=255, blank=True, null=True)
-    entity_json = models.CharField(max_length=255, blank=True, null=True)
+    loggedEntity = models.BigIntegerField(blank=True, null=True)
+    loggedEntityMac = models.CharField(max_length=255, blank=True, null=True)
+    entityJson = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         verbose_name = _('error_light_level_and_adc_mismatch')
@@ -186,17 +186,17 @@ class Error_light_level_and_adc_mismatch(CleanModel, UserModel, DateModel, Statu
 
 class Error_light_level_and_power_mismatch(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
-    error_timestamp = models.DateTimeField(blank=True, null=True)
-    error_resolved_timestamp = models.DateTimeField(blank=True, null=True)
-    is_in_error = models.BooleanField(blank=True, default=False)
-    light_level_value = models.FloatField(blank=True, null=True)
-    adc_value = models.FloatField(blank=True, null=True)
-    active_power = models.FloatField(blank=True, null=True)
-    jhi_current = models.FloatField(blank=True, null=True)
+    errorTimestamp = models.DateTimeField(blank=True, null=True)
+    errorResolvedTimestamp = models.DateTimeField(blank=True, null=True)
+    isInError = models.BooleanField(blank=True, default=False)
+    lightLevelValue = models.FloatField(blank=True, null=True)
+    adcValue = models.FloatField(blank=True, null=True)
+    activePower = models.FloatField(blank=True, null=True)
+    current = models.FloatField(blank=True, null=True)
     voltage = models.FloatField(blank=True, null=True)
-    logged_entity = models.BigIntegerField(blank=True, null=True)
-    logged_entity_mac = models.CharField(max_length=255, blank=True, null=True)
-    entity_json = models.CharField(max_length=255, blank=True, null=True)
+    loggedEntity = models.BigIntegerField(blank=True, null=True)
+    loggedEntityMac = models.CharField(max_length=255, blank=True, null=True)
+    entityJson = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         verbose_name = _('error_light_level_and_power_mismatch')
@@ -214,12 +214,12 @@ class Error_light_level_and_power_mismatch(CleanModel, UserModel, DateModel, Sta
 
 class Error_node_offline(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
-    error_timestamp = models.DateTimeField(blank=True, null=True)
-    error_resolved_timestamp = models.DateTimeField(blank=True, null=True)
-    is_in_error = models.BooleanField(blank=True, default=False)
-    logged_entity = models.BigIntegerField(blank=True, null=True)
-    logged_entity_mac = models.CharField(max_length=255, blank=True, null=True)
-    entity_json = models.CharField(max_length=255, blank=True, null=True)
+    errorTimestamp = models.DateTimeField(blank=True, null=True)
+    errorResolvedTimestamp = models.DateTimeField(blank=True, null=True)
+    isInError = models.BooleanField(blank=True, default=False)
+    loggedEntity = models.BigIntegerField(blank=True, null=True)
+    loggedEntityMac = models.CharField(max_length=255, blank=True, null=True)
+    entityJson = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         verbose_name = _('error_node_offline')
@@ -239,19 +239,19 @@ class Gateway(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
     name = models.CharField(max_length=255,blank=True, null=True)
 
-    gateway_uuid = models.CharField(unique=True, max_length=255,null=True)
-    gateway_hostname = models.CharField(max_length=255, blank=True, null=True)
-    gateway_type = models.IntegerField(blank=True,  null=True)
+    gatewayUUID = models.CharField(unique=True, max_length=255,null=True)
+    gatewayHostname = models.CharField(max_length=255, blank=True, null=True)
+    gatewayType = models.IntegerField(blank=True,  null=True)
     notes = models.CharField(max_length=255, blank=True, null=True)
-    creation_date = models.DateTimeField(blank=True, null=True)
-    serial_number = models.CharField(unique=True, max_length=255, blank=True, null=True)
-    device_name = models.CharField(max_length=255, blank=True, null=True)
-    hardware_model = models.CharField(max_length=255, blank=True, null=True)
-    mac_address = models.CharField(max_length=255, blank=True, null=True)
-    coordinator_mac = models.CharField(max_length=255, blank=True, null=True)
-    file_name_encryption_info = models.CharField(max_length=255, blank=True, null=True)
-    hardware_informations = models.CharField(max_length=255, blank=True, null=True)
-    ready_to_receive_data = models.BooleanField(blank=True, default=False)
+    creationDate = models.DateTimeField(blank=True, null=True)
+    serialNumber = models.CharField(unique=True, max_length=255, blank=True, null=True)
+    deviceName = models.CharField(max_length=255, blank=True, null=True)
+    hardwareModel = models.CharField(max_length=255, blank=True, null=True)
+    macAddress = models.CharField(max_length=255, blank=True, null=True)
+    coordinatorMac = models.CharField(max_length=255, blank=True, null=True)
+    fileNameEncryptionInfo = models.CharField(max_length=255, blank=True, null=True)
+    hardwareInformations = models.CharField(max_length=255, blank=True, null=True)
+    readyToReceiveData = models.BooleanField(blank=True, default=False)
     installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True)
     # shipping = models.ForeignKey('Shipping', models.DO_NOTHING, blank=True, null=True)
     # order = models.ForeignKey('JhiOrder', models.DO_NOTHING, blank=True, null=True)
@@ -274,14 +274,14 @@ class Ime_power_counter(CleanModel, UserModel, DateModel, StatusModel, OrderedMo
 
     name = models.CharField(max_length=255, blank=True, null=True)
 
-    gateway_uuid = models.CharField(max_length=255, blank=True, null=True)
+    gatewayUUID = models.CharField(max_length=255, blank=True, null=True)
     installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True)
-    counter_id = models.CharField(unique=True, max_length=255, null=True)
+    counterId = models.CharField(unique=True, max_length=255, null=True)
     location = models.CharField(max_length=255, blank=True, null=True)
     lat = models.FloatField(blank=True, null=True)
     lng = models.FloatField(blank=True, null=True)
-    rs_485_bus = models.CharField(max_length=255, blank=True, null=True)
-    rs_485_address = models.CharField(max_length=255, blank=True, null=True)
+    rs485bus = models.CharField(max_length=255, blank=True, null=True)
+    rs485address = models.CharField(max_length=255, blank=True, null=True)
     address = models.ForeignKey(Address, models.DO_NOTHING, blank=True, null=True)
     gateway = models.ForeignKey(Gateway, models.DO_NOTHING, blank=True, null=True)
 
@@ -301,19 +301,19 @@ class Ime_power_counter(CleanModel, UserModel, DateModel, StatusModel, OrderedMo
 
 class Ime_power_measure(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
-    power_counter_id = models.CharField(max_length=255, blank=True, null=True)
-    jhi_timestamp = models.DateTimeField(blank=True, null=True)
+    powerCounterId = models.CharField(max_length=255, blank=True, null=True)
+    jhiTimestamp = models.DateTimeField(blank=True, null=True)
     installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True)
     voltage = models.FloatField(blank=True, null=True)
-    jhi_current = models.FloatField(blank=True, null=True)
-    active_power = models.FloatField(blank=True, null=True)
-    power_factor = models.FloatField(blank=True, null=True)
-    power_factor_sector = models.FloatField(blank=True, null=True)
+    current = models.FloatField(blank=True, null=True)
+    activePower = models.FloatField(blank=True, null=True)
+    powerFactor = models.FloatField(blank=True, null=True)
+    powerFactorSector = models.FloatField(blank=True, null=True)
     freq = models.FloatField(blank=True, null=True)
-    active_energy = models.FloatField(blank=True, null=True)
-    partial_active_energy = models.FloatField(blank=True, null=True)
-    operating_time_counter = models.FloatField(blank=True, null=True)
-    ime_power_counter = models.ForeignKey(Ime_power_counter, models.DO_NOTHING, blank=True, null=True)
+    activeEnergy = models.FloatField(blank=True, null=True)
+    partialActiveEnergy = models.FloatField(blank=True, null=True)
+    operatingTimeCounter = models.FloatField(blank=True, null=True)
+    imePowerCounter = models.ForeignKey(Ime_power_counter, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         verbose_name = _('ime_power_measure')
@@ -333,16 +333,16 @@ class Installation(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
     name = models.CharField(max_length=255, blank=True, null=True)
 
-    preparation_date = models.DateTimeField(blank=True, null=True)
-    installation_date = models.DateTimeField(blank=True, null=True)
+    preparationDate = models.DateTimeField(blank=True, null=True)
+    installationDate = models.DateTimeField(blank=True, null=True)
     notes = models.CharField(max_length=255, blank=True, null=True)
     address = models.OneToOneField(Address, models.DO_NOTHING,  blank=True, null=True)
     customer = models.ForeignKey(Customer, models.DO_NOTHING, blank=True, null=True)
 
     installer = models.ForeignKey(User, models.SET_NULL, related_name='installator', blank=True, null=True)
     viewers = models.ManyToManyField(User, related_name='viewers', blank=True)
-    installation_managers = models.ManyToManyField(User, related_name='installation_managers', blank=True)
-    assets_managers = models.ManyToManyField(User, related_name='assets_manager', blank=True)
+    installationManagers = models.ManyToManyField(User, related_name='installation_managers', blank=True)
+    assetsManagers = models.ManyToManyField(User, related_name='assets_manager', blank=True)
 
     class Meta:
         verbose_name = _('installation')
@@ -384,46 +384,46 @@ class Installation(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 class Light_management_measure(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
     mac = models.CharField(max_length=255, blank=True, null=True)
-    processing_status = models.IntegerField(blank=True, null=True)
-    node_hms = models.CharField(max_length=255, blank=True, null=True)
-    day_of_year = models.IntegerField(blank=True, null=True)
-    measure_type = models.IntegerField(blank=True, null=True)
-    parent_node = models.CharField(max_length=255, blank=True, null=True)
+    processingStatus = models.IntegerField(blank=True, null=True)
+    nodeHMS = models.CharField(max_length=255, blank=True, null=True)
+    dayOfYear = models.IntegerField(blank=True, null=True)
+    measureType = models.IntegerField(blank=True, null=True)
+    parentNode = models.CharField(max_length=255, blank=True, null=True)
     lqi = models.FloatField(blank=True, null=True)
     vac = models.FloatField(blank=True, null=True)
     vcc = models.FloatField(blank=True, null=True)
     iac = models.FloatField(blank=True, null=True)
-    active_power = models.FloatField(blank=True, null=True)
-    reactive_power = models.FloatField(blank=True, null=True)
-    active_energy_counter = models.FloatField(blank=True, null=True)
-    reactive_energy_counter = models.FloatField(blank=True, null=True)
-    light_level = models.FloatField(blank=True, null=True)
-    pw_0 = models.FloatField(blank=True, null=True)
-    pw_1 = models.FloatField(blank=True, null=True)
-    pw_2 = models.FloatField(blank=True, null=True)
-    pw_3 = models.FloatField(blank=True, null=True)
-    node_temp = models.FloatField(blank=True, null=True)
-    ad_0 = models.FloatField(blank=True, null=True)
-    ad_1 = models.FloatField(blank=True, null=True)
-    ad_2 = models.FloatField(blank=True, null=True)
-    ad_3 = models.FloatField(blank=True, null=True)
-    packets_sent = models.IntegerField(blank=True, null=True)
-    packets_received = models.IntegerField(blank=True, null=True)
-    packets_lost = models.IntegerField(blank=True, null=True)
-    motion_status = models.IntegerField(blank=True, null=True)
-    manual_status = models.IntegerField(blank=True, null=True)
-    status_bitmask = models.IntegerField(blank=True, null=True)
-    parameters_crc = models.FloatField(blank=True, null=True)
-    profile_crc = models.FloatField(blank=True, null=True)
-    measure_timestamp = models.DateTimeField(blank=True, null=True)
-    created_timestamp = models.DateTimeField(blank=True, null=True)
-    source_module = models.CharField(max_length=255, blank=True, null=True)
-    node_fw_version = models.CharField(max_length=255, blank=True, null=True)
-    lamp_life = models.FloatField(blank=True, null=True)
-    node_life = models.FloatField(blank=True, null=True)
-    active_power_counter = models.FloatField(blank=True, null=True)
+    activePower = models.FloatField(blank=True, null=True)
+    reactivePower = models.FloatField(blank=True, null=True)
+    activeEnergyCounter = models.FloatField(blank=True, null=True)
+    reactiveEnergyCounter = models.FloatField(blank=True, null=True)
+    lightLevel = models.FloatField(blank=True, null=True)
+    pw0 = models.FloatField(blank=True, null=True)
+    pw1 = models.FloatField(blank=True, null=True)
+    pw2 = models.FloatField(blank=True, null=True)
+    pw3 = models.FloatField(blank=True, null=True)
+    nodeTemp = models.FloatField(blank=True, null=True)
+    ad0 = models.FloatField(blank=True, null=True)
+    ad1 = models.FloatField(blank=True, null=True)
+    ad2 = models.FloatField(blank=True, null=True)
+    ad3 = models.FloatField(blank=True, null=True)
+    packetsSent = models.IntegerField(blank=True, null=True)
+    packetsReceived = models.IntegerField(blank=True, null=True)
+    packetsLost = models.IntegerField(blank=True, null=True)
+    motionStatus = models.IntegerField(blank=True, null=True)
+    manualStatus = models.IntegerField(blank=True, null=True)
+    statusBitmask = models.IntegerField(blank=True, null=True)
+    parametersCRC = models.FloatField(blank=True, null=True)
+    profileCRC = models.FloatField(blank=True, null=True)
+    measureTimestamp = models.DateTimeField(blank=True, null=True)
+    createdTimestamp = models.DateTimeField(blank=True, null=True)
+    sourceModule = models.CharField(max_length=255, blank=True, null=True)
+    nodeFwVersion = models.CharField(max_length=255, blank=True, null=True)
+    lampLife = models.FloatField(blank=True, null=True)
+    nodeLife = models.FloatField(blank=True, null=True)
+    activePowerCounter = models.FloatField(blank=True, null=True)
     installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True)
-    light_management_module = models.ForeignKey('Light_management_module', models.DO_NOTHING, blank=True, null=True)
+    lightManagementModule = models.ForeignKey('Light_management_module', models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         verbose_name = _('light_management_measure')
@@ -442,18 +442,17 @@ class Light_management_measure(CleanModel, UserModel, DateModel, StatusModel, Or
 class Light_management_module(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
     name = models.CharField(max_length=255, blank=True, null=True)
-
-    device_type = models.IntegerField(blank=True, null=True)
-    lamp_type = models.IntegerField(blank=True, null=True)
-    timer_auto_mode = models.IntegerField(blank=True, null=True)
-    timer_hps_protection = models.IntegerField(blank=True, null=True)
-    light_zone = models.IntegerField(blank=True, null=True)
-    light_profile_id = models.BigIntegerField(blank=True, null=True)
-    light_profile_crc = models.FloatField(blank=True, null=True)
+    deviceType = models.IntegerField(blank=True, null=True)
+    lampType = models.IntegerField(blank=True, null=True)
+    timerAutoMode = models.IntegerField(blank=True, null=True)
+    timerHPSProtection = models.IntegerField(blank=True, null=True)
+    lightZone = models.IntegerField(blank=True, null=True)
+    lightProfileId = models.BigIntegerField(blank=True, null=True)
+    lightProfileCRC = models.FloatField(blank=True, null=True)
 
     class Meta:
         verbose_name = _('light_management_module')
-        verbose_name_plural = _('light_management_module')
+        verbose_name_plural = _('light_management_modules')
         ordering = ('ordering',)
         permissions = (
             ("list_light_management_module", "Can list light_management_module"),
@@ -462,17 +461,17 @@ class Light_management_module(CleanModel, UserModel, DateModel, StatusModel, Ord
         )
 
     def __str__(self):
-        return 'Light_management_module'
+        return f'{self.name}'
 
 
 class Light_profile(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
     name = models.CharField(max_length=255, blank=True, null=True)
 
-    jhi_type = models.CharField(max_length=255, blank=True, null=True)
+    jhiType = models.CharField(max_length=255, blank=True, null=True)
     reference = models.CharField(max_length=255, blank=True, null=True)
-    profile_crc = models.FloatField(blank=True, null=True)
-    light_profile_id = models.IntegerField(blank=True, null=True)
+    profileCRC = models.FloatField(blank=True, null=True)
+    lightProfileId = models.IntegerField(blank=True, null=True)
     gateway = models.ForeignKey('Gateway', models.DO_NOTHING, blank=True, null=True)
     enabled = models.BooleanField(blank=True, default=False)
 
@@ -503,24 +502,24 @@ class Light_profile_slot(CleanModel, UserModel, DateModel, StatusModel, OrderedM
     emo = models.BooleanField(blank=True, default=False)
     edw = models.IntegerField(blank=True, null=True)
     enabled = models.BooleanField(blank=True, default=False)
-    light_profile_index = models.IntegerField(blank=True, null=True)
-    pw_0 = models.FloatField(blank=True, null=True)
-    pw_1 = models.FloatField(blank=True, null=True)
-    pw_2 = models.FloatField(blank=True, null=True)
-    pw_3 = models.FloatField(blank=True, null=True)
-    fade_in = models.FloatField(blank=True, null=True)
-    fade_out = models.FloatField(blank=True, null=True)
+    lightProfileIndex = models.IntegerField(blank=True, null=True)
+    pw0 = models.FloatField(blank=True, null=True)
+    pw1 = models.FloatField(blank=True, null=True)
+    pw2 = models.FloatField(blank=True, null=True)
+    pw3 = models.FloatField(blank=True, null=True)
+    fadeIn = models.FloatField(blank=True, null=True)
+    fadeOut = models.FloatField(blank=True, null=True)
     slot = models.IntegerField(blank=True, null=True)
-    created_timestamp = models.DateTimeField(blank=True, null=True)
-    motion_duration = models.FloatField(blank=True, null=True)
-    motion_delay = models.FloatField(blank=True, null=True)
-    mi_0 = models.FloatField(blank=True, null=True)
-    mi_1 = models.FloatField(blank=True, null=True)
-    mi_2 = models.FloatField(blank=True, null=True)
-    mi_3 = models.FloatField(blank=True, null=True)
-    motion_fade_in = models.FloatField(blank=True, null=True)
-    motion_fade_out = models.FloatField(blank=True, null=True)
-    light_profile = models.ForeignKey(Light_profile, models.DO_NOTHING, blank=True, null=True)
+    createdTimestamp = models.DateTimeField(blank=True, null=True)
+    motionDuration = models.FloatField(blank=True, null=True)
+    motionDelay = models.FloatField(blank=True, null=True)
+    mi0 = models.FloatField(blank=True, null=True)
+    mi1 = models.FloatField(blank=True, null=True)
+    mi2 = models.FloatField(blank=True, null=True)
+    mi3 = models.FloatField(blank=True, null=True)
+    motionFadeIn = models.FloatField(blank=True, null=True)
+    motionFadeOut = models.FloatField(blank=True, null=True)
+    lightProfile = models.ForeignKey(Light_profile, models.DO_NOTHING, blank=True, null=True)
 
 
     class Meta:
@@ -540,11 +539,11 @@ class Light_profile_slot(CleanModel, UserModel, DateModel, StatusModel, OrderedM
 class Motion_event(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
     mac = models.CharField(max_length=255, blank=True, null=True)
-    motion_mode = models.IntegerField(blank=True, null=True)
-    motion_group = models.IntegerField(blank=True, null=True)
-    motion_broadcast = models.IntegerField(blank=True, null=True)
-    measure_timestamp = models.DateTimeField(blank=True, null=True)
-    motion_management_module = models.ForeignKey('Motion_management_module', models.DO_NOTHING, blank=True, null=True)
+    motionMode = models.IntegerField(blank=True, null=True)
+    motionGroup = models.IntegerField(blank=True, null=True)
+    motionBroadcast = models.IntegerField(blank=True, null=True)
+    measureTimestamp = models.DateTimeField(blank=True, null=True)
+    motionManagementModule = models.ForeignKey('Motion_management_module', models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         verbose_name = _('motion_event')
@@ -566,15 +565,15 @@ class Node(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
     name = models.CharField(max_length=255, blank=True, null=True)
 
-    node_type = models.IntegerField(blank=True, null=True)
+    nodeType = models.IntegerField(blank=True, null=True)
     mac = models.CharField(unique=True, max_length=255, blank=True, null=True)
-    log_time_ist = models.IntegerField(blank=True, null=True)
-    log_time_0 = models.IntegerField(blank=True, null=True)
-    log_time_1 = models.IntegerField(blank=True, null=True)
-    log_time_2 = models.IntegerField(blank=True, null=True)
-    log_time_3 = models.IntegerField(blank=True, null=True)
-    time_zone = models.IntegerField(blank=True, null=True)
-    time_zone_code = models.CharField(max_length=255, blank=True, null=True)
+    logTimeIst = models.IntegerField(blank=True, null=True)
+    logTime0 = models.IntegerField(blank=True, null=True)
+    logTime1 = models.IntegerField(blank=True, null=True)
+    logTime2 = models.IntegerField(blank=True, null=True)
+    logTime3 = models.IntegerField(blank=True, null=True)
+    timeZone = models.IntegerField(blank=True, null=True)
+    timeZoneCode = models.CharField(max_length=255, blank=True, null=True)
     latitude = models.DecimalField(null=True,
                                     blank=True,
                                     decimal_places=15,
@@ -619,9 +618,9 @@ class Node(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 class Node_module(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
     name = models.CharField(max_length=255, blank=True, null=True)
-    light_management = models.OneToOneField(Light_management_module, models.DO_NOTHING,  blank=True, null=True)
-    energy_meter = models.OneToOneField(Energy_meter_module, models.DO_NOTHING,  blank=True, null=True)
-    twilight_management = models.OneToOneField('Twilight_management_module', models.DO_NOTHING,  blank=True,
+    lightManagement = models.OneToOneField(Light_management_module, models.DO_NOTHING,  blank=True, null=True)
+    energyMeter = models.OneToOneField(Energy_meter_module, models.DO_NOTHING,  blank=True, null=True)
+    twilightManagement = models.OneToOneField('Twilight_management_module', models.DO_NOTHING,  blank=True,
                                             null=True)
     motion_management = models.OneToOneField('Motion_management_module', models.DO_NOTHING,blank=True, null=True)
 
@@ -641,17 +640,17 @@ class Node_module(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
 class Wilamp_alert(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
-    alert_timestamp = models.DateTimeField(blank=True, null=True)
+    alertTimestamp = models.DateTimeField(blank=True, null=True)
     jhi_type = models.IntegerField(blank=True, null=True)
     severity = models.IntegerField(blank=True, null=True)
-    logger_entity_id = models.CharField(max_length=255, blank=True, null=True)
-    logger_name = models.CharField(max_length=255, blank=True, null=True)
+    loggerEntityId = models.CharField(max_length=255, blank=True, null=True)
+    loggerName = models.CharField(max_length=255, blank=True, null=True)
     module = models.CharField(max_length=255, blank=True, null=True)
-    logged_entity_id = models.CharField(max_length=255, blank=True, null=True)
-    logged_entity = models.CharField(max_length=255, blank=True, null=True)
+    loggedEntityId = models.CharField(max_length=255, blank=True, null=True)
+    loggedEntity = models.CharField(max_length=255, blank=True, null=True)
     message = models.CharField(max_length=1000, blank=True, null=True)
     comment = models.CharField(max_length=5000, blank=True, null=True)
-    log_class = models.CharField(max_length=1000, blank=True, null=True)
+    logClass = models.CharField(max_length=1000, blank=True, null=True)
     note = models.CharField(max_length=5000, blank=True, null=True)
 
     class Meta:
@@ -672,11 +671,11 @@ class Feeder_pillar(CleanModel, UserModel, DateModel, StatusModel, OrderedModel)
 
     name = models.CharField(max_length=255, blank=True, null=True)
 
-    reference_code = models.CharField(max_length=255, blank=True, null=True)
+    referenceCode = models.CharField(max_length=255, blank=True, null=True)
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
     altitude = models.FloatField(blank=True, null=True)
-    max_power = models.FloatField(blank=True, null=True)
+    maxPower = models.FloatField(blank=True, null=True)
 
     class Meta:
         verbose_name = _('feeder_pillar')
@@ -696,23 +695,23 @@ class Twilight_management_module(CleanModel, UserModel, DateModel, StatusModel, 
 
     name = models.CharField(max_length=255, blank=True, null=True)
 
-    tw_mode = models.IntegerField(blank=True, null=True)
-    tw_type = models.IntegerField(blank=True, null=True)
-    tw_group = models.IntegerField(blank=True, null=True)
-    valid_period = models.IntegerField(blank=True, null=True)
-    ths_sunset_on = models.FloatField(blank=True, null=True)
-    ths_sunset_off = models.FloatField(blank=True, null=True)
-    ths_sunrise_on = models.FloatField(blank=True, null=True)
-    ths_sunrise_off = models.FloatField(blank=True, null=True)
-    persistence_period = models.IntegerField(blank=True, null=True)
-    delay_offset = models.IntegerField(blank=True, null=True)
-    voltagem_v = models.FloatField(blank=True, null=True)
-    lux_measured = models.FloatField(blank=True, null=True)
-    sampling_period = models.IntegerField(blank=True, null=True)
-    number_average_measures = models.IntegerField(blank=True, null=True)
-    adc_in_channel = models.IntegerField(blank=True, null=True)
-    programming_status = models.IntegerField(blank=True, null=True)
-    created_timestamp = models.DateTimeField(blank=True, null=True)
+    twMode = models.IntegerField(blank=True, null=True)
+    twType = models.IntegerField(blank=True, null=True)
+    twGroup = models.IntegerField(blank=True, null=True)
+    validPeriod = models.IntegerField(blank=True, null=True)
+    thsSunsetOn = models.FloatField(blank=True, null=True)
+    thsSunsetOff = models.FloatField(blank=True, null=True)
+    thsSunriseOn = models.FloatField(blank=True, null=True)
+    thsSunriseOff = models.FloatField(blank=True, null=True)
+    persistencePeriod = models.IntegerField(blank=True, null=True)
+    delayOffset = models.IntegerField(blank=True, null=True)
+    voltagemV = models.FloatField(blank=True, null=True)
+    luxMeasured = models.FloatField(blank=True, null=True)
+    samplingPeriod = models.IntegerField(blank=True, null=True)
+    numberAverageMeasures = models.IntegerField(blank=True, null=True)
+    adcInChannel = models.IntegerField(blank=True, null=True)
+    programmingStatus = models.IntegerField(blank=True, null=True)
+    createdTimestamp = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         verbose_name = _('twilight_management_module')
@@ -730,10 +729,10 @@ class Twilight_management_module(CleanModel, UserModel, DateModel, StatusModel, 
 
 class Twilight_measure(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
-    lux_value = models.FloatField(blank=True, null=True)
-    adc_value = models.FloatField(blank=True, null=True)
-    measure_timestamp = models.DateTimeField(blank=True, null=True)
-    twilight_management_module = models.ForeignKey(Twilight_management_module, models.DO_NOTHING, blank=True, null=True)
+    luxValue = models.FloatField(blank=True, null=True)
+    adcValue = models.FloatField(blank=True, null=True)
+    measureTimestamp = models.DateTimeField(blank=True, null=True)
+    twilightManagementModule = models.ForeignKey(Twilight_management_module, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         verbose_name = _('twilight_measure')
@@ -753,20 +752,20 @@ class Motion_management_module(CleanModel, UserModel, DateModel, StatusModel, Or
 
     name = models.CharField(max_length=255, blank=True, null=True)
 
-    motion_mode = models.IntegerField(blank=True, null=True)
-    motion_type = models.IntegerField(blank=True, null=True)
-    motion_group = models.IntegerField(blank=True, null=True)
-    delay_after = models.FloatField(default=0)
-    retrigger_time = models.FloatField(blank=True, null=True)
-    trigger_delay = models.FloatField(blank=True, null=True)
-    mi_0 = models.FloatField(blank=True, null=True)
-    mi_1 = models.FloatField(blank=True, null=True)
-    mi_2 = models.FloatField(blank=True, null=True)
-    mi_3 = models.FloatField(blank=True, null=True)
-    fade_in = models.FloatField(default=0)
-    fade_out = models.FloatField(default=0)
-    created_timestamp = models.DateTimeField(blank=True, null=True)
-    adc_in_channel = models.IntegerField(blank=True, null=True)
+    motionMode = models.IntegerField(blank=True, null=True)
+    motionType = models.IntegerField(blank=True, null=True)
+    motionGroup = models.IntegerField(blank=True, null=True)
+    delayAfter = models.FloatField(default=0)
+    retriggerTime = models.FloatField(blank=True, null=True)
+    triggerDelay = models.FloatField(blank=True, null=True)
+    mi0 = models.FloatField(blank=True, null=True)
+    mi1 = models.FloatField(blank=True, null=True)
+    mi2 = models.FloatField(blank=True, null=True)
+    mi3 = models.FloatField(blank=True, null=True)
+    fadeIn = models.FloatField(default=0)
+    fadeOut = models.FloatField(default=0)
+    createdTimestamp = models.DateTimeField(blank=True, null=True)
+    adcInChannel = models.IntegerField(blank=True, null=True)
     duration = models.FloatField(blank=True, null=True)
 
     class Meta:

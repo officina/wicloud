@@ -33,7 +33,7 @@ class AddressAdmin(UserAdminMixin, import_export_admin.ImportExportModelAdmin):
     #         'fields': ('creator', 'created_date', 'last_modifier', 'last_modified_date')
     #     }),
     # )
-    list_display = ('id', 'full_name','description', 'city', 'country', 'lat', 'lng', 'installation')
+    list_display = ('id', 'fullName','description', 'city', 'country', 'lat', 'lng', 'installation')
     readonly_fields = ('creator', 'created_date', 'last_modifier', 'last_modified_date')
 
 
@@ -61,7 +61,7 @@ class CustomerAdmin(UserAdminMixin, import_export_admin.ImportExportModelAdmin):
     #         'fields': ('creator', 'created_date', 'last_modifier', 'last_modified_date')
     #     }),
     # )
-    list_display = ('id', 'company_name', 'description')
+    list_display = ('id', 'companyName', 'description')
     readonly_fields = ('creator', 'created_date', 'last_modifier', 'last_modified_date')
 
 
@@ -389,16 +389,16 @@ class Light_management_moduleAdmin(UserAdminMixin, import_export_admin.ImportExp
         # (_('general information'), {
         #    'fields': ()
         # }),
-        (_('visualization admin'), {
-            'classes': ('collapse',),
-            'fields': ('ordering', 'status')
-        }),
-        (_('logs admin'), {
-            'classes': ('collapse',),
-            'fields': ('creator', 'created_date', 'last_modifier', 'last_modified_date')
-        }),
+        # (_('visualization admin'), {
+        #     'classes': ('collapse',),
+        #     'fields': ('ordering', 'status')
+        # }),
+        # (_('logs admin'), {
+        #     'classes': ('collapse',),
+        #     'fields': ('creator', 'created_date', 'last_modifier', 'last_modified_date')
+        # }),
     )
-    list_display = ('get_status_display', 'ordering')
+    list_display = ('name', 'ordering')
     readonly_fields = ('creator', 'created_date', 'last_modifier', 'last_modified_date')
 
 
@@ -417,14 +417,14 @@ class Light_profileAdmin(UserAdminMixin, import_export_admin.ImportExportModelAd
         # (_('general information'), {
         #    'fields': ()
         # }),
-        (_('visualization admin'), {
-            'classes': ('collapse',),
-            'fields': ('ordering', 'status')
-        }),
-        (_('logs admin'), {
-            'classes': ('collapse',),
-            'fields': ('creator', 'created_date', 'last_modifier', 'last_modified_date')
-        }),
+        # (_('visualization admin'), {
+        #     'classes': ('collapse',),
+        #     'fields': ('ordering', 'status')
+        # }),
+        # (_('logs admin'), {
+        #     'classes': ('collapse',),
+        #     'fields': ('creator', 'created_date', 'last_modifier', 'last_modified_date')
+        # }),
     )
     list_display = ('get_status_display', 'ordering')
     readonly_fields = ('creator', 'created_date', 'last_modifier', 'last_modified_date')
@@ -445,16 +445,16 @@ class Light_profile_slotAdmin(UserAdminMixin, import_export_admin.ImportExportMo
         # (_('general information'), {
         #    'fields': ()
         # }),
-        (_('visualization admin'), {
-            'classes': ('collapse',),
-            'fields': ('ordering', 'status')
-        }),
-        (_('logs admin'), {
-            'classes': ('collapse',),
-            'fields': ('creator', 'created_date', 'last_modifier', 'last_modified_date')
-        }),
+        # (_('visualization admin'), {
+        #     'classes': ('collapse',),
+        #     'fields': ('ordering', 'status')
+        # }),
+        # (_('logs admin'), {
+        #     'classes': ('collapse',),
+        #     'fields': ('creator', 'created_date', 'last_modifier', 'last_modified_date')
+        # }),
     )
-    list_display = ('get_status_display', 'ordering')
+    list_display = ('lightProfileIndex', 'lightProfile')
     readonly_fields = ('creator', 'created_date', 'last_modifier', 'last_modified_date')
 
 
@@ -510,7 +510,7 @@ class NodeAdmin(UserAdminMixin, import_export_admin.ImportExportModelAdmin):
     #         'fields': ('creator', 'created_date', 'last_modifier', 'last_modified_date')
     #     }),
     # )
-    list_display = ('id','name', 'mac', 'ordering', 'latitude', 'longitude', 'gateway')
+    list_display = ('id','name', 'mac', 'ordering', 'latitude', 'longitude')
     readonly_fields = ('creator', 'created_date', 'last_modifier', 'last_modified_date')
 
 
@@ -529,14 +529,14 @@ class Node_moduleAdmin(UserAdminMixin, import_export_admin.ImportExportModelAdmi
         # (_('general information'), {
         #    'fields': ()
         # }),
-        (_('visualization admin'), {
-            'classes': ('collapse',),
-            'fields': ('ordering', 'status')
-        }),
-        (_('logs admin'), {
-            'classes': ('collapse',),
-            'fields': ('creator', 'created_date', 'last_modifier', 'last_modified_date')
-        }),
+        # (_('visualization admin'), {
+        #     'classes': ('collapse',),
+        #     'fields': ('ordering', 'status')
+        # }),
+        # (_('logs admin'), {
+        #     'classes': ('collapse',),
+        #     'fields': ('creator', 'created_date', 'last_modifier', 'last_modified_date')
+        # }),
     )
     list_display = ('get_status_display', 'ordering')
     readonly_fields = ('creator', 'created_date', 'last_modifier', 'last_modified_date')
@@ -683,6 +683,7 @@ class Motion_management_moduleAdmin(UserAdminMixin, import_export_admin.ImportEx
 
 
 admin.site.register(models.Motion_management_module, Motion_management_moduleAdmin)
+
 
 
 
