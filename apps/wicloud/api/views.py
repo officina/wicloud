@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import collections
+from django.http import Http404, HttpResponseNotFound, HttpResponse, HttpResponseBadRequest, HttpResponseServerError
 
 from rest_framework import generics, status
 from rest_framework.decorators import api_view
@@ -7,8 +8,11 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from rest_framework.generics import (
     ListCreateAPIView,
-    RetrieveUpdateDestroyAPIView
+    RetrieveUpdateDestroyAPIView,
+    CreateAPIView
 )
+
+from com.wi4b.wilamp.utilities.CommonUtils import Utils
 from web.api import views
 from . import serializers
 from .. import models
@@ -306,6 +310,22 @@ class Energy_meter_moduleRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIVi
     serializer_class = serializers.Energy_meter_moduleRetrieveSerializer
     lookup_field = 'id'
 
+class Energy_meter_moduleByMacRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+    """
+    Get a single energy_meter_module by mac
+    """
+    serializer_class = serializers.Energy_meter_moduleRetrieveSerializer
+    lookup_field = 'id'
+
+    def get_object(self):
+        mac = self.kwargs['id']
+        user = self.request.user
+        b = models.Node.objects.filter(mac=mac).select_related('modules').select_related('modules__energyMeter')
+        try:
+            return b.first().modules.energyMeter
+        except:
+            raise Http404()
+
 class Energy_meter_moduleSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
     """
     Set Status for a single energy_meter_module
@@ -520,6 +540,23 @@ class GatewayRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     serializer_class = serializers.GatewayRetrieveSerializer
     lookup_field = 'id'
 
+class GatewayBySerialNumberRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+    """
+    Get a single energy_meter_module by mac
+    """
+    serializer_class = serializers.GatewayRetrieveSerializer
+    lookup_field = 'id'
+
+    def get_object(self):
+        serial = self.kwargs['id']
+        b = models.Gateway.objects.filter(serialNumber=serial)
+        try:
+            result = b.first()
+            if result: return result
+            raise Http404()
+        except:
+            raise Http404()
+
 
 class GatewaySetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
     """
@@ -642,8 +679,8 @@ class InstallationListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPI
     def get_queryset(self):
         queryset = models.Installation.objects.all()
         user = self.request.user
-        return queryset.distinct().filter(Q(installer=user) | Q(installation_managers__in=[user]) | Q(viewers__in=[user])
-                               | Q(assets_managers__in=[user]))
+        return queryset.distinct().filter(Q(installer=user) | Q(installationManagers__in=[user]) | Q(viewers__in=[user])
+                               | Q(assetsManagers__in=[user]))
 
 
 class InstallationRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
@@ -740,6 +777,21 @@ class Light_management_moduleRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyA
     serializer_class = serializers.Light_management_moduleRetrieveSerializer
     lookup_field = 'id'
 
+class Light_management_moduleByMacRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+    """
+    Get a single energy_meter_module by mac
+    """
+    serializer_class = serializers.Light_management_moduleRetrieveSerializer
+    lookup_field = 'id'
+
+    def get_object(self):
+        mac = self.kwargs['id']
+        user = self.request.user
+        b = models.Node.objects.filter(mac=mac).select_related('modules').select_related('modules__lightManagement')
+        try:
+            return b.first().modules.lightManagement
+        except:
+            raise Http404()
 
 class Light_management_moduleSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
     """
@@ -767,6 +819,48 @@ class Light_management_moduleDisableView(views.ThuxStatusViewMixin, generics.Ret
     new_status = 0
 
 
+class Light_profile_replace_slots_CreateView(views.ThuxStatusViewMixin, generics.CreateAPIView):
+    """
+    Enable a single light_management_module
+    """
+    queryset = models.Light_management_module.objects.filter(status=1)
+    serializer_class = serializers.Light_management_moduleStatusSerializer
+    new_status = 0
+    def create(self, request, *args, **kwargs):
+        try:
+            #Retrieve light profile
+            light_profile_id = kwargs['id']
+
+            light_profile = models.Light_profile.objects.filter(id=light_profile_id).first()
+            if not light_profile:
+                return HttpResponseNotFound()
+            else:
+                #delete existing light profile slots
+                ""
+                try:
+                    models.Light_profile_slot.objects.filter(lightProfile=light_profile_id).delete()
+                except Exception as ex:
+                    print("Exce {}".format(ex))
+                for lightProfileSlotDict in request.data:
+                    try:
+                        lightProfileSlot = models.Light_profile_slot(**lightProfileSlotDict)
+                        lightProfileSlot.creator = request.user
+                        lightProfileSlot.last_modifier = request.user
+                        lightProfileSlot.lightProfile = light_profile
+                        lightProfileSlot.eas = True if Utils.isTrue(lightProfileSlot.eas) else False
+                        lightProfileSlot.ecr = True if Utils.isTrue(lightProfileSlot.ecr) else False
+                        lightProfileSlot.emo = True if Utils.isTrue(lightProfileSlot.emo) else False
+                        lightProfileSlot.edw = int(lightProfileSlot.edw)
+                        lightProfileSlot.enabled = True if Utils.isTrue(lightProfileSlot.enabled) else False
+                        lightProfileSlot.save()
+                    except Exception as ex:
+                        print ("Exception {}".format(ex))
+                        return HttpResponseServerError(ex)
+                return HttpResponse(status=200)
+        except:
+            raise Http404()
+
+
 class Light_profileListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
     Get all  light_profiles
@@ -775,6 +869,7 @@ class Light_profileListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAP
     serializer_class = serializers.Light_profileListSerializer
     lookup_field = 'id'
 
+
 class Light_profileRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     """
     Get a single light_profile
@@ -782,6 +877,27 @@ class Light_profileRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     queryset = models.Light_profile.objects.all()
     serializer_class = serializers.Light_profileRetrieveSerializer
     lookup_field = 'id'
+
+class Light_profileByReferenceRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+    """
+    Get a single energy_meter_module by mac
+    """
+    serializer_class = serializers.Light_profileRetrieveSerializer
+    lookup_field = 'id'
+
+    def get_object(self):
+        reference = self.kwargs['id']
+        user = self.request.user
+        b = models.Light_profile.objects.filter(reference=reference)
+        try:
+            result =  b.first()
+            if result:
+                return result
+            raise Http404()
+        except:
+            raise Http404()
+
+
 
 
 class Light_profileSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
@@ -912,6 +1028,53 @@ class NodeRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     serializer_class = serializers.NodeRetrieveSerializer
     lookup_field = 'id'
 
+    def put(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            # If 'prefetch_related' has been applied to a queryset, we need to
+            # forcibly invalidate the prefetch cache on the instance.
+            instance._prefetched_objects_cache = {}
+
+        return Response(serializer.data)
+
+
+class NodeByMacRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+    """
+    Get a single energy_meter_module by mac
+    """
+    serializer_class = serializers.NodeRetrieveSerializer
+    lookup_field = 'id'
+
+    def get_object(self):
+        mac = self.kwargs['id']
+        user = self.request.user
+        b = models.Node.objects.filter(mac=mac)
+        try:
+            result = b.first()
+            if result: return result
+            raise Http404()
+        except:
+            raise Http404()
+
+    def put(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            # If 'prefetch_related' has been applied to a queryset, we need to
+            # forcibly invalidate the prefetch cache on the instance.
+            instance._prefetched_objects_cache = {}
+
+        return Response(serializer.data)
+
 
 class NodeSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
     """
@@ -954,6 +1117,24 @@ class Node_moduleRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     queryset = models.Node_module.objects.all()
     serializer_class = serializers.Node_moduleRetrieveSerializer
     lookup_field = 'id'
+
+class Node_moduleByMacRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+    """
+    Get a single energy_meter_module by mac
+    """
+    serializer_class = serializers.Node_moduleRetrieveSerializer
+    lookup_field = 'id'
+
+    def get_object(self):
+        mac = self.kwargs['id']
+        user = self.request.user
+        b = models.Node.objects.filter(mac=mac).select_related('modules')
+        try:
+            if b.first().modules:
+                return b.first().modules
+            else: raise Http404()
+        except:
+            raise Http404()
 
 
 class Node_moduleSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):

@@ -56,7 +56,7 @@ class InstallationDocument(DocType):
         }
     )
 
-    installation_date = fields.DateField()
+    installationDate = fields.DateField()
 
     class Meta:
         model = Installation
@@ -135,13 +135,13 @@ class NodeDocument(DocType):
         }
     )
 
-    log_time_ist = fields.IntegerField()
-    log_time_0 = fields.IntegerField()
-    log_time_1 = fields.IntegerField()
-    log_time_2 = fields.IntegerField()
-    log_time_3 = fields.IntegerField()
-    time_zone = fields.IntegerField()
-    time_zone_code = fields.StringField(
+    logTimeIst = fields.IntegerField()
+    logTime0 = fields.IntegerField()
+    logTime1 = fields.IntegerField()
+    logTime2 = fields.IntegerField()
+    logTime3 = fields.IntegerField()
+    timeZone = fields.IntegerField()
+    timeZoneCode = fields.StringField(
         analyzer=html_strip,
         fields={
             'raw': fields.StringField(analyzer='keyword'),
