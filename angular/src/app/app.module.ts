@@ -9,6 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import { CoreModule } from './@core/core.module';
+import { NbAuthJWTToken } from '@nebular/auth';
+import {NB_AUTH_TOKEN_INTERCEPTOR_FILTER} from '@nebular/auth';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +20,11 @@ import {NbAuthJWTInterceptor, NbTokenLocalStorage, NbTokenStorage} from '@nebula
 import {AuthGuard} from './_guard/auth-guard.service';
 import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { WiCloudSharedModule, UserRouteAccessService } from './shared';
+
+
 
 
 @NgModule({
@@ -25,11 +32,14 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    CommonModule,
+    FormsModule,
     HttpClientModule,
     AppRoutingModule,
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
+    WiCloudSharedModule,
     TranslateModule.forRoot({
     loader: {
       provide: TranslateLoader,
@@ -40,9 +50,11 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
   ],
   bootstrap: [AppComponent],
   providers: [
+    UserRouteAccessService,
     AuthGuard,
       { provide: APP_BASE_HREF, useValue: '/' }, TranslateService,
-      { provide: HTTP_INTERCEPTORS, useClass: NbAuthJWTInterceptor, multi: true},
+      { provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER, useValue: (req) =>  false },
+      { provide: HTTP_INTERCEPTORS, useClass: NbAuthJWTInterceptor, multi: true}, // quick fix for JWT Token on API calls
       { provide: NbTokenStorage, useClass: NbTokenLocalStorage },
   ],
 })

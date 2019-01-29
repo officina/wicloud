@@ -1,0 +1,242 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myLightManagementMeasureLabel" jhiTranslate="wilampCloudApp.lightManagementMeasure.home.createOrEditLabel">Create or edit a Light Management Measure</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!lightManagementMeasure.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="lightManagementMeasure.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.mac" for="field_mac">Mac</label>
+            <input type="text" class="form-control" name="mac" id="field_mac"
+                [(ngModel)]="lightManagementMeasure.mac" required/>
+            <div [hidden]="!(editForm.controls.mac?.dirty && editForm.controls.mac?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.mac?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.processingStatus" for="field_processingStatus">Processing Status</label>
+            <input type="number" class="form-control" name="processingStatus" id="field_processingStatus"
+                [(ngModel)]="lightManagementMeasure.processingStatus" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.nodeHMS" for="field_nodeHMS">Node HMS</label>
+            <input type="text" class="form-control" name="nodeHMS" id="field_nodeHMS"
+                [(ngModel)]="lightManagementMeasure.nodeHMS" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.dayOfYear" for="field_dayOfYear">Day Of Year</label>
+            <input type="number" class="form-control" name="dayOfYear" id="field_dayOfYear"
+                [(ngModel)]="lightManagementMeasure.dayOfYear" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.measureType" for="field_measureType">Measure Type</label>
+            <input type="number" class="form-control" name="measureType" id="field_measureType"
+                [(ngModel)]="lightManagementMeasure.measureType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.parentNode" for="field_parentNode">Parent Node</label>
+            <input type="text" class="form-control" name="parentNode" id="field_parentNode"
+                [(ngModel)]="lightManagementMeasure.parentNode" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.lqi" for="field_lqi">Lqi</label>
+            <input type="number" class="form-control" name="lqi" id="field_lqi"
+                [(ngModel)]="lightManagementMeasure.lqi" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.vac" for="field_vac">Vac</label>
+            <input type="number" class="form-control" name="vac" id="field_vac"
+                [(ngModel)]="lightManagementMeasure.vac" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.vcc" for="field_vcc">Vcc</label>
+            <input type="number" class="form-control" name="vcc" id="field_vcc"
+                [(ngModel)]="lightManagementMeasure.vcc" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.iac" for="field_iac">Iac</label>
+            <input type="number" class="form-control" name="iac" id="field_iac"
+                [(ngModel)]="lightManagementMeasure.iac" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.activePower" for="field_activePower">Active Power</label>
+            <input type="number" class="form-control" name="activePower" id="field_activePower"
+                [(ngModel)]="lightManagementMeasure.activePower" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.reactivePower" for="field_reactivePower">Reactive Power</label>
+            <input type="number" class="form-control" name="reactivePower" id="field_reactivePower"
+                [(ngModel)]="lightManagementMeasure.reactivePower" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.activeEnergyCounter" for="field_activeEnergyCounter">Active Energy Counter</label>
+            <input type="number" class="form-control" name="activeEnergyCounter" id="field_activeEnergyCounter"
+                [(ngModel)]="lightManagementMeasure.activeEnergyCounter" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.reactiveEnergyCounter" for="field_reactiveEnergyCounter">Reactive Energy Counter</label>
+            <input type="number" class="form-control" name="reactiveEnergyCounter" id="field_reactiveEnergyCounter"
+                [(ngModel)]="lightManagementMeasure.reactiveEnergyCounter" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.lightLevel" for="field_lightLevel">Light Level</label>
+            <input type="number" class="form-control" name="lightLevel" id="field_lightLevel"
+                [(ngModel)]="lightManagementMeasure.lightLevel" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.pw0" for="field_pw0">Pw 0</label>
+            <input type="number" class="form-control" name="pw0" id="field_pw0"
+                [(ngModel)]="lightManagementMeasure.pw0" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.pw1" for="field_pw1">Pw 1</label>
+            <input type="number" class="form-control" name="pw1" id="field_pw1"
+                [(ngModel)]="lightManagementMeasure.pw1" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.pw2" for="field_pw2">Pw 2</label>
+            <input type="number" class="form-control" name="pw2" id="field_pw2"
+                [(ngModel)]="lightManagementMeasure.pw2" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.pw3" for="field_pw3">Pw 3</label>
+            <input type="number" class="form-control" name="pw3" id="field_pw3"
+                [(ngModel)]="lightManagementMeasure.pw3" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.nodeTemp" for="field_nodeTemp">Node Temp</label>
+            <input type="number" class="form-control" name="nodeTemp" id="field_nodeTemp"
+                [(ngModel)]="lightManagementMeasure.nodeTemp" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.ad0" for="field_ad0">Ad 0</label>
+            <input type="number" class="form-control" name="ad0" id="field_ad0"
+                [(ngModel)]="lightManagementMeasure.ad0" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.ad1" for="field_ad1">Ad 1</label>
+            <input type="number" class="form-control" name="ad1" id="field_ad1"
+                [(ngModel)]="lightManagementMeasure.ad1" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.ad2" for="field_ad2">Ad 2</label>
+            <input type="number" class="form-control" name="ad2" id="field_ad2"
+                [(ngModel)]="lightManagementMeasure.ad2" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.ad3" for="field_ad3">Ad 3</label>
+            <input type="number" class="form-control" name="ad3" id="field_ad3"
+                [(ngModel)]="lightManagementMeasure.ad3" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.packetsSent" for="field_packetsSent">Packets Sent</label>
+            <input type="number" class="form-control" name="packetsSent" id="field_packetsSent"
+                [(ngModel)]="lightManagementMeasure.packetsSent" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.packetsReceived" for="field_packetsReceived">Packets Received</label>
+            <input type="number" class="form-control" name="packetsReceived" id="field_packetsReceived"
+                [(ngModel)]="lightManagementMeasure.packetsReceived" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.packetsLost" for="field_packetsLost">Packets Lost</label>
+            <input type="number" class="form-control" name="packetsLost" id="field_packetsLost"
+                [(ngModel)]="lightManagementMeasure.packetsLost" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.motionStatus" for="field_motionStatus">Motion Status</label>
+            <input type="number" class="form-control" name="motionStatus" id="field_motionStatus"
+                [(ngModel)]="lightManagementMeasure.motionStatus" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.manualStatus" for="field_manualStatus">Manual Status</label>
+            <input type="number" class="form-control" name="manualStatus" id="field_manualStatus"
+                [(ngModel)]="lightManagementMeasure.manualStatus" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.statusBitmask" for="field_statusBitmask">Status Bitmask</label>
+            <input type="number" class="form-control" name="statusBitmask" id="field_statusBitmask"
+                [(ngModel)]="lightManagementMeasure.statusBitmask" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.parametersCRC" for="field_parametersCRC">Parameters CRC</label>
+            <input type="number" class="form-control" name="parametersCRC" id="field_parametersCRC"
+                [(ngModel)]="lightManagementMeasure.parametersCRC" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.profileCRC" for="field_profileCRC">Profile CRC</label>
+            <input type="number" class="form-control" name="profileCRC" id="field_profileCRC"
+                [(ngModel)]="lightManagementMeasure.profileCRC" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.measureTimestamp" for="field_measureTimestamp">Measure Timestamp</label>
+            <div class="d-flex">
+                <input id="field_measureTimestamp" type="datetime-local" class="form-control" name="measureTimestamp" [(ngModel)]="lightManagementMeasure.measureTimestamp"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.createdTimestamp" for="field_createdTimestamp">Created Timestamp</label>
+            <div class="d-flex">
+                <input id="field_createdTimestamp" type="datetime-local" class="form-control" name="createdTimestamp" [(ngModel)]="lightManagementMeasure.createdTimestamp"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.sourceModule" for="field_sourceModule">Source Module</label>
+            <input type="text" class="form-control" name="sourceModule" id="field_sourceModule"
+                [(ngModel)]="lightManagementMeasure.sourceModule" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.nodeFwVersion" for="field_nodeFwVersion">Node Fw Version</label>
+            <input type="text" class="form-control" name="nodeFwVersion" id="field_nodeFwVersion"
+                [(ngModel)]="lightManagementMeasure.nodeFwVersion" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.lampLife" for="field_lampLife">Lamp Life</label>
+            <input type="number" class="form-control" name="lampLife" id="field_lampLife"
+                [(ngModel)]="lightManagementMeasure.lampLife" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.nodeLife" for="field_nodeLife">Node Life</label>
+            <input type="number" class="form-control" name="nodeLife" id="field_nodeLife"
+                [(ngModel)]="lightManagementMeasure.nodeLife" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.activePowerCounter" for="field_activePowerCounter">Active Power Counter</label>
+            <input type="number" class="form-control" name="activePowerCounter" id="field_activePowerCounter"
+                [(ngModel)]="lightManagementMeasure.activePowerCounter" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.installationId" for="field_installationId">Installation Id</label>
+            <input type="number" class="form-control" name="installationId" id="field_installationId"
+                [(ngModel)]="lightManagementMeasure.installationId" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementMeasure.lightManagementModule" for="field_lightManagementModule">Light Management Module</label>
+            <select class="form-control" id="field_lightManagementModule" name="lightManagementModule" [(ngModel)]="lightManagementMeasure.lightManagementModuleId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="lightManagementModuleOption.id" *ngFor="let lightManagementModuleOption of lightmanagementmodules; trackBy: trackLightManagementModuleById">{{lightManagementModuleOption.name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

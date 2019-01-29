@@ -8,6 +8,7 @@ import { MENU_ITEMS } from './pages-menu';
     <ngx-sample-layout>
       <nb-menu [items]="menu"></nb-menu>
       <router-outlet></router-outlet>
+      <router-outlet name="popup"></router-outlet>
     </ngx-sample-layout>
   `,
 })

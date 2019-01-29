@@ -1,0 +1,125 @@
+<div>
+    <h2>
+        <span jhiTranslate="wilampCloudApp.gateway.home.title">Gateways</span>
+        <button class="btn btn-primary float-right jh-create-entity create-gateway-wilamp" [routerLink]="['/', { outlets: { popup: ['gateway-wilamp-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="wilampCloudApp.gateway.home.createLabel">
+            Create new Gateway
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'wilampCloudApp.gateway.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="gateways">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span jhiTranslate="wilampCloudApp.gateway.name">Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="description"><span jhiTranslate="wilampCloudApp.gateway.description">Description</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="gatewayUUID"><span jhiTranslate="wilampCloudApp.gateway.gatewayUUID">Gateway UUID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="gatewayHostname"><span jhiTranslate="wilampCloudApp.gateway.gatewayHostname">Gateway Hostname</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="gatewayType"><span jhiTranslate="wilampCloudApp.gateway.gatewayType">Gateway Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="notes"><span jhiTranslate="wilampCloudApp.gateway.notes">Notes</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="creationDate"><span jhiTranslate="wilampCloudApp.gateway.creationDate">Creation Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="serialNumber"><span jhiTranslate="wilampCloudApp.gateway.serialNumber">Serial Number</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="deviceName"><span jhiTranslate="wilampCloudApp.gateway.deviceName">Device Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="hardwareModel"><span jhiTranslate="wilampCloudApp.gateway.hardwareModel">Hardware Model</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="macAddress"><span jhiTranslate="wilampCloudApp.gateway.macAddress">Mac Address</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="coordinatorMac"><span jhiTranslate="wilampCloudApp.gateway.coordinatorMac">Coordinator Mac</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="fileNameEncryptionInfo"><span jhiTranslate="wilampCloudApp.gateway.fileNameEncryptionInfo">File Name Encryption Info</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="hardwareInformations"><span jhiTranslate="wilampCloudApp.gateway.hardwareInformations">Hardware Informations</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="readyToReceiveData"><span jhiTranslate="wilampCloudApp.gateway.readyToReceiveData">Ready To Receive Data</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="installationName"><span jhiTranslate="wilampCloudApp.gateway.installation">Installation</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="shippingShippingDate"><span jhiTranslate="wilampCloudApp.gateway.shipping">Shipping</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="orderId"><span jhiTranslate="wilampCloudApp.gateway.order">Order</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let gateway of gateways ;trackBy: trackId">
+                <td><a [routerLink]="['../gateway-wilamp', gateway.id ]">{{gateway.id}}</a></td>
+                <td>{{gateway.name}}</td>
+                <td>{{gateway.description}}</td>
+                <td>{{gateway.gatewayUUID}}</td>
+                <td>{{gateway.gatewayHostname}}</td>
+                <td>{{gateway.gatewayType}}</td>
+                <td>{{gateway.notes}}</td>
+                <td>{{gateway.creationDate | date:'medium'}}</td>
+                <td>{{gateway.serialNumber}}</td>
+                <td>{{gateway.deviceName}}</td>
+                <td>{{gateway.hardwareModel}}</td>
+                <td>{{gateway.macAddress}}</td>
+                <td>{{gateway.coordinatorMac}}</td>
+                <td>{{gateway.fileNameEncryptionInfo}}</td>
+                <td>{{gateway.hardwareInformations}}</td>
+                <td>{{gateway.readyToReceiveData}}</td>
+                <td>
+                    <div *ngIf="gateway.installationId">
+                        <a [routerLink]="['../installation-wilamp', gateway.installationId  ]" >{{gateway.installationName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="gateway.shippingId">
+                        <a [routerLink]="['../shipping-wilamp', gateway.shippingId  ]" >{{gateway.shippingShippingDate}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="gateway.orderId">
+                        <a [routerLink]="['../order-wilamp', gateway.orderId  ]" >{{gateway.orderId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../gateway-wilamp', gateway.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'gateway-wilamp/'+ gateway.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'gateway-wilamp/'+ gateway.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="gateways && gateways.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

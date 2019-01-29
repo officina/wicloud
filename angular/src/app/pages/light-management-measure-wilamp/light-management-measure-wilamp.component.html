@@ -1,0 +1,155 @@
+<div>
+    <h2>
+        <span jhiTranslate="wilampCloudApp.lightManagementMeasure.home.title">Light Management Measures</span>
+        <button class="btn btn-primary float-right jh-create-entity create-light-management-measure-wilamp" [routerLink]="['/', { outlets: { popup: ['light-management-measure-wilamp-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="wilampCloudApp.lightManagementMeasure.home.createLabel">
+            Create new Light Management Measure
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'wilampCloudApp.lightManagementMeasure.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="lightManagementMeasures">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="mac"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.mac">Mac</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="processingStatus"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.processingStatus">Processing Status</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nodeHMS"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.nodeHMS">Node HMS</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dayOfYear"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.dayOfYear">Day Of Year</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="measureType"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.measureType">Measure Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="parentNode"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.parentNode">Parent Node</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lqi"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.lqi">Lqi</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="vac"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.vac">Vac</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="vcc"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.vcc">Vcc</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="iac"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.iac">Iac</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="activePower"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.activePower">Active Power</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="reactivePower"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.reactivePower">Reactive Power</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="activeEnergyCounter"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.activeEnergyCounter">Active Energy Counter</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="reactiveEnergyCounter"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.reactiveEnergyCounter">Reactive Energy Counter</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lightLevel"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.lightLevel">Light Level</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pw0"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.pw0">Pw 0</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pw1"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.pw1">Pw 1</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pw2"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.pw2">Pw 2</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pw3"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.pw3">Pw 3</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nodeTemp"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.nodeTemp">Node Temp</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ad0"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.ad0">Ad 0</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ad1"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.ad1">Ad 1</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ad2"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.ad2">Ad 2</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ad3"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.ad3">Ad 3</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="packetsSent"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.packetsSent">Packets Sent</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="packetsReceived"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.packetsReceived">Packets Received</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="packetsLost"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.packetsLost">Packets Lost</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="motionStatus"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.motionStatus">Motion Status</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="manualStatus"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.manualStatus">Manual Status</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="statusBitmask"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.statusBitmask">Status Bitmask</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="parametersCRC"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.parametersCRC">Parameters CRC</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="profileCRC"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.profileCRC">Profile CRC</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="measureTimestamp"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.measureTimestamp">Measure Timestamp</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="createdTimestamp"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.createdTimestamp">Created Timestamp</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="sourceModule"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.sourceModule">Source Module</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nodeFwVersion"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.nodeFwVersion">Node Fw Version</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lampLife"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.lampLife">Lamp Life</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nodeLife"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.nodeLife">Node Life</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="activePowerCounter"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.activePowerCounter">Active Power Counter</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="installationId"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.installationId">Installation Id</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lightManagementModuleName"><span jhiTranslate="wilampCloudApp.lightManagementMeasure.lightManagementModule">Light Management Module</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let lightManagementMeasure of lightManagementMeasures ;trackBy: trackId">
+                <td><a [routerLink]="['../light-management-measure-wilamp', lightManagementMeasure.id ]">{{lightManagementMeasure.id}}</a></td>
+                <td>{{lightManagementMeasure.mac}}</td>
+                <td>{{lightManagementMeasure.processingStatus}}</td>
+                <td>{{lightManagementMeasure.nodeHMS}}</td>
+                <td>{{lightManagementMeasure.dayOfYear}}</td>
+                <td>{{lightManagementMeasure.measureType}}</td>
+                <td>{{lightManagementMeasure.parentNode}}</td>
+                <td>{{lightManagementMeasure.lqi}}</td>
+                <td>{{lightManagementMeasure.vac}}</td>
+                <td>{{lightManagementMeasure.vcc}}</td>
+                <td>{{lightManagementMeasure.iac}}</td>
+                <td>{{lightManagementMeasure.activePower}}</td>
+                <td>{{lightManagementMeasure.reactivePower}}</td>
+                <td>{{lightManagementMeasure.activeEnergyCounter}}</td>
+                <td>{{lightManagementMeasure.reactiveEnergyCounter}}</td>
+                <td>{{lightManagementMeasure.lightLevel}}</td>
+                <td>{{lightManagementMeasure.pw0}}</td>
+                <td>{{lightManagementMeasure.pw1}}</td>
+                <td>{{lightManagementMeasure.pw2}}</td>
+                <td>{{lightManagementMeasure.pw3}}</td>
+                <td>{{lightManagementMeasure.nodeTemp}}</td>
+                <td>{{lightManagementMeasure.ad0}}</td>
+                <td>{{lightManagementMeasure.ad1}}</td>
+                <td>{{lightManagementMeasure.ad2}}</td>
+                <td>{{lightManagementMeasure.ad3}}</td>
+                <td>{{lightManagementMeasure.packetsSent}}</td>
+                <td>{{lightManagementMeasure.packetsReceived}}</td>
+                <td>{{lightManagementMeasure.packetsLost}}</td>
+                <td>{{lightManagementMeasure.motionStatus}}</td>
+                <td>{{lightManagementMeasure.manualStatus}}</td>
+                <td>{{lightManagementMeasure.statusBitmask}}</td>
+                <td>{{lightManagementMeasure.parametersCRC}}</td>
+                <td>{{lightManagementMeasure.profileCRC}}</td>
+                <td>{{lightManagementMeasure.measureTimestamp | date:'medium'}}</td>
+                <td>{{lightManagementMeasure.createdTimestamp | date:'medium'}}</td>
+                <td>{{lightManagementMeasure.sourceModule}}</td>
+                <td>{{lightManagementMeasure.nodeFwVersion}}</td>
+                <td>{{lightManagementMeasure.lampLife}}</td>
+                <td>{{lightManagementMeasure.nodeLife}}</td>
+                <td>{{lightManagementMeasure.activePowerCounter}}</td>
+                <td>{{lightManagementMeasure.installationId}}</td>
+                <td>
+                    <div *ngIf="lightManagementMeasure.lightManagementModuleId">
+                        <a [routerLink]="['../light-management-module-wilamp', lightManagementMeasure.lightManagementModuleId  ]" >{{lightManagementMeasure.lightManagementModuleName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../light-management-measure-wilamp', lightManagementMeasure.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'light-management-measure-wilamp/'+ lightManagementMeasure.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'light-management-measure-wilamp/'+ lightManagementMeasure.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

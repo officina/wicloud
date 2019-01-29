@@ -67,6 +67,7 @@ setup(
         'djangorestframework',
         'django-cors-headers',
         'djangorestframework-jwt',
+        'djangorestframework-link-header-pagination',
         'django-rest-auth',
         'docutils',
         'dj-cmd',

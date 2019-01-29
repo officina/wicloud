@@ -16,7 +16,7 @@ export class InstallationsComponent implements OnInit {
   ngOnInit() {
     this.installationService.getInstallationsForUser().subscribe(installations => {
 
-        this.installations = <Installation[]> installations.results;
+        this.installations = <Installation[]> installations;
     })
   }
 }

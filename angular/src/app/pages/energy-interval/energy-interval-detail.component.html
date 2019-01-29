@@ -1,0 +1,118 @@
+
+<div *ngIf="energyInterval">
+    <h2><span jhiTranslate="wilampCloudApp.energyInterval.detail.title">Energy Interval</span> {{energyInterval.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="wilampCloudApp.energyInterval.mac">Mac</span></dt>
+        <dd>
+            <span>{{energyInterval.mac}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyInterval.lightManagementModuleId">Light Management Module Id</span></dt>
+        <dd>
+            <span>{{energyInterval.lightManagementModuleId}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyInterval.installationId">Installation Id</span></dt>
+        <dd>
+            <span>{{energyInterval.installationId}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyInterval.startInterval">Start Interval</span></dt>
+        <dd>
+            <span>{{energyInterval.startInterval | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyInterval.endInterval">End Interval</span></dt>
+        <dd>
+            <span>{{energyInterval.endInterval | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyInterval.startIntervalMeasureTimestamp">Start Interval Measure Timestamp</span></dt>
+        <dd>
+            <span>{{energyInterval.startIntervalMeasureTimestamp | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyInterval.endIntervalMeasureTimestamp">End Interval Measure Timestamp</span></dt>
+        <dd>
+            <span>{{energyInterval.endIntervalMeasureTimestamp | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyInterval.activePower">Active Power</span></dt>
+        <dd>
+            <span>{{energyInterval.activePower}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyInterval.reactivePower">Reactive Power</span></dt>
+        <dd>
+            <span>{{energyInterval.reactivePower}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyInterval.startIntervalActiveEnergyCounterValue">Start Interval Active Energy Counter Value</span></dt>
+        <dd>
+            <span>{{energyInterval.startIntervalActiveEnergyCounterValue}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyInterval.endIntervalActiveEnergyCounterValue">End Interval Active Energy Counter Value</span></dt>
+        <dd>
+            <span>{{energyInterval.endIntervalActiveEnergyCounterValue}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyInterval.activeEnergy">Active Energy</span></dt>
+        <dd>
+            <span>{{energyInterval.activeEnergy}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyInterval.startIntervalReactiveEnergyCounterValue">Start Interval Reactive Energy Counter Value</span></dt>
+        <dd>
+            <span>{{energyInterval.startIntervalReactiveEnergyCounterValue}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyInterval.endIntervalReactiveEnergyCounterValue">End Interval Reactive Energy Counter Value</span></dt>
+        <dd>
+            <span>{{energyInterval.endIntervalReactiveEnergyCounterValue}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyInterval.reactiveEnergy">Reactive Energy</span></dt>
+        <dd>
+            <span>{{energyInterval.reactiveEnergy}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyInterval.activeEnergyMty0">Active Energy Mty 0</span></dt>
+        <dd>
+            <span>{{energyInterval.activeEnergyMty0}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyInterval.activeEnergyMty1">Active Energy Mty 1</span></dt>
+        <dd>
+            <span>{{energyInterval.activeEnergyMty1}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyInterval.activeEnergyMty2">Active Energy Mty 2</span></dt>
+        <dd>
+            <span>{{energyInterval.activeEnergyMty2}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyInterval.activeEnergyMty3">Active Energy Mty 3</span></dt>
+        <dd>
+            <span>{{energyInterval.activeEnergyMty3}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyInterval.activeEnergyWithoutDim">Active Energy Without Dim</span></dt>
+        <dd>
+            <span>{{energyInterval.activeEnergyWithoutDim}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyInterval.activeEnergyWithoutControl">Active Energy Without Control</span></dt>
+        <dd>
+            <span>{{energyInterval.activeEnergyWithoutControl}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyInterval.activeEnergyOldLamps">Active Energy Old Lamps</span></dt>
+        <dd>
+            <span>{{energyInterval.activeEnergyOldLamps}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyInterval.burningTime">Burning Time</span></dt>
+        <dd>
+            <span>{{energyInterval.burningTime}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyInterval.nodeLife">Node Life</span></dt>
+        <dd>
+            <span>{{energyInterval.nodeLife}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'energy-interval/'+ energyInterval.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

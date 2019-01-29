@@ -222,15 +222,18 @@ LOGGING = {
 
 # django rest framework
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'web.api.pagination.ThuxPageNumberPagination',
-    'PAGE_SIZE': 10,
+    #'DEFAULT_PAGINATION_CLASS': 'web.api.pagination.ThuxPageNumberPagination',
+    #'DEFAULT_PAGINATION_CLASS': 'drf_link_header_pagination.LinkHeaderPagination',
+    'DEFAULT_PAGINATION_CLASS': 'web.api.pagination.HeaderPagination',
+
+    'PAGE_SIZE': 100,
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
-    'PAGE_SIZE_QUERY_PARAM': 'per_page',
+    'PAGE_SIZE_QUERY_PARAM': 'size',
     'EXCEPTION_HANDLER': 'web.drf.exceptions.wicloud_exception_handler'
 }
 CORS_ORIGIN_WHITELIST = [
