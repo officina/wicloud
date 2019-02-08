@@ -24,6 +24,7 @@ import { WilampCloudOrderWilampModule } from './order-wilamp/order-wilamp.module
 import { WilampCloudShippingWilampModule } from './shipping-wilamp/shipping-wilamp.module';
 import { WilampCloudTwilightManagementModuleWilampModule } from './twilight-management-module-wilamp/twilight-management-module-wilamp.module';
 import { WilampCloudEnergyIntervalModule } from './energy-interval/energy-interval.module';
+import {WiCloudHomeModule} from './home';
 
 
 const PAGES_COMPONENTS = [
@@ -33,6 +34,7 @@ const PAGES_COMPONENTS = [
 @NgModule({
   imports: [
     PagesRoutingModule,
+    WiCloudHomeModule,
     ThemeModule,
     DashboardModule,
     InstallationsModule,

@@ -1,0 +1,42 @@
+
+/* ==========================================================================
+Main page styles
+========================================================================== */
+
+.hipster {
+    display: inline-block;
+    width: 347px;
+    height: 497px;
+    background-size: contain;
+}
+
+/* wait autoprefixer update to allow simple generation of high pixel density media query */
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (   min--moz-device-pixel-ratio: 2),
+only screen and (     -o-min-device-pixel-ratio: 2/1),
+only screen and (        min-device-pixel-ratio: 2),
+only screen and (                min-resolution: 192dpi),
+only screen and (                min-resolution: 2dppx) {
+    .hipster {
+        background-size: contain;
+    }
+}
+
+
+.home_bg {
+    height: 600px;
+    background-size: cover;
+    background-position-y: 100%;
+}
+
+.green_stripe   {
+    background-color: #9DC74F;
+    width: fit-content;
+    padding-right: 80px;
+    font-size: 2em;
+    font-family: 'Open Sans','Gugi', 'Montserrat', sans-serif;
+    padding-left: 55px;
+    color: white;
+    font-weight: bolder;
+}

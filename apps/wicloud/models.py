@@ -63,21 +63,25 @@ class Energy_interval(CleanModel, UserModel, DateModel, StatusModel, OrderedMode
     endIntervalMeasureTimestamp = models.DateTimeField(blank=True, null=True)
     activePower = models.FloatField(blank=True, null=True)
     reactivePower = models.FloatField(blank=True, null=True)
-    startIntervalActiveEnergyCounterValue = models.FloatField(blank=True, null=True)
-    endIntervalActiveEnergyCounterValue = models.FloatField(blank=True, null=True)
+    startIntervalActiveEnergyCounterValue = models.FloatField(blank=True, null=True) #da modificare
+    endIntervalActiveEnergyCounterValue = models.FloatField(blank=True, null=True) #da modificare valore assoluto dal reset del nodo
     activeEnergy = models.FloatField(blank=True, null=True)
-    startIntervalReactiveEnergyCounterValue = models.FloatField(blank=True, null=True)
-    endIntervalReactiveEnergyCounterValue = models.FloatField(blank=True, null=True)
+    startIntervalReactiveEnergyCounterValue = models.FloatField(blank=True, null=True) #da modificare
+    endIntervalReactiveEnergyCounterValue = models.FloatField(blank=True, null=True) #da modificare valore assoluto dal reset del nodo
     reactiveEnergy = models.FloatField(blank=True, null=True)
-    activeEnergyMty0 = models.FloatField(blank=True, null=True)
-    activeEnergyMty1 = models.FloatField(blank=True, null=True)
-    activeEnergyMty2 = models.FloatField(blank=True, null=True)
-    activeEnergyMty3 = models.FloatField(blank=True, null=True)
-    activeEnergyWithoutDim = models.FloatField(blank=True, null=True)
-    activeEnergyWithoutControl = models.FloatField(blank=True, null=True)
-    activeEnergyOldLamps = models.FloatField(blank=True, null=True)
-    burningTime = models.FloatField(blank=True, null=True)
-    nodeLife = models.FloatField(blank=True, null=True)
+    activeEnergyMty0 = models.FloatField(blank=True, null=True) #da eliminare
+    activeEnergyMty1 = models.FloatField(blank=True, null=True) #da eliminare
+    activeEnergyMty2 = models.FloatField(blank=True, null=True) #da eliminare
+    activeEnergyMty3 = models.FloatField(blank=True, null=True) #da eliminare
+    activeEnergyWithoutDim = models.FloatField(blank=True, null=True) #Lo ottengo dal burning time moltiplicato la potenza nominale della lampada.
+    activeEnergyWithoutControl = models.FloatField(blank=True, null=True) #Se ho burning time minore maggiore di 0, lo ottengo moltiplicando la durata dell'intervallo per la potenza nominale della lampada.
+    activeEnergyOldLamps = models.FloatField(blank=True, null=True) #come con withouth control ma moltiplicando per la potenza delle vecchie lampade.
+    burningTime = models.FloatField(blank=True, null=True) #valore nell'intervallo
+    nodeLife = models.FloatField(blank=True, null=True) #valore nell'intervallo
+    #Aggiungi campo burningTimeCounter #valore assoluto dal reset del nodo (installazione)
+    #Aggiungi campo nodeLifeCounter #valore assoluto dal reset del nodo (installazione)
+    #Aggiungi campo DURATION
+    #Dalle misure AVG estrarre ORA UTC
 
     class Meta:
         verbose_name = _('energy_interval')

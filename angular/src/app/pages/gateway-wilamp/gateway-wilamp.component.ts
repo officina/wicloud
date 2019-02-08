@@ -53,7 +53,7 @@ currentAccount: any;
     loadAll() {
         if (this.currentSearch) {
             this.gatewayService.search({
-                page: this.page - 1,
+                page: this.page,
                 query: this.currentSearch,
                 size: this.itemsPerPage,
                 sort: this.sort()}).subscribe(
@@ -63,7 +63,7 @@ currentAccount: any;
             return;
         }
         this.gatewayService.query({
-            page: this.page - 1,
+            page: this.page,
             size: this.itemsPerPage,
             sort: this.sort()}).subscribe(
                 (res: HttpResponse<GatewayWilamp[]>) => this.onSuccess(res.body, res.headers),
