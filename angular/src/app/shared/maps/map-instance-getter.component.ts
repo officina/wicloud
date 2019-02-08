@@ -32,13 +32,13 @@ export class MapInstanceGetterComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
-        console.log('Map instance: ' + this.mapId);
+        console.warn('Map instance: ' + this.mapId);
     }
 
     ngAfterViewInit() {
-        console.log('afer');
+        console.warn('afer');
         this.mapsAPIWrapper.getNativeMap().then((m) => {
-            console.log('native map', m);
+            console.warn('native map', m);
             this.mapInstance = m;
             this.googleMapsLoaded = true;
             this.eventManager.broadcast({
@@ -49,7 +49,7 @@ export class MapInstanceGetterComponent implements OnInit, AfterViewInit {
                 }
             });
         }, (err) => {
-            console.log('error', err);
+            console.warn('error', err);
         });
 
         this.mapsAPILoader.load().then(() => {

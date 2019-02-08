@@ -9,7 +9,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import { CoreModule } from './@core/core.module';
-import { NbAuthJWTToken } from '@nebular/auth';
 import {NB_AUTH_TOKEN_INTERCEPTOR_FILTER} from '@nebular/auth';
 
 import { AppComponent } from './app.component';

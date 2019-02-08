@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 import * as $ from 'jquery';
-
-declare let document: any;
-
 interface Script {
     src: string;
     loaded: boolean;

@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
     modalRef: NgbModalRef;
 
     constructor(
-        private eventManager: JhiEventManager
     ) {
     }
 

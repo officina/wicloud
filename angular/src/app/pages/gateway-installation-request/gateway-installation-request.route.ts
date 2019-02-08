@@ -7,7 +7,6 @@ import { GatewayInstallationRequestComponent } from './gateway-installation-requ
 import { GatewayInstallationRequestDetailComponent } from './gateway-installation-request-detail.component';
 import { GatewayInstallationRequestPopupComponent } from './gateway-installation-request-dialog.component';
 import { GatewayInstallationRequestDeletePopupComponent } from './gateway-installation-request-delete-dialog.component';
-import {GatewayWilampResolvePagingParams} from '../gateway-wilamp/gateway-wilamp.route';
 import {PagesComponent} from '../pages.component';
 
 @Injectable()

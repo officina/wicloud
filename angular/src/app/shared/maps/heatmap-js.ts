@@ -18,6 +18,24 @@ declare var window: {
     }
 };
 
+export const CSS_TRANSFORM = (() => {
+    const div = document.createElement('div');
+    const props = [
+        'transform',
+        'WebkitTransform',
+        'MozTransform',
+        'OTransform',
+        'msTransform'
+    ];
+    for (let i = 0; i < props.length; i++) {
+        const prop = props[i];
+        if (div.style[prop] !== undefined) {
+            return prop;
+        }
+    }
+    return props[0];
+})();
+
 export namespace NG2Heatmap {
     export interface HTMLElementEx extends HTMLElement {
         _leaflet_pos?: L.Point;
@@ -35,8 +53,6 @@ export namespace NG2Heatmap {
     }
 
     export interface HeatOverlay {
-
-        constructor(options?: {}): any;
 
         addTo(map: L.Map | L.LayerGroup): this;
 
@@ -207,21 +223,4 @@ export namespace NG2Heatmap {
         }
     }
 
-    export const CSS_TRANSFORM = (() => {
-        const div = document.createElement('div');
-        const props = [
-            'transform',
-            'WebkitTransform',
-            'MozTransform',
-            'OTransform',
-            'msTransform'
-        ];
-        for (let i = 0; i < props.length; i++) {
-            const prop = props[i];
-            if (div.style[prop] !== undefined) {
-                return prop;
-            }
-        }
-        return props[0];
-    })();
 }

@@ -25,13 +25,9 @@ import {GoogleMapsAPIWrapper, MapsAPILoader} from '@agm/core';
 import {GatewayWilamp} from '../gateway-wilamp/gateway-wilamp.model';
 import {GatewayWilampService} from '../gateway-wilamp/gateway-wilamp.service';
 
-declare var Dashboard: any;
 declare var Chart: any;
 declare var mUtil: any;
 declare var Chartist: any;
-declare var Morris: any;
-declare var moment: any;
-declare var mApp: any;
 declare var google: any;
 
 @Component({
@@ -40,7 +36,6 @@ declare var google: any;
     styleUrls: ['installation-wilamp-detail.component.css']
 })
 export class InstallationWilampDetailComponent implements OnInit, OnDestroy, AfterViewInit {
-    private chart_weeklyAvgPower: AmChart;
     Dashboard: any;
     Math: any;
     installation: InstallationWilamp;
