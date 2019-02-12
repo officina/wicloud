@@ -38,6 +38,31 @@ urlpatterns = [
         name='address_disable'
     ),
     url(
+        r'^connected-device/$',
+        views.Connected_deviceListCreateAPIView.as_view(),
+        name='connected_device_list'
+    ),
+    url(
+        r'^connected-device/(?P<id>[-\w]+)/$',
+        views.Connected_deviceRetrieveUpdateDestroyAPIView.as_view(),
+        name='connected_device_detail'
+    ),
+    url(
+        r'^connected-device/set-status/(?P<pk>\w+)/$',
+        views.Connected_deviceSetStatusView.as_view(),
+        name='connected_device_set_status'
+    ),
+    url(
+        r'^connected-device/enable/(?P<pk>\w+)/$',
+        views.Connected_deviceEnableView.as_view(),
+        name='connected_device_enable'
+    ),
+    url(
+        r'^connected-device/disable/(?P<pk>\w+)/$',
+        views.Connected_deviceDisableView.as_view(),
+        name='connected_device_disable'
+    ),
+    url(
         r'^customer/$',
         views.CustomerListCreateAPIView.as_view(),
         name='customer_list'
@@ -321,6 +346,31 @@ urlpatterns = [
         r'^installation/disable/(?P<pk>\w+)/$',
         views.InstallationDisableView.as_view(),
         name='installation_disable'
+    ),
+    url(
+        r'^light-fixture/$',
+        views.Light_fixtureListCreateAPIView.as_view(),
+        name='light_fixture_list'
+    ),
+    url(
+        r'^light-fixture/(?P<id>[-\w]+)/$',
+        views.Light_fixtureRetrieveUpdateDestroyAPIView.as_view(),
+        name='light_fixture_detail'
+    ),
+    url(
+        r'^light-fixture/set-status/(?P<pk>\w+)/$',
+        views.Light_fixtureSetStatusView.as_view(),
+        name='light_fixture_set_status'
+    ),
+    url(
+        r'^light-fixture/enable/(?P<pk>\w+)/$',
+        views.Light_fixtureEnableView.as_view(),
+        name='light_fixture_enable'
+    ),
+    url(
+        r'^light-fixture/disable/(?P<pk>\w+)/$',
+        views.Light_fixtureDisableView.as_view(),
+        name='light_fixture_disable'
     ),
     url(
         r'^light-management-measure/$',

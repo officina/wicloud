@@ -29,6 +29,12 @@ def api_root(request, format=None):
     url_dict['address_detail'] = reverse(
         'api:address_detail', request=request, format=format, kwargs={'id': 1}
     )
+    url_dict['connected_device_list'] = reverse(
+        'api:connected_device_list', request=request, format=format
+    )
+    url_dict['connected_device_detail'] = reverse(
+        'api:connected_device_detail', request=request, format=format, kwargs={'id': 1}
+    )
     url_dict['customer_list'] = reverse(
         'api:customer_list', request=request, format=format
     )
@@ -94,6 +100,12 @@ def api_root(request, format=None):
     )
     url_dict['installation_detail'] = reverse(
         'api:installation_detail', request=request, format=format, kwargs={'id': 1}
+    )
+    url_dict['light_fixture_list'] = reverse(
+        'api:light_fixture_list', request=request, format=format
+    )
+    url_dict['light_fixture_detail'] = reverse(
+        'api:light_fixture_detail', request=request, format=format, kwargs={'id': 1}
     )
     url_dict['light_management_measure_list'] = reverse(
         'api:light_management_measure_list', request=request, format=format
@@ -207,6 +219,47 @@ class AddressDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdateAPIVi
     serializer_class = serializers.AddressStatusSerializer
     new_status = 0
 
+class Connected_deviceListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
+    """
+    Get all  energy_intervals
+    """
+    queryset = models.Connected_device.objects.all()
+    serializer_class = serializers.Connected_deviceListSerializer
+
+
+class Connected_deviceRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+    """
+    Get a single energy_interval
+    """
+    queryset = models.Connected_device.objects.all()
+    serializer_class = serializers.Connected_deviceRetrieveSerializer
+    lookup_field = 'id'
+
+
+class Connected_deviceSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
+    """
+    Set Status for a single energy_interval
+    """
+    queryset = models.Connected_device.objects.all()
+    serializer_class = serializers.Connected_deviceSetStatusSerializer
+    lookup_field = 'id'
+
+class Connected_deviceEnableView(views.ThuxStatusViewMixin, generics.RetrieveUpdateAPIView):
+    """
+    Enable a single energy_interval
+    """
+    queryset = models.Connected_device.objects.filter(status=0)
+    serializer_class = serializers.Connected_deviceStatusSerializer
+    new_status = 1
+
+
+class Connected_deviceDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdateAPIView):
+    """
+    Enable a single energy_interval
+    """
+    queryset = models.Connected_device.objects.filter(status=1)
+    serializer_class = serializers.Connected_deviceStatusSerializer
+    new_status = 0
 
 class CustomerListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """
@@ -717,6 +770,47 @@ class InstallationDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdate
     serializer_class = serializers.InstallationStatusSerializer
     new_status = 0
 
+class Light_fixtureListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
+    """
+    Get all  light_fixtures
+    """
+    queryset = models.Light_fixture.objects.all()
+    serializer_class = serializers.Light_fixtureListSerializer
+    lookup_field = 'id'
+
+class Light_fixtureRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+    """
+    Get a single light_fixture
+    """
+    queryset = models.Light_fixture.objects.all()
+    serializer_class = serializers.Light_fixtureRetrieveSerializer
+    lookup_field = 'id'
+
+
+class Light_fixtureSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
+    """
+    Set Status for a single light_fixture
+    """
+    queryset = models.Light_fixture.objects.all()
+    serializer_class = serializers.Light_fixtureSetStatusSerializer
+
+
+class Light_fixtureEnableView(views.ThuxStatusViewMixin, generics.RetrieveUpdateAPIView):
+    """
+    Enable a single light_fixture
+    """
+    queryset = models.Light_fixture.objects.filter(status=0)
+    serializer_class = serializers.Light_fixtureStatusSerializer
+    new_status = 1
+
+
+class Light_fixtureDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdateAPIView):
+    """
+    Enable a single light_fixture
+    """
+    queryset = models.Light_fixture.objects.filter(status=1)
+    serializer_class = serializers.Light_fixtureStatusSerializer
+    new_status = 0
 
 class Light_management_measureListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     """

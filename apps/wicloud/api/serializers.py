@@ -56,6 +56,52 @@ class AddressStatusSerializer(serializers.ModelSerializer):
         return AddressRetrieveSerializer(instance).data
 
 
+class Connected_deviceListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Connected_device
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
+
+
+class Connected_deviceRetrieveSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Connected_device
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
+
+
+class Connected_deviceCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Connected_device
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
+
+
+class Connected_devicePartialUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Connected_device
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
+
+
+class Connected_deviceSetStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Connected_device
+        fields = ('status',)
+
+    def update(self, instance, validated_data):
+        instance.status = validated_data['status']
+        instance.save()
+        return instance
+
+    def to_representation(self, instance):
+        return Connected_deviceRetrieveSerializer(instance).data
+
+
+class Connected_deviceStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Connected_device
+        fields = ()
+
+    def to_representation(self, instance):
+        return Connected_deviceRetrieveSerializer(instance).data
+
 class CustomerListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Customer
@@ -586,6 +632,51 @@ class InstallationStatusSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         return InstallationRetrieveSerializer(instance).data
 
+class Light_fixtureListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Light_fixture
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
+
+
+class Light_fixtureRetrieveSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Light_fixture
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
+
+
+class Light_fixtureCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Light_fixture
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
+
+
+class Light_fixturePartialUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Light_fixture
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
+
+
+class Light_fixtureSetStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Light_fixture
+        fields = ('status',)
+
+    def update(self, instance, validated_data):
+        instance.status = validated_data['status']
+        instance.save()
+        return instance
+
+    def to_representation(self, instance):
+        return Light_fixtureRetrieveSerializer(instance).data
+
+
+class Light_fixtureStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Light_fixture
+        fields = ()
+
+    def to_representation(self, instance):
+        return Light_fixtureRetrieveSerializer(instance).data
 
 class Light_management_measureListSerializer(serializers.ModelSerializer):
     class Meta:

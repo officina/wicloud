@@ -39,6 +39,32 @@ class AddressAdmin(UserAdminMixin, import_export_admin.ImportExportModelAdmin):
 
 admin.site.register(models.Address, AddressAdmin)
 
+class Connected_deviceAdmin(UserAdminMixin, import_export_admin.ImportExportModelAdmin):
+    resource_class = resources.Connected_deviceResource
+    formats = (
+        import_export_admin_formats.base_formats.XLS,
+        import_export_admin_formats.base_formats.CSV,
+        import_export_admin_formats.base_formats.JSON,
+    )
+
+    # fieldsets = (
+    #     # (_('general information'), {
+    #     #    'fields': ()
+    #     # }),
+    #     (_('visualization admin'), {
+    #         'classes': ('collapse',),
+    #         'fields': ('ordering', 'status')
+    #     }),
+    #     (_('logs admin'), {
+    #         'classes': ('collapse',),
+    #         'fields': ('creator', 'created_date', 'last_modifier', 'last_modified_date')
+    #     }),
+    # )
+    list_display = ('id', 'serialNumber', 'description')
+    readonly_fields = ('creator', 'created_date', 'last_modifier', 'last_modified_date')
+
+admin.site.register(models.Connected_device, Connected_deviceAdmin)
+
 
 class CustomerAdmin(UserAdminMixin, import_export_admin.ImportExportModelAdmin):
     resource_class = resources.CustomerResource
@@ -348,6 +374,19 @@ class InstallationAdmin(UserAdminMixin, import_export_admin.ImportExportModelAdm
 
 admin.site.register(models.Installation, InstallationAdmin)
 
+class Light_fixtureAdmin(UserAdminMixin, import_export_admin.ImportExportModelAdmin):
+    resource_class = resources.Light_fixtureResource
+    formats = (
+        import_export_admin_formats.base_formats.XLS,
+        import_export_admin_formats.base_formats.CSV,
+        import_export_admin_formats.base_formats.JSON,
+    )
+
+    list_display = ('get_status_display', 'ordering')
+    readonly_fields = ('creator', 'created_date', 'last_modifier', 'last_modified_date')
+
+
+admin.site.register(models.Light_fixture, Light_fixtureAdmin)
 
 class Light_management_measureAdmin(UserAdminMixin, import_export_admin.ImportExportModelAdmin):
     resource_class = resources.Light_management_measureResource

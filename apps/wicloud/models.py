@@ -32,6 +32,53 @@ class Address(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
     def __str__(self):
         return f'{self.description}'
 
+class Connected_device(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
+        name = models.CharField(max_length=255, blank=True, null=True)
+        serialNumber = models.CharField(max_length=255, blank=True, null=True)
+        logicId = models.CharField(max_length=255, blank=True, null=True)
+        userOwner = models.CharField(max_length=255, blank=True, null=True)
+        userType = models.CharField(max_length=255, blank=True, null=True)
+        latitude = models.DecimalField(null=True,
+                                       blank=True,
+                                       decimal_places=15,
+                                       max_digits=19,
+                                       default=0)
+        longitude = models.DecimalField(null=True,
+                                        blank=True,
+                                        decimal_places=15,
+                                        max_digits=19,
+                                        default=0)
+        altitude = models.FloatField(blank=True, null=True)
+        nodes = models.ForeignKey('Node', models.DO_NOTHING, blank=True, null=True)
+        gateway = models.ForeignKey('Gateway', models.DO_NOTHING, blank=True, null=True)
+
+        # shipping = models.ForeignKey('Shipping', models.DO_NOTHING, blank=True, null=True)
+        # order = models.ForeignKey(JhiOrder, models.DO_NOTHING, blank=True, null=True)
+
+        class Meta:
+            verbose_name = _('connected_device')
+            verbose_name_plural = _('connected_devices')
+            ordering = ('ordering',)
+            permissions = (
+                ("list_connected_device", "Can list connected device"),
+                ("detail_connected_device", "Can detail connected device"),
+                ("disable_connected_device", "Can disable connected device"),
+            )
+
+        def __str__(self):
+            return 'Connected device'
+
+        @property
+        def location_field_indexing(self):
+            """Location for indexing.
+
+            Used in Elasticsearch indexing/tests of `geo_distance` native filter.
+            """
+            return {
+                'lat': self.latitude,
+                'lon': self.longitude,
+            }
+
 
 class Customer(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
@@ -56,6 +103,8 @@ class Energy_interval(CleanModel, UserModel, DateModel, StatusModel, OrderedMode
 
     mac = models.CharField(max_length=255, null=True)
     lightManagementModule = models.ForeignKey('Light_management_module', models.DO_NOTHING, blank=True, null=True)
+    lightFixture = models.ForeignKey('Light_fixture', models.DO_NOTHING, blank=True, null=True)
+    node = models.ForeignKey('Node', models.DO_NOTHING, blank=True, null=True)
     installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True)
     startInterval = models.DateTimeField(blank=True, null=True)
     endInterval = models.DateTimeField(blank=True, null=True)
@@ -63,21 +112,20 @@ class Energy_interval(CleanModel, UserModel, DateModel, StatusModel, OrderedMode
     endIntervalMeasureTimestamp = models.DateTimeField(blank=True, null=True)
     activePower = models.FloatField(blank=True, null=True)
     reactivePower = models.FloatField(blank=True, null=True)
-    startIntervalActiveEnergyCounterValue = models.FloatField(blank=True, null=True)
-    endIntervalActiveEnergyCounterValue = models.FloatField(blank=True, null=True)
+    startIntervalActiveEnergyCounterValue = models.FloatField(blank=True, null=True) #da modificare
+    endIntervalActiveEnergyCounterValue = models.FloatField(blank=True, null=True) #da modificare valore assoluto dal reset del nodo
     activeEnergy = models.FloatField(blank=True, null=True)
-    startIntervalReactiveEnergyCounterValue = models.FloatField(blank=True, null=True)
-    endIntervalReactiveEnergyCounterValue = models.FloatField(blank=True, null=True)
+    startIntervalReactiveEnergyCounterValue = models.FloatField(blank=True, null=True) #da modificare
+    endIntervalReactiveEnergyCounterValue = models.FloatField(blank=True, null=True) #da modificare valore assoluto dal reset del nodo
     reactiveEnergy = models.FloatField(blank=True, null=True)
-    activeEnergyMty0 = models.FloatField(blank=True, null=True)
-    activeEnergyMty1 = models.FloatField(blank=True, null=True)
-    activeEnergyMty2 = models.FloatField(blank=True, null=True)
-    activeEnergyMty3 = models.FloatField(blank=True, null=True)
-    activeEnergyWithoutDim = models.FloatField(blank=True, null=True)
-    activeEnergyWithoutControl = models.FloatField(blank=True, null=True)
-    activeEnergyOldLamps = models.FloatField(blank=True, null=True)
-    burningTime = models.FloatField(blank=True, null=True)
-    nodeLife = models.FloatField(blank=True, null=True)
+    activeEnergyWithoutDim = models.FloatField(blank=True, null=True) #Lo ottengo dal burning time moltiplicato la potenza nominale della lampada.
+    activeEnergyWithoutControl = models.FloatField(blank=True, null=True) #Se ho burning time minore maggiore di 0, lo ottengo moltiplicando la durata dell'intervallo per la potenza nominale della lampada.
+    activeEnergyOldLamps = models.FloatField(blank=True, null=True) #come con withouth control ma moltiplicando per la potenza delle vecchie lampade.
+    burningTime = models.FloatField(blank=True, null=True) #valore nell'intervallo
+    nodeLife = models.FloatField(blank=True, null=True) #valore nell'intervallo
+    burningTimeCounter = models.FloatField(blank=True, null=True) #valore nell'intervallo
+    nodeLifeCounter = models.FloatField(blank=True, null=True) #valore nell'intervallo
+    duration = models.FloatField(blank=True, null=True) #valore nell'intervallo
 
     class Meta:
         verbose_name = _('energy_interval')
@@ -104,6 +152,10 @@ class Energy_meter_module(CleanModel, UserModel, DateModel, StatusModel, Ordered
     nominalPower = models.FloatField(blank=True, null=True)
     oldLampPower = models.FloatField(blank=True, null=True)
     powerLosses = models.FloatField(blank=True, null=True)
+    userLampType = models.CharField(max_length=255, blank=True, null=True)
+    userLampPower = models.CharField(max_length=255, blank=True, null=True)
+    userLampModel = models.CharField(max_length=255, blank=True, null=True) #Apparecchio: Stradale ottica chiusa
+    userLampManufacturer = models.CharField(max_length=255, blank=True, null=True) #Apparecchio: Gewiss
 
     class Meta:
         verbose_name = _('energy_meter_module')
@@ -275,6 +327,7 @@ class Ime_power_counter(CleanModel, UserModel, DateModel, StatusModel, OrderedMo
     name = models.CharField(max_length=255, blank=True, null=True)
 
     gatewayUUID = models.CharField(max_length=255, blank=True, null=True)
+    gatewayUUID = models.CharField(max_length=32, blank=True, null=True)
     installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True)
     counterId = models.CharField(unique=True, max_length=255, null=True)
     location = models.CharField(max_length=255, blank=True, null=True)
@@ -379,6 +432,58 @@ class Installation(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
             if assets_manager == user:
                 return True
         return False
+
+class Light_fixture(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
+    name = models.CharField(max_length=255, blank=True, null=True)
+    serialNumber = models.CharField(max_length=255, blank=True, null=True)
+    logicId = models.CharField(max_length=255, blank=True, null=True)
+    pLCode = models.CharField(max_length=255, blank=True, null=True)
+    userOwner = models.CharField(max_length=255, blank=True, null=True)
+    userType = models.CharField(max_length=255, blank=True, null=True)
+    userAddress = models.CharField(max_length=255, blank=True, null=True)
+    userDistributionBox = models.CharField(max_length=255, blank=True, null=True)
+    userLightpoleMaterial = models.CharField(max_length=255, blank=True, null=True)
+    userLightpoleShape = models.CharField(max_length=255, blank=True, null=True)
+    userLightpoleHeight = models.CharField(max_length=255, blank=True, null=True)
+    timeZone = models.IntegerField(blank=True, null=True)
+    timeZoneCode = models.CharField(max_length=255, blank=True, null=True)
+    latitude = models.DecimalField(null=True,
+                                   blank=True,
+                                   decimal_places=15,
+                                   max_digits=19,
+                                   default=0)
+    longitude = models.DecimalField(null=True,
+                                    blank=True,
+                                    decimal_places=15,
+                                    max_digits=19,
+                                    default=0)
+    altitude = models.FloatField(blank=True, null=True)
+    nodes = models.ForeignKey('Node', models.DO_NOTHING, blank=True, null=True)
+    gateway = models.ForeignKey('Gateway', models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        verbose_name = _('light_fixture')
+        verbose_name_plural = _('light_fixtures')
+        ordering = ('ordering',)
+        permissions = (
+            ("list_light_fixtures", "Can list light fixtures"),
+            ("detail_light_fixture", "Can detail light fixtures"),
+            ("disable_light_fixture", "Can disable light fixtures"),
+        )
+
+    def __str__(self):
+        return 'Light fixture'
+
+    @property
+    def location_field_indexing(self):
+        """Location for indexing.
+
+        Used in Elasticsearch indexing/tests of `geo_distance` native filter.
+        """
+        return {
+            'lat': self.latitude,
+            'lon': self.longitude,
+        }
 
 
 class Light_management_measure(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
@@ -586,7 +691,9 @@ class Node(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
                                     default=0)
     altitude = models.FloatField(blank=True, null=True)
     modules = models.OneToOneField('Node_module', models.DO_NOTHING, blank=True, null=True)
-    gateway = models.ForeignKey(Gateway, models.DO_NOTHING, blank=True, null=True)
+    gateway = models.ForeignKey(Gateway, models.DO_NOTHING, blank=True, null=True) #TODO: AT rimuoverla in futuro
+    connectedDevice = models.ForeignKey(Connected_device, models.DO_NOTHING, blank=True, null=True)
+    lightFixture = models.ForeignKey(Light_fixture, models.DO_NOTHING, blank=True, null=True)
     # shipping = models.ForeignKey('Shipping', models.DO_NOTHING, blank=True, null=True)
     # order = models.ForeignKey(JhiOrder, models.DO_NOTHING, blank=True, null=True)
 
