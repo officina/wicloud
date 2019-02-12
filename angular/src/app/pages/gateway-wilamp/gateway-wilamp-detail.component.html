@@ -1,0 +1,103 @@
+
+<div *ngIf="gateway" style="width:100%; height:100%">
+
+    <gateway-administration-website-widget [(gateway)]="gateway" style="width:100%; height:0px"> </gateway-administration-website-widget>
+
+    <h2 style="width:20px"><span jhiTranslate="wilampCloudApp.gateway.detail.title">Gateway</span> {{gateway.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="wilampCloudApp.gateway.name">Name</span></dt>
+        <dd>
+            <span>{{gateway.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.gateway.description">Description</span></dt>
+        <dd>
+            <span>{{gateway.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.gateway.gatewayUUID">Gateway UUID</span></dt>
+        <dd>
+            <span>{{gateway.gatewayUUID}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.gateway.gatewayHostname">Gateway Hostname</span></dt>
+        <dd>
+            <span>{{gateway.gatewayHostname}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.gateway.gatewayType">Gateway Type</span></dt>
+        <dd>
+            <span>{{gateway.gatewayType}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.gateway.notes">Notes</span></dt>
+        <dd>
+            <span>{{gateway.notes}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.gateway.creationDate">Creation Date</span></dt>
+        <dd>
+            <span>{{gateway.creationDate | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.gateway.serialNumber">Serial Number</span></dt>
+        <dd>
+            <span>{{gateway.serialNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.gateway.deviceName">Device Name</span></dt>
+        <dd>
+            <span>{{gateway.deviceName}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.gateway.hardwareModel">Hardware Model</span></dt>
+        <dd>
+            <span>{{gateway.hardwareModel}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.gateway.macAddress">Mac Address</span></dt>
+        <dd>
+            <span>{{gateway.macAddress}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.gateway.coordinatorMac">Coordinator Mac</span></dt>
+        <dd>
+            <span>{{gateway.coordinatorMac}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.gateway.fileNameEncryptionInfo">File Name Encryption Info</span></dt>
+        <dd>
+            <span>{{gateway.fileNameEncryptionInfo}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.gateway.hardwareInformations">Hardware Informations</span></dt>
+        <dd>
+            <span>{{gateway.hardwareInformations}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.gateway.readyToReceiveData">Ready To Receive Data</span></dt>
+        <dd>
+            <span>{{gateway.readyToReceiveData}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.gateway.installation">Installation</span></dt>
+        <dd>
+            <div *ngIf="gateway.installationId">
+                <a [routerLink]="['/installation-wilamp', gateway.installationId]">{{gateway.installationName}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.gateway.shipping">Shipping</span></dt>
+        <dd>
+            <div *ngIf="gateway.shippingId">
+                <a [routerLink]="['/shipping-wilamp', gateway.shippingId]">{{gateway.shippingShippingDate}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.gateway.order">Order</span></dt>
+        <dd>
+            <div *ngIf="gateway.orderId">
+                <a [routerLink]="['/order-wilamp', gateway.orderId]">{{gateway.orderId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'gateway-wilamp/'+ gateway.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

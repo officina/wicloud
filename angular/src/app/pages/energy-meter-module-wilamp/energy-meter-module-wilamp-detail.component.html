@@ -1,0 +1,57 @@
+<div *ngIf="energyMeterModule">
+    <h2><span jhiTranslate="wilampCloudApp.energyMeterModule.detail.title">Energy Meter Module</span> {{energyMeterModule.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="wilampCloudApp.energyMeterModule.name">Name</span></dt>
+        <dd>
+            <span>{{energyMeterModule.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyMeterModule.description">Description</span></dt>
+        <dd>
+            <span>{{energyMeterModule.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyMeterModule.iacCalibration">Iac Calibration</span></dt>
+        <dd>
+            <span>{{energyMeterModule.iacCalibration}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyMeterModule.vacCalibration">Vac Calibration</span></dt>
+        <dd>
+            <span>{{energyMeterModule.vacCalibration}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyMeterModule.patCalibration">Pat Calibration</span></dt>
+        <dd>
+            <span>{{energyMeterModule.patCalibration}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyMeterModule.preCalibration">Pre Calibration</span></dt>
+        <dd>
+            <span>{{energyMeterModule.preCalibration}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyMeterModule.nominalPower">Nominal Power</span></dt>
+        <dd>
+            <span>{{energyMeterModule.nominalPower}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyMeterModule.oldLampPower">Old Lamp Power</span></dt>
+        <dd>
+            <span>{{energyMeterModule.oldLampPower}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.energyMeterModule.powerLosses">Power Losses</span></dt>
+        <dd>
+            <span>{{energyMeterModule.powerLosses}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'energy-meter-module-wilamp/'+ energyMeterModule.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

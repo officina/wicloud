@@ -1,0 +1,58 @@
+
+<div *ngIf="contact">
+    <h2><span jhiTranslate="wilampCloudApp.contact.detail.title">Contact</span> {{contact.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="wilampCloudApp.contact.contactDescription">Contact Description</span></dt>
+        <dd>
+            <span>{{contact.contactDescription}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.contact.firstName">First Name</span></dt>
+        <dd>
+            <span>{{contact.firstName}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.contact.lastName">Last Name</span></dt>
+        <dd>
+            <span>{{contact.lastName}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.contact.phone">Phone</span></dt>
+        <dd>
+            <span>{{contact.phone}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.contact.mobile">Mobile</span></dt>
+        <dd>
+            <span>{{contact.mobile}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.contact.email">Email</span></dt>
+        <dd>
+            <span>{{contact.email}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.contact.address">Address</span></dt>
+        <dd>
+            <span *ngFor="let address of contact.addresses; let last = last">
+                <a [routerLink]="['/address-wilamp', address?.id ]">{{address.addressDescription}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.contact.customer">Customer</span></dt>
+        <dd>
+            <div *ngIf="contact.customerId">
+                <a [routerLink]="['/customer-wilamp', contact.customerId]">{{contact.customerCompanyName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'contact-wilamp/'+ contact.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

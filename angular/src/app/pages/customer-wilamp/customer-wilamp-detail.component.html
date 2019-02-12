@@ -1,0 +1,36 @@
+
+<div *ngIf="customer">
+    <h2><span jhiTranslate="wilampCloudApp.customer.detail.title">Customer</span> {{customer.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="wilampCloudApp.customer.companyName">Company Name</span></dt>
+        <dd>
+            <span>{{customer.companyName}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.customer.description">Description</span></dt>
+        <dd>
+            <span>{{customer.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.customer.users">Users</span></dt>
+        <dd>
+            <span *ngFor="let users of customer.users; let last = last">
+                {{users.login}}{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'customer-wilamp/'+ customer.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

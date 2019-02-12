@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {InstallationsComponent} from './installations/installations.component';
+import {NodeWilampComponent} from './node-wilamp/node-wilamp.component';
 
 const routes: Routes = [{
   path: '',
@@ -21,6 +22,10 @@ const routes: Routes = [{
     {
       path: 'installations',
       component: InstallationsComponent,
+    },
+    {
+      path: 'nodes',
+      component: NodeWilampComponent,
     },
   ],
 }];

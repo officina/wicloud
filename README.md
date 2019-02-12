@@ -93,6 +93,7 @@ createdb wicloud
 ```
 ln -s "$(pwd)/web/settings/dev.py" "$(pwd)/web/settings/settings.py" ```
 ## Create local.py file inside web/settings
+```
 
 ```
 vi web/settings/local.py
@@ -142,8 +143,8 @@ dj createsuperuser
 ```
 cd wicloud/web
 mkdir static
-
 ```
+
 
 ## Run django server
 
@@ -159,6 +160,11 @@ yarn install
 yarn start
 ```
 # Have fun!
+
+
+# Check lint before push
+
+    npm lint
 
 # Remote tests
 
@@ -201,8 +207,8 @@ yarn start
               'zip_code': '35143'}]}
 
 Out[5]: <Response [200]>
-
 ```
+
 
 # Elastic Search
 

@@ -2,6 +2,14 @@
 # yarn lockfile v1
 
 
+"@agm/core@^1.0.0-beta.5":
+  version "1.0.0-beta.5"
+  resolved "https://registry.yarnpkg.com/@agm/core/-/core-1.0.0-beta.5.tgz#6dbceb666b2dbc4a868b97e1340a3faceb5f2113"
+
+"@amcharts/amcharts3-angular@2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@amcharts/amcharts3-angular/-/amcharts3-angular-2.2.1.tgz#11ad84933803e469bc386c50007389063c0af9e3"
+
 "@angular-devkit/architect@0.11.4":
   version "0.11.4"
   resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.11.4.tgz#f0cc3b4f1dd0128f6b41d3bb760bcf4c324cd063"
@@ -263,21 +271,21 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@nebular/auth@^2.0.0":
+"@nebular/auth@2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@nebular/auth/-/auth-2.0.2.tgz#5e4b834d8a52e6f88be05671cfeebc8a0096aa70"
 
-"@nebular/bootstrap@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@nebular/bootstrap/-/bootstrap-2.0.0.tgz#b8c8044d51a9ea9c44f9fbd7f79c8b821abfd0fc"
+"@nebular/bootstrap@2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@nebular/bootstrap/-/bootstrap-2.0.2.tgz#2ad24e0e8cd5441d400a6ed8ffad62be5940c1ab"
 
-"@nebular/security@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@nebular/security/-/security-2.0.0.tgz#e987049947541be4eaaf7c51af81af71f8c84b41"
+"@nebular/security@2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@nebular/security/-/security-2.0.2.tgz#ae9b7bc115e245ebaa7ff34811db077cdfdd83eb"
 
-"@nebular/theme@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@nebular/theme/-/theme-2.0.0.tgz#9346c8e9aef2d89fcc4af86c36ce6e224396b742"
+"@nebular/theme@2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@nebular/theme/-/theme-2.0.2.tgz#5af12eff07e84bdbe4c45aebffa6611049c22669"
   dependencies:
     intersection-observer "0.5.0"
 
@@ -295,13 +303,15 @@
     tree-kill "1.2.0"
     webpack-sources "1.2.0"
 
-"@ngx-translate/core@^8.0.0":
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/@ngx-translate/core/-/core-8.0.0.tgz#751fd6b512d80f3a748d2de8dfc96dfefa29afe0"
+"@ngx-translate/core@10.0.2", "@ngx-translate/core@^10.0.1":
+  version "10.0.2"
+  resolved "https://registry.yarnpkg.com/@ngx-translate/core/-/core-10.0.2.tgz#5eeb78f47845b476a1e892fb2fb153dbbaf72850"
+  dependencies:
+    tslib "^1.9.0"
 
-"@ngx-translate/http-loader@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@ngx-translate/http-loader/-/http-loader-4.0.0.tgz#8a555248ad4b7d513460fcec9da25b0447962f1d"
+"@ngx-translate/http-loader@3.0.1", "@ngx-translate/http-loader@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@ngx-translate/http-loader/-/http-loader-3.0.1.tgz#20b0f98bc6c25321129d3e3302ab3cc489c0a42a"
   dependencies:
     tslib "^1.9.0"
 
@@ -328,6 +338,14 @@
     semver "^5.3.0"
     semver-intersect "^1.1.2"
 
+"@types/geojson@*":
+  version "7946.0.5"
+  resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-7946.0.5.tgz#9aea839ea5af4b1bc079f1d9fa977d48665e02b0"
+
+"@types/googlemaps@3.30.13":
+  version "3.30.13"
+  resolved "https://registry.yarnpkg.com/@types/googlemaps/-/googlemaps-3.30.13.tgz#71220c6a0ec0b39044de71ae59d696379acebcb6"
+
 "@types/jasmine@*":
   version "3.3.8"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-3.3.8.tgz#fc6abd92f7121431685ec986f0ec8f77b4390a3e"
@@ -342,9 +360,30 @@
   dependencies:
     "@types/jasmine" "*"
 
+"@types/jquery@3.2.17":
+  version "3.2.17"
+  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.2.17.tgz#01df9805dd5cf83a14cf5bfd81adced7d4fbd970"
+
+"@types/leaflet-canvas-marker@file:./custom-packages/@types/leaflet-canvas-marker":
+  version "2.0.5"
+  dependencies:
+    "@types/geojson" "*"
+
+"@types/leaflet.markercluster@1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@types/leaflet.markercluster/-/leaflet.markercluster-1.0.3.tgz#01bd816388edc613f26b8d02eb6efc0d1949c751"
+  dependencies:
+    "@types/leaflet" "*"
+
+"@types/leaflet@*", "@types/leaflet@^1.2.11":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@types/leaflet/-/leaflet-1.4.0.tgz#08caffafdad23fcdd6bbe3f91c25a0c688e4310e"
+  dependencies:
+    "@types/geojson" "*"
+
 "@types/node@*":
-  version "10.12.18"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.18.tgz#1d3ca764718915584fcd9f6344621b7672665c67"
+  version "10.12.19"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.19.tgz#ca1018c26be01f07e66ac7fefbeb6407e4490c61"
 
 "@types/node@6.0.90":
   version "6.0.90"
@@ -560,8 +599,8 @@ ajv-errors@^1.0.0:
   resolved "https://registry.yarnpkg.com/ajv-errors/-/ajv-errors-1.0.1.tgz#f35986aceb91afadec4102fbd85014950cefa64d"
 
 ajv-keywords@^3.0.0, ajv-keywords@^3.1.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-3.2.0.tgz#e86b819c602cf8821ad637413698f1dec021847a"
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-3.3.0.tgz#cb6499da9b83177af8bc1732b2f0a1a1a3aacf8c"
 
 ajv@6.5.3:
   version "6.5.3"
@@ -1398,6 +1437,10 @@ chalk@^2.0.0, chalk@^2.0.1, chalk@^2.1.0, chalk@^2.3.0, chalk@^2.4.1, chalk@^2.4
 chardet@^0.4.0:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.4.2.tgz#b5473b33dc97c424e5d98dc87d55d4d8a29c8bf2"
+
+check-types@~1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/check-types/-/check-types-1.3.2.tgz#cc73b7fb05bb7015fc217ede7b81df1d9fa11962"
 
 cheerio@^1.0.0-rc.2:
   version "1.0.0-rc.2"
@@ -3014,6 +3057,14 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
+flot-spline@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/flot-spline/-/flot-spline-0.0.1.tgz#46e6a86670bd499e5cc74d86ea05bde7780b09e6"
+
+flot@^0.8.0-alpha:
+  version "0.8.0-alpha"
+  resolved "https://registry.yarnpkg.com/flot/-/flot-0.8.0-alpha.tgz#9cbbc7147c10a47d2549db90bd2987ec1ba784ba"
+
 flush-write-stream@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/flush-write-stream/-/flush-write-stream-1.0.3.tgz#c5d586ef38af6097650b49bc41b55fabb19f35bd"
@@ -3364,6 +3415,15 @@ globule@^1.0.0:
     lodash "~4.17.10"
     minimatch "~3.0.2"
 
+googlemaps@^1.12.0:
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/googlemaps/-/googlemaps-1.12.0.tgz#25d82a834fb2c989e72c7917b5daf27639f2cffb"
+  dependencies:
+    check-types "~1.3.2"
+    qs "^4.0.0"
+    request "^2.79.0"
+    waitress ">=0.0.2"
+
 graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6:
   version "4.1.15"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.15.tgz#ffb703e1066e8a0eeaa4c8b80ba9253eeefbfb00"
@@ -3481,6 +3541,10 @@ hash.js@^1.0.0, hash.js@^1.0.3:
   dependencies:
     inherits "^2.0.3"
     minimalistic-assert "^1.0.1"
+
+heatmap.js@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/heatmap.js/-/heatmap.js-2.0.5.tgz#466d3b86513f5d49112a49d25700ab2730149153"
 
 hmac-drbg@^1.0.0:
   version "1.0.1"
@@ -4211,6 +4275,10 @@ jasminewd2@^2.1.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/jasminewd2/-/jasminewd2-2.2.0.tgz#e37cf0b17f199cce23bea71b2039395246b4ec4e"
 
+jquery@3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
+
 js-base64@^2.1.8, js-base64@^2.1.9:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.5.1.tgz#1efa39ef2c5f7980bb1784ade4a8af2de3291121"
@@ -4450,6 +4518,26 @@ ldjson-stream@^1.2.1:
   dependencies:
     split2 "^0.2.1"
     through2 "^0.6.1"
+
+"leaflet-canvas-marker@file:./custom-packages/leaflet-canvas-marker":
+  version "0.2.0"
+  dependencies:
+    rbush "^2.0.2"
+
+"leaflet-sidebar-v2@file:./custom-packages/leaflet-sidebar-v2":
+  version "3.0.2"
+
+leaflet.awesome-markers@2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/leaflet.awesome-markers/-/leaflet.awesome-markers-2.0.4.tgz#66fea2090c9c8a0ab6d1f3b6bdd02fb37cf4ba1a"
+
+leaflet.markercluster@^1.4.0:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/leaflet.markercluster/-/leaflet.markercluster-1.4.1.tgz#b53f2c4f2ca7306ddab1dbb6f1861d5e8aa6c5e5"
+
+leaflet@1.3.4:
+  version "1.3.4"
+  resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.3.4.tgz#7f006ea5832603b53d7269ef5c595fd773060a40"
 
 less-loader@4.1.0:
   version "4.1.0"
@@ -5049,9 +5137,9 @@ nanomatch@^1.2.9:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-nebular-icons@1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/nebular-icons/-/nebular-icons-1.0.8.tgz#d880f45bd641392364e2c07df0009a35c143a3de"
+nebular-icons@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/nebular-icons/-/nebular-icons-1.1.0.tgz#83a725822f963a60636e54be6c7145eff2306d3f"
 
 needle@^2.2.1:
   version "2.2.4"
@@ -5068,6 +5156,23 @@ negotiator@0.6.1:
 neo-async@^2.5.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.0.tgz#b9d15e4d71c6762908654b5183ed38b753340835"
+
+ng-jhipster@0.5.4:
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/ng-jhipster/-/ng-jhipster-0.5.4.tgz#85ef20ad94f82c642181be2ed6c960104ff32fde"
+  dependencies:
+    "@ngx-translate/core" "^10.0.1"
+    "@ngx-translate/http-loader" "^3.0.1"
+
+ngx-cookie@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/ngx-cookie/-/ngx-cookie-2.0.1.tgz#031d8938bf9026954356b3b3ae668e2e1964e584"
+
+ngx-infinite-scroll@6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/ngx-infinite-scroll/-/ngx-infinite-scroll-6.0.1.tgz#571e54860ce32839451569bcf6e7a63cfae327bd"
+  dependencies:
+    opencollective "^1.0.3"
 
 nice-try@^1.0.4:
   version "1.0.5"
@@ -5145,8 +5250,8 @@ node-pre-gyp@^0.10.0:
     tar "^4"
 
 node-releases@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.3.tgz#aad9ce0dcb98129c753f772c0aa01360fb90fbd2"
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.5.tgz#1dbee1380742125fe99e0476c456670bf3590b89"
   dependencies:
     semver "^5.3.0"
 
@@ -6008,6 +6113,10 @@ qs@6.5.2, qs@~6.5.2:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
 
+qs@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-4.0.0.tgz#c31d9b74ec27df75e543a86c78728ed8d4623607"
+
 querystring-es3@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/querystring-es3/-/querystring-es3-0.2.1.tgz#9ec61f79049875707d69414596fd907a4d711e73"
@@ -6023,6 +6132,10 @@ querystringify@^2.0.0:
 quick-lru@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/quick-lru/-/quick-lru-1.1.0.tgz#4360b17c61136ad38078397ff11416e186dcfbb8"
+
+quickselect@^1.0.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/quickselect/-/quickselect-1.1.1.tgz#852e412ce418f237ad5b660d70cffac647ae94c2"
 
 randomatic@^3.0.0:
   version "3.1.1"
@@ -6061,6 +6174,12 @@ raw-body@2.3.3:
 raw-loader@0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/raw-loader/-/raw-loader-0.5.1.tgz#0c3d0beaed8a01c966d9787bf778281252a979aa"
+
+rbush@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/rbush/-/rbush-2.0.2.tgz#bb6005c2731b7ba1d5a9a035772927d16a614605"
+  dependencies:
+    quickselect "^1.0.1"
 
 rc@^1.2.7:
   version "1.2.8"
@@ -6261,7 +6380,7 @@ repeating@^2.0.0:
   dependencies:
     is-finite "^1.0.0"
 
-request@^2.74.0, request@^2.83.0, request@^2.87.0, request@^2.88.0:
+request@^2.74.0, request@^2.79.0, request@^2.83.0, request@^2.87.0, request@^2.88.0:
   version "2.88.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.88.0.tgz#9c2fca4f7d35b592efe57c7f0a55e81052124fef"
   dependencies:
@@ -7761,6 +7880,10 @@ vm-browserify@0.0.4:
 void-elements@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-2.0.1.tgz#c066afb582bb1cb4128d60ea92392e94d5e9dbec"
+
+waitress@>=0.0.2:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/waitress/-/waitress-0.1.5.tgz#ed9b2a237cccd83cd735472f44f6c47b7e653af6"
 
 watchpack@^1.5.0:
   version "1.6.0"

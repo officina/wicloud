@@ -1,0 +1,87 @@
+<div>
+    <h2>
+        <span jhiTranslate="wilampCloudApp.order.home.title">Orders</span>
+        <button class="btn btn-primary float-right jh-create-entity create-order-wilamp" [routerLink]="['/', { outlets: { popup: ['order-wilamp-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="wilampCloudApp.order.home.createLabel">
+            Create new Order
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'wilampCloudApp.order.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="orders">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span jhiTranslate="wilampCloudApp.order.name">Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="description"><span jhiTranslate="wilampCloudApp.order.description">Description</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="notes"><span jhiTranslate="wilampCloudApp.order.notes">Notes</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="orderDate"><span jhiTranslate="wilampCloudApp.order.orderDate">Order Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="preparationDate"><span jhiTranslate="wilampCloudApp.order.preparationDate">Preparation Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="totalAmount"><span jhiTranslate="wilampCloudApp.order.totalAmount">Total Amount</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="customerCompanyName"><span jhiTranslate="wilampCloudApp.order.customer">Customer</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let order of orders ;trackBy: trackId">
+                <td><a [routerLink]="['../order-wilamp', order.id ]">{{order.id}}</a></td>
+                <td>{{order.name}}</td>
+                <td>{{order.description}}</td>
+                <td>{{order.notes}}</td>
+                <td>{{order.orderDate | date:'medium'}}</td>
+                <td>{{order.preparationDate | date:'medium'}}</td>
+                <td>{{order.totalAmount}}</td>
+                <td>
+                    <div *ngIf="order.customerId">
+                        <a [routerLink]="['../customer-wilamp', order.customerId  ]" >{{order.customerCompanyName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../order-wilamp', order.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'order-wilamp/'+ order.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'order-wilamp/'+ order.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

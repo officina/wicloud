@@ -1,0 +1,29 @@
+{
+    "name": "@types/heatmap.js",
+    "version": "2.0.5",
+    "description": "TypeScript definitions for Heatmap.js",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Rafał Piekarski",
+            "url": "https://gist.github.com/rpdiss",
+            "githubUsername": "rpdiss"
+        },
+        {
+            "name": "Andrea Toppan",
+            "url": "https://github.com/andreatoppan",
+            "githubUsername": "andreatoppan"
+        }
+    ],
+    "main": "",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/geojson": "*"
+    },
+    "typesPublisherContentHash": "nohash",
+    "typeScriptVersion": "2.3"
+}

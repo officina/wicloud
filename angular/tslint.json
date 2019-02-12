@@ -4,7 +4,7 @@
   ],
   "rules": {
     "trailing-comma": [
-      true,
+      false,
       {
         "multiline": "always",
         "singleline": "never"
@@ -30,8 +30,8 @@
     "interface-over-type-literal": true,
     "label-position": true,
     "max-line-length": [
-      true,
-      140
+      false,
+      200
     ],
     "member-access": false,
     "no-arg": true,
@@ -108,7 +108,7 @@
       "camelCase"
     ],
     "component-selector": [
-      true,
+      false,
       "element",
       "ngx",
       "kebab-case"
@@ -117,11 +117,11 @@
       true,
       "eval",
       "fit",
-      "fdescribe",
-      {
+      "fdescribe"
+      /*{
         "name": "$",
         "message": "please don't"
-      }
+      }*/
     ],
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
@@ -130,6 +130,6 @@
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
     "directive-class-suffix": true,
-    "no-unused-variable": true
+    "no-unused-variable": false /* TODO: AT - set back to true at the end of the project */
   }
 }

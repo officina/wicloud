@@ -1,0 +1,288 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myTwilightManagementModuleLabel" jhiTranslate="wilampCloudApp.twilightManagementModule.home.createOrEditLabel">Create or edit a Twilight Management Module</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!twilightManagementModule.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="twilightManagementModule.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.twilightManagementModule.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="twilightManagementModule.name" required/>
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.twilightManagementModule.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                [(ngModel)]="twilightManagementModule.description" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.twilightManagementModule.twMode" for="field_twMode">Tw Mode</label>
+            <input type="number" class="form-control" name="twMode" id="field_twMode"
+                [(ngModel)]="twilightManagementModule.twMode" required/>
+            <div [hidden]="!(editForm.controls.twMode?.dirty && editForm.controls.twMode?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.twMode?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.twMode?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.twilightManagementModule.twType" for="field_twType">Tw Type</label>
+            <input type="number" class="form-control" name="twType" id="field_twType"
+                [(ngModel)]="twilightManagementModule.twType" required/>
+            <div [hidden]="!(editForm.controls.twType?.dirty && editForm.controls.twType?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.twType?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.twType?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.twilightManagementModule.twGroup" for="field_twGroup">Tw Group</label>
+            <input type="number" class="form-control" name="twGroup" id="field_twGroup"
+                [(ngModel)]="twilightManagementModule.twGroup" required/>
+            <div [hidden]="!(editForm.controls.twGroup?.dirty && editForm.controls.twGroup?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.twGroup?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.twGroup?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.twilightManagementModule.validPeriod" for="field_validPeriod">Valid Period</label>
+            <input type="number" class="form-control" name="validPeriod" id="field_validPeriod"
+                [(ngModel)]="twilightManagementModule.validPeriod" required/>
+            <div [hidden]="!(editForm.controls.validPeriod?.dirty && editForm.controls.validPeriod?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.validPeriod?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.validPeriod?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.twilightManagementModule.thsSunsetOn" for="field_thsSunsetOn">Ths Sunset On</label>
+            <input type="number" class="form-control" name="thsSunsetOn" id="field_thsSunsetOn"
+                [(ngModel)]="twilightManagementModule.thsSunsetOn" required/>
+            <div [hidden]="!(editForm.controls.thsSunsetOn?.dirty && editForm.controls.thsSunsetOn?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.thsSunsetOn?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.thsSunsetOn?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.twilightManagementModule.thsSunsetOff" for="field_thsSunsetOff">Ths Sunset Off</label>
+            <input type="number" class="form-control" name="thsSunsetOff" id="field_thsSunsetOff"
+                [(ngModel)]="twilightManagementModule.thsSunsetOff" required/>
+            <div [hidden]="!(editForm.controls.thsSunsetOff?.dirty && editForm.controls.thsSunsetOff?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.thsSunsetOff?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.thsSunsetOff?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.twilightManagementModule.thsSunriseOn" for="field_thsSunriseOn">Ths Sunrise On</label>
+            <input type="number" class="form-control" name="thsSunriseOn" id="field_thsSunriseOn"
+                [(ngModel)]="twilightManagementModule.thsSunriseOn" required/>
+            <div [hidden]="!(editForm.controls.thsSunriseOn?.dirty && editForm.controls.thsSunriseOn?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.thsSunriseOn?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.thsSunriseOn?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.twilightManagementModule.thsSunriseOff" for="field_thsSunriseOff">Ths Sunrise Off</label>
+            <input type="number" class="form-control" name="thsSunriseOff" id="field_thsSunriseOff"
+                [(ngModel)]="twilightManagementModule.thsSunriseOff" required/>
+            <div [hidden]="!(editForm.controls.thsSunriseOff?.dirty && editForm.controls.thsSunriseOff?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.thsSunriseOff?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.thsSunriseOff?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.twilightManagementModule.persistencePeriod" for="field_persistencePeriod">Persistence Period</label>
+            <input type="number" class="form-control" name="persistencePeriod" id="field_persistencePeriod"
+                [(ngModel)]="twilightManagementModule.persistencePeriod" required/>
+            <div [hidden]="!(editForm.controls.persistencePeriod?.dirty && editForm.controls.persistencePeriod?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.persistencePeriod?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.persistencePeriod?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.twilightManagementModule.delayOffset" for="field_delayOffset">Delay Offset</label>
+            <input type="number" class="form-control" name="delayOffset" id="field_delayOffset"
+                [(ngModel)]="twilightManagementModule.delayOffset" required/>
+            <div [hidden]="!(editForm.controls.delayOffset?.dirty && editForm.controls.delayOffset?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.delayOffset?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.delayOffset?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.twilightManagementModule.voltagemV" for="field_voltagemV">Voltagem V</label>
+            <input type="number" class="form-control" name="voltagemV" id="field_voltagemV"
+                [(ngModel)]="twilightManagementModule.voltagemV" required/>
+            <div [hidden]="!(editForm.controls.voltagemV?.dirty && editForm.controls.voltagemV?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.voltagemV?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.voltagemV?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.twilightManagementModule.luxMeasured" for="field_luxMeasured">Lux Measured</label>
+            <input type="number" class="form-control" name="luxMeasured" id="field_luxMeasured"
+                [(ngModel)]="twilightManagementModule.luxMeasured" required/>
+            <div [hidden]="!(editForm.controls.luxMeasured?.dirty && editForm.controls.luxMeasured?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.luxMeasured?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.luxMeasured?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.twilightManagementModule.samplingPeriod" for="field_samplingPeriod">Sampling Period</label>
+            <input type="number" class="form-control" name="samplingPeriod" id="field_samplingPeriod"
+                [(ngModel)]="twilightManagementModule.samplingPeriod" required/>
+            <div [hidden]="!(editForm.controls.samplingPeriod?.dirty && editForm.controls.samplingPeriod?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.samplingPeriod?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.samplingPeriod?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.twilightManagementModule.numberAverageMeasures" for="field_numberAverageMeasures">Number Average Measures</label>
+            <input type="number" class="form-control" name="numberAverageMeasures" id="field_numberAverageMeasures"
+                [(ngModel)]="twilightManagementModule.numberAverageMeasures" required/>
+            <div [hidden]="!(editForm.controls.numberAverageMeasures?.dirty && editForm.controls.numberAverageMeasures?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.numberAverageMeasures?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.numberAverageMeasures?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.twilightManagementModule.adcInChannel" for="field_adcInChannel">Adc In Channel</label>
+            <input type="number" class="form-control" name="adcInChannel" id="field_adcInChannel"
+                [(ngModel)]="twilightManagementModule.adcInChannel" required/>
+            <div [hidden]="!(editForm.controls.adcInChannel?.dirty && editForm.controls.adcInChannel?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.adcInChannel?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.adcInChannel?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.twilightManagementModule.programmingStatus" for="field_programmingStatus">Programming Status</label>
+            <input type="number" class="form-control" name="programmingStatus" id="field_programmingStatus"
+                [(ngModel)]="twilightManagementModule.programmingStatus" required/>
+            <div [hidden]="!(editForm.controls.programmingStatus?.dirty && editForm.controls.programmingStatus?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.programmingStatus?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.programmingStatus?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.twilightManagementModule.createdTimestamp" for="field_createdTimestamp">Created Timestamp</label>
+            <div class="d-flex">
+                <input id="field_createdTimestamp" type="datetime-local" class="form-control" name="createdTimestamp" [(ngModel)]="twilightManagementModule.createdTimestamp"
+                />
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

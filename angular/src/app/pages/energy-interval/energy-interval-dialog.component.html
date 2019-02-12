@@ -1,0 +1,179 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myEnergyIntervalLabel" jhiTranslate="wilampCloudApp.energyInterval.home.createOrEditLabel">Create or edit a Energy Interval</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!energyInterval.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="energyInterval.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.energyInterval.mac" for="field_mac">Mac</label>
+            <input type="text" class="form-control" name="mac" id="field_mac"
+                [(ngModel)]="energyInterval.mac" required/>
+            <div [hidden]="!(editForm.controls.mac?.dirty && editForm.controls.mac?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.mac?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.energyInterval.lightManagementModuleId" for="field_lightManagementModuleId">Light Management Module Id</label>
+            <input type="number" class="form-control" name="lightManagementModuleId" id="field_lightManagementModuleId"
+                [(ngModel)]="energyInterval.lightManagementModuleId" required/>
+            <div [hidden]="!(editForm.controls.lightManagementModuleId?.dirty && editForm.controls.lightManagementModuleId?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.lightManagementModuleId?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.lightManagementModuleId?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.energyInterval.installationId" for="field_installationId">Installation Id</label>
+            <input type="number" class="form-control" name="installationId" id="field_installationId"
+                [(ngModel)]="energyInterval.installationId" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.energyInterval.startInterval" for="field_startInterval">Start Interval</label>
+            <div class="d-flex">
+                <input id="field_startInterval" type="datetime-local" class="form-control" name="startInterval" [(ngModel)]="energyInterval.startInterval"
+                required/>
+            </div>
+            <div [hidden]="!(editForm.controls.startInterval?.dirty && editForm.controls.startInterval?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.startInterval?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.startInterval?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.energyInterval.endInterval" for="field_endInterval">End Interval</label>
+            <div class="d-flex">
+                <input id="field_endInterval" type="datetime-local" class="form-control" name="endInterval" [(ngModel)]="energyInterval.endInterval"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.energyInterval.startIntervalMeasureTimestamp" for="field_startIntervalMeasureTimestamp">Start Interval Measure Timestamp</label>
+            <div class="d-flex">
+                <input id="field_startIntervalMeasureTimestamp" type="datetime-local" class="form-control" name="startIntervalMeasureTimestamp" [(ngModel)]="energyInterval.startIntervalMeasureTimestamp"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.energyInterval.endIntervalMeasureTimestamp" for="field_endIntervalMeasureTimestamp">End Interval Measure Timestamp</label>
+            <div class="d-flex">
+                <input id="field_endIntervalMeasureTimestamp" type="datetime-local" class="form-control" name="endIntervalMeasureTimestamp" [(ngModel)]="energyInterval.endIntervalMeasureTimestamp"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.energyInterval.activePower" for="field_activePower">Active Power</label>
+            <input type="number" class="form-control" name="activePower" id="field_activePower"
+                [(ngModel)]="energyInterval.activePower" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.energyInterval.reactivePower" for="field_reactivePower">Reactive Power</label>
+            <input type="number" class="form-control" name="reactivePower" id="field_reactivePower"
+                [(ngModel)]="energyInterval.reactivePower" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.energyInterval.startIntervalActiveEnergyCounterValue" for="field_startIntervalActiveEnergyCounterValue">Start Interval Active Energy Counter Value</label>
+            <input type="number" class="form-control" name="startIntervalActiveEnergyCounterValue" id="field_startIntervalActiveEnergyCounterValue"
+                [(ngModel)]="energyInterval.startIntervalActiveEnergyCounterValue" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.energyInterval.endIntervalActiveEnergyCounterValue" for="field_endIntervalActiveEnergyCounterValue">End Interval Active Energy Counter Value</label>
+            <input type="number" class="form-control" name="endIntervalActiveEnergyCounterValue" id="field_endIntervalActiveEnergyCounterValue"
+                [(ngModel)]="energyInterval.endIntervalActiveEnergyCounterValue" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.energyInterval.activeEnergy" for="field_activeEnergy">Active Energy</label>
+            <input type="number" class="form-control" name="activeEnergy" id="field_activeEnergy"
+                [(ngModel)]="energyInterval.activeEnergy" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.energyInterval.startIntervalReactiveEnergyCounterValue" for="field_startIntervalReactiveEnergyCounterValue">Start Interval Reactive Energy Counter Value</label>
+            <input type="number" class="form-control" name="startIntervalReactiveEnergyCounterValue" id="field_startIntervalReactiveEnergyCounterValue"
+                [(ngModel)]="energyInterval.startIntervalReactiveEnergyCounterValue" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.energyInterval.endIntervalReactiveEnergyCounterValue" for="field_endIntervalReactiveEnergyCounterValue">End Interval Reactive Energy Counter Value</label>
+            <input type="number" class="form-control" name="endIntervalReactiveEnergyCounterValue" id="field_endIntervalReactiveEnergyCounterValue"
+                [(ngModel)]="energyInterval.endIntervalReactiveEnergyCounterValue" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.energyInterval.reactiveEnergy" for="field_reactiveEnergy">Reactive Energy</label>
+            <input type="number" class="form-control" name="reactiveEnergy" id="field_reactiveEnergy"
+                [(ngModel)]="energyInterval.reactiveEnergy" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.energyInterval.activeEnergyMty0" for="field_activeEnergyMty0">Active Energy Mty 0</label>
+            <input type="number" class="form-control" name="activeEnergyMty0" id="field_activeEnergyMty0"
+                [(ngModel)]="energyInterval.activeEnergyMty0" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.energyInterval.activeEnergyMty1" for="field_activeEnergyMty1">Active Energy Mty 1</label>
+            <input type="number" class="form-control" name="activeEnergyMty1" id="field_activeEnergyMty1"
+                [(ngModel)]="energyInterval.activeEnergyMty1" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.energyInterval.activeEnergyMty2" for="field_activeEnergyMty2">Active Energy Mty 2</label>
+            <input type="number" class="form-control" name="activeEnergyMty2" id="field_activeEnergyMty2"
+                [(ngModel)]="energyInterval.activeEnergyMty2" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.energyInterval.activeEnergyMty3" for="field_activeEnergyMty3">Active Energy Mty 3</label>
+            <input type="number" class="form-control" name="activeEnergyMty3" id="field_activeEnergyMty3"
+                [(ngModel)]="energyInterval.activeEnergyMty3" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.energyInterval.activeEnergyWithoutDim" for="field_activeEnergyWithoutDim">Active Energy Without Dim</label>
+            <input type="number" class="form-control" name="activeEnergyWithoutDim" id="field_activeEnergyWithoutDim"
+                [(ngModel)]="energyInterval.activeEnergyWithoutDim" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.energyInterval.activeEnergyWithoutControl" for="field_activeEnergyWithoutControl">Active Energy Without Control</label>
+            <input type="number" class="form-control" name="activeEnergyWithoutControl" id="field_activeEnergyWithoutControl"
+                [(ngModel)]="energyInterval.activeEnergyWithoutControl" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.energyInterval.activeEnergyOldLamps" for="field_activeEnergyOldLamps">Active Energy Old Lamps</label>
+            <input type="number" class="form-control" name="activeEnergyOldLamps" id="field_activeEnergyOldLamps"
+                [(ngModel)]="energyInterval.activeEnergyOldLamps" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.energyInterval.burningTime" for="field_burningTime">Burning Time</label>
+            <input type="number" class="form-control" name="burningTime" id="field_burningTime"
+                [(ngModel)]="energyInterval.burningTime" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.energyInterval.nodeLife" for="field_nodeLife">Node Life</label>
+            <input type="number" class="form-control" name="nodeLife" id="field_nodeLife"
+                [(ngModel)]="energyInterval.nodeLife" />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,235 @@
+<!--
+
+<div *ngIf="lightManagementModule">
+    <h2><span jhiTranslate="wilampCloudApp.lightManagementModule.detail.title">Light Management Module</span> {{lightManagementModule.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementModule.name">Name</span></dt>
+        <dd>
+            <span>{{lightManagementModule.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementModule.description">Description</span></dt>
+        <dd>
+            <span>{{lightManagementModule.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementModule.deviceType">Device Type</span></dt>
+        <dd>
+            <span>{{lightManagementModule.deviceType}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementModule.lampType">Lamp Type</span></dt>
+        <dd>
+            <span>{{lightManagementModule.lampType}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementModule.timerAutoMode">Timer Auto Mode</span></dt>
+        <dd>
+            <span>{{lightManagementModule.timerAutoMode}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementModule.timerHPSProtection">Timer HPS Protection</span></dt>
+        <dd>
+            <span>{{lightManagementModule.timerHPSProtection}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementModule.lightZone">Light Zone</span></dt>
+        <dd>
+            <span>{{lightManagementModule.lightZone}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementModule.lightProfileId">Light Profile Id</span></dt>
+        <dd>
+            <span>{{lightManagementModule.lightProfileId}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementModule.lightProfileCRC">Light Profile CRC</span></dt>
+        <dd>
+            <span>{{lightManagementModule.lightProfileCRC}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'light-management-module-wilamp/'+ lightManagementModule.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
+-->
+
+<div class="m-content" *ngIf="lightManagementModule">
+    <div class="row">
+        <hr>
+        <jhi-alert-error></jhi-alert-error>
+
+
+        <div class="col-xl-6">
+            <!--begin::Portlet-->
+            <div class="m-portlet m-portlet--tab">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+							<span class="m-portlet__head-icon m--hide">
+								<i class="la la-gear"></i>
+							</span>
+                            <h3 class="m-portlet__head-text">
+                                <span>Light management module</span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-portlet__body">
+                    <!--begin::Section-->
+                    <div class="m-section">
+
+
+
+                        <!--end::Section-->
+                        <div class="m-section__content">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th style="width: 150px"> </th>
+                                    <th> </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>
+                                        {{lightManagementModule.name}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Start date</td>
+                                    <td>
+                                        {{light_management_measures_graph__start_date}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>End date</td>
+                                    <td>
+                                        {{light_management_measures_graph__end_date}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Light management measures collected</td>
+                                    <td>
+                                        {{lightManagementMeasures.length}} of {{lightManagementMeasuresCount}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Energy intervals collected</td>
+                                    <td>
+                                        {{energyIntervals.length}} of {{energyMeterIntervalsCount}}
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="m--space-30"></div>
+
+                    </div>
+                </div>
+            </div>
+            <!--end::Portlet-->
+        </div>
+
+        <div class="col-xl-6">
+            <!--begin::Portlet-->
+            <div class="m-portlet m-portlet--tab">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                                <span class="m-portlet__head-icon m--hide">
+                                    <i class="la la-gear"></i>
+                                </span>
+                            <h3 class="m-portlet__head-text">
+                                Light management measures
+                            </h3>
+                        </div>
+                    </div>
+                    <select [(ngModel)]="light_management_measures_graph__mty" (change)="updateLightManagementMeasuresChartWithMty()" name="light_management_measures_graph__mty" id="light_management_measures_graph__mty">
+                        <option *ngFor="let measureType of measureTypes" [ngValue]="measureType.value">{{ measureType.label  }}</option>
+                    </select>
+
+                </div>
+                <div class="m-portlet__body">
+                    <div id="light_management_measures_line" style="height: 500px;"></div>
+                </div>
+            </div>
+            <!--end::Portlet-->
+        </div>
+
+        <div class="col-xl-6">
+            <!--begin::Portlet-->
+            <div class="m-portlet m-portlet--tab">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                                <span class="m-portlet__head-icon m--hide">
+                                    <i class="la la-gear"></i>
+                                </span>
+                            <h3 class="m-portlet__head-text">
+                                Active enrgy counter value
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-portlet__body">
+                    <div id="light_management_measures_line_cea" style="height: 500px;"></div>
+                </div>
+            </div>
+            <!--end::Portlet-->
+        </div>
+
+        <div class="col-xl-6">
+            <!--begin::Portlet-->
+            <div class="m-portlet m-portlet--tab">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                                <span class="m-portlet__head-icon m--hide">
+                                    <i class="la la-gear"></i>
+                                </span>
+                            <h3 class="m-portlet__head-text">
+                                Energy intervals
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-portlet__body">
+                    <div id="energy_meter_measures_line" style="height: 500px;"></div>
+                </div>
+            </div>
+            <!--end::Portlet-->
+        </div>
+
+        <div class="col-xl-6">
+            <!--begin::Portlet-->
+            <div class="m-portlet m-portlet--tab">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                                <span class="m-portlet__head-icon m--hide">
+                                    <i class="la la-gear"></i>
+                                </span>
+                            <h3 class="m-portlet__head-text">
+                                Energy intervals
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-portlet__body">
+                    <div id="energy_meter_measures_line_burning_time" style="height: 500px;"></div>
+                </div>
+            </div>
+            <!--end::Portlet-->
+        </div>
+
+
+    </div>
+</div>

@@ -1,0 +1,87 @@
+<div>
+    <h2>
+        <span jhiTranslate="wilampCloudApp.lightManagementModule.home.title">Light Management Modules</span>
+        <button class="btn btn-primary float-right jh-create-entity create-light-management-module-wilamp" [routerLink]="['/', { outlets: { popup: ['light-management-module-wilamp-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="wilampCloudApp.lightManagementModule.home.createLabel">
+            Create new Light Management Module
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'wilampCloudApp.lightManagementModule.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="lightManagementModules">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span jhiTranslate="wilampCloudApp.lightManagementModule.name">Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="description"><span jhiTranslate="wilampCloudApp.lightManagementModule.description">Description</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="deviceType"><span jhiTranslate="wilampCloudApp.lightManagementModule.deviceType">Device Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lampType"><span jhiTranslate="wilampCloudApp.lightManagementModule.lampType">Lamp Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="timerAutoMode"><span jhiTranslate="wilampCloudApp.lightManagementModule.timerAutoMode">Timer Auto Mode</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="timerHPSProtection"><span jhiTranslate="wilampCloudApp.lightManagementModule.timerHPSProtection">Timer HPS Protection</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lightZone"><span jhiTranslate="wilampCloudApp.lightManagementModule.lightZone">Light Zone</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lightProfileId"><span jhiTranslate="wilampCloudApp.lightManagementModule.lightProfileId">Light Profile Id</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lightProfileCRC"><span jhiTranslate="wilampCloudApp.lightManagementModule.lightProfileCRC">Light Profile CRC</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let lightManagementModule of lightManagementModules ;trackBy: trackId">
+                <td><a [routerLink]="['../light-management-module-wilamp', lightManagementModule.id ]">{{lightManagementModule.id}}</a></td>
+                <td>{{lightManagementModule.name}}</td>
+                <td>{{lightManagementModule.description}}</td>
+                <td>{{lightManagementModule.deviceType}}</td>
+                <td>{{lightManagementModule.lampType}}</td>
+                <td>{{lightManagementModule.timerAutoMode}}</td>
+                <td>{{lightManagementModule.timerHPSProtection}}</td>
+                <td>{{lightManagementModule.lightZone}}</td>
+                <td>{{lightManagementModule.lightProfileId}}</td>
+                <td>{{lightManagementModule.lightProfileCRC}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../light-management-module-wilamp', lightManagementModule.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'light-management-module-wilamp/'+ lightManagementModule.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'light-management-module-wilamp/'+ lightManagementModule.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

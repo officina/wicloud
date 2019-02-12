@@ -1,0 +1,90 @@
+
+<div *ngIf="motionManagementModule">
+    <h2><span jhiTranslate="wilampCloudApp.motionManagementModule.detail.title">Motion Management Module</span> {{motionManagementModule.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="wilampCloudApp.motionManagementModule.name">Name</span></dt>
+        <dd>
+            <span>{{motionManagementModule.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.motionManagementModule.description">Description</span></dt>
+        <dd>
+            <span>{{motionManagementModule.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.motionManagementModule.motionMode">Motion Mode</span></dt>
+        <dd>
+            <span>{{motionManagementModule.motionMode}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.motionManagementModule.motionType">Motion Type</span></dt>
+        <dd>
+            <span>{{motionManagementModule.motionType}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.motionManagementModule.motionGroup">Motion Group</span></dt>
+        <dd>
+            <span>{{motionManagementModule.motionGroup}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.motionManagementModule.delayAfter">Delay After</span></dt>
+        <dd>
+            <span>{{motionManagementModule.delayAfter}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.motionManagementModule.retriggerTime">Retrigger Time</span></dt>
+        <dd>
+            <span>{{motionManagementModule.retriggerTime}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.motionManagementModule.triggerDelay" [ngbTooltip]="'wilampCloudApp.motionManagementModule.help.triggerDelay' | translate">Trigger Delay</span></dt>
+        <dd>
+            <span>{{motionManagementModule.triggerDelay}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.motionManagementModule.mi0">Mi 0</span></dt>
+        <dd>
+            <span>{{motionManagementModule.mi0}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.motionManagementModule.mi1">Mi 1</span></dt>
+        <dd>
+            <span>{{motionManagementModule.mi1}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.motionManagementModule.mi2">Mi 2</span></dt>
+        <dd>
+            <span>{{motionManagementModule.mi2}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.motionManagementModule.mi3">Mi 3</span></dt>
+        <dd>
+            <span>{{motionManagementModule.mi3}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.motionManagementModule.fadeIn">Fade In</span></dt>
+        <dd>
+            <span>{{motionManagementModule.fadeIn}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.motionManagementModule.fadeOut">Fade Out</span></dt>
+        <dd>
+            <span>{{motionManagementModule.fadeOut}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.motionManagementModule.createdTimestamp">Created Timestamp</span></dt>
+        <dd>
+            <span>{{motionManagementModule.createdTimestamp | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.motionManagementModule.adcInChannel">Adc In Channel</span></dt>
+        <dd>
+            <span>{{motionManagementModule.adcInChannel}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.motionManagementModule.duration">Duration</span></dt>
+        <dd>
+            <span>{{motionManagementModule.duration}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'motion-management-module-wilamp/'+ motionManagementModule.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

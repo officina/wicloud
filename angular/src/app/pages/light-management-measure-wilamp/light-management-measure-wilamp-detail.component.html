@@ -1,0 +1,188 @@
+
+<div *ngIf="lightManagementMeasure">
+    <h2><span jhiTranslate="wilampCloudApp.lightManagementMeasure.detail.title">Light Management Measure</span> {{lightManagementMeasure.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.mac">Mac</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.mac}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.processingStatus">Processing Status</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.processingStatus}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.nodeHMS">Node HMS</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.nodeHMS}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.dayOfYear">Day Of Year</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.dayOfYear}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.measureType">Measure Type</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.measureType}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.parentNode">Parent Node</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.parentNode}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.lqi">Lqi</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.lqi}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.vac">Vac</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.vac}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.vcc">Vcc</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.vcc}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.iac">Iac</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.iac}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.activePower">Active Power</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.activePower}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.reactivePower">Reactive Power</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.reactivePower}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.activeEnergyCounter">Active Energy Counter</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.activeEnergyCounter}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.reactiveEnergyCounter">Reactive Energy Counter</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.reactiveEnergyCounter}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.lightLevel">Light Level</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.lightLevel}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.pw0">Pw 0</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.pw0}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.pw1">Pw 1</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.pw1}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.pw2">Pw 2</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.pw2}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.pw3">Pw 3</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.pw3}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.nodeTemp">Node Temp</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.nodeTemp}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.ad0">Ad 0</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.ad0}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.ad1">Ad 1</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.ad1}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.ad2">Ad 2</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.ad2}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.ad3">Ad 3</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.ad3}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.packetsSent">Packets Sent</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.packetsSent}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.packetsReceived">Packets Received</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.packetsReceived}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.packetsLost">Packets Lost</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.packetsLost}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.motionStatus">Motion Status</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.motionStatus}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.manualStatus">Manual Status</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.manualStatus}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.statusBitmask">Status Bitmask</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.statusBitmask}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.parametersCRC">Parameters CRC</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.parametersCRC}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.profileCRC">Profile CRC</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.profileCRC}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.measureTimestamp">Measure Timestamp</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.measureTimestamp | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.createdTimestamp">Created Timestamp</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.createdTimestamp | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.sourceModule">Source Module</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.sourceModule}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.nodeFwVersion">Node Fw Version</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.nodeFwVersion}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.lampLife">Lamp Life</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.lampLife}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.nodeLife">Node Life</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.nodeLife}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.activePowerCounter">Active Power Counter</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.activePowerCounter}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.installationId">Installation Id</span></dt>
+        <dd>
+            <span>{{lightManagementMeasure.installationId}}</span>
+        </dd>
+        <dt><span jhiTranslate="wilampCloudApp.lightManagementMeasure.lightManagementModule">Light Management Module</span></dt>
+        <dd>
+            <div *ngIf="lightManagementMeasure.lightManagementModuleId">
+                <a [routerLink]="['/light-management-module-wilamp', lightManagementMeasure.lightManagementModuleId]">{{lightManagementMeasure.lightManagementModuleName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'light-management-measure-wilamp/'+ lightManagementMeasure.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

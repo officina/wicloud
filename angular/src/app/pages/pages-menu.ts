@@ -35,7 +35,17 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'Installations',
-    link: '/pages/installations',
+    link: '/pages/installation-wilamp',
+    icon: 'nb-tables',
+  },
+    {
+    title: 'Nodes',
+    link: '/pages/node-wilamp',
+    icon: 'nb-tables',
+  },
+    {
+    title: 'Gateways',
+    link: '/pages/gateway-wilamp',
     icon: 'nb-tables',
   },
 ];
