@@ -690,7 +690,9 @@ class Node(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
                                     default=0)
     altitude = models.FloatField(blank=True, null=True)
     modules = models.OneToOneField('Node_module', models.DO_NOTHING, blank=True, null=True)
-    gateway = models.ForeignKey(Gateway, models.DO_NOTHING, blank=True, null=True)
+    gateway = models.ForeignKey(Gateway, models.DO_NOTHING, blank=True, null=True) #TODO: AT rimuoverla in futuro
+    connectedDevice = models.ForeignKey(Connected_device, models.DO_NOTHING, blank=True, null=True)
+    lightFixture = models.ForeignKey(Light_fixture, models.DO_NOTHING, blank=True, null=True)
     # shipping = models.ForeignKey('Shipping', models.DO_NOTHING, blank=True, null=True)
     # order = models.ForeignKey(JhiOrder, models.DO_NOTHING, blank=True, null=True)
 
