@@ -1143,67 +1143,67 @@ class RemoteTestMixin:
         return resp
     # NODE_MODULE
 
-    def backend_wicloud_node_module_list(self, filters=None):
-        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
-        endpoint = reverse('api:node_module_list')
-        url = urllib.parse.urljoin(self.base_url, endpoint)
-        resp = requests.get(url, headers=headers, params=filters)
-        self.rprint(resp)
-        return resp
-
-    def backend_wicloud_node_module_retrieve(self, pk):
-        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
-        endpoint = reverse(
-            'api:node_module_retrieve',
-            args=(pk,)
-        )
-        url = urllib.parse.urljoin(self.base_url, endpoint)
-        resp = requests.get(url, headers=headers)
-        self.rprint(resp)
-        return resp
-
-    def backend_wicloud_node_module_create(self, post_dict):
-        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
-        endpoint = reverse('api:node_module_create')
-        url = urllib.parse.urljoin(self.base_url, endpoint)
-        resp = requests.post(url, headers=headers, json=post_dict)
-        self.rprint(resp)
-        return resp
-
-    def backend_wicloud_node_module_partial_update(self, pk, post_dict):
-        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
-        endpoint = reverse(
-            'api:node_module_partial_update',
-            args=(pk,)
-        )
-        url = urllib.parse.urljoin(self.base_url, endpoint)
-        resp = requests.patch(url, headers=headers, json=post_dict)
-        self.rprint(resp)
-        return resp
-
-    def backend_wicloud_node_module_enable(self, pk):
-        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
-        endpoint = reverse(
-            'api:node_module_set_status',
-            args=(pk,)
-        )
-        url = urllib.parse.urljoin(self.base_url, endpoint)
-        post_dict = {'status': 1}
-        resp = requests.patch(url, headers=headers, json=post_dict)
-        self.rprint(resp)
-        return resp
-
-    def backend_wicloud_node_module_disable(self, pk):
-        headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
-        endpoint = reverse(
-            'api:node_module_set_status',
-            args=(pk,)
-        )
-        url = urllib.parse.urljoin(self.base_url, endpoint)
-        post_dict = {'status': 0}
-        resp = requests.patch(url, headers=headers, json=post_dict)
-        self.rprint(resp)
-        return resp
+    # def backend_wicloud_node_module_list(self, filters=None):
+    #     headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+    #     endpoint = reverse('api:node_module_list')
+    #     url = urllib.parse.urljoin(self.base_url, endpoint)
+    #     resp = requests.get(url, headers=headers, params=filters)
+    #     self.rprint(resp)
+    #     return resp
+    #
+    # def backend_wicloud_node_module_retrieve(self, pk):
+    #     headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+    #     endpoint = reverse(
+    #         'api:node_module_retrieve',
+    #         args=(pk,)
+    #     )
+    #     url = urllib.parse.urljoin(self.base_url, endpoint)
+    #     resp = requests.get(url, headers=headers)
+    #     self.rprint(resp)
+    #     return resp
+    #
+    # def backend_wicloud_node_module_create(self, post_dict):
+    #     headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+    #     endpoint = reverse('api:node_module_create')
+    #     url = urllib.parse.urljoin(self.base_url, endpoint)
+    #     resp = requests.post(url, headers=headers, json=post_dict)
+    #     self.rprint(resp)
+    #     return resp
+    #
+    # def backend_wicloud_node_module_partial_update(self, pk, post_dict):
+    #     headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+    #     endpoint = reverse(
+    #         'api:node_module_partial_update',
+    #         args=(pk,)
+    #     )
+    #     url = urllib.parse.urljoin(self.base_url, endpoint)
+    #     resp = requests.patch(url, headers=headers, json=post_dict)
+    #     self.rprint(resp)
+    #     return resp
+    #
+    # def backend_wicloud_node_module_enable(self, pk):
+    #     headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+    #     endpoint = reverse(
+    #         'api:node_module_set_status',
+    #         args=(pk,)
+    #     )
+    #     url = urllib.parse.urljoin(self.base_url, endpoint)
+    #     post_dict = {'status': 1}
+    #     resp = requests.patch(url, headers=headers, json=post_dict)
+    #     self.rprint(resp)
+    #     return resp
+    #
+    # def backend_wicloud_node_module_disable(self, pk):
+    #     headers = {'Authorization': 'Bearer{}'.format(self.jwt)}
+    #     endpoint = reverse(
+    #         'api:node_module_set_status',
+    #         args=(pk,)
+    #     )
+    #     url = urllib.parse.urljoin(self.base_url, endpoint)
+    #     post_dict = {'status': 0}
+    #     resp = requests.patch(url, headers=headers, json=post_dict)
+    #     self.rprint(resp)
+    #     return resp
     # WILAMP_ALERT
 
     def backend_wicloud_wilamp_alert_list(self, filters=None):

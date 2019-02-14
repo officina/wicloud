@@ -1,0 +1,436 @@
+
+
+<!doctype HTML>
+
+
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+  <title>Using Django OneToOneFields to Create UserProfiles | Fusionbox</title>
+  <meta name="description" content="Django OneToOneFields ca be useful for creating UserProfiles, but it can also be difficult to use, so we decided to show what we&#39;ve done to smooth the rough edges." />
+  <meta name="keywords" content="" />
+
+
+      <meta name="msvalidate.01" content="F89D5FDA2A39B1A56F0FE889E6D11A21" />
+      <meta name="google-site-verification" content="VqgC4Ol4aj-4XR5rz9qxWOfst9p0KG7UAs77TYTPT6M" />
+
+      <script src="//use.typekit.net/xsi2zzv.js"></script>
+      <script>try{Typekit.load({ async: false });}catch(e){}</script>
+
+    <link rel="stylesheet" href="https://static.fusionbox.com/static/CACHE/css/ca950a2bc21a.css" type="text/css" />
+
+
+    <link rel="icon" href="https://static.fusionbox.com/static/image/favicon.a305d222d97f.ico"  type="image/x-icon">
+    <link rel="shortcut icon" href="https://static.fusionbox.com/static/image/favicon.a305d222d97f.ico"  type="image/x-icon">
+
+    <script type="text/javascript">
+      //Google phone tracking script
+(function(a,e,c,f,g,b,d){var h={ak:"1070482369",cl:"Esh1COj25V4QwYe5_gM"};a[c]=a[c]||function(){(a[c].q=a[c].q||[]).push(arguments)};a[f]||(a[f]=h.ak);b=e.createElement(g);b.async=1;b.src="//www.gstatic.com/wcm/loader.js";d=e.getElementsByTagName(g)[0];d.parentNode.insertBefore(b,d);a._googWcmGet=function(b,d,e){a[c](2,b,h,d,null,new Date,e)}})(window,document,"_googWcmImpl","_googWcmAk","script");
+      //end phone tracking
+
+      //Google Analytics
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-2670667-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Django OneToOneFields are Hard to Use, Let’s Make Them Better",
+  "alternativeHeadline": "Django's OnToOneField is a useful tool, but it's not always the easiest thing to use. Here are some things we've done to smooth the rough edges.",
+  "url": "https://www.fusionbox.com/blog/detail/django-onetoonefields-are-hard-to-use-lets-make-them-better/551/",
+  "author": {
+    "@type": "Person",
+    "name": "rocky"
+    },
+  "datePublished": "2015-05-31T18:00:00-06:00",
+  "dateModified": "2015-05-31T18:00:00-06:00",
+  "image": "https://static.fusionbox.com/static/image/logo/logo.85be27829e6d.png",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Fusionbox",
+    "logo": "https://static.fusionbox.com/static/image/logo/logo.85be27829e6d.png"
+  }
+}
+</script>
+
+    
+  </head>
+
+  <body class="blog">
+
+  <div class="adapt" id="skrollr-body">
+
+    <header class="wrapper">
+      <div class="inner" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+        <a class="logo" href="/"></a>
+        <a class="tel-mobile button small orange" itemprop="telephone" title="303-952-7490" href="tel:+13039527490"><img src="https://static.fusionbox.com/static/image/icon-sprite.befd47441fde.svg#phone" alt="&#x260e;" />Call</a>
+        
+        <div class="supernav">
+          <a itemprop="url" href="/products/"><span itemprop="name">products</span></a>
+          <a itemprop="url" href="/blog/"><span itemprop="name">blog</span></a>
+          <a class="tel-desktop" itemprop="telephone" href="tel:+13039527490">303-952-7490</a>
+        </div>
+
+        <nav>
+          <ul>
+            <li><a itemprop="url" href="/work/"><span itemprop="name">work</span></a></li>
+            <li><a itemprop="url" href="/services/"><span itemprop="name">services</span></a>
+              <ul>
+                <li><a itemprop="url" href="/services/denver-web-development/python-web-development/"><span itemprop="name">Python Web Development</span></a></li>
+                <li><a itemprop="url" href="/services/denver-web-development/python-web-development/django-web-development/"><span itemprop="name">Django Web Development</span></a></li>
+                <li><a itemprop="url" href="/services/denver-web-development/react-developers/"><span itemprop="name">React App Development</span></a></li>
+                <li><a itemprop="url" href="/services/denver-web-design/"><span itemprop="name">Web Design / UX / UI</span></a></li>
+                <li><a itemprop="url" href="/services/denver-database-design/"><span itemprop="name">Database Design</span></a></li>
+                <li><a itemprop="url" href="/services/application-security-assessment/"><span itemprop="name">Software Security</span></a></li>
+              </ul>
+            </li>
+            <li><a itemprop="url" href="/process/"><span itemprop="name">process</span></a></li>
+            <li><a itemprop="url" href="/about-us/"><span itemprop="name">about us</span></a></li></li>
+            <li><a itemprop="url" href="/contact/"><span itemprop="name">contact</span></a></li>
+          </ul>
+        </nav>
+        
+
+        <a class="mobileMenu" href="#" title="Toggle Site Menu"><img class="openNav" src="https://static.fusionbox.com/static/image/icon-sprite.befd47441fde.svg#menu" /><img class="closeNav" src="https://static.fusionbox.com/static/image/icon-sprite.befd47441fde.svg#x" /></a>
+
+      </div>
+    </header>
+
+
+  
+  
+
+
+  <section class="content">
+    <div class="inner">
+      <article>
+
+        <p class="crumbs"><span class="crumbsInner"><a href="/">Home</a> <a href="/blog/">Blog</a> Django OneToOneFields are Hard to Use, Let’s Make Them Better</span></p>
+
+        <div class="blog">
+          <div class="text">
+            <h1>Django OneToOneFields are Hard to Use, Let’s Make Them Better</h1>
+            <p class="date">Posted by rocky on May 31, 2015, 6 p.m.</p>
+            <p class="tags">
+              
+              <span>DEVELOPMENT</span>
+              
+            </p>
+          </div>
+        </div>
+        
+
+
+  <div class="htmlOutput">
+  <p>(All code samples are the under the&nbsp;<a href="https://www.fusionbox.com/license/">Simplified BSD License</a>)</p>
+
+<p>Django&rsquo;s&nbsp;<a href="https://docs.djangoproject.com/en/1.8/ref/models/fields/#ref-onetoone">OneToOneField</a>&nbsp;is a useful tool, I like it especially for creating&nbsp;UserProfiles, but it&rsquo;s useful in many ways.</p>
+
+<p>However, it is not the easiest thing to use. In this blog post, I will explore some of the things I&rsquo;ve done in the past to overcome some of the rough edges that OneToOneFields have.</p>
+
+<ol>
+	<li>The Django OneToOneField raises exceptions if the related model doesn&rsquo;t exist.</li>
+	<li>In order to check whether or not the related model exists, you have to use<code>hasattr</code>.</li>
+</ol>
+
+<h2>Always raising exceptions</h2>
+
+<p>One problem is that when you access a related model that doesn&rsquo;t exist yet, it will throw a&nbsp;<code>ObjectDoesNotExist</code>&nbsp;exception. Which makes sense, but is kind of hard to use.</p>
+
+<p>There are a couple of solutions to this problem:</p>
+
+<ol>
+	<li>
+	<p>Make sure that the related model always exists, (perhaps using the&nbsp;<code>post_save</code>signal).</p>
+	</li>
+	<li>
+	<p>Work around it with a property, something like this:</p>
+	</li>
+</ol>
+
+<pre><code>class User(AbstractUser):
+    # ...
+
+    @property
+    def customer_profile(self):
+        try:
+            return self._customer_profile
+        except CustomerProfile.DoesNotExist:
+            return CustomerProfile.objects.create(
+                user=self,
+            )
+
+
+class CustomerProfile(models.Model):
+    user = models.OneToOneField(&#39;User&#39;, related_name=&#39;_customer_profile&#39;)</code></pre>
+
+<p>&nbsp;</p>
+
+<p>Both of these solutions work, but the first one feels hacky to me--what happens if I&nbsp;<code>bulk_create</code>&nbsp;some Users (<code>post_save</code>&nbsp;isn&rsquo;t fired)? And as for the second one, requires that I have control over the User model. I would prefer a solution that does not require me to override the User model.</p>
+
+<h2>A possible solution</h2>
+
+<p>So I was thinking, why don&rsquo;t we just create a OneToOneField that automatically creates the profile if it doesn&rsquo;t exist? That way we won&rsquo;t get exceptions. Plus! The profile is created automatically for you.</p>
+
+<p>Turns out it&rsquo;s not too hard. And bonus! It uses my favorite feature from Python, object descriptors!</p>
+
+<pre><code>from django.db import IntegrityError
+from django.db.models.fields.related import (
+    OneToOneField, SingleRelatedObjectDescriptor,
+)
+
+
+class AutoSingleRelatedObjectDescriptor(SingleRelatedObjectDescriptor):
+    def __get__(self, instance, type=None):
+        try:
+            return super(AutoSingleRelatedObjectDescriptor, self).__get__(instance, type)
+        except self.related.model.DoesNotExist:
+            kwargs = {
+                self.related.field.name: instance,
+            }
+            rel_obj = self.related.model._default_manager.create(**kwargs)
+            setattr(instance, self.cache_name, rel_obj)
+            return rel_obj
+
+
+class AutoOneToOneField(OneToOneField):
+    related_accessor_class = AutoSingleRelatedObjectDescriptor</code></pre>
+
+<p>&nbsp;</p>
+
+<p>With&nbsp;<code>AutoOneToOneField</code>, when the related model doesn&rsquo;t exist, it will be created automatically:</p>
+
+<p>Let&rsquo;s look back at our previous example,</p>
+
+<pre><code>class User(AbstractBaseUser):
+    # ...
+
+    @property
+    def customer_profile(self):
+        try:
+            return self._customer_profile
+        except CustomerProfile.DoesNotExist:
+            return CustomerProfile.objects.create(
+                user=self,
+            )
+
+
+class CustomerProfile(models.Model):
+    user = models.OneToOneField(&#39;User&#39;, related_name=&#39;_customer_profile&#39;)</code></pre>
+
+<p>becomes:</p>
+
+<pre><code>class CustomerProfile(models.Model):
+    user = AutoOneToOneField(&#39;User&#39;, related_name=&#39;customer_profile&#39;)</code></pre>
+
+<p>And now when you try to access it, there are no errors thrown:</p>
+
+<pre><code>user = User.objects.all()[0]
+user.customer_profile  # Always returns a customer profile</code></pre>
+
+<p>&nbsp;</p>
+
+<h3>Caveat</h3>
+
+<p>Unfortunately, this is not the most appropriate solution for all situations. One assumption that it makes is that you can create the related model by just filling in one field. This of course won&rsquo;t work if your related model has fields on it that are&nbsp;<code>null=False</code>&nbsp;and don&rsquo;t provide a default.</p>
+
+<p>However, it works well for those instances when you always want a profile model available for a user and can provide defaults for all of the fields.</p>
+
+<h3>Alternate solution</h3>
+
+<p>What if instead of creating the related model, the OneToOneField just returned None instead? That would be easier to deal with in your code and also wouldn&rsquo;t make assumptions on how to create related models.</p>
+
+<pre><code>class SoftSingleRelatedObjectDescriptor(SingleRelatedObjectDescriptor):
+    def __get__(self, *args, **kwargs):
+        try:
+            return super(SoftSingleRelatedObjectDescriptor, self).__get__(*args, **kwargs)
+        except self.related.model.DoesNotExist:
+            return None
+
+
+class SoftOneToOneField(OneToOneField):
+    related_accessor_class = SoftSingleRelatedObjectDescriptor</code></pre>
+
+<p>&nbsp;</p>
+
+<p>(Yay for more Python object descriptors!)</p>
+
+<p>This makes accessing the related model not throw an exception any more, but your code now should expect a&nbsp;<code>None</code>&nbsp;value instead.</p>
+
+<pre><code>class CustomerProfile(models.Model):
+    user = SoftOneToOneField(&#39;User&#39;, related_name=&#39;customer_profile&#39;)
+
+class MyProfileView(DetailView):
+    def get_context_data(self, **kwargs):
+        kwargs = super(MyProfileView, self).get_context_data(**kwargs)
+        # This will no longer raise an exception if the customer_profile does
+        # not exist
+        kwargs.update(my_profile=self.customer_profile)
+        return kwargs</code></pre>
+
+<p>&nbsp;</p>
+
+<h2>hasattr</h2>
+
+<p>Because OneToOneFields will throw an exception if the related model doesn&rsquo;t exist, the Django docs suggest using hasattr to check whether or not the related model exists.</p>
+
+<p>I find this somewhat counterintuitive, and the behavior is also inconsistent with&nbsp;<code>null=True</code>&nbsp;ForeignKey fields. In addition, as someone who is approaching the code someone has written using all the hasattr checks for a model field, I think it&rsquo;s kind of hard to read.</p>
+
+<p>Ideally, there would be some property on the related model that informs me whether or not the related model exists. Something like this:</p>
+
+<pre><code>class User(AbstractUser):
+    # ...
+    def is_customer(self):
+        return hasattr(self, &#39;customer_profile&#39;)
+
+
+class CustomerProfile(models.Model):
+    user = models.OneToOneField(&#39;User&#39;, related_name=&#39;customer_profile&#39;)</code></pre>
+
+<p>&nbsp;</p>
+
+<p>Now I can write code like this:</p>
+
+<pre><code>if request.user.is_customer:
+    # do customer stuff
+else:
+    # do other stuff</code></pre>
+
+<p>&nbsp;</p>
+
+<p>Which I find much more readable than using than</p>
+
+<pre><code>if hasattr(request.user, &#39;is_customer&#39;):
+    # do customer stuff
+else:
+    # do other stuff</code></pre>
+
+<p>&nbsp;</p>
+
+<p>However, this of course forces me to implement my own custom user model, boo. Additionally, if my app has more than one user type (for example Customer and Merchant for a store app), then I will start having to keep adding more properties that have almost the exact same code. Not very DRY.</p>
+
+<p>Wouldn&rsquo;t it be better if I could automatically add a property that tells me whether or not the related model exists?</p>
+
+<p>Here&rsquo;s a OneToOneField subclass that provides this feature:</p>
+
+<pre><code>class AddFlagOneToOneField(OneToOneField):
+    def __init__(self, *args, **kwargs):
+        self.flag_name = kwargs.pop(&#39;flag_name&#39;)
+        super(AddFlagOneToOneField, self).__init__(*args, **kwargs)
+
+    def contribute_to_related_class(self, cls, related):
+        super(AddFlagOneToOneField, self).contribute_to_related_class(cls, related)
+
+        def flag(model_instance):
+            return hasattr(model_instance, related.get_accessor_name())
+        setattr(cls, self.flag_name, property(flag))
+
+    def deconstruct(self):
+        name, path, args, kwargs = super(AddFlagOneToOneField, self).deconstruct()
+        kwargs[&#39;flag_name&#39;] = self.flag_name
+        return name, path, args, kwargs</code></pre>
+
+<p>&nbsp;</p>
+
+<p>This field builds on Django&rsquo;s built-in&nbsp;<code>OneToOneField</code>, but with a few modifications, it could work with&nbsp;<code>SoftOneToOneField</code>.</p>
+
+<p>Now, when I create my profile models, I can add that property to the User model without touching the User model[0].</p>
+
+<pre><code>class CustomerProfile(models.Model):
+    user = AddFlagOneToOneField(&#39;auth.User&#39;, related_name=&#39;customer_profile&#39;,
+                                flag_name=&#39;is_customer&#39;)
+
+
+class MerchantProfile(models.Model):
+    user = AddFlagOneToOneField(&#39;auth.User&#39;, related_name=&#39;merchant_profile&#39;,
+                                flag_name=&#39;is_merchant&#39;)
+
+
+class EmployeeProfile(models.Model):
+    user = AddFlagOneToOneField(&#39;auth.User&#39;, related_name=&#39;employee_profile&#39;,
+                                flag_name=&#39;is_employee&#39;)</code></pre>
+
+<p>&nbsp;</p>
+
+<p>And now the User model has these readable flags that I can use instead of hasattr.</p>
+
+<pre><code>user = User.objects.get(email=&#39;customer@example.com&#39;)
+user.is_customer  # True
+user.is_merchant  # False
+user.is_employee  # False</code></pre>
+
+<p>&nbsp;</p>
+
+<p><code>AddFlagOneToOneField</code>&nbsp;has the benefit of not throwing exceptions and also that you don&rsquo;t have modify the User model.</p>
+
+<p>Thanks for reading!</p>
+
+<p>[0]: If you want to read more about this, see&nbsp;<a href="https://github.com/raganwald-deprecated/homoiconic/blob/master/2011/11/COMEFROM.md">Williams, Master of the &ldquo;Come From&rdquo;</a>.</p>
+
+<hr>
+<p>Rocky is a lead Django developer at Fusionbox, a <a href="https://www.fusionbox.com/services/">Python Development Company</a>&nbsp;in Denver, CO.&nbsp;</p>
+</div>
+
+
+
+      </article>
+      <aside>
+        <div>
+  <h3><strong>Thanks for reading!</strong></h3>
+  <p>Fusionbox provides <a href="/">custom software development</a>, <a href="/services/denver-web-development/python-web-development/">staff augmentation</a>, and <a href="/services/application-security-assessment/#training">training</a>, specializing in <a href="/services/denver-web-development/python-web-development/">Python</a>, <a href="/services/denver-web-development/python-web-development/django-web-development/">Django</a>, <a href="/services/denver-database-design/">Postgres</a>, &amp; <a href="/services/denver-web-development/react-developers/">React</a>.</p>
+  <p><strong>Got an idea? Want a quote?</strong> <a href="mailto:info@fusionbox.com">Email</a> or <a href="tel:+13039527490">call</a> today and we'll help you make it happen!</p>
+</div>
+
+      </aside>
+    </div>
+  </section>
+
+
+    <footer>
+      <div class="inner">
+        <p><img class="tagline" src="https://static.fusionbox.com/static/image/tagline-white.7f7ed482f80f.svg" alt="it's bright in here &reg;" />
+        <ul>
+          <li><a href="/">home</a></li>
+          <li><a href="/work/">work</a></li>
+          <li><a href="/services/">services</a></li>
+          <li><a href="/process/">process</a></li>
+          <li><a href="/about-us/">about us</a></li>
+          <li><a href="/contact/">contact us</a></li>
+          <li><a href="/products/">products</a></li>
+          <li><a href="/blog/">blog</a></li>
+          <li><a href="/careers/">careers</a></li>
+          <li><a href="/privacy/">privacy</a></li>
+          <li><a href="/sitemap/">sitemap</a></li>
+        </ul>
+        <p>
+        &copy;2019 Fusionbox, Inc., a Python Development Company. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+  </div>
+
+
+
+
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://static.fusionbox.com/static/CACHE/js/932ea4fcc428.js"></script>
+
+  <script type="text/javascript" src="//cdn.callrail.com/companies/374702160/3946d1d6658080e76ab5/12/swap.js"></script>
+</body>
+</html>

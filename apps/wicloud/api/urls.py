@@ -358,6 +358,12 @@ urlpatterns = [
         name='light_fixture_detail'
     ),
     url(
+        r'^light-fixture-by-serial-number/(?P<id>[-\w]+)/$',
+        views.Light_fixtureBySerialNumberRetrieveUpdateDestroyAPIView.as_view(),
+        name='light_feature_by_serial_number'
+    ),
+
+    url(
         r'^light-fixture/set-status/(?P<pk>\w+)/$',
         views.Light_fixtureSetStatusView.as_view(),
         name='light_fixture_set_status'
@@ -543,36 +549,36 @@ urlpatterns = [
         views.NodeDisableView.as_view(),
         name='node_disable'
     ),
-    url(
-        r'^node-module/$',
-        views.Node_moduleListCreateAPIView.as_view(),
-        name='node_module_list'
-    ),
-    url(
-        r'^node-module/(?P<id>[-\w]+)/$',
-        views.Node_moduleRetrieveUpdateDestroyAPIView.as_view(),
-        name='node_module_detail'
-    ),
-    url(
-        r'^node-module-by-mac/(?P<id>[-\w]+)/$',
-        views.Node_moduleByMacRetrieveUpdateDestroyAPIView.as_view(),
-        name='node_module_by_mac_detail'
-    ),
-    url(
-        r'^node-module/set-status/(?P<pk>\w+)/$',
-        views.Node_moduleSetStatusView.as_view(),
-        name='node_module_set_status'
-    ),
-    url(
-        r'^node-module/enable/(?P<pk>\w+)/$',
-        views.Node_moduleEnableView.as_view(),
-        name='node_module_enable'
-    ),
-    url(
-        r'^node-module/disable/(?P<pk>\w+)/$',
-        views.Node_moduleDisableView.as_view(),
-        name='node_module_disable'
-    ),
+    # url(
+    #     r'^node-module/$',
+    #     views.Node_moduleListCreateAPIView.as_view(),
+    #     name='node_module_list'
+    # ),
+    # url(
+    #     r'^node-module/(?P<id>[-\w]+)/$',
+    #     views.Node_moduleRetrieveUpdateDestroyAPIView.as_view(),
+    #     name='node_module_detail'
+    # ),
+    # url(
+    #     r'^node-module-by-mac/(?P<id>[-\w]+)/$',
+    #     views.Node_moduleByMacRetrieveUpdateDestroyAPIView.as_view(),
+    #     name='node_module_by_mac_detail'
+    # ),
+    # url(
+    #     r'^node-module/set-status/(?P<pk>\w+)/$',
+    #     views.Node_moduleSetStatusView.as_view(),
+    #     name='node_module_set_status'
+    # ),
+    # url(
+    #     r'^node-module/enable/(?P<pk>\w+)/$',
+    #     views.Node_moduleEnableView.as_view(),
+    #     name='node_module_enable'
+    # ),
+    # url(
+    #     r'^node-module/disable/(?P<pk>\w+)/$',
+    #     views.Node_moduleDisableView.as_view(),
+    #     name='node_module_disable'
+    # ),
     url(
         r'^wilamp-alert/$',
         views.Wilamp_alertListCreateAPIView.as_view(),

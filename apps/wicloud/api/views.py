@@ -373,9 +373,15 @@ class Energy_meter_moduleByMacRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroy
     def get_object(self):
         mac = self.kwargs['id']
         user = self.request.user
-        b = models.Node.objects.filter(mac=mac).select_related('modules').select_related('modules__energyMeter')
+        b = models.Node.objects.filter(mac=mac).select_related('energyMeterModule')
         try:
-            return b.first().modules.energyMeter
+            try:
+                result = b.first()
+                if result and result.energyMeterModule:
+                    return result.energyMeterModule
+                raise Http404()
+            except:
+                raise Http404()
         except:
             raise Http404()
 
@@ -786,6 +792,22 @@ class Light_fixtureRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     serializer_class = serializers.Light_fixtureRetrieveSerializer
     lookup_field = 'id'
 
+class Light_fixtureBySerialNumberRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+    """
+    Get a single energy_meter_module by mac
+    """
+    serializer_class = serializers.Light_fixtureRetrieveSerializer
+    lookup_field = 'id'
+
+    def get_object(self):
+        serial = self.kwargs['id']
+        b = models.Light_fixture.objects.filter(serialNumber=serial)
+        try:
+            result = b.first()
+            if result: return result
+            raise Http404()
+        except:
+            raise Http404()
 
 class Light_fixtureSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
     """
@@ -1196,65 +1218,65 @@ class NodeDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdateAPIView)
     new_status = 0
 
 
-class Node_moduleListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
-    """
-    Get all  node_modules
-    """
-    queryset = models.Node_module.objects.all()
-    serializer_class = serializers.Node_moduleListSerializer
-    lookup_field = 'id'
-
-class Node_moduleRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
-    """
-    Get a single node_module
-    """
-    queryset = models.Node_module.objects.all()
-    serializer_class = serializers.Node_moduleRetrieveSerializer
-    lookup_field = 'id'
-
-class Node_moduleByMacRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
-    """
-    Get a single energy_meter_module by mac
-    """
-    serializer_class = serializers.Node_moduleRetrieveSerializer
-    lookup_field = 'id'
-
-    def get_object(self):
-        mac = self.kwargs['id']
-        user = self.request.user
-        b = models.Node.objects.filter(mac=mac).select_related('modules')
-        try:
-            if b.first().modules:
-                return b.first().modules
-            else: raise Http404()
-        except:
-            raise Http404()
-
-
-class Node_moduleSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
-    """
-    Set Status for a single node_module
-    """
-    queryset = models.Node_module.objects.all()
-    serializer_class = serializers.Node_moduleSetStatusSerializer
-
-
-class Node_moduleEnableView(views.ThuxStatusViewMixin, generics.RetrieveUpdateAPIView):
-    """
-    Enable a single node_module
-    """
-    queryset = models.Node_module.objects.filter(status=0)
-    serializer_class = serializers.Node_moduleStatusSerializer
-    new_status = 1
-
-
-class Node_moduleDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdateAPIView):
-    """
-    Enable a single node_module
-    """
-    queryset = models.Node_module.objects.filter(status=1)
-    serializer_class = serializers.Node_moduleStatusSerializer
-    new_status = 0
+# class Node_moduleListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
+#     """
+#     Get all  node_modules
+#     """
+#     queryset = models.Node_module.objects.all()
+#     serializer_class = serializers.Node_moduleListSerializer
+#     lookup_field = 'id'
+#
+# class Node_moduleRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+#     """
+#     Get a single node_module
+#     """
+#     queryset = models.Node_module.objects.all()
+#     serializer_class = serializers.Node_moduleRetrieveSerializer
+#     lookup_field = 'id'
+#
+# class Node_moduleByMacRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+#     """
+#     Get a single energy_meter_module by mac
+#     """
+#     serializer_class = serializers.Node_moduleRetrieveSerializer
+#     lookup_field = 'id'
+#
+#     def get_object(self):
+#         mac = self.kwargs['id']
+#         user = self.request.user
+#         b = models.Node.objects.filter(mac=mac).select_related('modules')
+#         try:
+#             if b.first().modules:
+#                 return b.first().modules
+#             else: raise Http404()
+#         except:
+#             raise Http404()
+#
+#
+# class Node_moduleSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
+#     """
+#     Set Status for a single node_module
+#     """
+#     queryset = models.Node_module.objects.all()
+#     serializer_class = serializers.Node_moduleSetStatusSerializer
+#
+#
+# class Node_moduleEnableView(views.ThuxStatusViewMixin, generics.RetrieveUpdateAPIView):
+#     """
+#     Enable a single node_module
+#     """
+#     queryset = models.Node_module.objects.filter(status=0)
+#     serializer_class = serializers.Node_moduleStatusSerializer
+#     new_status = 1
+#
+#
+# class Node_moduleDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdateAPIView):
+#     """
+#     Enable a single node_module
+#     """
+#     queryset = models.Node_module.objects.filter(status=1)
+#     serializer_class = serializers.Node_moduleStatusSerializer
+#     new_status = 0
 
 
 class Wilamp_alertListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):

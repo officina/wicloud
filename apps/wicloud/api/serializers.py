@@ -960,51 +960,51 @@ class NodeStatusSerializer(serializers.ModelSerializer):
         return NodeRetrieveSerializer(instance).data
 
 
-class Node_moduleListSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Node_module
-        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
-
-
-class Node_moduleRetrieveSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Node_module
-        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
-
-
-class Node_moduleCreateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Node_module
-        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
-
-
-class Node_modulePartialUpdateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Node_module
-        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
-
-
-class Node_moduleSetStatusSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Node_module
-        fields = ('status',)
-
-    def update(self, instance, validated_data):
-        instance.status = validated_data['status']
-        instance.save()
-        return instance
-
-    def to_representation(self, instance):
-        return Node_moduleRetrieveSerializer(instance).data
-
-
-class Node_moduleStatusSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Node_module
-        fields = ()
-
-    def to_representation(self, instance):
-        return Node_moduleRetrieveSerializer(instance).data
+# class Node_moduleListSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = models.Node_module
+#         exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
+#
+#
+# class Node_moduleRetrieveSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = models.Node_module
+#         exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
+#
+#
+# class Node_moduleCreateSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = models.Node_module
+#         exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
+#
+#
+# class Node_modulePartialUpdateSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = models.Node_module
+#         exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
+#
+#
+# class Node_moduleSetStatusSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = models.Node_module
+#         fields = ('status',)
+#
+#     def update(self, instance, validated_data):
+#         instance.status = validated_data['status']
+#         instance.save()
+#         return instance
+#
+#     def to_representation(self, instance):
+#         return Node_moduleRetrieveSerializer(instance).data
+#
+#
+# class Node_moduleStatusSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = models.Node_module
+#         fields = ()
+#
+#     def to_representation(self, instance):
+#         return Node_moduleRetrieveSerializer(instance).data
 
 
 class Wilamp_alertListSerializer(serializers.ModelSerializer):
