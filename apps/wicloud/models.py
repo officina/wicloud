@@ -185,7 +185,7 @@ class Energy_meter_module(CleanModel, UserModel, DateModel, StatusModel, Ordered
     userLampPower = models.CharField(max_length=255, blank=True, null=True)
     userLampModel = models.CharField(max_length=255, blank=True, null=True) #Apparecchio: Stradale ottica chiusa
     userLampManufacturer = models.CharField(max_length=255, blank=True, null=True) #Apparecchio: Gewiss
-    node = SoftOneToOneField("Node", models.DO_NOTHING, primary_key=True, related_name="energyMeterModule")
+    node = SoftOneToOneField("Node", models.DO_NOTHING, blank=True, null=True, related_name="energyMeterModule")
 
     class Meta:
         verbose_name = _('energy_meter_module')
@@ -595,7 +595,7 @@ class Light_management_module(CleanModel, UserModel, DateModel, StatusModel, Ord
     lightZone = models.IntegerField(blank=True, null=True)
     lightProfileId = models.BigIntegerField(blank=True, null=True)
     lightProfileCRC = models.FloatField(blank=True, null=True)
-    node = SoftOneToOneField("Node", models.DO_NOTHING, primary_key=True, related_name="lightManagementModule")
+    node = SoftOneToOneField("Node", models.DO_NOTHING, blank=True, null=True, related_name="lightManagementModule")
 
     class Meta:
         verbose_name = _('light_management_module')
@@ -866,7 +866,7 @@ class Twilight_management_module(CleanModel, UserModel, DateModel, StatusModel, 
     adcInChannel = models.IntegerField(blank=True, null=True)
     programmingStatus = models.IntegerField(blank=True, null=True)
     createdTimestamp = models.DateTimeField(blank=True, null=True)
-    node = SoftOneToOneField("Node", models.DO_NOTHING, primary_key=True, related_name="twilightManagementModule")
+    node = SoftOneToOneField("Node", models.DO_NOTHING, blank=True, null=True, related_name="twilightManagementModule")
 
     class Meta:
         verbose_name = _('twilight_management_module')
@@ -924,7 +924,7 @@ class Motion_management_module(CleanModel, UserModel, DateModel, StatusModel, Or
     createdTimestamp = models.DateTimeField(blank=True, null=True)
     adcInChannel = models.IntegerField(blank=True, null=True)
     duration = models.FloatField(blank=True, null=True)
-    node = SoftOneToOneField("Node", models.DO_NOTHING, primary_key=True, related_name="motionManagementModule")
+    node = SoftOneToOneField("Node", models.DO_NOTHING, blank=True, null=True, related_name="motionManagementModule")
 
     class Meta:
         verbose_name = _('motion_management_module')

@@ -373,7 +373,7 @@ class Energy_meter_moduleByMacRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroy
     def get_object(self):
         mac = self.kwargs['id']
         user = self.request.user
-        b = models.Node.objects.filter(mac=mac).select_related('energyMeterModule')
+        b = models.Node.objects.filter(mac=mac).select_related('energyMeterModule').order_by('-created_date')
         try:
             try:
                 result = b.first()
@@ -903,9 +903,12 @@ class Light_management_moduleByMacRetrieveUpdateDestroyAPIView(RetrieveUpdateDes
     def get_object(self):
         mac = self.kwargs['id']
         user = self.request.user
-        b = models.Node.objects.filter(mac=mac).select_related('modules').select_related('modules__lightManagement')
+        b = models.Node.objects.filter(mac=mac).select_related('lightManagementModule').order_by('-created_date')
         try:
-            return b.first().modules.lightManagement
+            result = b.first()
+            if result.lightManagementModule != None:
+                return result.lightManagementModule
+            raise Http404()
         except:
             raise Http404()
 
