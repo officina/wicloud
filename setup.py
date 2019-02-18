@@ -86,6 +86,7 @@ setup(
         'elasticsearch-dsl>=6.0,<6.2',
         'django-elasticsearch-dsl',
         'django-elasticsearch-dsl-drf',
+        'locustio',
 
     ],
     package_data=get_data_files('web')

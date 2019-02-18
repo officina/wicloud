@@ -225,7 +225,7 @@ REST_FRAMEWORK = {
     #'DEFAULT_PAGINATION_CLASS': 'web.api.pagination.ThuxPageNumberPagination',
     #'DEFAULT_PAGINATION_CLASS': 'drf_link_header_pagination.LinkHeaderPagination',
     'DEFAULT_PAGINATION_CLASS': 'web.api.pagination.HeaderPagination',
-
+    'COERCE_DECIMAL_TO_STRING': False,
     'PAGE_SIZE': 100,
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
     'DEFAULT_AUTHENTICATION_CLASSES': (

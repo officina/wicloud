@@ -769,76 +769,76 @@ class TestEnergy_meter_module(TestCase):
         # if you assign a customer
         #self.assertEqual(m, customer.id)
 
-    def test_get_energy_meter_module_by_mac(self):
-        energy_meter_module_desc = 'Energy_meter_module 1'
-        node_mac = "test"
-
-        # if you assign a customer or any other object
-        # customer = Customer.objects.create()
-        # customer.first_name = "Mario"
-        # customer.last_name = "Rossi"
-        # customer.save()
-
-        obj = Energy_meter_module.objects.create(
-            creator=self.u,
-            last_modifier=self.u,
-        )
-
-        # you could assign it here after creation
-        #d.customer = customer
-        obj.description = energy_meter_module_desc
-        obj.save()
-        id = obj.id
-
-        modules_obj = Node_module.objects.create(
-            creator=self.u,
-            last_modifier=self.u,
-            energyMeter_id=id
-        )
-        modules_obj.save()
-        node_modules_id = modules_obj.id
-
-        node_obj = Node.objects.create(
-            creator=self.u,
-            last_modifier=self.u,
-            mac=node_mac,
-            modules_id=node_modules_id
-        )
-        node_obj.save()
-
-        url = reverse('api:energy_meter_module_by_mac_detail', kwargs={'id': node_mac})
-
-        # example on how to create child entities that belongs to this entity
-        # for i in range(0, 5):
-        #     e = Employee.objects.create()
-        #     e.title = "employee {}".format(i)
-        #
-        #
-        #     e.save()
-        #
-        #     d.structured_doctors.add(e)
-        #
-        # for i in range(0, 5):
-        #     em = Employee.objects.create()
-        #     em.title = "employee {}".format(i)
-        #
-        #     em.save()
-        #     d.employees.add(em)
-
-        response = self.apiClient.get(url)
-
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-
-        data = response.data
-
-        self.assertEqual(data['description'], obj.description)
-
-        # self.assertEqual(len(dep['structured_doctors']), 5)
-        # self.assertEqual(len(dep['employees']), 5)
-
-
-        # if you assign a customer
-        #self.assertEqual(m, customer.id)
+    # def test_get_energy_meter_module_by_mac(self):
+    #     energy_meter_module_desc = 'Energy_meter_module 1'
+    #     node_mac = "test"
+    #
+    #     # if you assign a customer or any other object
+    #     # customer = Customer.objects.create()
+    #     # customer.first_name = "Mario"
+    #     # customer.last_name = "Rossi"
+    #     # customer.save()
+    #
+    #     obj = Energy_meter_module.objects.create(
+    #         creator=self.u,
+    #         last_modifier=self.u,
+    #     )
+    #
+    #     # you could assign it here after creation
+    #     #d.customer = customer
+    #     obj.description = energy_meter_module_desc
+    #     obj.save()
+    #     id = obj.id
+    #
+    #     modules_obj = Node_module.objects.create(
+    #         creator=self.u,
+    #         last_modifier=self.u,
+    #         energyMeter_id=id
+    #     )
+    #     modules_obj.save()
+    #     node_modules_id = modules_obj.id
+    #
+    #     node_obj = Node.objects.create(
+    #         creator=self.u,
+    #         last_modifier=self.u,
+    #         mac=node_mac,
+    #         modules_id=node_modules_id
+    #     )
+    #     node_obj.save()
+    #
+    #     url = reverse('api:energy_meter_module_by_mac_detail', kwargs={'id': node_mac})
+    #
+    #     # example on how to create child entities that belongs to this entity
+    #     # for i in range(0, 5):
+    #     #     e = Employee.objects.create()
+    #     #     e.title = "employee {}".format(i)
+    #     #
+    #     #
+    #     #     e.save()
+    #     #
+    #     #     d.structured_doctors.add(e)
+    #     #
+    #     # for i in range(0, 5):
+    #     #     em = Employee.objects.create()
+    #     #     em.title = "employee {}".format(i)
+    #     #
+    #     #     em.save()
+    #     #     d.employees.add(em)
+    #
+    #     response = self.apiClient.get(url)
+    #
+    #     self.assertEqual(response.status_code, status.HTTP_200_OK)
+    #
+    #     data = response.data
+    #
+    #     self.assertEqual(data['description'], obj.description)
+    #
+    #     # self.assertEqual(len(dep['structured_doctors']), 5)
+    #     # self.assertEqual(len(dep['employees']), 5)
+    #
+    #
+    #     # if you assign a customer
+    #     #self.assertEqual(m, customer.id)
 
 from apps.wicloud.models import Energy_meter_peak_measure
 
@@ -3498,191 +3498,194 @@ class TestNode(TestCase):
 
         # if you assign a customer
         #self.assertEqual(m, customer.id)
-from apps.wicloud.models import Node_module
+
+#from apps.wicloud.models import Node_module
+#
+#
+# class TestNode_module(TestCase):
+#
+#     apiClient = APIClient()
+#     u: UserModel
+#
+#     def setUp(self):
+#         settings.MEDIA_ROOT = tempfile.mkdtemp()
+#
+#         url = reverse('api-jwt-auth')
+#         self.u = self.make_user(username='apitest', password='apitest')
+#         self.u.is_active = False
+#         self.u.save()
+#
+#         resp = self.client.post(url, {'email': 'testuser', 'password': 'password'}, format='json')
+#         self.assertEqual(resp.status_code, status.HTTP_400_BAD_REQUEST)
+#
+#         self.u.is_active = True
+#         self.u.must_change_password = False
+#         self.u.save()
+#
+#         resp = self.client.post(url, {'email': 'apitest', 'password': 'apitest'}, format='json')
+#         self.assertEqual(resp.status_code, status.HTTP_200_OK)
+#         self.assertTrue('token' in resp.data)
+#         # self.assertTrue('refresh' in resp.data)
+#         token = resp.data['token']
+#         # refresh = resp.data['refresh']
+#
+#         # print(token)
+#
+#         verification_url = reverse('api-jwt-refresh')
+#         resp = self.client.post(verification_url, {'token': token}, format='json')
+#         self.assertEqual(resp.status_code, status.HTTP_200_OK)
+#
+#         resp = self.client.post(verification_url, {'token': 'abc'}, format='json')
+#         self.assertEqual(resp.status_code, status.HTTP_400_BAD_REQUEST)
+#
+#         self.apiClient.credentials(HTTP_AUTHORIZATION='Bearer ' + token)
+#
+#     def test_patch_node_module(self):
+#
+#         original_desc = "Node_module base"
+#         modified_desc = "Node_module modified"
+#
+#         d = Node_module.objects.create(
+#             creator=self.u,
+#             last_modifier=self.u,
+#         )
+#
+#         d.save()
+#         id = d.id
+#         url = reverse('api:node_module_detail', kwargs={'id': id})
+#         data = {'description': modified_desc, 'id': id}
+#
+#         response = self.apiClient.patch(url, data)
+#
+#         self.assertEqual(response.status_code, status.HTTP_200_OK)
+#         self.assertEqual(response.data["description"], modified_desc)
+#         self.assertEqual(response.data["id"], id)
+#
+#     def test_put_node_module(self):
+#
+#         original_desc = "Node_module base"
+#         modified_desc = "Node_module modified"
+#
+#         d = Node_module.objects.create(
+#             creator=self.u,
+#             last_modifier=self.u,
+#         )
+#
+#         d.save()
+#         id = d.id
+#         url = reverse('api:node_module_detail', kwargs={'id': id})
+#         data = {'description': modified_desc, 'id': id}
+#
+#         response = self.apiClient.put(url, data)
+#
+#         self.assertEqual(response.status_code, status.HTTP_200_OK)
+#         self.assertEqual(response.data["description"], modified_desc)
+#         self.assertEqual(response.data["id"], id)
+#
+#     def test_delete_node_module(self):
+#
+#         original_desc = "Node_module base"
+#         modified_desc = "Node_module modified"
+#
+#         d = Node_module.objects.create(
+#             creator=self.u,
+#             last_modifier=self.u,
+#         )
+#
+#         d.save()
+#         id = d.id
+#         url = reverse('api:node_module_detail', kwargs={'id': id})
+#         data = {'description': modified_desc, 'id': id}
+#
+#         self.assertEqual(Node_module.objects.count(), 1)
+#
+#         response = self.apiClient.delete(url, data)
+#
+#         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+#         self.assertEqual(Node_module.objects.count(), 0)
+#
+#     def test_list_node_module(self):
+#         for i in range(0, 5):
+#             d = Node_module.objects.create(
+#                 creator=self.u,
+#                 last_modifier=self.u,
+#             )
+#             d.title = "Node_module {}".format(i)
+#             d.save()
+#
+#         url = reverse('api:node_module_list')
+#         response = self.apiClient.get(url)
+#
+#         self.assertEqual(response.status_code, status.HTTP_200_OK)
+#         self.assertIs(len(response.data['results']), 5)
+#
+#     def test_create_node_module(self):
+#
+#         node_module_desc = 'Node_module description'
+#
+#         url = reverse('api:node_module_list')
+#
+#         data = {'description': node_module_desc}  # , 'last_name': 'last name', "title": "doctor"}
+#
+#         response = self.apiClient.post(url, data)
+#         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+#         self.assertEqual(Node_module.objects.count(), 1)
+#         self.assertEqual(Node_module.objects.get().description, node_module_desc)
+#         ##self.assertEqual(response.data[role].count, 1)
+#
+#     def test_get_node_module(self):
+#         node_module_desc = 'Node_module 1'
+#         # if you assign a customer or any other object
+#         # customer = Customer.objects.create()
+#         # customer.first_name = "Mario"
+#         # customer.last_name = "Rossi"
+#         # customer.save()
+#
+#         obj = Node_module.objects.create(
+#             creator=self.u,
+#             last_modifier=self.u,
+#         )
+#
+#         # you could assign it here after creation
+#         #d.customer = customer
+#         obj.description = node_module_desc
+#         obj.save()
+#         id = obj.id
+#         url = reverse('api:node_module_detail', kwargs={'id': id})
+#
+#         # example on how to create child entities that belongs to this entity
+#         # for i in range(0, 5):
+#         #     e = Employee.objects.create()
+#         #     e.title = "employee {}".format(i)
+#         #
+#         #
+#         #     e.save()
+#         #
+#         #     d.structured_doctors.add(e)
+#         #
+#         # for i in range(0, 5):
+#         #     em = Employee.objects.create()
+#         #     em.title = "employee {}".format(i)
+#         #
+#         #     em.save()
+#         #     d.employees.add(em)
+#
+#         response = self.apiClient.get(url)
+#
+#         self.assertEqual(response.status_code, status.HTTP_200_OK)
+#
+#         data = response.data
+#
+#         self.assertEqual(data['description'], obj.description)
+#
+#         # self.assertEqual(len(dep['structured_doctors']), 5)
+#         # self.assertEqual(len(dep['employees']), 5)
+#
+#
+#         # if you assign a customer
+#         #self.assertEqual(m, customer.id)
 
 
-class TestNode_module(TestCase):
-
-    apiClient = APIClient()
-    u: UserModel
-
-    def setUp(self):
-        settings.MEDIA_ROOT = tempfile.mkdtemp()
-
-        url = reverse('api-jwt-auth')
-        self.u = self.make_user(username='apitest', password='apitest')
-        self.u.is_active = False
-        self.u.save()
-
-        resp = self.client.post(url, {'email': 'testuser', 'password': 'password'}, format='json')
-        self.assertEqual(resp.status_code, status.HTTP_400_BAD_REQUEST)
-
-        self.u.is_active = True
-        self.u.must_change_password = False
-        self.u.save()
-
-        resp = self.client.post(url, {'email': 'apitest', 'password': 'apitest'}, format='json')
-        self.assertEqual(resp.status_code, status.HTTP_200_OK)
-        self.assertTrue('token' in resp.data)
-        # self.assertTrue('refresh' in resp.data)
-        token = resp.data['token']
-        # refresh = resp.data['refresh']
-
-        # print(token)
-
-        verification_url = reverse('api-jwt-refresh')
-        resp = self.client.post(verification_url, {'token': token}, format='json')
-        self.assertEqual(resp.status_code, status.HTTP_200_OK)
-
-        resp = self.client.post(verification_url, {'token': 'abc'}, format='json')
-        self.assertEqual(resp.status_code, status.HTTP_400_BAD_REQUEST)
-
-        self.apiClient.credentials(HTTP_AUTHORIZATION='Bearer ' + token)
-
-    def test_patch_node_module(self):
-
-        original_desc = "Node_module base"
-        modified_desc = "Node_module modified"
-
-        d = Node_module.objects.create(
-            creator=self.u,
-            last_modifier=self.u,
-        )
-
-        d.save()
-        id = d.id
-        url = reverse('api:node_module_detail', kwargs={'id': id})
-        data = {'description': modified_desc, 'id': id}
-
-        response = self.apiClient.patch(url, data)
-
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data["description"], modified_desc)
-        self.assertEqual(response.data["id"], id)
-
-    def test_put_node_module(self):
-
-        original_desc = "Node_module base"
-        modified_desc = "Node_module modified"
-
-        d = Node_module.objects.create(
-            creator=self.u,
-            last_modifier=self.u,
-        )
-
-        d.save()
-        id = d.id
-        url = reverse('api:node_module_detail', kwargs={'id': id})
-        data = {'description': modified_desc, 'id': id}
-
-        response = self.apiClient.put(url, data)
-
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data["description"], modified_desc)
-        self.assertEqual(response.data["id"], id)
-
-    def test_delete_node_module(self):
-
-        original_desc = "Node_module base"
-        modified_desc = "Node_module modified"
-
-        d = Node_module.objects.create(
-            creator=self.u,
-            last_modifier=self.u,
-        )
-
-        d.save()
-        id = d.id
-        url = reverse('api:node_module_detail', kwargs={'id': id})
-        data = {'description': modified_desc, 'id': id}
-
-        self.assertEqual(Node_module.objects.count(), 1)
-
-        response = self.apiClient.delete(url, data)
-
-        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        self.assertEqual(Node_module.objects.count(), 0)
-
-    def test_list_node_module(self):
-        for i in range(0, 5):
-            d = Node_module.objects.create(
-                creator=self.u,
-                last_modifier=self.u,
-            )
-            d.title = "Node_module {}".format(i)
-            d.save()
-
-        url = reverse('api:node_module_list')
-        response = self.apiClient.get(url)
-
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertIs(len(response.data['results']), 5)
-
-    def test_create_node_module(self):
-
-        node_module_desc = 'Node_module description'
-
-        url = reverse('api:node_module_list')
-
-        data = {'description': node_module_desc}  # , 'last_name': 'last name', "title": "doctor"}
-
-        response = self.apiClient.post(url, data)
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(Node_module.objects.count(), 1)
-        self.assertEqual(Node_module.objects.get().description, node_module_desc)
-        ##self.assertEqual(response.data[role].count, 1)
-
-    def test_get_node_module(self):
-        node_module_desc = 'Node_module 1'
-        # if you assign a customer or any other object
-        # customer = Customer.objects.create()
-        # customer.first_name = "Mario"
-        # customer.last_name = "Rossi"
-        # customer.save()
-
-        obj = Node_module.objects.create(
-            creator=self.u,
-            last_modifier=self.u,
-        )
-
-        # you could assign it here after creation
-        #d.customer = customer
-        obj.description = node_module_desc
-        obj.save()
-        id = obj.id
-        url = reverse('api:node_module_detail', kwargs={'id': id})
-
-        # example on how to create child entities that belongs to this entity
-        # for i in range(0, 5):
-        #     e = Employee.objects.create()
-        #     e.title = "employee {}".format(i)
-        #
-        #
-        #     e.save()
-        #
-        #     d.structured_doctors.add(e)
-        #
-        # for i in range(0, 5):
-        #     em = Employee.objects.create()
-        #     em.title = "employee {}".format(i)
-        #
-        #     em.save()
-        #     d.employees.add(em)
-
-        response = self.apiClient.get(url)
-
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-
-        data = response.data
-
-        self.assertEqual(data['description'], obj.description)
-
-        # self.assertEqual(len(dep['structured_doctors']), 5)
-        # self.assertEqual(len(dep['employees']), 5)
-
-
-        # if you assign a customer
-        #self.assertEqual(m, customer.id)
 from apps.wicloud.models import Wilamp_alert
 
 

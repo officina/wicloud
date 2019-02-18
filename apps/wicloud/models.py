@@ -2,8 +2,24 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-
+from django.db.models import OneToOneField
+from django.db.models.fields.related_descriptors import ReverseOneToOneDescriptor
+from django.core.exceptions import ObjectDoesNotExist
 from web.core.models import UserModel, DateModel, StatusModel, OrderedModel, CleanModel
+
+
+class SoftReverseOneToOneDescriptor(ReverseOneToOneDescriptor):
+    def __get__(self, *args, **kwargs):
+        try:
+            return super(SoftReverseOneToOneDescriptor, self).__get__(*args, **kwargs)
+        except self.related.model.DoesNotExist:
+            return None
+        except ObjectDoesNotExist as ex:
+            return None
+
+
+class SoftOneToOneField(OneToOneField):
+    related_accessor_class = SoftReverseOneToOneDescriptor
 
 
 class Address(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
@@ -49,8 +65,7 @@ class Connected_device(CleanModel, UserModel, DateModel, StatusModel, OrderedMod
                                         max_digits=19,
                                         default=0)
         altitude = models.FloatField(blank=True, null=True)
-        nodes = models.ForeignKey('Node', models.DO_NOTHING, blank=True, null=True)
-        gateway = models.ForeignKey('Gateway', models.DO_NOTHING, blank=True, null=True)
+        gateway = models.ForeignKey('Gateway', models.DO_NOTHING, blank=True, null=True, related_name="connectedDevices")
 
         # shipping = models.ForeignKey('Shipping', models.DO_NOTHING, blank=True, null=True)
         # order = models.ForeignKey(JhiOrder, models.DO_NOTHING, blank=True, null=True)
@@ -102,10 +117,6 @@ class Customer(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 class Energy_interval(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
     mac = models.CharField(max_length=255, null=True)
-    lightManagementModule = models.ForeignKey('Light_management_module', models.DO_NOTHING, blank=True, null=True)
-    lightFixture = models.ForeignKey('Light_fixture', models.DO_NOTHING, blank=True, null=True)
-    node = models.ForeignKey('Node', models.DO_NOTHING, blank=True, null=True)
-    installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True)
     startInterval = models.DateTimeField(blank=True, null=True)
     endInterval = models.DateTimeField(blank=True, null=True)
     startIintervalMeasureTimestamp = models.DateTimeField(blank=True, null=True)
@@ -126,6 +137,10 @@ class Energy_interval(CleanModel, UserModel, DateModel, StatusModel, OrderedMode
     burningTimeCounter = models.FloatField(blank=True, null=True) #valore nell'intervallo
     nodeLifeCounter = models.FloatField(blank=True, null=True) #valore nell'intervallo
     duration = models.FloatField(blank=True, null=True) #valore nell'intervallo
+    lightManagementModule = models.ForeignKey('Light_management_module', models.DO_NOTHING, blank=True, null=True, related_name="energyIntervals")
+    lightFixture = models.ForeignKey('Light_fixture', models.DO_NOTHING, blank=True, null=True, related_name="energyIntervals")
+    _node = models.ForeignKey('Node', models.DO_NOTHING, blank=True, null=True, related_name="energyIntervals")
+    installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True, related_name="energyIntervals")
 
     class Meta:
         verbose_name = _('energy_interval')
@@ -139,6 +154,18 @@ class Energy_interval(CleanModel, UserModel, DateModel, StatusModel, OrderedMode
 
     def __str__(self):
         return 'Energy_interval'
+
+    @property
+    def node(self):
+        return self._node
+
+    @node.setter
+    def node(self, value):
+        try:
+            self.lightFixture = value.lightFixture
+            self.installation = value.lightFixture.installation
+        except Exception as ex:
+            print (ex)
 
 
 class Energy_meter_module(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
@@ -156,6 +183,7 @@ class Energy_meter_module(CleanModel, UserModel, DateModel, StatusModel, Ordered
     userLampPower = models.CharField(max_length=255, blank=True, null=True)
     userLampModel = models.CharField(max_length=255, blank=True, null=True) #Apparecchio: Stradale ottica chiusa
     userLampManufacturer = models.CharField(max_length=255, blank=True, null=True) #Apparecchio: Gewiss
+    node = SoftOneToOneField("Node", models.DO_NOTHING, blank=True, null=True, related_name="energyMeterModule")
 
     class Meta:
         verbose_name = _('energy_meter_module')
@@ -189,8 +217,9 @@ class Energy_meter_peak_measure(CleanModel, UserModel, DateModel, StatusModel, O
     measureTimestamp = models.DateTimeField(blank=True, null=True)
     createdTimestamp = models.DateTimeField(blank=True, null=True)
     sourceModule = models.CharField(max_length=255, blank=True, null=True)
-    installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True)
-    energyMeterModule = models.ForeignKey(Energy_meter_module, models.DO_NOTHING, blank=True, null=True)
+    installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True, related_name="energyMeterPeakMeasures")
+    energyMeterModule = models.ForeignKey(Energy_meter_module, models.DO_NOTHING, blank=True, null=True, related_name="energyMeterPeakMeasures")
+    lightFixture = models.ForeignKey('Light_fixture', models.DO_NOTHING, blank=True, null=True, related_name="energyMeterPeakMeasures")
 
     class Meta:
         verbose_name = _('energy_meter_peak_measure')
@@ -304,7 +333,7 @@ class Gateway(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
     fileNameEncryptionInfo = models.CharField(max_length=255, blank=True, null=True)
     hardwareInformations = models.CharField(max_length=255, blank=True, null=True)
     readyToReceiveData = models.BooleanField(blank=True, default=False)
-    installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True)
+    installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True, related_name="gateways")
     # shipping = models.ForeignKey('Shipping', models.DO_NOTHING, blank=True, null=True)
     # order = models.ForeignKey('JhiOrder', models.DO_NOTHING, blank=True, null=True)
 
@@ -327,7 +356,6 @@ class Ime_power_counter(CleanModel, UserModel, DateModel, StatusModel, OrderedMo
     name = models.CharField(max_length=255, blank=True, null=True)
 
     gatewayUUID = models.CharField(max_length=255, blank=True, null=True)
-    installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True)
     counterId = models.CharField(unique=True, max_length=255, null=True)
     location = models.CharField(max_length=255, blank=True, null=True)
     lat = models.FloatField(blank=True, null=True)
@@ -336,6 +364,7 @@ class Ime_power_counter(CleanModel, UserModel, DateModel, StatusModel, OrderedMo
     rs485address = models.CharField(max_length=255, blank=True, null=True)
     address = models.ForeignKey(Address, models.DO_NOTHING, blank=True, null=True)
     gateway = models.ForeignKey(Gateway, models.DO_NOTHING, blank=True, null=True)
+    installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True, related_name="imePowerCounters")
 
     class Meta:
         verbose_name = _('ime_power_counter')
@@ -365,7 +394,7 @@ class Ime_power_measure(CleanModel, UserModel, DateModel, StatusModel, OrderedMo
     activeEnergy = models.FloatField(blank=True, null=True)
     partialActiveEnergy = models.FloatField(blank=True, null=True)
     operatingTimeCounter = models.FloatField(blank=True, null=True)
-    imePowerCounter = models.ForeignKey(Ime_power_counter, models.DO_NOTHING, blank=True, null=True)
+    imePowerCounter = models.ForeignKey(Ime_power_counter, models.DO_NOTHING, blank=True, null=True, related_name="imePowerMeasures")
 
     class Meta:
         verbose_name = _('ime_power_measure')
@@ -384,13 +413,12 @@ class Ime_power_measure(CleanModel, UserModel, DateModel, StatusModel, OrderedMo
 class Installation(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
     name = models.CharField(max_length=255, blank=True, null=True)
-
+    serialNumber = models.CharField(max_length=255, blank=True, null=True)
     preparationDate = models.DateTimeField(blank=True, null=True)
     installationDate = models.DateTimeField(blank=True, null=True)
     notes = models.CharField(max_length=255, blank=True, null=True)
-    address = models.OneToOneField(Address, models.DO_NOTHING,  blank=True, null=True)
+    address = models.ForeignKey(Address, models.DO_NOTHING,  blank=True, null=True)
     customer = models.ForeignKey(Customer, models.DO_NOTHING, blank=True, null=True)
-
     installer = models.ForeignKey(User, models.SET_NULL, related_name='installator', blank=True, null=True)
     viewers = models.ManyToManyField(User, related_name='viewers', blank=True)
     installationManagers = models.ManyToManyField(User, related_name='installation_managers', blank=True)
@@ -435,6 +463,12 @@ class Installation(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 class Light_fixture(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
     name = models.CharField(max_length=255, blank=True, null=True)
     serialNumber = models.CharField(max_length=255, blank=True, null=True)
+    deviceType = models.IntegerField(blank=True, null=True)
+    lampType = models.IntegerField(blank=True, null=True)
+    lightZone = models.IntegerField(blank=True, null=True)
+    lightProfileId = models.BigIntegerField(blank=True, null=True)
+    nominalPower = models.FloatField(blank=True, null=True)
+    oldLampPower = models.FloatField(blank=True, null=True)
     logicId = models.CharField(max_length=255, blank=True, null=True)
     pLCode = models.CharField(max_length=255, blank=True, null=True)
     userOwner = models.CharField(max_length=255, blank=True, null=True)
@@ -444,6 +478,10 @@ class Light_fixture(CleanModel, UserModel, DateModel, StatusModel, OrderedModel)
     userLightpoleMaterial = models.CharField(max_length=255, blank=True, null=True)
     userLightpoleShape = models.CharField(max_length=255, blank=True, null=True)
     userLightpoleHeight = models.CharField(max_length=255, blank=True, null=True)
+    userLampType = models.CharField(max_length=255, blank=True, null=True)
+    userLampPower = models.CharField(max_length=255, blank=True, null=True)
+    userLampModel = models.CharField(max_length=255, blank=True, null=True) #Apparecchio: Stradale ottica chiusa
+    userLampManufacturer = models.CharField(max_length=255, blank=True, null=True) #Apparecchio: Gewiss
     timeZone = models.IntegerField(blank=True, null=True)
     timeZoneCode = models.CharField(max_length=255, blank=True, null=True)
     latitude = models.DecimalField(null=True,
@@ -457,8 +495,8 @@ class Light_fixture(CleanModel, UserModel, DateModel, StatusModel, OrderedModel)
                                     max_digits=19,
                                     default=0)
     altitude = models.FloatField(blank=True, null=True)
-    nodes = models.ForeignKey('Node', models.DO_NOTHING, blank=True, null=True)
-    gateway = models.ForeignKey('Gateway', models.DO_NOTHING, blank=True, null=True)
+    gateway = models.ForeignKey('Gateway', models.DO_NOTHING, blank=True, null=True, related_name="lightFixtures")
+    installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True, related_name="lightFixtures")
 
     class Meta:
         verbose_name = _('light_fixture')
@@ -526,8 +564,9 @@ class Light_management_measure(CleanModel, UserModel, DateModel, StatusModel, Or
     lampLife = models.FloatField(blank=True, null=True)
     nodeLife = models.FloatField(blank=True, null=True)
     activePowerCounter = models.FloatField(blank=True, null=True)
-    installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True)
-    lightManagementModule = models.ForeignKey('Light_management_module', models.DO_NOTHING, blank=True, null=True)
+    installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True, related_name="lightManagementMeasures")
+    lightManagementModule = models.ForeignKey('Light_management_module', models.DO_NOTHING, blank=True, null=True, related_name="lightManagementMeasures")
+    lightFixture = models.ForeignKey('Light_fixture', models.DO_NOTHING, blank=True, null=True, related_name="lightManagementMeasures")
 
     class Meta:
         verbose_name = _('light_management_measure')
@@ -553,6 +592,7 @@ class Light_management_module(CleanModel, UserModel, DateModel, StatusModel, Ord
     lightZone = models.IntegerField(blank=True, null=True)
     lightProfileId = models.BigIntegerField(blank=True, null=True)
     lightProfileCRC = models.FloatField(blank=True, null=True)
+    node = SoftOneToOneField("Node", models.DO_NOTHING, blank=True, null=True, related_name="lightManagementModule")
 
     class Meta:
         verbose_name = _('light_management_module')
@@ -576,7 +616,7 @@ class Light_profile(CleanModel, UserModel, DateModel, StatusModel, OrderedModel)
     reference = models.CharField(max_length=255, blank=True, null=True)
     profileCRC = models.FloatField(blank=True, null=True)
     lightProfileId = models.IntegerField(blank=True, null=True)
-    gateway = models.ForeignKey('Gateway', models.DO_NOTHING, blank=True, null=True)
+    gateway = models.ForeignKey('Gateway', models.DO_NOTHING, blank=True, null=True, related_name="lightProfiles")
     enabled = models.BooleanField(blank=True, default=False)
 
     class Meta:
@@ -623,7 +663,7 @@ class Light_profile_slot(CleanModel, UserModel, DateModel, StatusModel, OrderedM
     mi3 = models.FloatField(blank=True, null=True)
     motionFadeIn = models.FloatField(blank=True, null=True)
     motionFadeOut = models.FloatField(blank=True, null=True)
-    lightProfile = models.ForeignKey(Light_profile, models.DO_NOTHING, blank=True, null=True)
+    lightProfile = models.ForeignKey(Light_profile, models.DO_NOTHING, blank=True, null=True, related_name="lightProfileSlots")
 
 
     class Meta:
@@ -647,7 +687,8 @@ class Motion_event(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
     motionGroup = models.IntegerField(blank=True, null=True)
     motionBroadcast = models.IntegerField(blank=True, null=True)
     measureTimestamp = models.DateTimeField(blank=True, null=True)
-    motionManagementModule = models.ForeignKey('Motion_management_module', models.DO_NOTHING, blank=True, null=True)
+    motionManagementModule = models.ForeignKey('Motion_management_module', models.DO_NOTHING, blank=True, null=True, related_name="motionEvents")
+    lightFixture = models.ForeignKey('Light_fixture', models.DO_NOTHING, blank=True, null=True, related_name="motionEvents")
 
     class Meta:
         verbose_name = _('motion_event')
@@ -668,9 +709,9 @@ class Motion_event(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 class Node(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
     name = models.CharField(max_length=255, blank=True, null=True)
-
+    serialNumber = models.CharField(max_length=255, blank=True, null=True)
     nodeType = models.IntegerField(blank=True, null=True)
-    mac = models.CharField(unique=True, max_length=255, blank=True, null=True)
+    mac = models.CharField(max_length=255, blank=True, null=True) #MAC is not UNIQUE anymore, nodes with the same mac could coexist, i.e. a node has been moved from one installation to another.
     logTimeIst = models.IntegerField(blank=True, null=True)
     logTime0 = models.IntegerField(blank=True, null=True)
     logTime1 = models.IntegerField(blank=True, null=True)
@@ -689,12 +730,16 @@ class Node(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
                                     max_digits=19,
                                     default=0)
     altitude = models.FloatField(blank=True, null=True)
-    modules = models.OneToOneField('Node_module', models.DO_NOTHING, blank=True, null=True)
-    gateway = models.ForeignKey(Gateway, models.DO_NOTHING, blank=True, null=True) #TODO: AT rimuoverla in futuro
-    connectedDevice = models.ForeignKey(Connected_device, models.DO_NOTHING, blank=True, null=True)
-    lightFixture = models.ForeignKey(Light_fixture, models.DO_NOTHING, blank=True, null=True)
+    #modules = models.OneToOneField('Node_module', models.DO_NOTHING, blank=True, null=True)
+    gateway = models.ForeignKey(Gateway, models.DO_NOTHING, blank=True, null=True, related_name="nodes") #TODO: AT rimuoverla in futuro
+    connectedDevice = models.ForeignKey(Connected_device, models.DO_NOTHING, blank=True, null=True, related_name="nodes")
+    lightFixture = models.ForeignKey(Light_fixture, models.DO_NOTHING, blank=True, null=True, related_name="nodes")
     # shipping = models.ForeignKey('Shipping', models.DO_NOTHING, blank=True, null=True)
     # order = models.ForeignKey(JhiOrder, models.DO_NOTHING, blank=True, null=True)
+    #lightManagementModule = models.OneToOneField(Light_management_module, models.DO_NOTHING,  blank=True, null=True, related_name="node")
+    #energyMeterModule = models.OneToOneField(Energy_meter_module, models.DO_NOTHING,  blank=True, null=True, related_name="node")
+    #twilightManagementModule = models.OneToOneField('Twilight_management_module', models.DO_NOTHING,  blank=True, null=True, related_name="node")
+    #motionManagementModule = models.OneToOneField('Motion_management_module', models.DO_NOTHING,blank=True, null=True, related_name="node")
 
     class Meta:
         verbose_name = _('node')
@@ -721,27 +766,27 @@ class Node(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
         }
 
 
-class Node_module(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
-
-    name = models.CharField(max_length=255, blank=True, null=True)
-    lightManagement = models.OneToOneField(Light_management_module, models.DO_NOTHING,  blank=True, null=True)
-    energyMeter = models.OneToOneField(Energy_meter_module, models.DO_NOTHING,  blank=True, null=True)
-    twilightManagement = models.OneToOneField('Twilight_management_module', models.DO_NOTHING,  blank=True,
-                                            null=True)
-    motion_management = models.OneToOneField('Motion_management_module', models.DO_NOTHING,blank=True, null=True)
-
-    class Meta:
-        verbose_name = _('node_module')
-        verbose_name_plural = _('node_modules')
-        ordering = ('ordering',)
-        permissions = (
-            ("list_node_module", "Can list node_module"),
-            ("detail_node_module", "Can detail node_module"),
-            ("disable_node_module", "Can disable node_module"),
-        )
-
-    def __str__(self):
-        return 'Node_module'
+# class Node_module(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
+#
+#     name = models.CharField(max_length=255, blank=True, null=True)
+#     lightManagement = models.OneToOneField(Light_management_module, models.DO_NOTHING,  blank=True, null=True)
+#     energyMeter = models.OneToOneField(Energy_meter_module, models.DO_NOTHING,  blank=True, null=True)
+#     twilightManagement = models.OneToOneField('Twilight_management_module', models.DO_NOTHING,  blank=True,
+#                                             null=True)
+#     motion_management = models.OneToOneField('Motion_management_module', models.DO_NOTHING,blank=True, null=True)
+#
+#     class Meta:
+#         verbose_name = _('node_module')
+#         verbose_name_plural = _('node_modules')
+#         ordering = ('ordering',)
+#         permissions = (
+#             ("list_node_module", "Can list node_module"),
+#             ("detail_node_module", "Can detail node_module"),
+#             ("disable_node_module", "Can disable node_module"),
+#         )
+#
+#     def __str__(self):
+#         return 'Node_module'
 
 
 class Wilamp_alert(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
@@ -818,6 +863,7 @@ class Twilight_management_module(CleanModel, UserModel, DateModel, StatusModel, 
     adcInChannel = models.IntegerField(blank=True, null=True)
     programmingStatus = models.IntegerField(blank=True, null=True)
     createdTimestamp = models.DateTimeField(blank=True, null=True)
+    node = SoftOneToOneField("Node", models.DO_NOTHING, blank=True, null=True, related_name="twilightManagementModule")
 
     class Meta:
         verbose_name = _('twilight_management_module')
@@ -838,7 +884,9 @@ class Twilight_measure(CleanModel, UserModel, DateModel, StatusModel, OrderedMod
     luxValue = models.FloatField(blank=True, null=True)
     adcValue = models.FloatField(blank=True, null=True)
     measureTimestamp = models.DateTimeField(blank=True, null=True)
-    twilightManagementModule = models.ForeignKey(Twilight_management_module, models.DO_NOTHING, blank=True, null=True)
+    twilightManagementModule = models.ForeignKey(Twilight_management_module, models.DO_NOTHING, blank=True, null=True, related_name="twilightMeasures")
+    lightFixture = models.ForeignKey('Light_fixture', models.DO_NOTHING, blank=True, null=True, related_name="twilightMeasures")
+
 
     class Meta:
         verbose_name = _('twilight_measure')
@@ -873,6 +921,7 @@ class Motion_management_module(CleanModel, UserModel, DateModel, StatusModel, Or
     createdTimestamp = models.DateTimeField(blank=True, null=True)
     adcInChannel = models.IntegerField(blank=True, null=True)
     duration = models.FloatField(blank=True, null=True)
+    node = SoftOneToOneField("Node", models.DO_NOTHING, blank=True, null=True, related_name="motionManagementModule")
 
     class Meta:
         verbose_name = _('motion_management_module')

@@ -446,29 +446,29 @@ class TestNodeURLs(TestCase):
         self.assertEqual(resolve("/api/node/").view_name, "api:node_list")
 
 
-class TestNode_moduleURLs(TestCase):
-    """Test URL patterns for users app."""
-
-    # def setUp(self):
-    #     self.user = self.make_user()
-    #
-    def test_node_module_list_reverse(self):
-        """users:list should reverse to /node_module/."""
-        self.assertEqual(reverse("api:node_module_list"), "/api/node_module/")
-
-    def test_node_module_detail_reverse(self):
-        """users:list should reverse to /node_module/id."""
-
-        self.assertEqual(
-            reverse(
-                "api:node_module_detail",
-                kwargs={
-                    "id": "testuuid"}),
-            "/api/node_module/testuuid/")
-
-    def test_node_module_list_resolve(self):
-        """/users/ should resolve to users:list."""
-        self.assertEqual(resolve("/api/node_module/").view_name, "api:node_module_list")
+# class TestNode_moduleURLs(TestCase):
+#     """Test URL patterns for users app."""
+#
+#     # def setUp(self):
+#     #     self.user = self.make_user()
+#     #
+#     def test_node_module_list_reverse(self):
+#         """users:list should reverse to /node_module/."""
+#         self.assertEqual(reverse("api:node_module_list"), "/api/node_module/")
+#
+#     def test_node_module_detail_reverse(self):
+#         """users:list should reverse to /node_module/id."""
+#
+#         self.assertEqual(
+#             reverse(
+#                 "api:node_module_detail",
+#                 kwargs={
+#                     "id": "testuuid"}),
+#             "/api/node_module/testuuid/")
+#
+#     def test_node_module_list_resolve(self):
+#         """/users/ should resolve to users:list."""
+#         self.assertEqual(resolve("/api/node_module/").view_name, "api:node_module_list")
 
 
 class TestWilamp_alertURLs(TestCase):

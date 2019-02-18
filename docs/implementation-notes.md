@@ -76,3 +76,8 @@ shareimprove this answer
 answered Feb 12 '15 at 4:54
 
 
+##Model-less views
+
+https://medium.com/django-rest-framework/django-rest-framework-viewset-when-you-don-t-have-a-model-335a0490ba6f
+
+https://github.com/linovia/drf-demo
