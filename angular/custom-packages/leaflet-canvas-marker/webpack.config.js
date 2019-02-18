@@ -17,7 +17,14 @@ const vendors = [
     })
 ];*/
 
-const plugins = [];
+const plugins = [
+      new webpack.ProvidePlugin({
+        'window.jQuery': 'jquery',
+        'window.$': 'jquery',
+        $: "jquery",
+        jQuery: "jquery"
+    })
+];
 
 const webpackConfig = {
     mode: "none",
@@ -38,6 +45,10 @@ const webpackConfig = {
             {
                 test: /rbush.js/,
                 use: "script-loader"
+            },
+            {
+                test: /[\/]jquery\.js$/,
+                use: 'expose-loader?$!expose?jQuery'
             }
         ]
     },

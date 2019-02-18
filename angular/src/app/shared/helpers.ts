@@ -165,4 +165,9 @@ export class Helpers {
     static round(value: number) {
         return Math.round(value * 10.0) / 10.0;
     }
+
+    static unwrapTag(element) {
+        $(element).removeAttr('appunwraptag').unwrap();
+    }
+
 }

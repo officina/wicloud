@@ -1,0 +1,131 @@
+<div>
+    <h2>
+        <span jhiTranslate="wilampCloudApp.lightProfileSlot.home.title">Light Profile Slots</span>
+        <button class="btn btn-primary float-right jh-create-entity create-light-profile-slot-wilamp" [routerLink]="['/', { outlets: { popup: ['light-profile-slot-wilamp-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="wilampCloudApp.lightProfileSlot.home.createLabel">
+            Create new Light Profile Slot
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'wilampCloudApp.lightProfileSlot.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="lightProfileSlots">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.name">Name</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.description">Description</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.don">Don</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.dof">Dof</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.ton">Ton</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.tof">Tof</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.eas">Eas</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.ecr">Ecr</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.emo">Emo</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.edw">Edw</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.enabled">Enabled</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.lightProfileIndex">Light Profile Index</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.pw0">Pw 0</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.pw1">Pw 1</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.pw2">Pw 2</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.pw3">Pw 3</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.fadeIn">Fade In</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.fadeOut">Fade Out</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.slot">Slot</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.createdTimestamp">Created Timestamp</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.motionDuration">Motion Duration</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.motionDelay">Motion Delay</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.mi0">Mi 0</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.mi1">Mi 1</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.mi2">Mi 2</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.mi3">Mi 3</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.motionFadeIn">Motion Fade In</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.motionFadeOut">Motion Fade Out</span></th>
+            <th><span jhiTranslate="wilampCloudApp.lightProfileSlot.lightProfile">Light Profile</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let lightProfileSlot of lightProfileSlots ;trackBy: trackId">
+                <td><a [routerLink]="['../light-profile-slot-wilamp', lightProfileSlot.id ]">{{lightProfileSlot.id}}</a></td>
+                <td>{{lightProfileSlot.name}}</td>
+                <td>{{lightProfileSlot.description}}</td>
+                <td>{{lightProfileSlot.don}}</td>
+                <td>{{lightProfileSlot.dof}}</td>
+                <td>{{lightProfileSlot.ton}}</td>
+                <td>{{lightProfileSlot.tof}}</td>
+                <td>{{lightProfileSlot.eas}}</td>
+                <td>{{lightProfileSlot.ecr}}</td>
+                <td>{{lightProfileSlot.emo}}</td>
+                <td>{{lightProfileSlot.edw}}</td>
+                <td>{{lightProfileSlot.enabled}}</td>
+                <td>{{lightProfileSlot.lightProfileIndex}}</td>
+                <td>{{lightProfileSlot.pw0}}</td>
+                <td>{{lightProfileSlot.pw1}}</td>
+                <td>{{lightProfileSlot.pw2}}</td>
+                <td>{{lightProfileSlot.pw3}}</td>
+                <td>{{lightProfileSlot.fadeIn}}</td>
+                <td>{{lightProfileSlot.fadeOut}}</td>
+                <td>{{lightProfileSlot.slot}}</td>
+                <td>{{lightProfileSlot.createdTimestamp | date:'medium'}}</td>
+                <td>{{lightProfileSlot.motionDuration}}</td>
+                <td>{{lightProfileSlot.motionDelay}}</td>
+                <td>{{lightProfileSlot.mi0}}</td>
+                <td>{{lightProfileSlot.mi1}}</td>
+                <td>{{lightProfileSlot.mi2}}</td>
+                <td>{{lightProfileSlot.mi3}}</td>
+                <td>{{lightProfileSlot.motionFadeIn}}</td>
+                <td>{{lightProfileSlot.motionFadeOut}}</td>
+                <td>
+                    <div *ngIf="lightProfileSlot.lightProfileId">
+                        <a [routerLink]="['../light-profile-wilamp', lightProfileSlot.lightProfileId  ]" >{{lightProfileSlot.lightProfileName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../light-profile-slot-wilamp', lightProfileSlot.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'light-profile-slot-wilamp/'+ lightProfileSlot.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'light-profile-slot-wilamp/'+ lightProfileSlot.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

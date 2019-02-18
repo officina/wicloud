@@ -1,0 +1,88 @@
+
+<div *ngIf="lightProfile">
+    <div class="topPageNavigation">
+        <a ui-sref="home()">Home</a>|
+        <a ui-sref="light-profile-wilamp()">Light profiles</a>|
+        <a ui-sref="light-profile-wilamp-detail({id:vm.lightProfile.id})"> {{lightProfile.name}}</a>
+    </div>
+
+    <h2><span data-translate="wiLampAgingLineApp.lightProfile.detail.title">Light Profile</span> {{lightProfile.name}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="wiLampAgingLineApp.lightProfile.name">Name</span></dt>
+        <dd>
+            <span>{{lightProfile.name}}</span>
+        </dd>
+        <dt><span data-translate="wiLampAgingLineApp.lightProfile.description">Description</span></dt>
+        <dd>
+            <span>{{lightProfile.description}}</span>
+        </dd>
+        <dt><span data-translate="wiLampAgingLineApp.lightProfile.enabled">Enabled</span></dt>
+        <dd>
+            <span>{{lightProfile.enabled}}</span>
+        </dd>
+    </dl>
+
+    <h3>Light profile slots</h3>
+    <hr>
+
+
+    <!-----    <div class="table-responsive">
+            <table class="jh-table table table-striped">
+                <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Enabled</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="lightProfileSlot in vm.lightProfileSlots track by lightProfileSlot.id">
+                    <td><a ui-sref="light-profile-slot-wilamp-detail({id:lightProfileSlot.id})">{{lightProfileSlot.slot}}</a></td>
+                    <td>{{lightProfileSlot.name}}</td>
+                    <td>{{lightProfileSlot.description}}</td>
+                    <td>{{lightProfileSlot.enabled}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="light-profile-slot-wilamp-detail({id:lightProfileSlot.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="light-profile-slot-wilamp.edit({id:lightProfileSlot.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="light-profile-slot-wilamp.delete({id:lightProfileSlot.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    ----->
+
+    <div id="lpViewer" style="width:100%;height:500px;position:relative"></div>
+
+    <button type="submit"
+            ng-click="$back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="light-profile-wilamp-detail.edit({id:vm.lightProfile.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
