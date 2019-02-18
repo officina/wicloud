@@ -1,4 +1,4 @@
-@import "variables";
+@import 'variables';
 /*
   __  __       _            _       _       _    _
  |  \/  |     | |          (_)     | |     | |  (_)
@@ -13,7 +13,7 @@
     margin-top: 14px;
     width: 100%;
     font-size: 17px;
-    color: #4A4A4A;
+    color: #4a4a4a;
 }
 
 .options-value-selection {
@@ -36,7 +36,7 @@
     margin-top: 14px;
     width: 100%;
     font-size: 17px;
-    color: #4A4A4A;
+    color: #4a4a4a;
 
 }
 
@@ -49,7 +49,7 @@
     /* margin-right: 22px; */
     /* height: 31px; */
     font-size: 17px;
-    color: #4A4A4A;
+    color: #4a4a4a;
 }
 
 /deep/ .options-value-selection .mat-slider-horizontal .mat-slider-track-fill {
@@ -66,7 +66,6 @@
     height: 10px;
     width: 100%;
     background: #e8e8e8;
-    height: 10px;
     /* position: relative; */
     border-radius: 5px;
     /* box-shadow: inset 1px 1px 5px #bababa; */
@@ -80,7 +79,6 @@
     height: 10px;
     width: 100%;
     background: #e8e8e8;
-    height: 10px;
     border-radius: 5px;
     border: 1px solid $green-wi4b-light;
 }
@@ -113,7 +111,7 @@
     /* margin-right: 22px; */
     height: 31px;
     font-size: 17px;
-    color: #4A4A4A;
+    color: #4a4a4a;
 }
 
 .options-value-selection mat-checkbox {
@@ -121,7 +119,7 @@
     /* margin-right: 22px; */
     height: 31px;
     font-size: 17px;
-    color: #4A4A4A;
+    color: #4a4a4a;
 }
 
 /deep/ .options-value-selection label.mat-checkbox-layout {
@@ -137,7 +135,7 @@
     /* margin-right: 22px; */
     height: 31px;
     font-size: 17px;
-    color: #4A4A4A;
+    color: #4a4a4a;
 }
 
 
@@ -194,10 +192,11 @@
 }
 
 
-/deep/ .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+/deep/ .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+        .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
     background-color: $green-wi4b;
 }
 
-/deep/ .mat-checkbox .mat-checkbox-ripple .mat-ripple-element{
+/deep/ .mat-checkbox .mat-checkbox-ripple .mat-ripple-element {
     background-color: rgba(190, 220, 178, 0.4) !important;
 }

@@ -52,17 +52,17 @@ Webapp styles
 
 
 .small-portlet {
-    padding: 0px 0px 0px 0px;
+    padding: 0;
     overflow: hidden;
 }
 
-.small-portlet .m-portlet__body{
-    margin: 0px;
-    padding: 10px 10px 10px 10px;
+.small-portlet .m-portlet__body {
+    margin: 0;
+    padding: 10px;
 }
 
-.small-portlet .m-section{
-    margin: 0px;
+.small-portlet .m-section {
+    margin: 0;
 }
 
 .installation-address {
@@ -105,7 +105,7 @@ Webapp styles
 .runtime-parameters-header-1line {
     display: block;
     font-size: 1.4rem;
-    margin-top: 0px;
+    margin-top: 0;
     font-weight: bold;
     width: 80px;
     height: 66px;
@@ -137,19 +137,19 @@ Webapp styles
     vertical-align: middle;
     width: 126px;
     height: 66px;
-    color: initial;
+    /* color: initial; */
     margin-right: 10px;
     text-align: center;
     -webkit-text-stroke-width: 1px;
     /* -webkit-text-stroke-color: navajowhite; */
     text-shadow: 1px 2px 5px darkslategrey;
-    font-family: 'Roboto',sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .runtime-parameters-header-2lines {
     display: block;
     font-size: 1.4rem;
-    margin-top: 0px;
+    margin-top: 0;
     font-weight: bold;
     width: 121px;
     margin-right: 12px;
@@ -165,12 +165,12 @@ Webapp styles
     vertical-align: middle;
     width: 126px;
     height: 66px;
-    color: initial;
+    /* color: initial; */
     text-align: center;
     -webkit-text-stroke-width: 1px;
     /* -webkit-text-stroke-color: navajowhite; */
     text-shadow: 1px 2px 5px darkslategrey;
-    font-family: 'Roboto',sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 
@@ -196,14 +196,14 @@ Webapp styles
     text-align: center;
 }
 
-.widget-multirows-row{
+.widget-multirows-row {
     margin-top: 7px;
     height: 30px;
     line-height: 30px;
     vertical-align: middle;
 }
 
-.widget-multirows-row i{
+.widget-multirows-row i {
     float: left;
     font-size: 1.7rem;
     line-height: 30px;
@@ -258,12 +258,12 @@ Webapp styles
     text-align: center;
 }
 
-.widget-multirows-2-row{
+.widget-multirows-2-row {
     overflow: hidden;
     height: 53px;
 }
 
-.widget-multirows-2-block{
+.widget-multirows-2-block {
     /* margin-top: 7px; */
     height: 30px;
     /* line-height: 30px; */
@@ -319,14 +319,14 @@ Webapp styles
     background-color: darkred;
 }
 
-.leaflet-tile { border: 0px; }
+.leaflet-tile { border: 0; }
 .leaflet-tile-container img {
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.05);
 }
 .leaflet-tile { will-change: auto !important; }
 
 .leaflet-container {
-    height: 100%
+    height: 100%;
 }
 html {
     height: 100%;
@@ -345,12 +345,12 @@ html {
     background-color: $green-wi4b;
 }
 
-.leaflet-sidebar-tabs>li.active, .leaflet-sidebar-tabs>ul>li.active {
+.leaflet-sidebar-tabs > li.active, .leaflet-sidebar-tabs > ul > li.active {
     background-color: $green-wi4b;
     color: white;
 }
 
-.leaflet-sidebar-tabs>li, .leaflet-sidebar-tabs>ul>li {
+.leaflet-sidebar-tabs > li, .leaflet-sidebar-tabs > ul > li {
     color: $green-wi4b;
 }
 
@@ -361,7 +361,7 @@ html {
 .sidebar-pane-content-title {
     margin-top: 20px;
     font-size: 18px;
-    color: #4A4A4A;
+    color: #4a4a4a;
 }
 
 

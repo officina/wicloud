@@ -164,7 +164,7 @@ yarn start
 
 # Check lint before push
 
-    npm lint
+    ng lint
 
 # Remote tests
 
