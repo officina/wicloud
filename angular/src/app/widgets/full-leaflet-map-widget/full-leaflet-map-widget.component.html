@@ -1,0 +1,163 @@
+<div id="leaflet_full_div" style="height: 100%; width: 100%;" *ngIf="globalDatabase.selectedInstallation">
+
+    <div class="m-widget16__map m-portlet__pull-sides angular-leaflet-map" *ngIf="enableLeafletMap">
+        <!-- Control Form -->
+        <div id="leaflet_map_div" leaflet style="z-index:0;"
+             [leafletOptions]="options"
+             [leafletLayers]="layers"
+             [leafletLayersControl]="layersControl"
+             (leafletMapReady)="onLMapReady($event)"
+             width="100%" height="100%">
+            >
+        </div>
+
+
+        <div id="sidebar" class="leaflet-sidebar collapsed">
+            <!-- Nav tabs -->
+            <div class="leaflet-sidebar-tabs">
+                <ul role="tablist">
+                    <li><a href="#home" role="tab"><fa-icon [icon]="['fa', 'layer-group']" class="active"></fa-icon></a></li>
+                    <li><a href="#icon_filters" role="tab"><fa-icon [icon]="['fa', 'palette']"></fa-icon></a></li>
+                    <li><a href="#heatmap" role="tab"><i class="fas fa-heading"></i></a></li>
+                    <li><a href="#nodeinfo" role="tab"><i class="far fa-info-circle"></i></a></li>
+                </ul>
+
+                <ul role="tablist">
+                    <!-- <li><a href="https://github.com/nickpeihl/leaflet-sidebar-v2"><i class="fa fa-github"></i></a></li> -->
+                </ul>
+            </div>
+
+            <!-- Tab panes -->
+            <div class="leaflet-sidebar-content">
+                <div class="leaflet-sidebar-pane" id="home">
+                    <h1 class="leaflet-sidebar-header">
+                        Layer options
+                        <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+                    </h1>
+                    <div class="leaflet-sidebar-pane-content">
+                        <div class="sidebar-pane-content-title"></div>
+
+                        <div class="options-header"> Base layers </div>
+                        <div class="options-value-selection">
+                            <mat-radio-group [(ngModel)]="model.baseLayer" (ngModelChange)="apply()">
+                                <mat-radio-button *ngFor="let layer of model.baseLayers"
+                                                  [name]="layer.id"
+                                                  [value]="layer.id">{{layer.name}}</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+
+                        <div class="options-header"> Overlay layers </div>
+                        <div class="options-value-selection">
+                            <mat-checkbox  *ngFor="let layer of model.overlayLayers; let i = index;"
+                                           [name]="layer.id"
+                                           [(ngModel)]="model.overlayLayers[i].enabled"
+                                           (ngModelChange)="apply()"> {{layer.name}}  </mat-checkbox>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="leaflet-sidebar-pane" id="icon_filters">
+                    <h1 class="leaflet-sidebar-header">
+                        Icons
+                        <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+                    </h1>
+                    <div class="leaflet-sidebar-pane-content">
+                        <div class="sidebar-pane-content-title"></div>
+
+                        <div class="options-header"> Group icons by </div>
+                        <div class="options-value-selection">
+                            <select [(ngModel)]="mapIconOptions.groupBy" name="Group icons by" class="ui fluid search selection dropdown" (change)="iconFilterChanged()">
+                                <option *ngFor="let n of iconsGroupingOptions" [value]="n.value">{{n.label}}</option>
+                            </select>
+                        </div>
+                        <div class="options-header" *ngIf="mapIconOptions.groupBy==='alerts'"> Highlight node with alerts </div>
+                        <div class="options-value-selection" *ngIf="mapIconOptions.groupBy==='alerts'">
+                            <select [(ngModel)]="mapIconOptions.filterOptions" name="Highlight node with alerts" class="ui fluid search selection dropdown" (change)="iconFilterChanged()">
+                                <option *ngFor="let n of alertFilterOptions" [value]="n.value">{{n.label}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="leaflet-sidebar-pane" id="heatmap">
+                    <h1 class="leaflet-sidebar-header">
+                        Heatmap
+                        <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+                    </h1>
+                    <div class="leaflet-sidebar-pane-content">
+                        <div class="sidebar-pane-content-title">
+                            <mat-slide-toggle
+                                [(ngModel)]="heatmapOptions.enabled"
+                                (change)="heatmapOptionsChanged()">
+                                Enable heatmap
+                            </mat-slide-toggle>
+                        </div>
+
+                        <div class="options-header"> Radius </div>
+                        <div class="options-value-selection" style="margin-top: 0px">
+                            <!--<npn-slider [min]="0.5" [max]="5" [multiRange]="false" [step]="0.01" (onChange)="heatmapOptionsChanged()" [(value)]="heatmapOptions.radiusMultiplier"></npn-slider>
+                            -->
+                            <mat-slider thumbLabel min="0.5" max="5" step="0.01"  [disabled]="!heatmapOptions.enabled" [(ngModel)]="heatmapOptions.radiusMultiplier" (change)="heatmapOptionsChanged()" ></mat-slider>
+                            {{heatmapOptions.radiusMultiplier}}
+                        </div>
+
+                        <div class="options-header">  Alpha</div>
+                        <div class="options-value-selection" style="margin-top: 0px">
+                            <!--<npn-slider [min]="0.1" [max]="1" [multiRange]="false" [step]="0.1" (onChange)="heatmapOptionsChanged()" [(value)]="heatmapOptions.alpha"></npn-slider>
+                            -->
+                            <mat-slider thumbLabel min="0.1" max="1" step="0.1" [disabled]="!heatmapOptions.enabled" [(ngModel)]="heatmapOptions.alpha" (change)="heatmapOptionsChanged()" ></mat-slider>
+                            {{heatmapOptions.alpha}}
+                        </div>
+
+                        <div class="options-header"> Entity to analyze </div>
+                        <div class="options-value-selection">
+                            <select [disabled]="!heatmapOptions.enabled" [(ngModel)]="heatmapOptions.entityToAnalyze" name="Entity to analyze" class="ui fluid search selection dropdown" (change)="heatmapOptionsChanged()">
+                                <option *ngFor="let n of heatmapEntitiesToAnalyze" [value]="n.value">{{n.label}}</option>
+                            </select>
+                        </div>
+
+                        <div class="options-header"> Timespan </div>
+                        <div class="options-value-selection">
+                            <select [disabled]="!heatmapOptions.enabled" [(ngModel)]="heatmapOptions.selectedInterval" name="Timespan" class="ui fluid search selection dropdown" (change)="heatmapOptionsChanged()">
+                                <option *ngFor="let n of heatmapTimespanIntervals" [value]="n.value">{{n.label}}</option>
+                            </select>
+                            <div class="options-calendar" *ngIf="heatmapOptions.selectedInterval==='custom'">
+                                <mat-form-field class="calendar-picker">
+                                    <input [disabled]="!heatmapOptions.enabled" matInput [(ngModel)]="heatmapOptions.startOfInterval" [matDatepicker]="pickerStartOfInterval" placeholder="Start of interval">
+                                    <mat-datepicker-toggle matSuffix [for]="pickerStartOfInterval"></mat-datepicker-toggle>
+                                    <mat-datepicker #pickerStartOfInterval></mat-datepicker>
+                                </mat-form-field>
+
+                                <mat-form-field class="calendar-picker">
+                                    <input [disabled]="!heatmapOptions.enabled" matInput [(ngModel)]="heatmapOptions.endOfInterval" [min]="heatmapOptions.startOfInterval"  [matDatepicker]="pickerEndOfInterval" placeholder="End of interval">
+                                    <mat-datepicker-toggle matSuffix [for]="pickerEndOfInterval"></mat-datepicker-toggle>
+                                    <mat-datepicker #pickerEndOfInterval></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div style="width: 100%; text-align: center; margin-top: 10px">
+                            <button type="submit" [disabled]="!heatmapOptions.pendingChanges" (click)="heatmapApplyChanges()" class="btn btn-primary">
+                                <span class="fa fa-save"></span>&nbsp;Apply</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="leaflet-sidebar-pane" id="nodeinfo">
+                    <h1 class="leaflet-sidebar-header">
+                        Node details
+                        <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+                    </h1>
+                    <div class="leaflet-sidebar-pane-content">
+                        <node-small-details-widget [node]="selectedNode" *ngIf="selectedNode!=null"> </node-small-details-widget>
+                    </div>
+                </div>
+
+                <div class="leaflet-sidebar-pane" id="messages">
+                    <h1 class="leaflet-sidebar-header">Messages<span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,69 @@
+<!--begin::Portlet-->
+<div class="m-portlet m-portlet--tabs m-portlet--primary m-portlet--head-solid-bg m-portlet--head-sm" [ngClass]="'m-portlet--'+subClass" data-portlet="true">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                    {{chartGroupTitle}}
+                    <small>
+                        {{chartGroupSubtitle}}
+                    </small>
+                </h3>
+            </div>
+        </div>
+        <div class="m-portlet__head-tools">
+            <ul class="m-portlet__nav">
+                <li class="m-portlet__nav-item">
+                    <a href=""  data-portlet-tool="toggle" class="m-portlet__nav-link m-portlet__nav-link--icon" >
+                        <i class="la la-plus"></i>
+                    </a>
+                </li>
+                <li class="m-portlet__nav-item" *ngIf="activePanels>=2">
+                    <a href=""  data-portlet-tool="reload" class="m-portlet__nav-link m-portlet__nav-link--icon" >
+                        <i class="la la-circle"></i>
+                    </a>
+                </li>
+                <li class="m-portlet__nav-item" *ngIf="activePanels>=3">
+                    <a href=""  data-portlet-tool="fullscreen" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                        <i class="la la-expand"></i>
+                    </a>
+                </li>
+                <!---<li class="m-portlet__nav-item">
+                    <a href="#" data-portlet-tool="remove" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                        <i class="la la-power-off"></i>
+                    </a>
+                </li>-->
+            </ul>
+            <ul class="nav m-tabs m-tabs-line   m-tabs-line--right m-tabs-line-danger" role="tablist">
+                <li class="nav-item m-tabs__item">
+                    <a class="nav-link m-tabs__link active" data-toggle="tab" [href]="'#'+panel1Id" role="tab">
+                        {{chart1Title}}
+                    </a>
+                </li>
+                <li class="nav-item m-tabs__item" *ngIf="activePanels>=2">
+                    <a class="nav-link m-tabs__link" data-toggle="tab" [href]="'#'+panel2Id" role="tab">
+                        {{chart2Title}}
+                    </a>
+                </li>
+                <li class="nav-item m-tabs__item" *ngIf="activePanels>=3">
+                    <a class="nav-link m-tabs__link" data-toggle="tab" [href]="'#'+panel3Id" role="tab">
+                        {{chart3Title}}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="m-portlet__body">
+        <div [class.fetchingData]="isFetchingData"></div>
+        <div class="tab-content">
+            <div class="tab-pane active" [id]="panel1Id">
+                <div [id]="chart1Id" style="width: 100%;height: 400px;"></div>                            </div>
+            <div class="tab-pane" [id]="panel2Id"  *ngIf="activePanels>=2">
+                <div [id]="chart2Id" style="width: 100%;height: 400px;"></div>
+            </div>
+            <div class="tab-pane" [id]="panel3Id"  *ngIf="activePanels>=3">
+                <div [id]="chart3Id" style="width: 100%;height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+</div>

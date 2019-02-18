@@ -1,0 +1,13 @@
+<div class="panel panel-default" style="width:100%; height: inherit">
+    <div class="panel-body padding15">
+        <input type="button" name="a2" value="ungroup" (click)="unGroupGrid();">&nbsp;&nbsp;
+        <input type="button"  name="q1" value="regroup by" (click)='groupByChanged();'>
+
+        <select [(ngModel)]="nodesGridOptions.groupBy" name="Group icons by" class="ui fluid search selection dropdown" >
+            <option *ngFor="let n of colNames; let i = index" [value]="i">{{n}}</option>
+        </select>
+
+
+        <div id="gridbox" style="width:100%;height:inherit;overflow: scroll; min-width: 400px"></div>
+    </div><!-- panel-body -->
+</div><!-- panel -->

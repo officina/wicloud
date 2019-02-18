@@ -1,0 +1,139 @@
+<div>
+    <h2>
+        <span jhiTranslate="wilampCloudApp.lightFixture.home.title">Light Fixtures</span>
+        <button class="btn btn-primary float-right jh-create-entity create-light-fixture-wilamp" [routerLink]="['/', { outlets: { popup: ['light-fixture-wilamp-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="wilampCloudApp.lightFixture.home.createLabel">
+            Create new Light Fixture
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'wilampCloudApp.lightFixture.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="lightFixtures">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span jhiTranslate="wilampCloudApp.lightFixture.name">Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="serialNumber"><span jhiTranslate="wilampCloudApp.lightFixture.serialNumber">Serial Number</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="description"><span jhiTranslate="wilampCloudApp.lightFixture.description">Description</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="deviceType"><span jhiTranslate="wilampCloudApp.lightFixture.deviceType">Device Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lampType"><span jhiTranslate="wilampCloudApp.lightFixture.lampType">Lamp Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lightZone"><span jhiTranslate="wilampCloudApp.lightFixture.lightZone">Light Zone</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nominalPower"><span jhiTranslate="wilampCloudApp.lightFixture.nominalPower">Nominal Power</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="oldLampPower"><span jhiTranslate="wilampCloudApp.lightFixture.oldLampPower">Old Lamp Power</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="logicId"><span jhiTranslate="wilampCloudApp.lightFixture.logicId">Logic Id</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pLCode"><span jhiTranslate="wilampCloudApp.lightFixture.pLCode">P L Code</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userOwner"><span jhiTranslate="wilampCloudApp.lightFixture.userOwner">User Owner</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userType"><span jhiTranslate="wilampCloudApp.lightFixture.userType">User Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userAddress"><span jhiTranslate="wilampCloudApp.lightFixture.userAddress">User Address</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userDistributionBox"><span jhiTranslate="wilampCloudApp.lightFixture.userDistributionBox">User Distribution Box</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userLightpoleMaterial"><span jhiTranslate="wilampCloudApp.lightFixture.userLightpoleMaterial">User Lightpole Material</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userLightpoleShape"><span jhiTranslate="wilampCloudApp.lightFixture.userLightpoleShape">User Lightpole Shape</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userLightpoleHeight"><span jhiTranslate="wilampCloudApp.lightFixture.userLightpoleHeight">User Lightpole Height</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userLampType"><span jhiTranslate="wilampCloudApp.lightFixture.userLampType">User Lamp Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userLampPower"><span jhiTranslate="wilampCloudApp.lightFixture.userLampPower">User Lamp Power</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userLampModel"><span jhiTranslate="wilampCloudApp.lightFixture.userLampModel">User Lamp Model</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userLampManufacturer"><span jhiTranslate="wilampCloudApp.lightFixture.userLampManufacturer">User Lamp Manufacturer</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="timeZone"><span jhiTranslate="wilampCloudApp.lightFixture.timeZone">Time Zone</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="timeZoneCode"><span jhiTranslate="wilampCloudApp.lightFixture.timeZoneCode">Time Zone Code</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="latitude"><span jhiTranslate="wilampCloudApp.lightFixture.latitude">Latitude</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="longitude"><span jhiTranslate="wilampCloudApp.lightFixture.longitude">Longitude</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="altitude"><span jhiTranslate="wilampCloudApp.lightFixture.altitude">Altitude</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="gatewayGatewayHostname"><span jhiTranslate="wilampCloudApp.lightFixture.gateway">Gateway</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="installationName"><span jhiTranslate="wilampCloudApp.lightFixture.installation">Installation</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lightProfileName"><span jhiTranslate="wilampCloudApp.lightFixture.lightProfile">Light Profile</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let lightFixture of lightFixtures ;trackBy: trackId">
+                <td><a [routerLink]="['../light-fixture-wilamp', lightFixture.id ]">{{lightFixture.id}}</a></td>
+                <td>{{lightFixture.name}}</td>
+                <td>{{lightFixture.serialNumber}}</td>
+                <td>{{lightFixture.description}}</td>
+                <td>{{lightFixture.deviceType}}</td>
+                <td>{{lightFixture.lampType}}</td>
+                <td>{{lightFixture.lightZone}}</td>
+                <td>{{lightFixture.nominalPower}}</td>
+                <td>{{lightFixture.oldLampPower}}</td>
+                <td>{{lightFixture.logicId}}</td>
+                <td>{{lightFixture.pLCode}}</td>
+                <td>{{lightFixture.userOwner}}</td>
+                <td>{{lightFixture.userType}}</td>
+                <td>{{lightFixture.userAddress}}</td>
+                <td>{{lightFixture.userDistributionBox}}</td>
+                <td>{{lightFixture.userLightpoleMaterial}}</td>
+                <td>{{lightFixture.userLightpoleShape}}</td>
+                <td>{{lightFixture.userLightpoleHeight}}</td>
+                <td>{{lightFixture.userLampType}}</td>
+                <td>{{lightFixture.userLampPower}}</td>
+                <td>{{lightFixture.userLampModel}}</td>
+                <td>{{lightFixture.userLampManufacturer}}</td>
+                <td>{{lightFixture.timeZone}}</td>
+                <td>{{lightFixture.timeZoneCode}}</td>
+                <td>{{lightFixture.latitude}}</td>
+                <td>{{lightFixture.longitude}}</td>
+                <td>{{lightFixture.altitude}}</td>
+                <td>
+                    <div *ngIf="lightFixture.gatewayId">
+                        <a [routerLink]="['../gateway-wilamp', lightFixture.gatewayId  ]" >{{lightFixture.gatewayGatewayHostname}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="lightFixture.installationId">
+                        <a [routerLink]="['../installation-wilamp', lightFixture.installationId  ]" >{{lightFixture.installationName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="lightFixture.lightProfileId">
+                        <a [routerLink]="['../light-profile-wilamp', lightFixture.lightProfileId  ]" >{{lightFixture.lightProfileName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../light-fixture-wilamp', lightFixture.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'light-fixture-wilamp/'+ lightFixture.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'light-fixture-wilamp/'+ lightFixture.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

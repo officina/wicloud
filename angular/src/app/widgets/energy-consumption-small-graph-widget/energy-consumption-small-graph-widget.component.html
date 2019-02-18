@@ -1,0 +1,25 @@
+<div class="panel panel-default">
+    <div [class.fetchingData]="isFetchingData"></div>
+    <div class="panel-body padding15">
+        <h5 class="md-title mt0 mb10">{{graphTitle}}</h5>
+        <div [id]="legendId" class="flotLegend"></div>
+        <flot-graph [dataset]="chartData" [options]="chartOptions"
+                    [eventwatch]="flotEventToGenerate" height="200px"></flot-graph>
+    </div><!-- panel-body -->
+    <div class="panel-footer">
+        <div class="tinystat pull-left">
+            <div sparkline [data]="graphBottomLeftSPData" [options]="graphBottomLeftSPOptions" class="chart mt5"></div>
+            <div class="datainfo">
+                <span class="text-muted">{{graphBottomLeftTitle}}</span>
+                <h4>{{formatPowerConsumption(graphBottomLeftValue)}}</h4>
+            </div>
+        </div><!-- tinystat -->
+        <div class="tinystat pull-right">
+            <div sparkline [data]="graphBottomRightSPData" [options]="graphBottomRightSPOptions" class="chart mt5"></div>
+            <div class="datainfo">
+                <span class="text-muted">{{graphBottomRightTitle}}</span>
+                <h4>{{formatPowerConsumption(graphBottomRightValue)}}</h4>
+            </div>
+        </div><!-- tinystat -->
+    </div><!-- panel-footer -->
+</div><!-- panel -->

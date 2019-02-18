@@ -1,0 +1,99 @@
+<div class="node-small-details-widget">
+    <div class="node-name-haeder">Name</div>
+    <div class="node-name">{{node.name}} - {{node.mac}}</div>
+    <div class="node-description-haeder">Description</div>
+    <div class="node-description">{{node.description}}</div>
+
+    <div *ngIf="node.nodeType != 10">
+        <!--<div class="connect-status"><img [src]="_DomSanitizationService.bypassSecurityTrustUrl(getConnectIcon())"></div>-->
+        <div class="connect-status"><img src="/assets/app/media/img/wilamp-icons/svg/connect.svg"></div>
+        <div class="control-status"><img src="/assets/app/media/img/wilamp-icons/svg/control.svg"></div>
+        <div class="program-status"><img src="/assets/app/media/img/wilamp-icons/svg/program-status.svg"></div>
+        <div class="meter-status"><img src="/assets/app/media/img/wilamp-icons/svg/meter.svg"></div>
+
+        <div class="operativemode">
+            <img class="bkgoperativeunite" src="/assets/app/media/img/wilamp-icons/svg/bkg-operative-mode.svg">
+            <img class="hand" src="/assets/app/media/img/wilamp-icons/svg/hand.svg">
+            <img class="checkmark" src="/assets/app/media/img/wilamp-icons/svg/status_ok.svg">
+        <div class="node-details">Driver: {{driverLabel}}<br>Lamp: {{lampLabel}}<br>Nominal Power: {{lampNominalPowerLabel}}<br>Burnig time: {{burningTimeLabel}}<br>Working time: {{workingTimeLabel}}<br>Last seen: {{lastMeasureReceivedLabel}}</div>
+            <div class="node-slider-mat">
+                <div class="options-value-selection" style="margin-top: 0px">
+                    <mat-slider thumbLabel min="0" max="100" step="1"  [disabled]="false" [(ngModel)]="node.desiredLightLevel" ></mat-slider>
+                {{node.desiredLightLevel}}
+                </div>
+            </div>
+        <div class="node-onoff"><img src="/assets/app/media/img/wilamp-icons/svg/onoff.svg"></div>
+            <div class="node-profile"><img class="node-detail-display" src="/assets/app/media/img/wilamp-icons/1x/node-profile.png"><div class="widget-text">{{profileLabel}}</div></div>
+            <div class="node-zone"><img class="node-detail-display" src="/assets/app/media/img/wilamp-icons/1x/node-zone.png"><div class="widget-text">{{zoneLabel}}</div></div>
+            <div class="node-energy"><img class="node-detail-display" src="/assets/app/media/img/wilamp-icons/1x/node-energy.png"><div class="widget-text">{{lampConsumptionLabel}}</div></div>
+            <div class="node-co2"><img class="node-detail-display" src="/assets/app/media/img/wilamp-icons/1x/node-co2.png"><div class="widget-text">{{co2Label}}</div></div>
+        </div>
+    </div>
+    <div *ngIf="node.nodeType == 10">
+
+        <div class="gateway-status">
+            <div class="panel panel-success-alt noborder">
+                <div class="panel-heading noborder">
+                    <div class="panel-btns">
+                        <a href="" class="panel-close tooltips" data-toggle="tooltip" title="Close Panel"><i class="fa fa-times"></i></a>
+                    </div><!-- panel-btns -->
+                    <div class="panel-icon"><i class="fa flaticon-network"></i></div>
+                    <div class="media-body">
+                        <h5 class="md-title nomargin">Gateway status</h5>
+                        <h1 class="mt5">OK</h1>
+                    </div><!-- media-body -->
+                    <hr>
+                    <div class="clearfix mt20">
+                        <div class="pull-left">
+                            <h5 class="md-title nomargin">ALERTS</h5>
+                            <h4 class="nomargin">{{alertsLabel}}</h4>
+                        </div>
+                        <div class="pull-right">
+                            <h5 class="md-title nomargin">VPNs</h5>
+                            <h4 class="nomargin">3</h4>
+                        </div>
+                    </div>
+                </div><!-- panel-body -->
+            </div><!-- panel -->
+        </div>
+
+        <div class="gateway-nodes">
+            <div class="panel panel-dark noborder">
+                <div class="bg-color-cornflowerblue panel-heading noborder">
+                    <div class="panel-btns">
+                        <a href="" class="panel-close tooltips" data-toggle="tooltip" title="Close Panel"><i class="fa fa-times"></i></a>
+                    </div><!-- panel-btns -->
+                    <div class="panel-icon"><i class="fa flaticon-map"></i></div>
+                    <div class="media-body">
+                        <h5 class="md-title nomargin">Number of nodes</h5>
+                        <h1 class="mt5" >{{nodesNumber}}</h1>
+                    </div><!-- media-body -->
+                    <hr>
+                    <div class="clearfix mt20">
+                        <div class="pull-left">
+                            <h5 class="md-title nomargin">ONLINE Nodes</h5>
+                            <h4 class="nomargin">{{onlineNodes}}</h4>
+                        </div>
+                        <div class="pull-right">
+                            <h5 class="md-title nomargin">DOWN</h5>
+                            <h4 class="nomargin">{{offlineNodes}}</h4>
+                        </div>
+                    </div>
+
+                </div><!-- panel-body -->
+            </div><!-- panel -->
+        </div>
+
+        <div class="gateway-admin-button">
+            <button class="btn btn-lg btn-outline-primary" (click)="openModalGatewayAdmin()">Administration</button>
+
+        </div>
+
+        </div>
+
+
+
+
+
+    </div>
+</div>

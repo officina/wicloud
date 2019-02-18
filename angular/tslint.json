@@ -102,7 +102,7 @@
       "check-type"
     ],
     "directive-selector": [
-      true,
+      false,
       "attribute",
       "ngx",
       "camelCase"

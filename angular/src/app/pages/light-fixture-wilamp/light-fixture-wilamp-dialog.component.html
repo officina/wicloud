@@ -1,0 +1,186 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myLightFixtureLabel" jhiTranslate="wilampCloudApp.lightFixture.home.createOrEditLabel">Create or edit a Light Fixture</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!lightFixture.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="lightFixture.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="lightFixture.name" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.serialNumber" for="field_serialNumber">Serial Number</label>
+            <input type="text" class="form-control" name="serialNumber" id="field_serialNumber"
+                [(ngModel)]="lightFixture.serialNumber" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                [(ngModel)]="lightFixture.description" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.deviceType" for="field_deviceType">Device Type</label>
+            <input type="number" class="form-control" name="deviceType" id="field_deviceType"
+                [(ngModel)]="lightFixture.deviceType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.lampType" for="field_lampType">Lamp Type</label>
+            <input type="number" class="form-control" name="lampType" id="field_lampType"
+                [(ngModel)]="lightFixture.lampType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.lightZone" for="field_lightZone">Light Zone</label>
+            <input type="number" class="form-control" name="lightZone" id="field_lightZone"
+                [(ngModel)]="lightFixture.lightZone" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.nominalPower" for="field_nominalPower">Nominal Power</label>
+            <input type="number" class="form-control" name="nominalPower" id="field_nominalPower"
+                [(ngModel)]="lightFixture.nominalPower" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.oldLampPower" for="field_oldLampPower">Old Lamp Power</label>
+            <input type="number" class="form-control" name="oldLampPower" id="field_oldLampPower"
+                [(ngModel)]="lightFixture.oldLampPower" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.logicId" for="field_logicId">Logic Id</label>
+            <input type="text" class="form-control" name="logicId" id="field_logicId"
+                [(ngModel)]="lightFixture.logicId" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.pLCode" for="field_pLCode">P L Code</label>
+            <input type="text" class="form-control" name="pLCode" id="field_pLCode"
+                [(ngModel)]="lightFixture.pLCode" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.userOwner" for="field_userOwner">User Owner</label>
+            <input type="text" class="form-control" name="userOwner" id="field_userOwner"
+                [(ngModel)]="lightFixture.userOwner" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.userType" for="field_userType">User Type</label>
+            <input type="text" class="form-control" name="userType" id="field_userType"
+                [(ngModel)]="lightFixture.userType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.userAddress" for="field_userAddress">User Address</label>
+            <input type="text" class="form-control" name="userAddress" id="field_userAddress"
+                [(ngModel)]="lightFixture.userAddress" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.userDistributionBox" for="field_userDistributionBox">User Distribution Box</label>
+            <input type="text" class="form-control" name="userDistributionBox" id="field_userDistributionBox"
+                [(ngModel)]="lightFixture.userDistributionBox" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.userLightpoleMaterial" for="field_userLightpoleMaterial">User Lightpole Material</label>
+            <input type="text" class="form-control" name="userLightpoleMaterial" id="field_userLightpoleMaterial"
+                [(ngModel)]="lightFixture.userLightpoleMaterial" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.userLightpoleShape" for="field_userLightpoleShape">User Lightpole Shape</label>
+            <input type="text" class="form-control" name="userLightpoleShape" id="field_userLightpoleShape"
+                [(ngModel)]="lightFixture.userLightpoleShape" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.userLightpoleHeight" for="field_userLightpoleHeight">User Lightpole Height</label>
+            <input type="text" class="form-control" name="userLightpoleHeight" id="field_userLightpoleHeight"
+                [(ngModel)]="lightFixture.userLightpoleHeight" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.userLampType" for="field_userLampType">User Lamp Type</label>
+            <input type="text" class="form-control" name="userLampType" id="field_userLampType"
+                [(ngModel)]="lightFixture.userLampType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.userLampPower" for="field_userLampPower">User Lamp Power</label>
+            <input type="text" class="form-control" name="userLampPower" id="field_userLampPower"
+                [(ngModel)]="lightFixture.userLampPower" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.userLampModel" for="field_userLampModel">User Lamp Model</label>
+            <input type="text" class="form-control" name="userLampModel" id="field_userLampModel"
+                [(ngModel)]="lightFixture.userLampModel" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.userLampManufacturer" for="field_userLampManufacturer">User Lamp Manufacturer</label>
+            <input type="text" class="form-control" name="userLampManufacturer" id="field_userLampManufacturer"
+                [(ngModel)]="lightFixture.userLampManufacturer" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.timeZone" for="field_timeZone">Time Zone</label>
+            <input type="number" class="form-control" name="timeZone" id="field_timeZone"
+                [(ngModel)]="lightFixture.timeZone" required/>
+            <div [hidden]="!(editForm.controls.timeZone?.dirty && editForm.controls.timeZone?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.timeZone?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.timeZone?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.timeZoneCode" for="field_timeZoneCode">Time Zone Code</label>
+            <input type="text" class="form-control" name="timeZoneCode" id="field_timeZoneCode"
+                [(ngModel)]="lightFixture.timeZoneCode" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.latitude" for="field_latitude">Latitude</label>
+            <input type="number" class="form-control" name="latitude" id="field_latitude"
+                [(ngModel)]="lightFixture.latitude" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.longitude" for="field_longitude">Longitude</label>
+            <input type="number" class="form-control" name="longitude" id="field_longitude"
+                [(ngModel)]="lightFixture.longitude" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.altitude" for="field_altitude">Altitude</label>
+            <input type="number" class="form-control" name="altitude" id="field_altitude"
+                [(ngModel)]="lightFixture.altitude" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.gateway" for="field_gateway">Gateway</label>
+            <select class="form-control" id="field_gateway" name="gateway" [(ngModel)]="lightFixture.gatewayId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="gatewayOption.id" *ngFor="let gatewayOption of gateways; trackBy: trackGatewayById">{{gatewayOption.gatewayHostname}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.installation" for="field_installation">Installation</label>
+            <select class="form-control" id="field_installation" name="installation" [(ngModel)]="lightFixture.installationId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="installationOption.id" *ngFor="let installationOption of installations; trackBy: trackInstallationById">{{installationOption.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightFixture.lightProfile" for="field_lightProfile">Light Profile</label>
+            <select class="form-control" id="field_lightProfile" name="lightProfile" [(ngModel)]="lightFixture.lightProfileId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="lightProfileOption.id" *ngFor="let lightProfileOption of lightprofiles; trackBy: trackLightProfileById">{{lightProfileOption.name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

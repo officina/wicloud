@@ -25,6 +25,8 @@ import { WilampCloudShippingWilampModule } from './shipping-wilamp/shipping-wila
 import { WilampCloudTwilightManagementModuleWilampModule } from './twilight-management-module-wilamp/twilight-management-module-wilamp.module';
 import { WilampCloudEnergyIntervalModule } from './energy-interval/energy-interval.module';
 import {WiCloudHomeModule} from './home';
+import {WilampCloudLightProfileWilampModule} from './light-profile-wilamp/light-profile-wilamp.module';
+import {WilampCloudLightProfileSlotWilampModule} from './light-profile-slot-wilamp/light-profile-slot-wilamp.module';
 
 
 const PAGES_COMPONENTS = [
@@ -55,6 +57,8 @@ const PAGES_COMPONENTS = [
     WilampCloudShippingWilampModule,
     WilampCloudTwilightManagementModuleWilampModule,
     WilampCloudEnergyIntervalModule,
+    WilampCloudLightProfileWilampModule,
+    WilampCloudLightProfileSlotWilampModule,
   ],
   declarations: [
     ...PAGES_COMPONENTS,

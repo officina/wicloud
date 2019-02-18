@@ -1,0 +1,202 @@
+@import 'variables';
+/*
+  __  __       _            _       _       _    _
+ |  \/  |     | |          (_)     | |     | |  (_)
+ | \  / | __ _| |_ ___ _ __ _  __ _| |  ___| | ___ _ __
+ | |\/| |/ _` | __/ _ \ '__| |/ _` | | / __| |/ / | '_ \
+ | |  | | (_| | ||  __/ |  | | (_| | | \__ \   <| | | | |
+ |_|  |_|\__,_|\__\___|_|  |_|\__,_|_| |___/_|\_\_|_| |_|
+*/
+
+.options-header {
+
+    margin-top: 14px;
+    width: 100%;
+    font-size: 17px;
+    color: #4a4a4a;
+}
+
+.options-value-selection {
+    margin-top: 7px;
+    margin-bottom: 5px;
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.options-value-selection select {
+    background-color: white;
+    text-transform: uppercase;
+    height: 28px;
+    width: 100%;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.options-value-selection label {
+    margin-top: 14px;
+    width: 100%;
+    font-size: 17px;
+    color: #4a4a4a;
+
+}
+
+.options-value-selection input {
+    margin-right: 14px;
+}
+
+.options-value-selection mat-slider {
+    width: 100%;
+    /* margin-right: 22px; */
+    /* height: 31px; */
+    font-size: 17px;
+    color: #4a4a4a;
+}
+
+/deep/ .options-value-selection .mat-slider-horizontal .mat-slider-track-fill {
+
+    width: 100%;
+    background: #e8e8e8;
+    height: 10px;
+    position: relative;
+    border-radius: 5px;
+    box-shadow: inset 1px 1px 5px #bababa;
+}
+
+/deep/ .options-value-selection .mat-slider-horizontal .mat-slider-track-background {
+    height: 10px;
+    width: 100%;
+    background: #e8e8e8;
+    /* position: relative; */
+    border-radius: 5px;
+    /* box-shadow: inset 1px 1px 5px #bababa; */
+    /* width: 100%; */
+    /* transform: scaleX(1); */
+}
+/deep/ .options-value-selection .mat-slider-horizontal .mat-slider-wrapper {
+    height: 10px;
+}
+/deep/ .options-value-selection .mat-slider-horizontal .mat-slider-track-wrapper {
+    height: 10px;
+    width: 100%;
+    background: #e8e8e8;
+    border-radius: 5px;
+    border: 1px solid $green-wi4b-light;
+}
+
+/deep/ .options-value-selection .mat-slider:not(.mat-slider-disabled) .mat-slider-thumb {
+    top: -16px;
+    cursor: -webkit-grab;
+    cursor: grab;
+    width: 30px;
+    height: 30px;
+    background-color: $green-wi4b;
+}
+
+/deep/ .options-value-selection .mat-slider-disabled .mat-slider-thumb {
+    top: -16px;
+    cursor: -webkit-grab;
+    cursor: grab;
+    width: 30px;
+    height: 30px;
+    background-color: rgb(190, 190, 190);
+}
+
+/deep/ .options-value-selection .mat-slider-thumb-label {
+    background-color: $green-wi4b;
+}
+
+
+.options-value-selection mat-radio-button {
+    width: 100%;
+    /* margin-right: 22px; */
+    height: 31px;
+    font-size: 17px;
+    color: #4a4a4a;
+}
+
+.options-value-selection mat-checkbox {
+    width: 100%;
+    /* margin-right: 22px; */
+    height: 31px;
+    font-size: 17px;
+    color: #4a4a4a;
+}
+
+/deep/ .options-value-selection label.mat-checkbox-layout {
+    width: 100%;
+}
+
+/deep/ .options-value-selection span.mat-checkbox-label {
+    width: 100%;
+}
+
+/deep/ .options-value-selection mat-checkbox-label {
+    width: 100%;
+    /* margin-right: 22px; */
+    height: 31px;
+    font-size: 17px;
+    color: #4a4a4a;
+}
+
+
+.mat-radio-label-content {
+    padding-left: 16px;
+}
+
+.options-calendar {
+    margin-top: 10px;
+}
+
+
+.calendar-picker {
+    width: 80%;
+}
+
+.calendar-picker input {
+    width: 84%;
+    background-color: white;
+    text-transform: uppercase;
+    height: 28px;
+    font-weight: 300;
+    font-size: 14px;
+    border-radius: 5px;
+    /* border-bottom-left-radius: 5px; */
+    border-width: 1px;
+    border-style: solid;
+    border-color: darkgray;
+    padding-left: 6px;
+}
+
+
+/deep/ .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+    background-color: $green-wi4b-light;
+}
+/deep/ .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+    background-color: $green-wi4b;
+}
+/deep/ .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-ripple-element {
+    background-color: $green-wi4b-light-transparent !important;
+}
+
+
+/deep/ .mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: $green-wi4b;
+}
+
+/deep/ .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: $green-wi4b;
+}
+
+/deep/ .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    background-color: rgba(190, 220, 178, 0.4) !important;
+}
+
+
+/deep/ .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+        .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: $green-wi4b;
+}
+
+/deep/ .mat-checkbox .mat-checkbox-ripple .mat-ripple-element {
+    background-color: rgba(190, 220, 178, 0.4) !important;
+}
