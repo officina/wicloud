@@ -2,12 +2,20 @@
 
 from rest_framework import serializers
 
+from apps.wicloud.domain.statistics.installation import WeeklyEnergyStatistics, InstallationGlobalStatistics, \
+    MonthlyEnergyStatistics
 from apps.wicloud.models import Address
 from .. import models
 from rest_framework import serializers
-from rest_framework.serializers import  ModelSerializer
+from django_elasticsearch_dsl_drf.serializers import DocumentSerializer
 
-
+#   __  __           _      _                 _       _ _
+#  |  \/  |         | |    | |               (_)     | (_)
+#  | \  / | ___   __| | ___| |  ___  ___ _ __ _  __ _| |_ _______ _ __ ___
+#  | |\/| |/ _ \ / _` |/ _ \ | / __|/ _ \ '__| |/ _` | | |_  / _ \ '__/ __|
+#  | |  | | (_) | (_| |  __/ | \__ \  __/ |  | | (_| | | |/ /  __/ |  \__ \
+#  |_|  |_|\___/ \__,_|\___|_| |___/\___|_|  |_|\__,_|_|_/___\___|_|  |___/
+#
 
 class AddressListSerializer(serializers.ModelSerializer):
     class Meta:
@@ -1249,9 +1257,92 @@ class ChangePasswordSerializer(serializers.Serializer):
     new_password = serializers.CharField(required=True)
 
 
+#    _____ _        _   _     _   _
+#   / ____| |      | | (_)   | | (_)
+#  | (___ | |_ __ _| |_ _ ___| |_ _  ___ ___
+#   \___ \| __/ _` | __| / __| __| |/ __/ __|
+#   ____) | || (_| | |_| \__ \ |_| | (__\__ \
+#  |_____/ \__\__,_|\__|_|___/\__|_|\___|___/
+#
+
+class WeeklyEnergyStatisticsSerializer(serializers.Serializer):
+    year = serializers.IntegerField()
+    weekNumber = serializers.IntegerField()
+    dayOfWeek = serializers.IntegerField()
+    hour = serializers.IntegerField()
+    activePowerAverage = serializers.FloatField()
+    reactivePowerAverage = serializers.FloatField()
+    activeEnergySum = serializers.FloatField()
+    reactiveEnergySum = serializers.FloatField()
+    activeEnergyWithoutDimSum = serializers.FloatField()
+    activeEnergyWithoutControlSum = serializers.FloatField()
+    activeEnergyOldLampsSum = serializers.FloatField()
+    burningTimeAverage = serializers.FloatField()
+    nodeLifeAverage = serializers.FloatField()
+
+    def create(self, validated_data):
+        return WeeklyEnergyStatistics(**validated_data)
+
+    def update(self, instance, validated_data):
+        for field, value in validated_data.items():
+            setattr(instance, field, value)
+        return instance
+
+
+class MonthlyEnergyStatisticsSerializer(serializers.Serializer):
+    year = serializers.IntegerField()
+    month = serializers.IntegerField()
+    day = serializers.IntegerField()
+    activePowerAverage = serializers.FloatField()
+    reactivePowerAverage = serializers.FloatField()
+    activeEnergySum = serializers.FloatField()
+    reactiveEnergySum = serializers.FloatField()
+    activeEnergyWithoutDimSum = serializers.FloatField()
+    activeEnergyWithoutControlSum = serializers.FloatField()
+    activeEnergyOldLampsSum = serializers.FloatField()
+    burningTimeAverage = serializers.FloatField()
+    nodeLifeAverage = serializers.FloatField()
+
+    def create(self, validated_data):
+        return MonthlyEnergyStatistics(**validated_data)
+
+    def update(self, instance, validated_data):
+        for field, value in validated_data.items():
+            setattr(instance, field, value)
+        return instance
+
+
+class InstallationGlobalStatisticsSerializer(serializers.Serializer):
+    byWeek = WeeklyEnergyStatisticsSerializer(many=True)
+    byMonth = MonthlyEnergyStatisticsSerializer(many=True)
+
+    def create(self, validated_data):
+        result = InstallationGlobalStatistics()
+        if 'byWeek' in validated_data.keys():
+            byWeekSerializer = WeeklyEnergyStatisticsSerializer(data=validated_data['byWeek'], many=True)
+            if byWeekSerializer.is_valid():
+                result.byWeek = byWeekSerializer.save()
+        if 'byMonth' in validated_data.keys():
+            byMonthSerializer = MonthlyEnergyStatisticsSerializer(data=validated_data['byMonth'], many=True)
+            if byMonthSerializer.is_valid():
+                result.byMonth = byMonthSerializer.save()
+        return result
+
+    def update(self, instance, validated_data):
+        for field, value in validated_data.items():
+            setattr(instance, field, value)
+        return instance
+
+
+#   ______ _           _   _                                _
+#  |  ____| |         | | (_)                              | |
+#  | |__  | | __ _ ___| |_ _  ___   ___  ___  __ _ _ __ ___| |__
+#  |  __| | |/ _` / __| __| |/ __| / __|/ _ \/ _` | '__/ __| '_ \
+#  | |____| | (_| \__ \ |_| | (__  \__ \  __/ (_| | | | (__| | | |
+#  |______|_|\__,_|___/\__|_|\___| |___/\___|\__,_|_|  \___|_| |_|
+#
 # Elastic search serializers
 from ..documents import InstallationDocument, GatewayDocument, NodeDocument
-from django_elasticsearch_dsl_drf.serializers import DocumentSerializer
 
 class InstallationDocumentSerializer(DocumentSerializer):
     """Serializer for the Book document."""

@@ -5,8 +5,6 @@ from django.utils.translation import ugettext_lazy as _
 from django.db.models import OneToOneField
 from django.db.models.fields.related_descriptors import ReverseOneToOneDescriptor
 from django.core.exceptions import ObjectDoesNotExist
-
-
 from web.core.models import UserModel, DateModel, StatusModel, OrderedModel, CleanModel
 
 
@@ -421,7 +419,6 @@ class Installation(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
     notes = models.CharField(max_length=255, blank=True, null=True)
     address = models.ForeignKey(Address, models.DO_NOTHING,  blank=True, null=True)
     customer = models.ForeignKey(Customer, models.DO_NOTHING, blank=True, null=True)
-
     installer = models.ForeignKey(User, models.SET_NULL, related_name='installator', blank=True, null=True)
     viewers = models.ManyToManyField(User, related_name='viewers', blank=True)
     installationManagers = models.ManyToManyField(User, related_name='installation_managers', blank=True)
