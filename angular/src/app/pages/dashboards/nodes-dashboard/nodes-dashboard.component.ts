@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {GlobalDatabaseService} from '../../shared/global-database/global-database.service';
+import {GlobalDatabaseService} from '../../../shared/global-database/global-database.service';
 
 @Component({
   selector: '.m-grid__item.m-grid__item--fluid.m-wrapper',

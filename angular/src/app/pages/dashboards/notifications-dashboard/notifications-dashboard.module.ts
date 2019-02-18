@@ -2,7 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
-import { WiCloudSharedModule } from '../../shared';
+import { WiCloudSharedModule } from '../../../shared';
 
 import {AgmCoreModule, GoogleMapsAPIWrapper} from '@agm/core';
 import {NotificationsDashboardComponent} from './notifications-dashboard.component';

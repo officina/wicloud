@@ -22,6 +22,9 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { WiCloudSharedModule, UserRouteAccessService } from './shared';
+import {AmChartsModule} from '@amcharts/amcharts3-angular';
+import { ScriptLoaderService } from './_services/script-loader.service';
+import {GlobalDatabaseService} from './shared/global-database/global-database.service';
 
 
 
@@ -29,32 +32,35 @@ import { WiCloudSharedModule, UserRouteAccessService } from './shared';
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    CommonModule,
-    FormsModule,
-    HttpClientModule,
-    AppRoutingModule,
-    NgbModule.forRoot(),
-    ThemeModule.forRoot(),
-    CoreModule.forRoot(),
-    WiCloudSharedModule,
-    TranslateModule.forRoot({
-    loader: {
-      provide: TranslateLoader,
-      useFactory: HttpLoaderFactory,
-      deps: [HttpClient],
-    },
-    }),
+      AmChartsModule,
+      BrowserModule,
+      BrowserAnimationsModule,
+      CommonModule,
+      FormsModule,
+      HttpClientModule,
+      AppRoutingModule,
+      NgbModule.forRoot(),
+      ThemeModule.forRoot(),
+      CoreModule.forRoot(),
+      WiCloudSharedModule,
+      TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      }),
   ],
   bootstrap: [AppComponent],
   providers: [
-    UserRouteAccessService,
-    AuthGuard,
-      { provide: APP_BASE_HREF, useValue: '/' }, TranslateService,
-      { provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER, useValue: (req) =>  false },
-      { provide: HTTP_INTERCEPTORS, useClass: NbAuthJWTInterceptor, multi: true}, // quick fix for JWT Token on API calls //TODO:AT controlla, può provocare ricorsioni
-      { provide: NbTokenStorage, useClass: NbTokenLocalStorage },
+      GlobalDatabaseService,
+      ScriptLoaderService,
+      UserRouteAccessService,
+      AuthGuard,
+        { provide: APP_BASE_HREF, useValue: '/' }, TranslateService,
+        { provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER, useValue: (req) =>  false },
+        { provide: HTTP_INTERCEPTORS, useClass: NbAuthJWTInterceptor, multi: true}, // quick fix for JWT Token on API calls //TODO:AT controlla, può provocare ricorsioni
+        { provide: NbTokenStorage, useClass: NbTokenLocalStorage },
   ],
 })
 export class AppModule {

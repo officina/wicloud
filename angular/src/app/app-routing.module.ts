@@ -12,11 +12,6 @@ import {AuthGuard} from './_guard/auth-guard.service';
 
 const routes: Routes = [
   {
-    path: 'global-reports',
-    canActivate: [AuthGuard], // here we tell Angular to check the access with our AuthGuard
-    loadChildren: 'app/dashboards/dashboards.module#DashboardsModule',
-  },
-  {
     path: 'pages',
     canActivate: [AuthGuard], // here we tell Angular to check the access with our AuthGuard
     loadChildren: 'app/pages/pages.module#PagesModule',

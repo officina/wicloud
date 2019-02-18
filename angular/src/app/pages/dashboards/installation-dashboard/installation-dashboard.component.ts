@@ -1,23 +1,22 @@
 /* tslint:disable:no-unused-expression */
 import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {ScriptLoaderService} from '../../_services/script-loader.service';
+import {ScriptLoaderService} from '../../../_services/script-loader.service';
 import {JhiEventManager} from 'ng-jhipster';
-import {MapHelpers} from '../../shared/maps/map.helpers';
-import {GoogleMapsAPIWrapper, MapsAPILoader} from '@agm/core';
-import {MapOptions} from '../../shared/maps/map.models';
+import {MapHelpers} from '../../../shared/maps/map.helpers';
+import {MapOptions} from '../../../shared/maps/map.models';
 import {AmChart, AmChartsService} from '@amcharts/amcharts3-angular';
-import {Helpers, Principal} from '../../shared';
+import {Helpers, Principal} from '../../../shared';
 import {Subscription} from 'rxjs/Rx';
 import {
     EnergyStatistics, EnergyStatisticsRowByInterval, GlobalStatistics, InstallationRuntimeParameters,
     InstallationWilamp,
     InstallationWilampService
-} from '../../pages/installation-wilamp';
-import {CustomerWilamp, CustomerWilampService} from '../../pages/customer-wilamp';
-import {AddressWilamp, AddressWilampService} from '../../pages/address-wilamp';
-import {NodeWilamp, NodeWilampService} from '../../pages/node-wilamp';
-import {GatewayWilamp, GatewayWilampService} from '../../pages/gateway-wilamp';
+} from '../../installation-wilamp';
+import {CustomerWilamp, CustomerWilampService} from '../../customer-wilamp';
+import {AddressWilamp, AddressWilampService} from '../../address-wilamp';
+import {NodeWilamp, NodeWilampService} from '../../node-wilamp';
+import {GatewayWilamp, GatewayWilampService} from '../../gateway-wilamp';
 import {latLng} from 'leaflet';
 import {
     GLOBALDATABASE__GATEWAYS_FETCHED,
@@ -30,9 +29,9 @@ import {
     INSTALLATION_DASHBOARD__DAILY_STATISTICS_FETCHED,
     INSTALLATION_DASHBOARD__MONTHLY_STATISTICS_FETCHED,
     INSTALLATION_DASHBOARD__WEEKLY_STATISTICS_FETCHED
-} from '../../shared/constants/events.constants';
-import {GlobalDatabaseService} from '../../shared/global-database/global-database.service';
-import {KWprice, KWtoCO2Factor} from '../../shared/constants/graph.constants';
+} from '../../../shared/constants/events.constants';
+import {GlobalDatabaseService} from '../../../shared/global-database/global-database.service';
+import {KWprice, KWtoCO2Factor} from '../../../shared/constants/graph.constants';
 import * as SunCalc from 'suncalc';
 import 'moment-timezone/builds/moment-timezone-with-data-2012-2022';
 import * as moment from 'moment-timezone';
@@ -145,8 +144,6 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
     public timezoneCode = 'America/Los_Angeles';
 
     constructor(
-        private mapsAPILoader: MapsAPILoader,
-        private mapsAPIWrapper: GoogleMapsAPIWrapper,
         private AmCharts: AmChartsService,
         private eventManager: JhiEventManager,
         private installationService: InstallationWilampService,
@@ -172,10 +169,6 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
         this.predicate = 'id';
         this.reverse = true;
         this.mapOptions = new MapOptions();
-        this.mapsAPILoader.load().then(() => {
-            this.googleMapsLoaded = true;
-            this.googleGeocoder = new google.maps.Geocoder();
-        });
     }
 
     ngOnInit() {

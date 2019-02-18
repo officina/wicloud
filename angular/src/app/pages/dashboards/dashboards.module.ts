@@ -7,7 +7,7 @@ import {MapDashboardModule} from './map-dashboard/map-dashboard.module';
 import {NodesDashboardModule} from './nodes-dashboard/nodes-dashboard.module';
 import {NotificationsDashboardModule} from './notifications-dashboard/notifications-dashboard.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {WidgetsModule} from '../widgets/widgets.module';
+import {WidgetsModule} from '../../widgets/widgets.module';
 
 @NgModule({
     imports: [

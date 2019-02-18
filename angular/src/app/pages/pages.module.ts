@@ -27,6 +27,7 @@ import { WilampCloudEnergyIntervalModule } from './energy-interval/energy-interv
 import {WiCloudHomeModule} from './home';
 import {WilampCloudLightProfileWilampModule} from './light-profile-wilamp/light-profile-wilamp.module';
 import {WilampCloudLightProfileSlotWilampModule} from './light-profile-slot-wilamp/light-profile-slot-wilamp.module';
+import {DashboardsModule} from './dashboards/dashboards.module';
 
 
 const PAGES_COMPONENTS = [
@@ -34,35 +35,36 @@ const PAGES_COMPONENTS = [
 ];
 
 @NgModule({
-  imports: [
-    PagesRoutingModule,
-    WiCloudHomeModule,
-    ThemeModule,
-    DashboardModule,
-    InstallationsModule,
-    MiscellaneousModule,
-    WilampCloudAddressWilampModule,
-    WilampCloudContactWilampModule,
-    WilampCloudCustomerWilampModule,
-    WilampCloudEnergyMeterModuleWilampModule,
-    WilampCloudGatewayWilampModule,
-    WilampCloudGatewayInstallationRequestModule,
-    WilampCloudInstallationWilampModule,
-    WilampCloudLightManagementMeasureWilampModule,
-    WilampCloudLightManagementModuleWilampModule,
-    WilampCloudMotionManagementModuleWilampModule,
-    WilampCloudNodeWilampModule,
-    WilampCloudNodeModulesWilampModule,
-    WilampCloudOrderWilampModule,
-    WilampCloudShippingWilampModule,
-    WilampCloudTwilightManagementModuleWilampModule,
-    WilampCloudEnergyIntervalModule,
-    WilampCloudLightProfileWilampModule,
-    WilampCloudLightProfileSlotWilampModule,
-  ],
-  declarations: [
-    ...PAGES_COMPONENTS,
-  ],
+    imports: [
+        DashboardsModule,
+        PagesRoutingModule,
+        WiCloudHomeModule,
+        ThemeModule,
+        DashboardModule,
+        InstallationsModule,
+        MiscellaneousModule,
+        WilampCloudAddressWilampModule,
+        WilampCloudContactWilampModule,
+        WilampCloudCustomerWilampModule,
+        WilampCloudEnergyMeterModuleWilampModule,
+        WilampCloudGatewayWilampModule,
+        WilampCloudGatewayInstallationRequestModule,
+        WilampCloudInstallationWilampModule,
+        WilampCloudLightManagementMeasureWilampModule,
+        WilampCloudLightManagementModuleWilampModule,
+        WilampCloudMotionManagementModuleWilampModule,
+        WilampCloudNodeWilampModule,
+        WilampCloudNodeModulesWilampModule,
+        WilampCloudOrderWilampModule,
+        WilampCloudShippingWilampModule,
+        WilampCloudTwilightManagementModuleWilampModule,
+        WilampCloudEnergyIntervalModule,
+        WilampCloudLightProfileWilampModule,
+        WilampCloudLightProfileSlotWilampModule,
+    ],
+    declarations: [
+        ...PAGES_COMPONENTS,
+    ]
 })
 export class PagesModule {
 }

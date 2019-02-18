@@ -1,17 +1,17 @@
 import { Routes } from '@angular/router';
 
-import { UserRouteAccessService } from '../../shared';
-import {PagesComponent} from '../../pages/pages.component';
-import {MapDashboardComponent} from './map-dashboard.component';
+import { UserRouteAccessService } from '../../../shared';
+import {InstallationDashboardComponent} from './installation-dashboard.component';
+import {PagesComponent} from '../../pages.component';
 
-export const mapDashboardRoute: Routes = [
+export const installationDashboardRoute: Routes = [
     {
         path: '',
         component: PagesComponent,
         children: [
             {
-                path: 'map',
-                component: MapDashboardComponent,
+                path: 'global-reports',
+                component: InstallationDashboardComponent,
                 data: {
                     authorities: ['ROLE_USER'],
                     pageTitle: 'Dashboard'

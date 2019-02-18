@@ -1,17 +1,17 @@
 import { Routes } from '@angular/router';
 
-import { UserRouteAccessService } from '../../shared';
-import {PagesComponent} from '../../pages/pages.component';
-import {NotificationsDashboardComponent} from './notifications-dashboard.component';
+import { UserRouteAccessService } from '../../../shared';
+import {PagesComponent} from '../../pages.component';
+import {NodesDashboardComponent} from './nodes-dashboard.component';
 
-export const notificationsDashboardRoute: Routes = [
+export const nodesDashboardRoute: Routes = [
     {
         path: '',
         component: PagesComponent,
         children: [
             {
-                path: 'notifications',
-                component: NotificationsDashboardComponent,
+                path: 'nodes',
+                component: NodesDashboardComponent,
                 data: {
                     authorities: ['ROLE_USER'],
                     pageTitle: 'Dashboard'
