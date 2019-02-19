@@ -73,8 +73,6 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
     private googleGeocoder: any;
 
     constructor(
-        private mapsAPILoader: MapsAPILoader,
-        private mapsAPIWrapper: GoogleMapsAPIWrapper,
         private AmCharts: AmChartsService,
         private eventManager: JhiEventManager,
         private installationService: InstallationWilampService,
@@ -97,10 +95,6 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
         this.predicate = 'id';
         this.reverse = true;
         this.mapOptions = new MapOptions();
-        this.mapsAPILoader.load().then(() => {
-            this.googleMapsLoaded = true;
-            this.googleGeocoder = new google.maps.Geocoder();
-        });
 
         // this.startInterval = this.startInterval.toISOString().slice(0, 16);
     }

@@ -14,6 +14,8 @@ import {
     installationRoute,
     installationPopupRoute,
 } from './';
+import {InstallationWilampWidgetComponent} from './widget/installation-wilamp-widget.component';
+import {InstallationWilampListComponent} from './installation-wilamp-list.component';
 
 const ENTITY_STATES = [
     ...installationRoute,
@@ -27,11 +29,13 @@ const ENTITY_STATES = [
     ],
     declarations: [
         InstallationWilampComponent,
+        InstallationWilampListComponent,
         InstallationWilampDetailComponent,
         InstallationWilampDialogComponent,
         InstallationWilampDeleteDialogComponent,
         InstallationWilampPopupComponent,
         InstallationWilampDeletePopupComponent,
+        InstallationWilampWidgetComponent
     ],
     entryComponents: [
         InstallationWilampComponent,

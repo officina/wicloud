@@ -24,7 +24,6 @@ import { CommonModule } from '@angular/common';
 import { WiCloudSharedModule, UserRouteAccessService } from './shared';
 import {AmChartsModule} from '@amcharts/amcharts3-angular';
 import { ScriptLoaderService } from './_services/script-loader.service';
-import {GlobalDatabaseService} from './shared/global-database/global-database.service';
 
 
 
@@ -53,12 +52,11 @@ import {GlobalDatabaseService} from './shared/global-database/global-database.se
   ],
   bootstrap: [AppComponent],
   providers: [
-      GlobalDatabaseService,
       ScriptLoaderService,
       UserRouteAccessService,
       AuthGuard,
         { provide: APP_BASE_HREF, useValue: '/' }, TranslateService,
-        { provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER, useValue: (req) =>  false },
+        { provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER, useValue: authTokenInterceptorFilter },
         { provide: HTTP_INTERCEPTORS, useClass: NbAuthJWTInterceptor, multi: true}, // quick fix for JWT Token on API calls //TODO:AT controlla, può provocare ricorsioni
         { provide: NbTokenStorage, useClass: NbTokenLocalStorage },
   ],
@@ -66,6 +64,15 @@ import {GlobalDatabaseService} from './shared/global-database/global-database.se
 export class AppModule {
 }
 
+export function authTokenInterceptorFilter(req) {
+    try {
+        if (req.url.includes('api-token'))
+            return true;
+        return false;
+    } catch (ex) {
+        return false;
+    }
+}
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {

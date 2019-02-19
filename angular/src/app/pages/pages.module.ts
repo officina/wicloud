@@ -27,7 +27,8 @@ import { WilampCloudEnergyIntervalModule } from './energy-interval/energy-interv
 import {WiCloudHomeModule} from './home';
 import {WilampCloudLightProfileWilampModule} from './light-profile-wilamp/light-profile-wilamp.module';
 import {WilampCloudLightProfileSlotWilampModule} from './light-profile-slot-wilamp/light-profile-slot-wilamp.module';
-import {DashboardsModule} from './dashboards/dashboards.module';
+import {InstallationDashboardModule} from './dashboards/installation-dashboard/installation-dashboard.module';
+import {GlobalDatabaseService} from '../shared/global-database/global-database.service';
 
 
 const PAGES_COMPONENTS = [
@@ -36,7 +37,7 @@ const PAGES_COMPONENTS = [
 
 @NgModule({
     imports: [
-        DashboardsModule,
+        InstallationDashboardModule,
         PagesRoutingModule,
         WiCloudHomeModule,
         ThemeModule,
@@ -64,6 +65,9 @@ const PAGES_COMPONENTS = [
     ],
     declarations: [
         ...PAGES_COMPONENTS,
+    ],
+    providers: [
+              GlobalDatabaseService,
     ]
 })
 export class PagesModule {
