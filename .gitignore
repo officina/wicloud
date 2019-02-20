@@ -32,3 +32,4 @@ web.settings/settings.py
 /web/settings/local.py
 /npm-debug.log
 /webpack-stats.json
+.idea
