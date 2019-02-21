@@ -20,7 +20,7 @@ import * as L from 'leaflet';
 import 'leaflet.markercluster';
 import 'leaflet.awesome-markers/dist/leaflet.awesome-markers';
 import 'leaflet-sidebar-v2';
-import 'leaflet-canvas-marker';
+// import 'leaflet-canvas-marker';
 import {NG2Heatmap} from '../../shared/maps/heatmap-js';
 // import '../../../../../../node_modules/leaflet-sidebar-v2/js/leaflet-sidebar.js';
 
@@ -86,7 +86,7 @@ export class FullLeafletMapWidgetComponent implements OnInit, OnDestroy, AfterVi
         id: 'lcuClusterCR',
         name: 'LCU - CR',
         enabled: true,
-        layer: L.canvasIconLayer()
+        layer: undefined // L.canvasIconLayer() // TODO: fixare per ora commento
     };
     dcuClusterGroup: L.MarkerClusterGroup = L.markerClusterGroup({
         spiderfyOnMaxZoom: true,
