@@ -3,7 +3,7 @@ import {InstallationsComponent} from './installations.component';
 import {ThemeModule} from '../../@theme/theme.module';
 import { DetailComponent } from './detail/detail.component';
 import {NbBadgeModule} from '@nebular/theme';
-import {TranslateModule} from '@ngx-translate/core';
+import { WiCloudSharedModule } from '../../shared/shared.module';
 
 
 const PAGES_COMPONENTS = [
@@ -15,7 +15,7 @@ const PAGES_COMPONENTS = [
   imports: [
       ThemeModule,
       NbBadgeModule,
-      TranslateModule.forChild(),
+      WiCloudSharedModule
   ],
   declarations: [
     ...PAGES_COMPONENTS,
