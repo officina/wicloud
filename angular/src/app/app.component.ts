@@ -28,6 +28,10 @@ export class AppComponent implements OnInit {
   }
 }
 
+@Component({
+  selector: 'ngx-logout',
+  template: '<router-outlet></router-outlet>',
+})
 export class LogoutComponent extends NbLogoutComponent implements OnInit {
   constructor(
     protected service: NbAuthService,

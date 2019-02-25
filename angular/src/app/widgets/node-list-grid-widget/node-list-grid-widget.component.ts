@@ -3,7 +3,7 @@ import {NodeWilamp} from '../../pages/node-wilamp';
 import { DomSanitizer } from '@angular/platform-browser';
 import {
     GLOBALDATABASE__INSTALLATION_WEEKLY_STATISTICS_FETCHED, GLOBALDATABASE__INSTALLATION_WEEKLY_STATISTICS_FETCHING,
-    GLOBALDATABASE__NODES_FETCHED,
+    GLOBALDATABASE__LIGHT_FIXTURES_FETCHED,
     INSTALLATION__SELECTED_INSTALLATION_CHANGED,
     INSTALLATION_DASHBOARD__DAILY_STATISTICS_FETCHED,
     INSTALLATION_DASHBOARD__MONTHLY_STATISTICS_FETCHED,
@@ -46,7 +46,7 @@ export class NodeListGridWidgetComponent implements OnInit, AfterViewInit, OnDes
     public colNames: any[];
     public eXcell_details: any;
     public showStyle = false;
-    public eventwatch = GLOBALDATABASE__NODES_FETCHED;
+    public eventwatch = GLOBALDATABASE__LIGHT_FIXTURES_FETCHED;
 
     constructor(
         private _script: ScriptLoaderService,
@@ -174,7 +174,7 @@ export class NodeListGridWidgetComponent implements OnInit, AfterViewInit, OnDes
 
     registerEvents() {
         this.nodesFetchedSubscriber = this.eventManager.subscribe(
-            GLOBALDATABASE__NODES_FETCHED,
+            GLOBALDATABASE__LIGHT_FIXTURES_FETCHED,
             (response) => this.createXgrid(),
         );
         this.installationChangedSubscriber = this.eventManager.subscribe(

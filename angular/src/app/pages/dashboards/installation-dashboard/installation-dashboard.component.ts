@@ -23,7 +23,7 @@ import {
     GLOBALDATABASE__INSTALLATION_FETCHED,
     GLOBALDATABASE__INSTALLATION_STATISTICS_BY_NODEID_FETCHED,
     GLOBALDATABASE__INSTALLATION_WEEKLY_STATISTICS_FETCHED, GLOBALDATABASE__INSTALLATION_WEEKLY_STATISTICS_FETCHING,
-    GLOBALDATABASE__NODES_FETCHED,
+    GLOBALDATABASE__LIGHT_FIXTURES_FETCHED,
     INSTALLATION__LIST_MODIFICATION,
     INSTALLATION__SELECTED_ID_CHANGED,
     INSTALLATION_DASHBOARD__DAILY_STATISTICS_FETCHED,
@@ -981,7 +981,7 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
             (response) => this.updateMapBounds(),
         );
         this.eventSubscriberGatewaysFetched = this.eventManager.subscribe(
-            GLOBALDATABASE__NODES_FETCHED,
+            GLOBALDATABASE__LIGHT_FIXTURES_FETCHED,
             (response) => this.updateMapBounds(),
         );
         this.eventSubscriberWeeklyStatisticsByInstallationIdFetched = this.eventManager.subscribe(

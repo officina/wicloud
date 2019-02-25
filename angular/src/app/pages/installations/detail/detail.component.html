@@ -30,10 +30,10 @@
               <div class="col-11">
                   <div class="row">
                       <div class="col-12">
-                          <h5>{{installation.address.street}}, {{ installation.address.house_number }}</h5>
+                          <h5>{{installation.address.street}}, {{ installation.address.houseNumber }}</h5>
                       </div>
                       <div class="col-12">
-                          <h5>{{installation.address.zip_code}}, {{ installation.address.city }} {{ installation.address.country }}</h5>
+                          <h5>{{installation.address.zipCode}}, {{ installation.address.city }} {{ installation.address.country }}</h5>
                       </div>
                   </div>
 
@@ -82,21 +82,6 @@
 
       </div>
 
-      <div [(ngModel)]="temperatureMode" ngbRadioGroup data-toggle="buttons"
-           class="btn-group btn-group-toggle btn-divided-group btn-outline-divided-group btn-group-full-width">
-        <label ngbButtonLabel class="btn btn-icon">
-          <input ngbButton type="radio" value="cool"/><i class="nb-snowy-circled"></i>
-        </label>
-        <label ngbButtonLabel class="btn btn-icon">
-          <input ngbButton type="radio" value="warm"/><i class="nb-sunny-circled"></i>
-        </label>
-        <label ngbButtonLabel class="btn btn-icon">
-          <input ngbButton type="radio" value="heat"/><i class="nb-flame-circled"></i>
-        </label>
-        <label ngbButtonLabel class="btn btn-icon">
-          <input ngbButton type="radio" value="fan"/><i class="nb-loop-circled"></i>
-        </label>
-      </div>
     </nb-tab>
 
     <nb-tab tabTitle="Humidity">

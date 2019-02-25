@@ -171,6 +171,10 @@ yarn start
 
 # Check lint before push
 
+    npm run -s prepush
+
+    npm run lint:ci && ng build --prod
+
     ng lint
 
     ./node_modules/stylelint/bin/stylelint.js ./src/**/*.scss

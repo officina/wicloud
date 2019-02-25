@@ -6,7 +6,7 @@ import {EntityIconMarker, MapLeafletLayers, MapOptions} from '../../shared/maps/
 import {GoogleMapsAPIWrapper, MapsAPILoader} from '@agm/core';
 import {Principal} from '../../shared';
 import {
-    GLOBALDATABASE__NODES_FETCHED,
+    GLOBALDATABASE__LIGHT_FIXTURES_FETCHED,
     INSTALLATION__SELECTED_ID_CHANGED, INSTALLATION__SELECTED_INSTALLATION_CHANGED, MAP_INSTANCE_GETTER__MAP_OBTAINED,
 } from '../../shared/constants/events.constants';
 import {Subscription} from 'rxjs/Rx';
@@ -290,7 +290,7 @@ export class FullLeafletMapWidgetComponent implements OnInit, OnDestroy, AfterVi
 
     registerFetch() {
         this.eventSubscriber = this.eventManager.subscribe(
-            GLOBALDATABASE__NODES_FETCHED,
+            GLOBALDATABASE__LIGHT_FIXTURES_FETCHED,
             (response) => {
                 this.nodesFetched();
             },
