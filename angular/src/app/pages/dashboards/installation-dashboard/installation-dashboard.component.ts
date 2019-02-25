@@ -52,7 +52,7 @@ declare var window: any;
     styleUrls: ['installation-dashboard.component.css']
 })
 export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterViewInit {
-
+    installation: InstallationWilamp;
     private chart_weeklyAvgPower: AmChart;
     Dashboard: any;
     Math: any;
@@ -85,6 +85,7 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
     private eventSubscriberStatisticsByNodeIdAndInstallationIdFetched: Subscription;
     private eventSubscriberInstallationWeeklyStatistics: Subscription;
     private googleMapsLoaded = false;
+    private subscription: Subscription;
     private googleGeocoder: any;
     private timeAgo: any;
     public dailyEnergyConsumption: any;
@@ -173,7 +174,10 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
 
     ngOnInit() {
         this.mapOptions.center = latLng(2.71241353356395, 101.99271440506);
-        this.waitForEntities(this);
+        this.subscription = this.route.params.subscribe((params) => {
+            this.load(params['id']);
+        });
+        this.waitForEntities();
         this.registerChangeInInstallations();
         this.Dashboard = function() {
             const e = function(el1, t, a, r) {
@@ -591,11 +595,11 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
         });
     }
 
-    waitForEntities(reference) {
-        if (reference.globalDatabase.selectedInstallation && reference.globalDatabase.selectedInstallation.nodes.length > 0) {
-            reference.updateMapBounds(reference);
+    waitForEntities() {
+        if (this.globalDatabase.selectedInstallation && this.globalDatabase.selectedInstallation.nodes.length > 0) {
+            this.updateMapBounds();
         } else {
-            setTimeout(reference.waitForEntities.bind(null, reference), 250);
+            setTimeout(this.waitForEntities.bind(this), 250);
         }
     }
 
@@ -675,11 +679,11 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
         this.totalEarnings = 0;
     }
 
-    updateRuntimeParameters(reference) {
-        if (reference.principal.selectedInstallationId != null) {
-            reference.load(reference.principal.selectedInstallationId);
+    updateRuntimeParameters() {
+        if (this.principal.selectedInstallationId != null) {
+            this.load(this.principal.selectedInstallationId);
         } else {
-            setTimeout(reference.updateRuntimeParameters.bind(null, reference), 250);
+            setTimeout(this.updateRuntimeParameters.bind(this), 250);
         }
     }
 
@@ -709,7 +713,7 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
         this.initializeTimeAndSunrise();
     }
 
-    updateChartEnergyStatistics(reference) {
+    updateChartEnergyStatistics() {
 
         try {
             this.energyStatistics = this.globalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId;
@@ -717,7 +721,7 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
         }
 
         try {
-            // RetrieupdateChartEnergyStatistics(reference) {ve data for badges
+            // RetrieupdateChartEnergyStatistics() {ve data for badges
 
             const statisticsOfCurrentMonth = this.globalDatabase.selectedInstallation.energyStatistics.getStatisticsOfCurrentMonth(this.currentAnalyzedDate);
             if (statisticsOfCurrentMonth) {
@@ -889,7 +893,7 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
         }
     }
 
-    updateStatisticsByNodeId(reference) {
+    updateStatisticsByNodeId() {
         try {
             if (window.GlobalDatabase.selectedInstallation.statisticsByNodeId) {
                 this.averageBurningTime = 0.0;
@@ -920,10 +924,9 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
         }
     }
 
-    updateMapBounds(reference) {
-        if (reference.googleMapsLoaded) {
-            reference.isFetchingNodes = false;
-            reference.mapOptions.bounds = MapHelpers.generateBounds(reference.globalDatabase.selectedInstallation.nodes);
+    updateMapBounds() {
+        if (this.googleMapsLoaded) {
+            this.mapOptions.bounds = MapHelpers.generateBounds(this.globalDatabase.selectedInstallation.nodes);
             /* this.mapOptions.center.lat = (this.mapOptions.bounds.northeast.latitude + this.mapOptions.bounds.southwest.latitude) / 2;
             this.mapOptions.center.lng = (this.mapOptions.bounds.northeast.longitude + this.mapOptions.bounds.southwest.longitude) / 2;
 
@@ -933,7 +936,7 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
                 console.warn(m);
             }); */
         } else {
-            setTimeout(reference.updateMapBounds.bind(null, reference), 250);
+            setTimeout(this.updateMapBounds.bind(this), 250);
         }
     }
 
@@ -975,19 +978,19 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
         );
         this.eventSubscriberNodesFetched = this.eventManager.subscribe(
             GLOBALDATABASE__GATEWAYS_FETCHED,
-            (response) => this.updateMapBounds(this)
+            (response) => this.updateMapBounds()
         );
         this.eventSubscriberGatewaysFetched = this.eventManager.subscribe(
             GLOBALDATABASE__NODES_FETCHED,
-            (response) => this.updateMapBounds(this)
+            (response) => this.updateMapBounds()
         );
         this.eventSubscriberWeeklyStatisticsByInstallationIdFetched = this.eventManager.subscribe(
             GLOBALDATABASE__INSTALLATION_WEEKLY_STATISTICS_FETCHED,
-            (response) => this.updateChartEnergyStatistics(this)
+            (response) => this.updateChartEnergyStatistics()
         );
         this.eventSubscriberStatisticsByNodeIdAndInstallationIdFetched = this.eventManager.subscribe(
             GLOBALDATABASE__INSTALLATION_STATISTICS_BY_NODEID_FETCHED,
-            (response) => this.updateStatisticsByNodeId(this)
+            (response) => this.updateStatisticsByNodeId()
         );
         this.eventSubscriberInstallationWeeklyStatistics = this.eventManager.subscribe(
             GLOBALDATABASE__INSTALLATION_WEEKLY_STATISTICS_FETCHING,
@@ -1014,7 +1017,7 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
                     this.initializePortlet()
                 });
             });*/
-        this.updateChartEnergyStatistics(this);
+        this.updateChartEnergyStatistics();
     }
 
 }

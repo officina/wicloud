@@ -8,9 +8,13 @@ import {Installation} from '../../../_models/installation';
 })
 export class InstallationWilampWidgetComponent implements OnInit {
   @Input() installation: Installation;
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
+    //console.warn(this.textvalue);
+    //console.warn("Installation: " + this.installation.name);
   }
+
 
 }

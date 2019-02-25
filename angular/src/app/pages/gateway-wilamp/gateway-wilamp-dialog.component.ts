@@ -11,9 +11,12 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { GatewayWilamp } from './gateway-wilamp.model';
 import { GatewayWilampPopupService } from './gateway-wilamp-popup.service';
 import { GatewayWilampService } from './gateway-wilamp.service';
-import { InstallationWilamp, InstallationWilampService } from '../installation-wilamp';
-import { ShippingWilamp, ShippingWilampService } from '../shipping-wilamp';
-import { OrderWilamp, OrderWilampService } from '../order-wilamp';
+import { InstallationWilamp } from '../installation-wilamp/installation-wilamp.model';
+import { InstallationWilampService } from '../installation-wilamp/installation-wilamp.service';
+import { ShippingWilamp } from '../shipping-wilamp/shipping-wilamp.model';
+import { ShippingWilampService } from '../shipping-wilamp/shipping-wilamp.service';
+import { OrderWilamp } from '../order-wilamp/order-wilamp.model';
+import { OrderWilampService } from '../order-wilamp/order-wilamp.service';
 import { GatewayInstallationRequest } from '../gateway-installation-request/gateway-installation-request.model';
 import { GatewayInstallationRequestService } from '../gateway-installation-request/gateway-installation-request.service';
 

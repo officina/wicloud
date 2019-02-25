@@ -1,4 +1,7 @@
 <div class="row">
-    <ngx-installation-wilamp-widget *ngFor="let installation of installations;" class="col-6" [installation]="installation"></ngx-installation-wilamp-widget>
-</div>
+    <div *ngFor="let installation of installations" class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+        <ngx-installation-wilamp-widget [installation]="installation">
+        </ngx-installation-wilamp-widget>
+    </div>
 
+</div>

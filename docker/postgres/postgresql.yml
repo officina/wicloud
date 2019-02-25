@@ -1,0 +1,23 @@
+version: '2'
+services:
+    wicloud-postgresql:
+        image: postgres:9.6.5
+        # volumes:
+        #     - ~/volumes/jhipster/wilampCloud/postgresql/:/var/lib/postgresql/data/
+        environment:
+            - POSTGRES_USER=wilampcloud
+            - POSTGRES_PASSWORD=
+            - "POSTGRES_CUSTOM_DATABASE=wicloud"
+            - "POSTGRES_CUSTOM_USER=wicloud"
+            - "POSTGRES_CUSTOM_PASSWORD=!!changeme£$$!"
+        build: './db'
+        ports:
+            - 5432:5432
+        volumes:
+            - ./db/cloud_postgres:/var/lib/postgresql/data
+        networks:
+              infranet:
+                aliases:
+                  - 'postgres'
+networks:
+  infranet:

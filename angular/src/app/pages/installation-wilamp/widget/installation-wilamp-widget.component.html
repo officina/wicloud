@@ -1,73 +1,101 @@
-<nb-card class="container">
-  <nb-card-body>
-    <div class="row block align-items-center">
-      <!-- COL INFO INSTALLAZIONE -->
-        <div class="col-12">
-            <h2 [translate]="'dashboard.light'">{{'dashboard.light' | translate}}</h2>
-        </div>
-        <div class="col-12">
-            <h5>{{installation.customer.description}}</h5>
-        </div>
-        <div class="col-1">
-            <i class="icon-full-width ion-android-alarm-clock "></i>
-        </div>
-        <div class="col-9">
-            <h5>{{ installation.preparationDate }}</h5>
-        </div>
-    </div>
-    <!-- COL INDIRIZZO -->
-    <div class="row block align-items-center">
-      <div class="col-1">
-           <i class="icon-full-width ion-android-pin"></i>
-      </div>
-      <div class="col-11">
-          <div class="row">
-              <div class="col-12">
-                  <h5>{{installation.address.street}}, {{ installation.address.house_number }}</h5>
+<nb-card size="large">
+    <nb-card-header *ngIf="installation">
+        <h2>{{installation.name}}</h2>
+    </nb-card-header>
+          <nb-tabset fullWidth>
+    <nb-tab tabTitle="Overview">
+      <div class="widget-tab-container" *ngIf="installation">
+          <div class="row block align-items-center">
+          <!-- COL INFO INSTALLAZIONE -->
+            <div class="col-12">
+                <h2>{{installation.description}}</h2>
+            </div>
+            <div class="col-12">
+                <h5>{{installation.customer.description}}</h5>
+            </div>
+            <div class="col-1">
+                <i class="icon-full-width ion-android-alarm-clock "></i>
+            </div>
+            <div class="col-9">
+                <h5>{{ installation.preparationDate }}</h5>
+            </div>
+            </div>
+            <!-- COL INDIRIZZO -->
+            <div class="row block align-items-center">
+              <div class="col-1">
+                   <i class="icon-full-width ion-android-pin"></i>
               </div>
-              <div class="col-12">
-                  <h5>{{installation.address.zip_code}}, {{ installation.address.city }} {{ installation.address.country }}</h5>
-              </div>
-          </div>
-
-      </div>
-    </div>
-    <!-- COL NOTIFICHE -->
-    <div class="row block align-items-center">
-      <div class="col-1">
-           <i class="icon-full-width ion-android-notifications"></i>
-      </div>
-      <div class="col-9">
-          <div class="row">
               <div class="col-11">
-                  <h5>Notifications</h5>
+                  <div class="row">
+                      <div class="col-12">
+                          <h5>{{installation.address.street}}, {{ installation.address.houseNumber }}</h5>
+                      </div>
+                      <div class="col-12">
+                          <h5>{{installation.address.zipCode}}, {{ installation.address.city }} {{ installation.address.country }}</h5>
+                      </div>
+                  </div>
+
               </div>
+            </div>
+            <!-- COL NOTIFICHE -->
+            <div class="row block align-items-center">
               <div class="col-1">
-                  <nb-badge class="badge" text="2" status="danger"></nb-badge>
+                   <i class="icon-full-width ion-android-notifications"></i>
               </div>
-          </div>
+              <div class="col-9">
+                  <div class="row">
+                      <div class="col-11">
+                          <h5>Notifications</h5>
+                      </div>
+                      <div class="col-1">
+                          <nb-badge class="badge" text="2" status="danger"></nb-badge>
+                      </div>
+                  </div>
+
+              </div>
+            </div>
+            <!-- COL STATUS -->
+            <div class="row block align-items-center">
+              <div class="col-1">
+                   <i class="icon-full-width ion-android-bulb"></i>
+              </div>
+              <div class="col-9">
+                  <div class="row">
+                      <div class="col-6">
+                          <h5>Status</h5>
+                      </div>
+                      <div class="col-5">
+                          <h5>KO</h5>
+                      </div>
+                      <div class="col-1">
+                          <nb-badge class="badge" text="X" status="danger"></nb-badge>
+                      </div>
+                  </div>
+
+              </div>
+            </div>
+            <div class="row block align-items-center">
+              <div class="col-1">
+
+              </div>
+              <div class="col-9">
+                  <div class="row">
+                      <button class="btn btn-success with-margins" [routerLink]="['../installation-wilamp', installation.id ]">Details</button>
+                  </div>
+              </div>
+            </div>
+
 
       </div>
-    </div>
-    <!-- COL STATUS -->
-    <div class="row block align-items-center">
-      <div class="col-1">
-           <i class="icon-full-width ion-android-bulb"></i>
-      </div>
-      <div class="col-9">
-          <div class="row">
-              <div class="col-6">
-                  <h5>Status</h5>
-              </div>
-              <div class="col-5">
-                  <h5>KO</h5>
-              </div>
-              <div class="col-1">
-                  <nb-badge class="badge" text="X" status="danger"></nb-badge>
-              </div>
-          </div>
+    </nb-tab>
 
+    <nb-tab tabTitle="Map">
+      <div class="widget-tab-container" *ngIf="installation">
+          <ngx-leaflet-map-widget
+          [latitude]="installation.address.lat"
+          [longitude]="installation.address.lng">
+          </ngx-leaflet-map-widget>
       </div>
-    </div>
-  </nb-card-body>
+    </nb-tab>
+    </nb-tabset>
 </nb-card>

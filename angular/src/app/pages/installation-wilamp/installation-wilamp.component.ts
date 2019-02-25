@@ -9,10 +9,10 @@ import { InstallationWilampService } from './installation-wilamp.service';
 import { ITEMS_PER_PAGE, Principal } from '../../shared';
 
 @Component({
-    selector: '.m-grid__item.m-grid__item--fluid.m-wrapper.m-content',
+    selector: 'ngx-installation',
     templateUrl: './installation-wilamp.component.html',
     styleUrls: [
-        'installation-wilamp-detail.component.css'
+        'installation-wilamp.component.scss'
     ]
 })
 export class InstallationWilampComponent implements OnInit, OnDestroy {

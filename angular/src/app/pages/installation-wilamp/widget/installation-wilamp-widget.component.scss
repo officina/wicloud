@@ -1,20 +1,70 @@
-.card-header {
-  background-color: red;
-}
-.block {
-  border-bottom: 1px solid #c7c7c7;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-.icon-full-width {
-  font-size: 3vw;
-}
-.icon-mid-width {
-  font-size: 1.5vw;
-}
-.icon-small-width {
-  font-size: 1vw;
-}
-.badge {
-  font-size: 30px;
+@import '../../../@theme/styles/themes';
+@import '~@nebular/theme/styles/global/breakpoints';
+@import '~bootstrap/scss/mixins/breakpoints';
+
+@include nb-install-component() {
+
+  nb-card {
+    background-image: nb-theme(radial-gradient);
+  }
+
+
+  nb-card-body {
+    height: 100%;
+    padding: 2rem;
+    color: nb-theme(color-fg);
+  }
+
+  .widget-tab-container {
+    padding-top: 10px;
+    padding-left: 10px;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    overflow-x: hidden;
+  }
+
+  .row {
+    /* margin-top:10px; */
+  }
+
+  .block {
+    border-bottom: 1px solid #c7c7c7;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .icon-full-width {
+    font-size: 3vw;
+  }
+  .icon-mid-width {
+    font-size: 1.5vw;
+  }
+  .icon-small-width {
+    font-size: 1vw;
+  }
+  .badge {
+    font-size: 30px;
+  }
+
+  .location {
+    font-family: nb-theme(font-secondary);
+    font-size: 2.5rem;
+    font-weight: nb-theme(font-weight-normal);
+    color: nb-theme(color-fg-heading);
+  }
+
+  .date {
+    font-family: nb-theme(font-main);
+    font-size: 1.25rem;
+    line-height: 1.25rem;
+    font-weight: nb-theme(font-weight-light);
+  }
+
+
+  @include media-breakpoint-down(xs) {
+    nb-card-body {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
 }

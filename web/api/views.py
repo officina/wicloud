@@ -132,3 +132,4 @@ class ThuxStatusViewMixin:
             last_modifier=self.user,
             status=self.new_status
         )
+

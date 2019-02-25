@@ -89,6 +89,13 @@ pip install .
 createdb wicloud
 ```
 
+or
+
+```
+docker-compose -f docker/postgres/postgres.yml up -d
+dj migrate
+```
+
 ## Link settings.py with the desired configuration
 ```
 ln -s "$(pwd)/web/settings/dev.py" "$(pwd)/web/settings/settings.py" ```

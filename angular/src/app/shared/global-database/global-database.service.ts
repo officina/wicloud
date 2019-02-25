@@ -18,12 +18,15 @@ import {Subscription} from 'rxjs/Rx';
 import {InstallationDatabase, IntervalEnergyConsumption} from './global-database.model';
 import {Helpers, Principal} from '../';
 import {KWtoCO2Factor} from '../constants/graph.constants';
-import {LightProfileWilamp, LightProfileWilampService} from '../../pages/light-profile-wilamp';
-import {EnergyStatistics, InstallationWilampService} from '../../pages/installation-wilamp';
-import {NodeWilampService} from '../../pages/node-wilamp';
-import {CustomerWilampService} from '../../pages/customer-wilamp';
-import {AddressWilampService} from '../../pages/address-wilamp';
-import {GatewayWilampService} from '../../pages/gateway-wilamp';
+import {LightProfileWilamp} from '../../pages/light-profile-wilamp/light-profile-wilamp.model';
+import {LightProfileWilampService} from '../../pages/light-profile-wilamp/light-profile-wilamp.service';
+import {EnergyStatistics} from '../../pages/installation-wilamp/installation-wilamp.model';
+import {InstallationWilampService} from '../../pages/installation-wilamp/installation-wilamp.service';
+import {NodeWilampService} from '../../pages/node-wilamp/node-wilamp.service';
+import {CustomerWilampService} from '../../pages/customer-wilamp/customer-wilamp.service';
+import {AddressWilampService} from '../../pages/address-wilamp/address-wilamp.service';
+import {GatewayWilampService} from '../../pages/gateway-wilamp/gateway-wilamp.service';
+import {LightFixtureWilampService} from '../../pages/light-fixture-wilamp/light-fixture-wilamp.service';
 declare var window: any;
 
 /***
@@ -44,6 +47,7 @@ export class GlobalDatabaseService {
     constructor(
         private installationService: InstallationWilampService,
         private nodeService: NodeWilampService,
+        private lightFixtureService: LightFixtureWilampService,
         private customerService: CustomerWilampService,
         private addressService: AddressWilampService,
         private gatewayService: GatewayWilampService,
@@ -101,8 +105,9 @@ export class GlobalDatabaseService {
                         });
                     });
                 }
-                this.fetchGateways(id, 0, 100);
-                this.fetchNodes(id, 0, 100);
+                this.fetchGateways(id, 1, 100);
+                this.fetchLightFixtures(id, 1, 100);
+                this.fetchNodes(id, 1, 100);
                 const startInterval = new Date();
                 startInterval.setFullYear(1990);
                 this.fetchWeeklyEnergyStatisticsByInstallationId(id, startInterval, new Date(), new Date());
@@ -124,7 +129,7 @@ export class GlobalDatabaseService {
             size,
             sort: ['id,asc']
         }).subscribe((res) => {
-            if (page === 0) {
+            if (page === 1) {
                 this.selectedInstallation.gatewaysCount = parseInt(res.headers.get('X-Total-Count'), 10);
                 this.selectedInstallation.gateways = res.body;
 
@@ -143,13 +148,39 @@ export class GlobalDatabaseService {
         });
     }
 
+    fetchLightFixtures(installationId, page, size) {
+        this.lightFixtureService.findByInstallation(installationId, {
+            page,
+            size,
+            sort: ['id,asc']
+        }).subscribe((res) => {
+            if (page === 1) {
+                this.selectedInstallation.nodesCount = parseInt(res.headers.get('X-Total-Count'), 10);
+                this.selectedInstallation.lightFixtures = res.body;
+            } else {
+                this.selectedInstallation.lightFixtures.push.apply(this.selectedInstallation.lightFixtures, res.body);
+            }
+            if (res.body.length === 0) {
+                this.installationDatabase[installationId].lightFixtures = this.selectedInstallation.lightFixtures;
+                this.eventManager.broadcast({
+                    name: GLOBALDATABASE__NODES_FETCHED,
+                    content: 'Sending fetch event'
+                });
+            } else {
+                this.fetchLightFixtures(installationId, page + 1, size);
+            }
+        });
+    }
+
+
+
     fetchNodes(installationId, page, size) {
         this.nodeService.findByInstallation(installationId, {
             page,
             size,
             sort: ['id,asc']
         }).subscribe((res) => {
-            if (page === 0) {
+            if (page === 1) {
                 this.selectedInstallation.nodesCount = parseInt(res.headers.get('X-Total-Count'), 10);
                 this.selectedInstallation.nodes = res.body;
             } else {

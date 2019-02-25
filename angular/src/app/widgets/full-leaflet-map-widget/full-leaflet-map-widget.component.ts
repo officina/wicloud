@@ -19,8 +19,9 @@ import * as L from 'leaflet';
 
 import 'leaflet.markercluster';
 import 'leaflet.awesome-markers/dist/leaflet.awesome-markers';
-import 'leaflet-sidebar-v2';
 import 'leaflet-canvas-marker';
+import 'leaflet.awesome-markers';
+import 'leaflet-sidebar-v2';
 import {NG2Heatmap} from '../../shared/maps/heatmap-js';
 // import '../../../../../../node_modules/leaflet-sidebar-v2/js/leaflet-sidebar.js';
 

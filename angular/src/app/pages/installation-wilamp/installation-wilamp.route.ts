@@ -6,6 +6,7 @@ import { InstallationWilampDetailComponent } from './installation-wilamp-detail.
 import { InstallationWilampPopupComponent } from './installation-wilamp-dialog.component';
 import { InstallationWilampDeletePopupComponent } from './installation-wilamp-delete-dialog.component';
 import {PagesComponent} from '../pages.component';
+import {InstallationWilampDashboardComponent} from './dashboard/installation-wilamp-dashboard.component';
 
 export const installationRoute: Routes = [
     {
@@ -22,7 +23,7 @@ export const installationRoute: Routes = [
                 canActivate: [UserRouteAccessService]
             }, {
                 path: 'installation-wilamp/:id',
-                component: InstallationWilampDetailComponent,
+                component: InstallationWilampDashboardComponent,
                 data: {
                     authorities: ['ROLE_USER'],
                     pageTitle: 'wilampCloudApp.installation.home.title'
