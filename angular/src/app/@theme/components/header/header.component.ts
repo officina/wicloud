@@ -1,19 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { NbMenuService, NbSidebarService } from '@nebular/theme';
-
-import { AnalyticsService } from '../../../@core/utils/analytics.service';
+import { UserData } from '../../../@core/data/users';
+import { AnalyticsService } from '../../../@core/utils';
+import { LayoutService } from '../../../@core/utils';
 import {NbAuthJWTToken, NbAuthService, NbTokenService} from '@nebular/auth';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-header',
   styleUrls: ['./header.component.scss'],
   templateUrl: './header.component.html',
-
 })
 export class HeaderComponent implements OnInit {
-
 
   @Input() position = 'normal';
 
@@ -23,13 +22,13 @@ export class HeaderComponent implements OnInit {
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
-              // private userService: UserService,
+              private userService: UserData,
               private analyticsService: AnalyticsService,
+              private layoutService: LayoutService,
               private authService: NbAuthService,
+              private router: Router,
               protected tokenService: NbTokenService,
-
               ) {
-
     this.authService.onTokenChange()
       .subscribe((token: NbAuthJWTToken) => {
         if (token.isValid()) {
@@ -39,20 +38,24 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.menuService.onItemClick().subscribe(( event ) => {
       this.onItemSelection(event.item.title);
-    })
+    });
+
+    this.userService.getUsers()
+      .subscribe((users: any) => this.user = users.nick);
   }
 
   onItemSelection( title ) {
 
     if ( title === 'Log out' ) {
+      this.router.navigate(["/auth/logout"]);
       // Do something on Log out
-      this.authService.logout('email').subscribe(( result ) => {
-        this.tokenService.clear()
 
-      })
+      /*this.authService.logout('email').subscribe(( result ) => {
+        this.tokenService.clear();
+
+      })*/
 
     } else if ( title === 'Profile' ) {
       // Do something on Profile
@@ -62,6 +65,8 @@ export class HeaderComponent implements OnInit {
 
   toggleSidebar(): boolean {
     this.sidebarService.toggle(true, 'menu-sidebar');
+    this.layoutService.changeLayoutSize();
+
     return false;
   }
 
@@ -70,6 +75,7 @@ export class HeaderComponent implements OnInit {
     return false;
   }
 
+
   goToHome() {
     this.menuService.navigateHome();
   }
@@ -77,5 +83,4 @@ export class HeaderComponent implements OnInit {
   startSearch() {
     this.analyticsService.trackEvent('startSearch');
   }
-
 }
