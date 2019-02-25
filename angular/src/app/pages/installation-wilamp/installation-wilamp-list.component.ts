@@ -11,7 +11,7 @@ import { ITEMS_PER_PAGE, Principal } from '../../shared';
 @Component({
     selector: '.m-grid__item.m-grid__item--fluid.m-wrapper.m-content',
     templateUrl: './installation-wilamp-list.component.html',
-    styleUrls: ['installation-wilamp-detail.component.css']
+    styleUrls: ['installation-wilamp-detail.component.css'],
 })
 export class InstallationWilampListComponent implements OnInit, OnDestroy {
 
@@ -33,13 +33,13 @@ export class InstallationWilampListComponent implements OnInit, OnDestroy {
         private eventManager: JhiEventManager,
         private parseLinks: JhiParseLinks,
         private activatedRoute: ActivatedRoute,
-        private principal: Principal
+        private principal: Principal,
     ) {
         this.installations = [];
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.page = 1;
         this.links = {
-            last: 0
+            last: 0,
         };
         this.predicate = 'id';
         this.reverse = true;
@@ -53,20 +53,20 @@ export class InstallationWilampListComponent implements OnInit, OnDestroy {
                 query: this.currentSearch,
                 page: this.page,
                 size: this.itemsPerPage,
-                sort: this.sort()
+                sort: this.sort(),
             }).subscribe(
                 (res: HttpResponse<InstallationWilamp[]>) => this.onSuccess(res.body, res.headers),
-                (res: HttpErrorResponse) => this.onError(res.message)
+                (res: HttpErrorResponse) => this.onError(res.message),
             );
             return;
         }
         this.installationService.query({
             page: this.page,
             size: this.itemsPerPage,
-            sort: this.sort()
+            sort: this.sort(),
         }).subscribe(
             (res: HttpResponse<InstallationWilamp[]>) => this.onSuccess(res.body, res.headers),
-            (res: HttpErrorResponse) => this.onError(res.message)
+            (res: HttpErrorResponse) => this.onError(res.message),
         );
     }
 
@@ -84,7 +84,7 @@ export class InstallationWilampListComponent implements OnInit, OnDestroy {
     clear() {
         this.installations = [];
         this.links = {
-            last: 0
+            last: 0,
         };
         this.page = 1;
         this.predicate = 'id';
@@ -99,7 +99,7 @@ export class InstallationWilampListComponent implements OnInit, OnDestroy {
         }
         this.installations = [];
         this.links = {
-            last: 0
+            last: 0,
         };
         this.page = 1;
         this.predicate = '_score';

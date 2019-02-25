@@ -20,7 +20,7 @@ export class GatewayWilampResolvePagingParams implements Resolve<any> {
         return {
             page: this.paginationUtil.parsePage(page),
             predicate: this.paginationUtil.parsePredicate(sort),
-            ascending: this.paginationUtil.parseAscending(sort)
+            ascending: this.paginationUtil.parseAscending(sort),
       };
     }
 }
@@ -34,24 +34,24 @@ export const gatewayRoute: Routes = [
                 path: 'gateway-wilamp',
                 component: GatewayWilampComponent,
                 resolve: {
-                    'pagingParams': GatewayWilampResolvePagingParams
+                    'pagingParams': GatewayWilampResolvePagingParams,
                 },
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.gateway.home.title'
+                    pageTitle: 'wilampCloudApp.gateway.home.title',
                 },
-                canActivate: [UserRouteAccessService]
+                canActivate: [UserRouteAccessService],
             }, {
                 path: 'gateway-wilamp/:id',
                 component: GatewayWilampDetailComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.gateway.home.title'
+                    pageTitle: 'wilampCloudApp.gateway.home.title',
                 },
-                canActivate: [UserRouteAccessService]
-            }
-        ]
-    }
+                canActivate: [UserRouteAccessService],
+            },
+        ],
+    },
 ];
 
 export const gatewayPopupRoute: Routes = [
@@ -60,29 +60,29 @@ export const gatewayPopupRoute: Routes = [
         component: GatewayWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.gateway.home.title'
+            pageTitle: 'wilampCloudApp.gateway.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'gateway-wilamp/:id/edit',
         component: GatewayWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.gateway.home.title'
+            pageTitle: 'wilampCloudApp.gateway.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'gateway-wilamp/:id/delete',
         component: GatewayWilampDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.gateway.home.title'
+            pageTitle: 'wilampCloudApp.gateway.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    }
+        outlet: 'popup',
+    },
 ];

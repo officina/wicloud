@@ -11,7 +11,7 @@ import {Subscription} from 'rxjs/Rx';
 import {
     EnergyStatistics, EnergyStatisticsRowByInterval, GlobalStatistics, InstallationRuntimeParameters,
     InstallationWilamp,
-    InstallationWilampService
+    InstallationWilampService,
 } from '../../installation-wilamp';
 import {CustomerWilamp, CustomerWilampService} from '../../customer-wilamp';
 import {AddressWilamp, AddressWilampService} from '../../address-wilamp';
@@ -28,7 +28,7 @@ import {
     INSTALLATION__SELECTED_ID_CHANGED,
     INSTALLATION_DASHBOARD__DAILY_STATISTICS_FETCHED,
     INSTALLATION_DASHBOARD__MONTHLY_STATISTICS_FETCHED,
-    INSTALLATION_DASHBOARD__WEEKLY_STATISTICS_FETCHED
+    INSTALLATION_DASHBOARD__WEEKLY_STATISTICS_FETCHED,
 } from '../../../shared/constants/events.constants';
 import {GlobalDatabaseService} from '../../../shared/global-database/global-database.service';
 import {KWprice, KWtoCO2Factor} from '../../../shared/constants/graph.constants';
@@ -49,7 +49,7 @@ declare var window: any;
 @Component({
     selector: '.m-grid__item.m-grid__item--fluid.m-wrapper',
     templateUrl: './installation-dashboard.component.html',
-    styleUrls: ['installation-dashboard.component.css']
+    styleUrls: ['installation-dashboard.component.css'],
 })
 export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterViewInit {
     installation: InstallationWilamp;
@@ -131,7 +131,7 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
         isFetchingGlobalStatistics: true,
         isFetchingIntervalStatistics: true,
         isFetchingLastMeasures: true,
-        isFetchingMeasuresByNodeId: true
+        isFetchingMeasuresByNodeId: true,
     };
 
     public sunriseTime = '';
@@ -155,7 +155,7 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
         private route: ActivatedRoute,
         private _script: ScriptLoaderService,
         private principal: Principal,
-        public globalDatabase: GlobalDatabaseService
+        public globalDatabase: GlobalDatabaseService,
     ) {
         this.Math = Math;
         this.endInterval = new Date();
@@ -165,7 +165,7 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
         this.itemsPerPage = 100;
         this.page = 0;
         this.links = {
-            last: 0
+            last: 0,
         };
         this.predicate = 'id';
         this.reverse = true;
@@ -197,8 +197,8 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
                                 pointHoverBackgroundColor: mUtil.getColor('danger'),
                                 pointHoverBorderColor: Chart.helpers.color('#000000').alpha(.1).rgbString(),
                                 fill: !1,
-                                data: t
-                            }]
+                                data: t,
+                            }],
                         },
                         options: {
                             title: {display: !1},
@@ -208,7 +208,7 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
                                 mode: 'nearest',
                                 xPadding: 10,
                                 yPadding: 10,
-                                caretPadding: 10
+                                caretPadding: 10,
                             },
                             legend: {display: !1, labels: {usePointStyle: !1}},
                             responsive: !0,
@@ -220,12 +220,12 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
                                     display: !1,
                                     gridLines: !1,
                                     scaleLabel: {display: !0, labelString: 'Value'},
-                                    ticks: {beginAtZero: !0}
-                                }]
+                                    ticks: {beginAtZero: !0},
+                                }],
                             },
                             elements: {point: {radius: 4, borderWidth: 12}},
-                            layout: {padding: {left: 0, right: 10, top: 5, bottom: 0}}
-                        }
+                            layout: {padding: {left: 0, right: 10, top: 5, bottom: 0}},
+                        },
                     };
                     return new Chart(el1, o);
                 }
@@ -260,7 +260,7 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
                                             'balloonText': baloonText,
                                             'lineThickness': 2,
                                             'title': days[day],
-                                            'valueField': valueField + '_' + day
+                                            'valueField': valueField + '_' + day,
                                         };
                                         graphs.push(graph);
                                     }
@@ -281,23 +281,23 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
                                         'fillColor': '#888888',
                                         'lineAlpha': 0,
                                         'toValue': 16,
-                                        'value': 10
+                                        'value': 10,
                                     }],
                                     'position': 'left',
-                                    'tickLength': 0
+                                    'tickLength': 0,
                                 }],
                                 'graphs': graphs,
                                 'zoomOutButtonRollOverAlpha': 0.15,
                                 'chartCursor': {
                                     'categoryBalloonDateFormat': 'MMM DD JJ:NN',
                                     'cursorPosition': 'mouse',
-                                    'showNextAvailable': true
+                                    'showNextAvailable': true,
                                 },
                                 'columnWidth': 1,
                                 'categoryField': 'date',
                                 'categoryAxis': {
                                     'minPeriod': 'hh',
-                                    'parseDates': false
+                                    'parseDates': false,
                                 },
                                 /*'legend': {}*/
                             };
@@ -320,7 +320,7 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
                                 'balloonText': baloonText,
                                 'lineThickness': 2,
                                 'title': 'Measure count',
-                                'valueField': 'measuresNumber'
+                                'valueField': 'measuresNumber',
                             }];
 
                         switch (valueField ) {
@@ -329,25 +329,25 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
                                     'balloonText': baloonText,
                                     'lineThickness': 2,
                                     'title': 'Energy consumption',
-                                    'valueField': 'sumEnergy'
+                                    'valueField': 'sumEnergy',
                                 },
                                 {
                                     'balloonText': baloonText,
                                     'lineThickness': 2,
                                     'title': 'Energy consumption without dim',
-                                    'valueField': 'sumEnergyWithoutDim'
+                                    'valueField': 'sumEnergyWithoutDim',
                                 },
                                 {
                                     'balloonText': baloonText,
                                     'lineThickness': 2,
                                     'title': 'Energy consumption without control',
-                                    'valueField': 'sumEnergyWithoutControl'
+                                    'valueField': 'sumEnergyWithoutControl',
                                 },
                                 {
                                     'balloonText': baloonText,
                                     'lineThickness': 2,
                                     'title': 'Energy consumption previous installation',
-                                    'valueField': 'sumEnergyOldLamps'
+                                    'valueField': 'sumEnergyOldLamps',
                                 },
                             ];
                             break;
@@ -356,8 +356,8 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
                                     'balloonText': baloonText,
                                     'lineThickness': 2,
                                     'title': 'Measures number',
-                                    'valueField': 'measuresNumber'
-                                }
+                                    'valueField': 'measuresNumber',
+                                },
                             ];
                             break;
                             case 'activePower': graphs = [
@@ -365,8 +365,8 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
                                     'balloonText': baloonText,
                                     'lineThickness': 2,
                                     'title': 'Average power',
-                                    'valueField': 'avgPower'
-                                }
+                                    'valueField': 'avgPower',
+                                },
                             ];
                             break;
                             case 'burningTime': graphs = [
@@ -374,8 +374,8 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
                                     'balloonText': baloonText,
                                     'lineThickness': 2,
                                     'title': 'Burning time',
-                                    'valueField': 'burningTime'
-                                }
+                                    'valueField': 'burningTime',
+                                },
                             ];
                                 break;
 
@@ -395,24 +395,24 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
                                     'fillColor': '#888888',
                                     'lineAlpha': 0,
                                     'toValue': 16,
-                                    'value': 10
+                                    'value': 10,
                                 }],
                                 'position': 'left',
-                                'tickLength': 0
+                                'tickLength': 0,
                             }],
                             'graphs': graphs,
                             'zoomOutButtonRollOverAlpha': 0.15,
                             'chartCursor': {
                                 'categoryBalloonDateFormat': 'MMM DD JJ:NN',
                                 'cursorPosition': 'mouse',
-                                'showNextAvailable': true
+                                'showNextAvailable': true,
                             },
                             'columnWidth': 1,
                             'categoryField': 'weekNumber',
                             'categoryAxis': {
                                 'minPeriod': 'hh',
-                                'parseDates': false
-                            }
+                                'parseDates': false,
+                            },
                         };
                         const chart = this.AmCharts.makeChart(chartDivElement, serialGraphDefinition);
                     }
@@ -436,7 +436,7 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
                                 'minimum': 0,
                                 'maximum': energyStatisticsByWeekNumber.sumEnergyOldLamps,
                                 'stackType': 'regular',
-                                'gridAlpha': 0
+                                'gridAlpha': 0,
                             } ],
                             'startDuration': 1,
                             'graphs': [
@@ -472,7 +472,7 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
                                     'valueField': 'sumEnergyWithoutDim',
                                     'cornerRadiusTop': 10,
                                     'lineColor': '#FCD410',
-                                    'balloonText': '[[value]] KWh'
+                                    'balloonText': '[[value]] KWh',
                                 },
                                 {
                                     'clustered': false,
@@ -484,7 +484,7 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
                                     'cornerRadiusTop': 10,
                                     'lineThickness': 0,
                                     'lineColor': '#1EC622',
-                                    'balloonText': '[[value]] KWh'
+                                    'balloonText': '[[value]] KWh',
 
                                 },
                                 {
@@ -494,8 +494,8 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
                                     'noStepRisers': true,
                                     'stackable': false,
                                     'type': 'step',
-                                    'valueField': 'limit'
-                                }
+                                    'valueField': 'limit',
+                                },
                             ],
                             'rotate': true,
                             'columnWidth': 0.1,
@@ -522,7 +522,7 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
 
                     this.initChartConsumptionBullet( energyStatistics.globalEnergyConsumption, 'Global consumption', 'chart_global_consumption' );
                     this.initChartConsumptionBullet( energyStatistics.currentIntervalEnergyConsumption, 'Global consumption', 'chart_current_interval_consumption' );
-                }
+                },
             };
         }();
         this.Dashboard.AmCharts = this.AmCharts;
@@ -588,7 +588,7 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
                 type: 'spinner',
                 state: 'brand',
                 opacity: .05,
-                size: 'lg'
+                size: 'lg',
             }), setTimeout(function() {
                 mApp.unblock(e.getSelf());
             }, 2e3);
@@ -782,7 +782,7 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
                 this.dailyEnergyConsumption[1].data = todayAvgData;
                 this.eventManager.broadcast({
                     name: INSTALLATION_DASHBOARD__DAILY_STATISTICS_FETCHED,
-                    content: { dataset: this.dailyEnergyConsumption, options: this.dailyEnergyConsumptionOptions }
+                    content: { dataset: this.dailyEnergyConsumption, options: this.dailyEnergyConsumptionOptions },
                 });
             }
         } catch (Exception) {
@@ -823,7 +823,7 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
                 this.weeklyEnergyConsumption[1].data = todayAvgData;
                 this.eventManager.broadcast({
                     name: INSTALLATION_DASHBOARD__WEEKLY_STATISTICS_FETCHED,
-                    content: { dataset: this.weeklyEnergyConsumption, options: this.weeklyEnergyConsumptionOptions }
+                    content: { dataset: this.weeklyEnergyConsumption, options: this.weeklyEnergyConsumptionOptions },
                 });
             }
         } catch (Exception) {
@@ -878,7 +878,7 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
                 this.monthlyEnergyConsumption[1].data = todayAvgData;
                 this.eventManager.broadcast({
                     name: INSTALLATION_DASHBOARD__MONTHLY_STATISTICS_FETCHED,
-                    content: { dataset: this.monthlyEnergyConsumption, options: this.monthlyEnergyConsumptionOptions }
+                    content: { dataset: this.monthlyEnergyConsumption, options: this.monthlyEnergyConsumptionOptions },
                 });
                 this.dataFetchingStatus.isFetchingMonthlyStatistics = false;
             }
@@ -970,27 +970,27 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
     registerChangeInInstallations() {
         this.eventSubscriberInstallationFetched = this.eventManager.subscribe(
             GLOBALDATABASE__INSTALLATION_FETCHED,
-            (response) => this.updateSelectedInstallationDetails()
+            (response) => this.updateSelectedInstallationDetails(),
         );
         this.eventSubscriberInstallationIdChanged = this.eventManager.subscribe(
             INSTALLATION__SELECTED_ID_CHANGED,
-            (response) => this.load(this.principal.selectedInstallationId)
+            (response) => this.load(this.principal.selectedInstallationId),
         );
         this.eventSubscriberNodesFetched = this.eventManager.subscribe(
             GLOBALDATABASE__GATEWAYS_FETCHED,
-            (response) => this.updateMapBounds()
+            (response) => this.updateMapBounds(),
         );
         this.eventSubscriberGatewaysFetched = this.eventManager.subscribe(
             GLOBALDATABASE__NODES_FETCHED,
-            (response) => this.updateMapBounds()
+            (response) => this.updateMapBounds(),
         );
         this.eventSubscriberWeeklyStatisticsByInstallationIdFetched = this.eventManager.subscribe(
             GLOBALDATABASE__INSTALLATION_WEEKLY_STATISTICS_FETCHED,
-            (response) => this.updateChartEnergyStatistics()
+            (response) => this.updateChartEnergyStatistics(),
         );
         this.eventSubscriberStatisticsByNodeIdAndInstallationIdFetched = this.eventManager.subscribe(
             GLOBALDATABASE__INSTALLATION_STATISTICS_BY_NODEID_FETCHED,
-            (response) => this.updateStatisticsByNodeId()
+            (response) => this.updateStatisticsByNodeId(),
         );
         this.eventSubscriberInstallationWeeklyStatistics = this.eventManager.subscribe(
             GLOBALDATABASE__INSTALLATION_WEEKLY_STATISTICS_FETCHING,
@@ -998,7 +998,7 @@ export class InstallationDashboardComponent implements OnInit, OnDestroy, AfterV
                 this.dataFetchingStatus.isFetchingWeeklyStatistics = true;
                 this.dataFetchingStatus.isFetchingDailyStatistics = true;
                 this.dataFetchingStatus.isFetchingMonthlyStatistics = true;
-            }
+            },
         );
 
     }

@@ -7,7 +7,7 @@ import {
     INSTALLATION__SELECTED_INSTALLATION_CHANGED,
     INSTALLATION_DASHBOARD__DAILY_STATISTICS_FETCHED,
     INSTALLATION_DASHBOARD__MONTHLY_STATISTICS_FETCHED,
-    INSTALLATION_DASHBOARD__WEEKLY_STATISTICS_FETCHED
+    INSTALLATION_DASHBOARD__WEEKLY_STATISTICS_FETCHED,
 } from '../../shared/constants/events.constants';
 import {KWtoCO2Factor} from '../../shared/constants/graph.constants';
 import {GlobalDatabaseService} from '../../shared/global-database/global-database.service';
@@ -20,7 +20,7 @@ declare var dhtmlXGridObject, dhtmlxEvent: any;
 @Component({
   selector: 'node-list-grid-widget',
   templateUrl: './node-list-grid-widget.component.html',
-  styleUrls: ['node-list-grid-widget.component.css']
+  styleUrls: ['node-list-grid-widget.component.css'],
 
 })
 export class NodeListGridWidgetComponent implements OnInit, AfterViewInit, OnDestroy {
@@ -31,7 +31,7 @@ export class NodeListGridWidgetComponent implements OnInit, AfterViewInit, OnDes
     public isFetchingData = true;
 
     public nodesGridOptions = {
-        groupBy: 2
+        groupBy: 2,
     };
     public nodesGrid: any;
     public numRows: number;
@@ -52,7 +52,7 @@ export class NodeListGridWidgetComponent implements OnInit, AfterViewInit, OnDes
         private _script: ScriptLoaderService,
         private _DomSanitizationService: DomSanitizer,
         public globalDatabase: GlobalDatabaseService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
 
         this.numRows = 20;
@@ -175,17 +175,17 @@ export class NodeListGridWidgetComponent implements OnInit, AfterViewInit, OnDes
     registerEvents() {
         this.nodesFetchedSubscriber = this.eventManager.subscribe(
             GLOBALDATABASE__NODES_FETCHED,
-            (response) => this.createXgrid()
+            (response) => this.createXgrid(),
         );
         this.installationChangedSubscriber = this.eventManager.subscribe(
             INSTALLATION__SELECTED_INSTALLATION_CHANGED,
-            (response) => this.createXgrid()
+            (response) => this.createXgrid(),
         );
         this.eventSubscriberInstallationWeeklyStatistics = this.eventManager.subscribe(
             GLOBALDATABASE__INSTALLATION_WEEKLY_STATISTICS_FETCHING,
             (response) => {
                 this.isFetchingData = true;
-            }
+            },
         );
     }
 

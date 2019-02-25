@@ -11,13 +11,13 @@ import {Principal} from './auth/principal.service';
     ],
     providers: [
         DatePipe,
-        Principal
+        Principal,
     ],
     exports: [
         WilampCloudSharedCommonModule,
-        DatePipe
+        DatePipe,
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
 })
 export class WiCloudSharedModule {}

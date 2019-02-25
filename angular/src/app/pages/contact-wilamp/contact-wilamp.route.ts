@@ -17,20 +17,20 @@ export const contactRoute: Routes = [
                 component: ContactWilampComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.contact.home.title'
+                    pageTitle: 'wilampCloudApp.contact.home.title',
                 },
-                canActivate: [UserRouteAccessService]
+                canActivate: [UserRouteAccessService],
             }, {
                 path: 'contact-wilamp/:id',
                 component: ContactWilampDetailComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.contact.home.title'
+                    pageTitle: 'wilampCloudApp.contact.home.title',
                 },
-                canActivate: [UserRouteAccessService]
-            }
-        ]
-    }
+                canActivate: [UserRouteAccessService],
+            },
+        ],
+    },
 ];
 
 export const contactPopupRoute: Routes = [
@@ -39,29 +39,29 @@ export const contactPopupRoute: Routes = [
         component: ContactWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.contact.home.title'
+            pageTitle: 'wilampCloudApp.contact.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'contact-wilamp/:id/edit',
         component: ContactWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.contact.home.title'
+            pageTitle: 'wilampCloudApp.contact.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'contact-wilamp/:id/delete',
         component: ContactWilampDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.contact.home.title'
+            pageTitle: 'wilampCloudApp.contact.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    }
+        outlet: 'popup',
+    },
 ];

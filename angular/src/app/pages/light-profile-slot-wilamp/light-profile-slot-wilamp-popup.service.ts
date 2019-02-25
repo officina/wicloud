@@ -14,7 +14,7 @@ export class LightProfileSlotWilampPopupService {
         private datePipe: DatePipe,
         private modalService: NgbModal,
         private router: Router,
-        private lightProfileSlotService: LightProfileSlotWilampService
+        private lightProfileSlotService: LightProfileSlotWilampService,
 
     ) {
         this.ngbModalRef = null;

@@ -4,7 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import {
     GLOBALDATABASE__INSTALLATION_WEEKLY_STATISTICS_FETCHED,
     INSTALLATION_DASHBOARD__DAILY_STATISTICS_FETCHED,
-    INSTALLATION_DASHBOARD__MONTHLY_STATISTICS_FETCHED, INSTALLATION_DASHBOARD__WEEKLY_STATISTICS_FETCHED
+    INSTALLATION_DASHBOARD__MONTHLY_STATISTICS_FETCHED, INSTALLATION_DASHBOARD__WEEKLY_STATISTICS_FETCHED,
 } from '../../shared/constants/events.constants';
 import {KWtoCO2Factor} from '../../shared/constants/graph.constants';
 import {GlobalDatabaseService} from '../../shared/global-database/global-database.service';
@@ -17,7 +17,7 @@ import {GatewayWilamp} from '../../pages/gateway-wilamp';
 @Component({
   selector: 'gateway-administration-website-widget',
   templateUrl: './gateway-administration-website-widget.component.html',
-  styleUrls: ['gateway-administration-website-widget.component.css']
+  styleUrls: ['gateway-administration-website-widget.component.css'],
 
 })
 export class GatewayAdministrationWebsiteWidgetComponent implements OnInit, AfterViewInit {
@@ -26,7 +26,7 @@ export class GatewayAdministrationWebsiteWidgetComponent implements OnInit, Afte
     constructor(
         private _DomSanitizationService: DomSanitizer,
         public globalDatabase: GlobalDatabaseService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) { }
 
     ngOnInit() {

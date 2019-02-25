@@ -32,7 +32,7 @@ import {LeafletModule} from '@asymmetrik/ngx-leaflet';
 @NgModule({
   declarations: [
       AppComponent,
-      LogoutComponent
+      LogoutComponent,
   ],
   imports: [
       AmChartsModule,

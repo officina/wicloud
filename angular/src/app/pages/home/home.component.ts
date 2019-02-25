@@ -6,8 +6,8 @@ import { JhiEventManager } from 'ng-jhipster';
     selector: 'jhi-home',
     templateUrl: './home.component.html',
     styleUrls: [
-        'home.scss'
-    ]
+        'home.scss',
+    ],
 
 })
 export class HomeComponent implements OnInit {

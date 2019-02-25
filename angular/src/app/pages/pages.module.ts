@@ -30,7 +30,7 @@ import {WilampCloudLightProfileWilampModule} from './light-profile-wilamp/light-
 import {WilampCloudLightProfileSlotWilampModule} from './light-profile-slot-wilamp/light-profile-slot-wilamp.module';
 import {InstallationDashboardModule} from './dashboards/installation-dashboard/installation-dashboard.module';
 import {GlobalDatabaseService} from '../shared/global-database/global-database.service';
-import {WilampCloudLightFixtureWilampModule} from "./light-fixture-wilamp/light-fixture-wilamp.module";
+import {WilampCloudLightFixtureWilampModule} from './light-fixture-wilamp/light-fixture-wilamp.module';
 
 
 const PAGES_COMPONENTS = [
@@ -65,14 +65,14 @@ const PAGES_COMPONENTS = [
         WilampCloudEnergyIntervalModule,
         WilampCloudLightProfileWilampModule,
         WilampCloudLightProfileSlotWilampModule,
-        WilampCloudLightFixtureWilampModule
+        WilampCloudLightFixtureWilampModule,
     ],
     declarations: [
         ...PAGES_COMPONENTS,
     ],
     providers: [
               GlobalDatabaseService,
-    ]
+    ],
 })
 export class PagesModule {
 }

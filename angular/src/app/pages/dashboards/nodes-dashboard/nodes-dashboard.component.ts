@@ -4,12 +4,12 @@ import {GlobalDatabaseService} from '../../../shared/global-database/global-data
 @Component({
   selector: '.m-grid__item.m-grid__item--fluid.m-wrapper',
   templateUrl: './nodes-dashboard.component.html',
-  styles: []
+  styles: [],
 })
 export class NodesDashboardComponent implements OnInit {
 
   constructor(
-      public globalDatabase: GlobalDatabaseService
+      public globalDatabase: GlobalDatabaseService,
   ) { }
 
   ngOnInit() {

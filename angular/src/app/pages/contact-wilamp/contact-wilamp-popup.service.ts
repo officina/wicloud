@@ -12,7 +12,7 @@ export class ContactWilampPopupService {
     constructor(
         private modalService: NgbModal,
         private router: Router,
-        private contactService: ContactWilampService
+        private contactService: ContactWilampService,
 
     ) {
         this.ngbModalRef = null;

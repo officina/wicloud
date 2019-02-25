@@ -22,7 +22,7 @@ const ENTITY_STATES = [
 
 @NgModule({
     imports: [
-        RouterModule.forChild(ENTITY_STATES)
+        RouterModule.forChild(ENTITY_STATES),
     ],
     declarations: [
         GatewayInstallationRequestComponent,
@@ -44,6 +44,6 @@ const ENTITY_STATES = [
         GatewayInstallationRequestPopupService,
         GatewayInstallationRequestResolvePagingParams,
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class WilampCloudGatewayInstallationRequestModule {}

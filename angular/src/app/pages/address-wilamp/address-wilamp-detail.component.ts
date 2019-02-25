@@ -9,7 +9,7 @@ import { AddressWilampService } from './address-wilamp.service';
 
 @Component({
     selector: 'jhi-address-wilamp-detail',
-    templateUrl: './address-wilamp-detail.component.html'
+    templateUrl: './address-wilamp-detail.component.html',
 })
 export class AddressWilampDetailComponent implements OnInit, OnDestroy {
 
@@ -20,7 +20,7 @@ export class AddressWilampDetailComponent implements OnInit, OnDestroy {
     constructor(
         private eventManager: JhiEventManager,
         private addressService: AddressWilampService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
     ) {
     }
 
@@ -49,7 +49,7 @@ export class AddressWilampDetailComponent implements OnInit, OnDestroy {
     registerChangeInAddresses() {
         this.eventSubscriber = this.eventManager.subscribe(
             'addressListModification',
-            (response) => this.load(this.address.id)
+            (response) => this.load(this.address.id),
         );
     }
 }

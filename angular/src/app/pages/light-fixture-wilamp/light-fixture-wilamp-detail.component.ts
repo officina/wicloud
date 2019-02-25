@@ -9,7 +9,7 @@ import { LightFixtureWilampService } from './light-fixture-wilamp.service';
 
 @Component({
     selector: 'jhi-light-fixture-wilamp-detail',
-    templateUrl: './light-fixture-wilamp-detail.component.html'
+    templateUrl: './light-fixture-wilamp-detail.component.html',
 })
 export class LightFixtureWilampDetailComponent implements OnInit, OnDestroy {
 
@@ -20,7 +20,7 @@ export class LightFixtureWilampDetailComponent implements OnInit, OnDestroy {
     constructor(
         private eventManager: JhiEventManager,
         private lightFixtureService: LightFixtureWilampService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
     ) {
     }
 
@@ -49,7 +49,7 @@ export class LightFixtureWilampDetailComponent implements OnInit, OnDestroy {
     registerChangeInLightFixtures() {
         this.eventSubscriber = this.eventManager.subscribe(
             'lightFixtureListModification',
-            (response) => this.load(this.lightFixture.id)
+            (response) => this.load(this.lightFixture.id),
         );
     }
 }

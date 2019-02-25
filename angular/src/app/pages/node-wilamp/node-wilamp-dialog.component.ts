@@ -18,7 +18,7 @@ import { OrderWilampService } from '../order-wilamp/order-wilamp.service';
 
 @Component({
     selector: 'jhi-node-wilamp-dialog',
-    templateUrl: './node-wilamp-dialog.component.html'
+    templateUrl: './node-wilamp-dialog.component.html',
 })
 export class NodeWilampDialogComponent implements OnInit {
 
@@ -41,7 +41,7 @@ export class NodeWilampDialogComponent implements OnInit {
         private gatewayService: GatewayWilampService,
         private shippingService: ShippingWilampService,
         private orderService: OrderWilampService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
     }
 
@@ -121,7 +121,7 @@ export class NodeWilampDialogComponent implements OnInit {
 
 @Component({
     selector: 'jhi-node-wilamp-popup',
-    template: ''
+    template: '',
 })
 export class NodeWilampPopupComponent implements OnInit, OnDestroy {
 
@@ -129,7 +129,7 @@ export class NodeWilampPopupComponent implements OnInit, OnDestroy {
 
     constructor(
         private route: ActivatedRoute,
-        private nodePopupService: NodeWilampPopupService
+        private nodePopupService: NodeWilampPopupService,
     ) {}
 
     ngOnInit() {

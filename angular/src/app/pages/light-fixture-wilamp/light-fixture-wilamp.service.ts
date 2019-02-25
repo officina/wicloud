@@ -5,8 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import { LightFixtureWilamp } from './light-fixture-wilamp.model';
 import { createRequestOption } from '../../shared';
 import {environment} from '../../../environments/environment';
-import {GatewayWilamp} from "../gateway-wilamp";
-import {map} from "rxjs/operators";
+import {GatewayWilamp} from '../gateway-wilamp';
+import {map} from 'rxjs/operators';
 
 export type EntityResponseType = HttpResponse<LightFixtureWilamp>;
 

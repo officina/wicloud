@@ -14,7 +14,7 @@ export class EnergyIntervalPopupService {
         private datePipe: DatePipe,
         private modalService: NgbModal,
         private router: Router,
-        private energyIntervalService: EnergyIntervalService
+        private energyIntervalService: EnergyIntervalService,
 
     ) {
         this.ngbModalRef = null;

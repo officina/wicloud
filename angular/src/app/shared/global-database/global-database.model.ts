@@ -1,7 +1,7 @@
 import {
     EnergyStatisticsByResourceId,
     EnergyStatisticsRowByInterval,
-    InstallationWilamp
+    InstallationWilamp,
 } from '../../pages/installation-wilamp';
 import {CustomerWilamp} from '../../pages/customer-wilamp';
 import {AddressWilamp} from '../../pages/address-wilamp';
@@ -152,7 +152,7 @@ export class InstallationDatabase {
     private ___statisticsByNodeId: EnergyStatisticsByResourceId[];
 
     constructor(
-        public installationId
+        public installationId,
     ) {
     }
 

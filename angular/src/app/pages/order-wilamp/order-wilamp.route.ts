@@ -17,20 +17,20 @@ export const orderRoute: Routes = [
                 component: OrderWilampComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.order.home.title'
+                    pageTitle: 'wilampCloudApp.order.home.title',
                 },
-                canActivate: [UserRouteAccessService]
+                canActivate: [UserRouteAccessService],
             }, {
                 path: 'order-wilamp/:id',
                 component: OrderWilampDetailComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.order.home.title'
+                    pageTitle: 'wilampCloudApp.order.home.title',
                 },
-                canActivate: [UserRouteAccessService]
-            }
-        ]
-    }
+                canActivate: [UserRouteAccessService],
+            },
+        ],
+    },
 ];
 
 export const orderPopupRoute: Routes = [
@@ -39,29 +39,29 @@ export const orderPopupRoute: Routes = [
         component: OrderWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.order.home.title'
+            pageTitle: 'wilampCloudApp.order.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'order-wilamp/:id/edit',
         component: OrderWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.order.home.title'
+            pageTitle: 'wilampCloudApp.order.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'order-wilamp/:id/delete',
         component: OrderWilampDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.order.home.title'
+            pageTitle: 'wilampCloudApp.order.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    }
+        outlet: 'popup',
+    },
 ];

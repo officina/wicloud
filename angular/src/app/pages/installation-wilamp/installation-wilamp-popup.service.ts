@@ -14,7 +14,7 @@ export class InstallationWilampPopupService {
         private datePipe: DatePipe,
         private modalService: NgbModal,
         private router: Router,
-        private installationService: InstallationWilampService
+        private installationService: InstallationWilampService,
 
     ) {
         this.ngbModalRef = null;

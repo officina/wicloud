@@ -33,7 +33,7 @@ export class ScriptLoaderService {
 
                 $(this.tag).append(script);
                 resolve(
-                    { script: src, loaded: true, status: 'Loaded' }
+                    { script: src, loaded: true, status: 'Loaded' },
                     );
             }
         });

@@ -10,7 +10,7 @@ import { EnergyIntervalService } from './energy-interval.service';
 
 @Component({
     selector: 'jhi-energy-interval-delete-dialog',
-    templateUrl: './energy-interval-delete-dialog.component.html'
+    templateUrl: './energy-interval-delete-dialog.component.html',
 })
 export class EnergyIntervalDeleteDialogComponent {
 
@@ -19,7 +19,7 @@ export class EnergyIntervalDeleteDialogComponent {
     constructor(
         private energyIntervalService: EnergyIntervalService,
         public activeModal: NgbActiveModal,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
     }
 
@@ -31,7 +31,7 @@ export class EnergyIntervalDeleteDialogComponent {
         this.energyIntervalService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'energyIntervalListModification',
-                content: 'Deleted an energyInterval'
+                content: 'Deleted an energyInterval',
             });
             this.activeModal.dismiss(true);
         });
@@ -40,7 +40,7 @@ export class EnergyIntervalDeleteDialogComponent {
 
 @Component({
     selector: 'jhi-energy-interval-delete-popup',
-    template: ''
+    template: '',
 })
 export class EnergyIntervalDeletePopupComponent implements OnInit, OnDestroy {
 
@@ -48,7 +48,7 @@ export class EnergyIntervalDeletePopupComponent implements OnInit, OnDestroy {
 
     constructor(
         private route: ActivatedRoute,
-        private energyIntervalPopupService: EnergyIntervalPopupService
+        private energyIntervalPopupService: EnergyIntervalPopupService,
     ) {}
 
     ngOnInit() {

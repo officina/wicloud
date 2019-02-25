@@ -9,7 +9,7 @@ import {WiCloudSharedModule} from '../../shared';
 @NgModule({
     imports: [
         WiCloudSharedModule,
-        RouterModule.forChild([ HOME_ROUTE ])
+        RouterModule.forChild([ HOME_ROUTE ]),
     ],
     declarations: [
         HomeComponent,
@@ -18,6 +18,6 @@ import {WiCloudSharedModule} from '../../shared';
     ],
     providers: [
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class WiCloudHomeModule {}

@@ -12,8 +12,6 @@ export class InstallationWilampWidgetComponent implements OnInit {
   }
 
   ngOnInit() {
-    //console.warn(this.textvalue);
-    //console.warn("Installation: " + this.installation.name);
   }
 
 

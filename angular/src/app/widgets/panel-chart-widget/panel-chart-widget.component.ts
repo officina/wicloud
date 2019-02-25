@@ -6,7 +6,7 @@ import {
     INSTALLATION__SELECTED_INSTALLATION_CHANGED,
     INSTALLATION_DASHBOARD__DAILY_STATISTICS_FETCHED,
     INSTALLATION_DASHBOARD__MONTHLY_STATISTICS_FETCHED,
-    INSTALLATION_DASHBOARD__WEEKLY_STATISTICS_FETCHED
+    INSTALLATION_DASHBOARD__WEEKLY_STATISTICS_FETCHED,
 } from '../../shared/constants/events.constants';
 import {GlobalDatabaseService} from '../../shared/global-database/global-database.service';
 import {JhiEventManager} from 'ng-jhipster';
@@ -17,7 +17,7 @@ import {Helpers} from '../../shared';
 @Component({
   selector: 'panel-chart-widget',
   templateUrl: './panel-chart-widget.component.html',
-  styleUrls: ['panel-chart-widget.component.css']
+  styleUrls: ['panel-chart-widget.component.css'],
 
 })
 export class PanelChartWidgetComponent implements OnInit, OnDestroy {
@@ -47,7 +47,7 @@ export class PanelChartWidgetComponent implements OnInit, OnDestroy {
         private _DomSanitizationService: DomSanitizer,
         public globalDatabase: GlobalDatabaseService,
         private eventManager: JhiEventManager,
-        private AmCharts: AmChartsService
+        private AmCharts: AmChartsService,
     ) { }
 
     ngOnInit() {/*
@@ -98,7 +98,7 @@ export class PanelChartWidgetComponent implements OnInit, OnDestroy {
                     'balloonText': balloonText,
                     'type': graphType,
                     'title': days[i],
-                    'valueField': valueField + '_' + i
+                    'valueField': valueField + '_' + i,
                 };
                 graphs.push(graph);
             }
@@ -174,7 +174,7 @@ export class PanelChartWidgetComponent implements OnInit, OnDestroy {
                     'gridPosition': 'start',
                     'axisAlpha': 0,
                     'gridAlpha': 0,
-                    'position': 'left'
+                    'position': 'left',
                 },
                 'legend': {
                     'horizontalGap': 0,
@@ -183,11 +183,11 @@ export class PanelChartWidgetComponent implements OnInit, OnDestroy {
                     'useGraphSettings': true,
                     'markerSize': 10,
                     'valueText': '[[value]] KWh',
-                    'valueWidth': 70
+                    'valueWidth': 70,
                 },
                 'export': {
-                    'enabled': true
-                }
+                    'enabled': true,
+                },
 
             };
             const chart = this.AmCharts.makeChart(chartDivElement, serialGraphDefinition);
@@ -202,14 +202,14 @@ export class PanelChartWidgetComponent implements OnInit, OnDestroy {
             const graphDefinitions = [
                 {
                     'field': 'activeEnergyOldLampsAverage',
-                    'title': 'Fluorescent / HPS'
+                    'title': 'Fluorescent / HPS',
                 }, {
                     'field': 'activeEnergyWithoutControlAverage',
-                    'title': 'LED'
+                    'title': 'LED',
                 }, {
                     'field': 'activeEnergyAverage',
-                    'title': 'Smart lights'
-                }
+                    'title': 'Smart lights',
+                },
             ];
             const graphs = [];
             const valueField = '';
@@ -266,7 +266,7 @@ export class PanelChartWidgetComponent implements OnInit, OnDestroy {
                         'activeEnergyOldLampsAverage': 0,
                         'activeEnergyWithoutControlAverage': 0,
                         'activeEnergyAverage': 0,
-                        'timestamp': today
+                        'timestamp': today,
                     };
                     chartData.push(dayStatistics);
                 }
@@ -281,7 +281,7 @@ export class PanelChartWidgetComponent implements OnInit, OnDestroy {
                     'useGraphSettings': true,
                     'markerSize': 10,
                     'valueText': '[[value]] KWh',
-                    'valueWidth': 70
+                    'valueWidth': 70,
                 },
                 'dataProvider': chartData,
                 'valueAxes': [{
@@ -290,7 +290,7 @@ export class PanelChartWidgetComponent implements OnInit, OnDestroy {
                     'gridAlpha': 0,
                     'precision': 0,
                     'unit': 'KWh',
-                    'usePrefixes': false
+                    'usePrefixes': false,
 
                 }],
                 'graphs': graphs,
@@ -300,7 +300,7 @@ export class PanelChartWidgetComponent implements OnInit, OnDestroy {
                     'gridPosition': 'start',
                     'axisAlpha': 0,
                     'gridAlpha': 0,
-                    'position': 'left'
+                    'position': 'left',
                 },
                 'chartCursor': {
                     /*'categoryBalloonDateFormat': 'MMM DD JJ:NN',*/
@@ -310,8 +310,8 @@ export class PanelChartWidgetComponent implements OnInit, OnDestroy {
                     'oneBalloonOnly': true,
                 },
                 'export': {
-                    'enabled': true
-                }
+                    'enabled': true,
+                },
 
             };
             const chart = this.AmCharts.makeChart(chartDivElement, serialGraphDefinition);
@@ -375,17 +375,17 @@ export class PanelChartWidgetComponent implements OnInit, OnDestroy {
     registerEvents() {
         this.eventSubscriber = this.eventManager.subscribe(
             this.eventwatch,
-            (response) => this.updateChart()
+            (response) => this.updateChart(),
         );
         this.selectedInstallationChange = this.eventManager.subscribe(
             INSTALLATION__SELECTED_INSTALLATION_CHANGED,
-            (response) => this.isFetchingData = true
+            (response) => this.isFetchingData = true,
         );
         this.eventSubscriberInstallationWeeklyStatistics = this.eventManager.subscribe(
             GLOBALDATABASE__INSTALLATION_WEEKLY_STATISTICS_FETCHING,
             (response) => {
                 this.isFetchingData = true;
-            }
+            },
         );
     }
 

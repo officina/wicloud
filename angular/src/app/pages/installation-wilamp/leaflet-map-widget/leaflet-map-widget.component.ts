@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 
 import * as L from 'leaflet';
 import 'style-loader!leaflet/dist/leaflet.css';
-import {Installation} from "../../../_models/installation";
+import {Installation} from '../../../_models/installation';
 
 @Component({
   selector: 'ngx-leaflet-map-widget',

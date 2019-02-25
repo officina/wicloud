@@ -10,7 +10,7 @@ import {Helpers} from '../../shared';
 @Component({
   selector: 'node-small-details-widget',
   templateUrl: './node-small-details-widget.component.html',
-  styleUrls: ['node-small-details-widget.component.css']
+  styleUrls: ['node-small-details-widget.component.css'],
 
 })
 export class NodeSmallDetailsWidgetComponent implements OnInit, AfterViewInit, OnChanges {
@@ -38,7 +38,7 @@ export class NodeSmallDetailsWidgetComponent implements OnInit, AfterViewInit, O
       private _DomSanitizationService: DomSanitizer,
       public globalDatabase: GlobalDatabaseService,
       private modalService: NgbModal,
-      private _router: Router
+      private _router: Router,
     ) { }
 
     ngOnInit() {

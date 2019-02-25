@@ -9,7 +9,7 @@ import { MotionManagementModuleWilampService } from './motion-management-module-
 
 @Component({
     selector: 'jhi-motion-management-module-wilamp-detail',
-    templateUrl: './motion-management-module-wilamp-detail.component.html'
+    templateUrl: './motion-management-module-wilamp-detail.component.html',
 })
 export class MotionManagementModuleWilampDetailComponent implements OnInit, OnDestroy {
 
@@ -20,7 +20,7 @@ export class MotionManagementModuleWilampDetailComponent implements OnInit, OnDe
     constructor(
         private eventManager: JhiEventManager,
         private motionManagementModuleService: MotionManagementModuleWilampService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
     ) {
     }
 
@@ -49,7 +49,7 @@ export class MotionManagementModuleWilampDetailComponent implements OnInit, OnDe
     registerChangeInMotionManagementModules() {
         this.eventSubscriber = this.eventManager.subscribe(
             'motionManagementModuleListModification',
-            (response) => this.load(this.motionManagementModule.id)
+            (response) => this.load(this.motionManagementModule.id),
         );
     }
 }

@@ -17,7 +17,7 @@ import {Helpers} from '../../shared';
 
 @Component({
     selector: 'jhi-light-management-module-wilamp-detail',
-    templateUrl: './light-management-module-wilamp-detail.component.html'
+    templateUrl: './light-management-module-wilamp-detail.component.html',
 })
 export class LightManagementModuleWilampDetailComponent implements OnInit, OnDestroy {
 
@@ -62,14 +62,14 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
         private energyIntervalService: EnergyIntervalService,
         private route: ActivatedRoute,
         private jhiAlertService: JhiAlertService,
-        private AmCharts: AmChartsService
+        private AmCharts: AmChartsService,
     ) {
         this.lightManagementMeasures = [];
         this.energyIntervals = [];
         this.itemsPerPage = 100;
         this.page = 1;
         this.links = {
-            last: 0
+            last: 0,
         };
         this.predicate = 'id';
         this.reverse = true;
@@ -109,7 +109,7 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
         this.lightManagementMeasureService.getByLightModuleAndMtyAndInterval(lightManagementId, mty, startDate, endDate, {
             page,
             size,
-            sort: this.sort()
+            sort: this.sort(),
         }).subscribe((res: HttpResponse<LightManagementModuleWilamp[]>) => {
             if (page === 0) {
                 this.lightManagementMeasuresCount = parseInt(res.headers.get('X-Total-Count'), 10);
@@ -129,7 +129,7 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
         this.energyIntervalService.getByLightModuleAndInterval(lightManagementId, startDate, endDate, {
             page,
             size,
-            sort: this.sort()
+            sort: this.sort(),
         }).subscribe((res: HttpResponse<LightManagementModuleWilamp[]>) => {
             if (page === 0) {
                 this.energyMeterIntervalsCount = parseInt(res.headers.get('X-Total-Count'), 10);
@@ -201,7 +201,7 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
     registerChangeInLightManagementModules() {
         this.eventSubscriber = this.eventManager.subscribe(
             'lightManagementModuleListModification',
-            (response) => this.load(this.lightManagementModule.id)
+            (response) => this.load(this.lightManagementModule.id),
         );
     }
 
@@ -217,14 +217,14 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                 'equalWidths': false,
                 'position': 'top',
                 'valueAlign': 'left',
-                'valueWidth': 100
+                'valueWidth': 100,
             },
             'categoryAxesSettings': {
-                'minPeriod': 'fff'
+                'minPeriod': 'fff',
             },
             'valueAxes': [{
                 'axisAlpha': 0,
-                'position': 'left'
+                'position': 'left',
             }],
             'graphs': [
                 {
@@ -237,7 +237,7 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                     'lineThickness': 1,
                     // 'negativeLineColor': '#637bb6',
                     'type': 'line',
-                    'valueField': 'activePower'
+                    'valueField': 'activePower',
                 },
                 {
                     'id': 'g2',
@@ -249,7 +249,7 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                     'lineThickness': 1,
                     // 'negativeLineColor': '#637bb6',
                     'type': 'line',
-                    'valueField': 'iac'
+                    'valueField': 'iac',
                 },
                 {
                     'id': 'g3',
@@ -261,8 +261,8 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                     'lineThickness': 1,
                     // 'negativeLineColor': '#637bb6',
                     'type': 'line',
-                    'valueField': 'vac'
-                }
+                    'valueField': 'vac',
+                },
             ],
             'chartScrollbar': {
                 'graph': 'g1',
@@ -278,7 +278,7 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                 // 'graphLineAlpha':0.2,
                 'graphLineColor': '#c2c2c2',
                 'selectedGraphLineColor': '#888888',
-                'selectedGraphLineAlpha': 1
+                'selectedGraphLineAlpha': 1,
 
             },
             'chartCursor': {
@@ -287,7 +287,7 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                 'valueLineEnabled': true,
                 'valueLineBalloonEnabled': true,
                 'valueLineAlpha': 0.5,
-                'fullWidth': true
+                'fullWidth': true,
             },
             'dataDateFormat': 'fff',
             'categoryField': 'measureTimestamp',
@@ -295,11 +295,11 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                 'minPeriod': 'fff',
                 'parseDates': true,
                 'minorGridAlpha': 0.1,
-                'minorGridEnabled': true
+                'minorGridEnabled': true,
             },
             'export': {
-                'enabled': true
-            }
+                'enabled': true,
+            },
         });
         // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
         this.chartLightManagementMeasuresPat.zoomToIndexes(this.lightManagementMeasures.length - 40, this.lightManagementMeasures.length - 1);
@@ -314,14 +314,14 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                 'equalWidths': false,
                 'position': 'top',
                 'valueAlign': 'left',
-                'valueWidth': 100
+                'valueWidth': 100,
             },
             'categoryAxesSettings': {
-                'minPeriod': 'fff'
+                'minPeriod': 'fff',
             },
             'valueAxes': [{
                 'axisAlpha': 0,
-                'position': 'left'
+                'position': 'left',
             }],
             'graphs': [
                 {
@@ -334,7 +334,7 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                     'lineThickness': 1,
                     // 'negativeLineColor': '#637bb6',
                     'type': 'line',
-                    'valueField': 'activeEnergyCounter'
+                    'valueField': 'activeEnergyCounter',
                 },
                 {
                     'id': 'g2',
@@ -346,8 +346,8 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                     'lineThickness': 1,
                     // 'negativeLineColor': '#637bb6',
                     'type': 'line',
-                    'valueField': 'lampLife'
-                }
+                    'valueField': 'lampLife',
+                },
             ],
             'chartScrollbar': {
                 'graph': 'g1',
@@ -363,7 +363,7 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                 // 'graphLineAlpha':0.2,
                 'graphLineColor': '#c2c2c2',
                 'selectedGraphLineColor': '#888888',
-                'selectedGraphLineAlpha': 1
+                'selectedGraphLineAlpha': 1,
 
             },
             'chartCursor': {
@@ -372,7 +372,7 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                 'valueLineEnabled': true,
                 'valueLineBalloonEnabled': true,
                 'valueLineAlpha': 0.5,
-                'fullWidth': true
+                'fullWidth': true,
             },
             'dataDateFormat': 'fff',
             'categoryField': 'measureTimestamp',
@@ -380,11 +380,11 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                 'minPeriod': 'fff',
                 'parseDates': true,
                 'minorGridAlpha': 0.1,
-                'minorGridEnabled': true
+                'minorGridEnabled': true,
             },
             'export': {
-                'enabled': true
-            }
+                'enabled': true,
+            },
         });
         // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
         this.chartLightManagementMeasuresCea.zoomToIndexes(this.lightManagementMeasures.length - 40, this.lightManagementMeasures.length - 1);
@@ -403,14 +403,14 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                 'equalWidths': false,
                 'position': 'top',
                 'valueAlign': 'left',
-                'valueWidth': 100
+                'valueWidth': 100,
             },
             'categoryAxesSettings': {
-                'minPeriod': 'fff'
+                'minPeriod': 'fff',
             },
             'valueAxes': [{
                 'axisAlpha': 0,
-                'position': 'left'
+                'position': 'left',
             }],
             'graphs': [
                 {
@@ -423,7 +423,7 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                     'lineThickness': 1,
                     // 'negativeLineColor': '#637bb6',
                     'type': 'line',
-                    'valueField': 'activeEnergyWithoutDim'
+                    'valueField': 'activeEnergyWithoutDim',
                 },
                 {
                     'id': 'g2',
@@ -435,7 +435,7 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                     'lineThickness': 1,
                     // 'negativeLineColor': '#637bb6',
                     'type': 'line',
-                    'valueField': 'activeEnergyMty3'
+                    'valueField': 'activeEnergyMty3',
                 },
                 {
                     'id': 'g3',
@@ -447,7 +447,7 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                     'lineThickness': 1,
                     // 'negativeLineColor': '#637bb6',
                     'type': 'line',
-                    'valueField': 'activeEnergyOldLamps'
+                    'valueField': 'activeEnergyOldLamps',
                 },
                 {
                     'id': 'g4',
@@ -459,8 +459,8 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                     'lineThickness': 1,
                     // 'negativeLineColor': '#637bb6',
                     'type': 'line',
-                    'valueField': 'activeEnergyWithoutControl'
-                }
+                    'valueField': 'activeEnergyWithoutControl',
+                },
 
             ],
             'chartScrollbar': {
@@ -477,7 +477,7 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                 // 'graphLineAlpha':0.2,
                 'graphLineColor': '#c2c2c2',
                 'selectedGraphLineColor': '#888888',
-                'selectedGraphLineAlpha': 1
+                'selectedGraphLineAlpha': 1,
 
             },
             'chartCursor': {
@@ -486,7 +486,7 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                 'valueLineEnabled': true,
                 'valueLineBalloonEnabled': true,
                 'valueLineAlpha': 0.5,
-                'fullWidth': true
+                'fullWidth': true,
             },
             'dataDateFormat': 'fff',
             'categoryField': 'startInterval',
@@ -494,11 +494,11 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                 'minPeriod': 'fff',
                 'parseDates': true,
                 'minorGridAlpha': 0.1,
-                'minorGridEnabled': true
+                'minorGridEnabled': true,
             },
             'export': {
-                'enabled': true
-            }
+                'enabled': true,
+            },
         });
         // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
         this.chartEnergyIntervals.zoomToIndexes(this.energyIntervals.length - 40, this.energyIntervals.length - 1);
@@ -513,14 +513,14 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                 'equalWidths': false,
                 'position': 'top',
                 'valueAlign': 'left',
-                'valueWidth': 100
+                'valueWidth': 100,
             },
             'categoryAxesSettings': {
-                'minPeriod': 'fff'
+                'minPeriod': 'fff',
             },
             'valueAxes': [{
                 'axisAlpha': 0,
-                'position': 'left'
+                'position': 'left',
             }],
             'graphs': [
                 {
@@ -533,7 +533,7 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                     'lineThickness': 1,
                     // 'negativeLineColor': '#637bb6',
                     'type': 'line',
-                    'valueField': 'burningTime'
+                    'valueField': 'burningTime',
                 },
                 {
                     'id': 'g2',
@@ -545,7 +545,7 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                     'lineThickness': 1,
                     // 'negativeLineColor': '#637bb6',
                     'type': 'line',
-                    'valueField': 'activeEnergyMty3'
+                    'valueField': 'activeEnergyMty3',
                 },
                 {
                     'id': 'g3',
@@ -557,8 +557,8 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                     'lineThickness': 1,
                     // 'negativeLineColor': '#637bb6',
                     'type': 'line',
-                    'valueField': 'activePower'
-                }
+                    'valueField': 'activePower',
+                },
             ],
             'chartScrollbar': {
                 'graph': 'g1',
@@ -574,7 +574,7 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                 // 'graphLineAlpha':0.2,
                 'graphLineColor': '#c2c2c2',
                 'selectedGraphLineColor': '#888888',
-                'selectedGraphLineAlpha': 1
+                'selectedGraphLineAlpha': 1,
 
             },
             'chartCursor': {
@@ -583,7 +583,7 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                 'valueLineEnabled': true,
                 'valueLineBalloonEnabled': true,
                 'valueLineAlpha': 0.5,
-                'fullWidth': true
+                'fullWidth': true,
             },
             'dataDateFormat': 'fff',
             'categoryField': 'startInterval',
@@ -591,11 +591,11 @@ export class LightManagementModuleWilampDetailComponent implements OnInit, OnDes
                 'minPeriod': 'fff',
                 'parseDates': true,
                 'minorGridAlpha': 0.1,
-                'minorGridEnabled': true
+                'minorGridEnabled': true,
             },
             'export': {
-                'enabled': true
-            }
+                'enabled': true,
+            },
         });
         // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
         this.chartEnergyIntervalsBurningTime.zoomToIndexes(this.energyIntervals.length - 40, this.energyIntervals.length - 1);

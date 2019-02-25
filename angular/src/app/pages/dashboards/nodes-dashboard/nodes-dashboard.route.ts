@@ -14,10 +14,10 @@ export const nodesDashboardRoute: Routes = [
                 component: NodesDashboardComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'Dashboard'
+                    pageTitle: 'Dashboard',
                 },
-                canActivate: [UserRouteAccessService]
-            }
-        ]
-    }
+                canActivate: [UserRouteAccessService],
+            },
+        ],
+    },
 ];

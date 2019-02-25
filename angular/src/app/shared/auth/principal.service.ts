@@ -15,7 +15,7 @@ export class Principal {
     public selectedInstallationId: number;
 
     constructor(
-        private userService: UserService
+        private userService: UserService,
     ) {}
 
     authenticate(identity) {

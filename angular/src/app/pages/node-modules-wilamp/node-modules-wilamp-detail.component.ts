@@ -9,7 +9,7 @@ import { NodeModulesWilampService } from './node-modules-wilamp.service';
 
 @Component({
     selector: 'jhi-node-modules-wilamp-detail',
-    templateUrl: './node-modules-wilamp-detail.component.html'
+    templateUrl: './node-modules-wilamp-detail.component.html',
 })
 export class NodeModulesWilampDetailComponent implements OnInit, OnDestroy {
 
@@ -20,7 +20,7 @@ export class NodeModulesWilampDetailComponent implements OnInit, OnDestroy {
     constructor(
         private eventManager: JhiEventManager,
         private nodeModulesService: NodeModulesWilampService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
     ) {
     }
 
@@ -49,7 +49,7 @@ export class NodeModulesWilampDetailComponent implements OnInit, OnDestroy {
     registerChangeInNodeModules() {
         this.eventSubscriber = this.eventManager.subscribe(
             'nodeModulesListModification',
-            (response) => this.load(this.nodeModules.id)
+            (response) => this.load(this.nodeModules.id),
         );
     }
 }

@@ -15,7 +15,7 @@ import { LightProfileWilamp, LightProfileWilampService } from '../light-profile-
 
 @Component({
     selector: 'jhi-light-fixture-wilamp-dialog',
-    templateUrl: './light-fixture-wilamp-dialog.component.html'
+    templateUrl: './light-fixture-wilamp-dialog.component.html',
 })
 export class LightFixtureWilampDialogComponent implements OnInit {
 
@@ -35,7 +35,7 @@ export class LightFixtureWilampDialogComponent implements OnInit {
         private gatewayService: GatewayWilampService,
         private installationService: InstallationWilampService,
         private lightProfileService: LightProfileWilampService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
     }
 
@@ -98,7 +98,7 @@ export class LightFixtureWilampDialogComponent implements OnInit {
 
 @Component({
     selector: 'jhi-light-fixture-wilamp-popup',
-    template: ''
+    template: '',
 })
 export class LightFixtureWilampPopupComponent implements OnInit, OnDestroy {
 
@@ -106,7 +106,7 @@ export class LightFixtureWilampPopupComponent implements OnInit, OnDestroy {
 
     constructor(
         private route: ActivatedRoute,
-        private lightFixturePopupService: LightFixtureWilampPopupService
+        private lightFixturePopupService: LightFixtureWilampPopupService,
     ) {}
 
     ngOnInit() {

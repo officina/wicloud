@@ -16,10 +16,10 @@ import {
 } from './';
 import {InstallationWilampWidgetComponent} from './widget/installation-wilamp-widget.component';
 import {InstallationWilampListComponent} from './installation-wilamp-list.component';
-import {ThemeModule} from "../../@theme/theme.module";
-import {LeafletMapWidgetComponent} from "./leaflet-map-widget/leaflet-map-widget.component";
+import {ThemeModule} from '../../@theme/theme.module';
+import {LeafletMapWidgetComponent} from './leaflet-map-widget/leaflet-map-widget.component';
 import {LeafletModule} from '@asymmetrik/ngx-leaflet';
-import {InstallationWilampDashboardComponent} from "./dashboard/installation-wilamp-dashboard.component";
+import {InstallationWilampDashboardComponent} from './dashboard/installation-wilamp-dashboard.component';
 
 const ENTITY_STATES = [
     ...installationRoute,
@@ -43,7 +43,7 @@ const ENTITY_STATES = [
         InstallationWilampDeletePopupComponent,
         InstallationWilampWidgetComponent,
         InstallationWilampDashboardComponent,
-        LeafletMapWidgetComponent
+        LeafletMapWidgetComponent,
     ],
     entryComponents: [
         InstallationWilampComponent,
@@ -56,6 +56,6 @@ const ENTITY_STATES = [
         InstallationWilampService,
         InstallationWilampPopupService,
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class WilampCloudInstallationWilampModule {}

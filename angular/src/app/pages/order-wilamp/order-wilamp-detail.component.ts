@@ -9,7 +9,7 @@ import { OrderWilampService } from './order-wilamp.service';
 
 @Component({
     selector: 'jhi-order-wilamp-detail',
-    templateUrl: './order-wilamp-detail.component.html'
+    templateUrl: './order-wilamp-detail.component.html',
 })
 export class OrderWilampDetailComponent implements OnInit, OnDestroy {
 
@@ -20,7 +20,7 @@ export class OrderWilampDetailComponent implements OnInit, OnDestroy {
     constructor(
         private eventManager: JhiEventManager,
         private orderService: OrderWilampService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
     ) {
     }
 
@@ -49,7 +49,7 @@ export class OrderWilampDetailComponent implements OnInit, OnDestroy {
     registerChangeInOrders() {
         this.eventSubscriber = this.eventManager.subscribe(
             'orderListModification',
-            (response) => this.load(this.order.id)
+            (response) => this.load(this.order.id),
         );
     }
 }

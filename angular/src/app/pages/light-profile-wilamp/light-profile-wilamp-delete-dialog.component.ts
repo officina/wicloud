@@ -10,7 +10,7 @@ import { LightProfileWilampService } from './light-profile-wilamp.service';
 
 @Component({
     selector: 'jhi-light-profile-wilamp-delete-dialog',
-    templateUrl: './light-profile-wilamp-delete-dialog.component.html'
+    templateUrl: './light-profile-wilamp-delete-dialog.component.html',
 })
 export class LightProfileWilampDeleteDialogComponent {
 
@@ -19,7 +19,7 @@ export class LightProfileWilampDeleteDialogComponent {
     constructor(
         private lightProfileService: LightProfileWilampService,
         public activeModal: NgbActiveModal,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
     }
 
@@ -31,7 +31,7 @@ export class LightProfileWilampDeleteDialogComponent {
         this.lightProfileService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'lightProfileListModification',
-                content: 'Deleted an lightProfile'
+                content: 'Deleted an lightProfile',
             });
             this.activeModal.dismiss(true);
         });
@@ -40,7 +40,7 @@ export class LightProfileWilampDeleteDialogComponent {
 
 @Component({
     selector: 'jhi-light-profile-wilamp-delete-popup',
-    template: ''
+    template: '',
 })
 export class LightProfileWilampDeletePopupComponent implements OnInit, OnDestroy {
 
@@ -48,7 +48,7 @@ export class LightProfileWilampDeletePopupComponent implements OnInit, OnDestroy
 
     constructor(
         private route: ActivatedRoute,
-        private lightProfilePopupService: LightProfileWilampPopupService
+        private lightProfilePopupService: LightProfileWilampPopupService,
     ) {}
 
     ngOnInit() {

@@ -33,7 +33,7 @@ export class LogoutComponent extends NbLogoutComponent implements OnInit {
     protected service: NbAuthService,
     @Inject(NB_AUTH_OPTIONS) protected options = {},
     protected router: Router,
-    protected tokenService: NbTokenService
+    protected tokenService: NbTokenService,
   ) {
     super(service, options, router);
   }

@@ -14,7 +14,7 @@ export class OrderWilampPopupService {
         private datePipe: DatePipe,
         private modalService: NgbModal,
         private router: Router,
-        private orderService: OrderWilampService
+        private orderService: OrderWilampService,
 
     ) {
         this.ngbModalRef = null;

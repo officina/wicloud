@@ -18,20 +18,20 @@ export const energyIntervalRoute: Routes = [
                 component: EnergyIntervalComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.energyInterval.home.title'
+                    pageTitle: 'wilampCloudApp.energyInterval.home.title',
                 },
-                canActivate: [UserRouteAccessService]
+                canActivate: [UserRouteAccessService],
             }, {
                 path: 'energy-interval/:id',
                 component: EnergyIntervalDetailComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.energyInterval.home.title'
+                    pageTitle: 'wilampCloudApp.energyInterval.home.title',
                 },
-                canActivate: [UserRouteAccessService]
-            }
-        ]
-    }
+                canActivate: [UserRouteAccessService],
+            },
+        ],
+    },
 ];
 
 export const energyIntervalPopupRoute: Routes = [
@@ -40,29 +40,29 @@ export const energyIntervalPopupRoute: Routes = [
         component: EnergyIntervalPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.energyInterval.home.title'
+            pageTitle: 'wilampCloudApp.energyInterval.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'energy-interval/:id/edit',
         component: EnergyIntervalPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.energyInterval.home.title'
+            pageTitle: 'wilampCloudApp.energyInterval.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'energy-interval/:id/delete',
         component: EnergyIntervalDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.energyInterval.home.title'
+            pageTitle: 'wilampCloudApp.energyInterval.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    }
+        outlet: 'popup',
+    },
 ];

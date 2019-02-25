@@ -14,7 +14,7 @@ export class LightManagementMeasureWilampPopupService {
         private datePipe: DatePipe,
         private modalService: NgbModal,
         private router: Router,
-        private lightManagementMeasureService: LightManagementMeasureWilampService
+        private lightManagementMeasureService: LightManagementMeasureWilampService,
 
     ) {
         this.ngbModalRef = null;

@@ -10,7 +10,7 @@ import { ITEMS_PER_PAGE, Principal } from '../../shared';
 
 @Component({
     selector: '.m-grid__item.m-grid__item--fluid.m-wrapper.m-content',
-    templateUrl: './energy-meter-module-wilamp.component.html'
+    templateUrl: './energy-meter-module-wilamp.component.html',
 })
 export class EnergyMeterModuleWilampComponent implements OnInit, OnDestroy {
 
@@ -32,13 +32,13 @@ export class EnergyMeterModuleWilampComponent implements OnInit, OnDestroy {
         private eventManager: JhiEventManager,
         private parseLinks: JhiParseLinks,
         private activatedRoute: ActivatedRoute,
-        private principal: Principal
+        private principal: Principal,
     ) {
         this.energyMeterModules = [];
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.page = 1;
         this.links = {
-            last: 0
+            last: 0,
         };
         this.predicate = 'id';
         this.reverse = true;
@@ -52,20 +52,20 @@ export class EnergyMeterModuleWilampComponent implements OnInit, OnDestroy {
                 query: this.currentSearch,
                 page: this.page,
                 size: this.itemsPerPage,
-                sort: this.sort()
+                sort: this.sort(),
             }).subscribe(
                 (res: HttpResponse<EnergyMeterModuleWilamp[]>) => this.onSuccess(res.body, res.headers),
-                (res: HttpErrorResponse) => this.onError(res.message)
+                (res: HttpErrorResponse) => this.onError(res.message),
             );
             return;
         }
         this.energyMeterModuleService.query({
             page: this.page,
             size: this.itemsPerPage,
-            sort: this.sort()
+            sort: this.sort(),
         }).subscribe(
             (res: HttpResponse<EnergyMeterModuleWilamp[]>) => this.onSuccess(res.body, res.headers),
-            (res: HttpErrorResponse) => this.onError(res.message)
+            (res: HttpErrorResponse) => this.onError(res.message),
         );
     }
 
@@ -83,7 +83,7 @@ export class EnergyMeterModuleWilampComponent implements OnInit, OnDestroy {
     clear() {
         this.energyMeterModules = [];
         this.links = {
-            last: 0
+            last: 0,
         };
         this.page = 1;
         this.predicate = 'id';
@@ -98,7 +98,7 @@ export class EnergyMeterModuleWilampComponent implements OnInit, OnDestroy {
         }
         this.energyMeterModules = [];
         this.links = {
-            last: 0
+            last: 0,
         };
         this.page = 1;
         this.predicate = '_score';

@@ -12,7 +12,7 @@ export class NodeModulesWilampPopupService {
     constructor(
         private modalService: NgbModal,
         private router: Router,
-        private nodeModulesService: NodeModulesWilampService
+        private nodeModulesService: NodeModulesWilampService,
 
     ) {
         this.ngbModalRef = null;

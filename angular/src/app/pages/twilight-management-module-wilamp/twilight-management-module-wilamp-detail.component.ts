@@ -9,7 +9,7 @@ import { TwilightManagementModuleWilampService } from './twilight-management-mod
 
 @Component({
     selector: 'jhi-twilight-management-module-wilamp-detail',
-    templateUrl: './twilight-management-module-wilamp-detail.component.html'
+    templateUrl: './twilight-management-module-wilamp-detail.component.html',
 })
 export class TwilightManagementModuleWilampDetailComponent implements OnInit, OnDestroy {
 
@@ -20,7 +20,7 @@ export class TwilightManagementModuleWilampDetailComponent implements OnInit, On
     constructor(
         private eventManager: JhiEventManager,
         private twilightManagementModuleService: TwilightManagementModuleWilampService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
     ) {
     }
 
@@ -49,7 +49,7 @@ export class TwilightManagementModuleWilampDetailComponent implements OnInit, On
     registerChangeInTwilightManagementModules() {
         this.eventSubscriber = this.eventManager.subscribe(
             'twilightManagementModuleListModification',
-            (response) => this.load(this.twilightManagementModule.id)
+            (response) => this.load(this.twilightManagementModule.id),
         );
     }
 }

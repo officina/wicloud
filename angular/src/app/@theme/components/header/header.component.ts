@@ -49,7 +49,7 @@ export class HeaderComponent implements OnInit {
   onItemSelection( title ) {
 
     if ( title === 'Log out' ) {
-      this.router.navigate(["/auth/logout"]);
+      this.router.navigate(['/auth/logout']);
       // Do something on Log out
 
       /*this.authService.logout('email').subscribe(( result ) => {

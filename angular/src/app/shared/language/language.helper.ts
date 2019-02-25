@@ -14,7 +14,7 @@ export class JhiLanguageHelper {
         // tslint:disable-next-line: no-unused-variable
         private rootRenderer: RendererFactory2,
         private titleService: Title,
-        private router: Router
+        private router: Router,
     ) {
         this.renderer = rootRenderer.createRenderer(document.querySelector('html'), null);
         this.init();

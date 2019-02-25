@@ -7,7 +7,7 @@ import {GoogleMapsAPIWrapper, MapsAPILoader} from '@agm/core';
 import {Principal} from '../../shared';
 import {
     GLOBALDATABASE__NODES_FETCHED,
-    INSTALLATION__SELECTED_ID_CHANGED, INSTALLATION__SELECTED_INSTALLATION_CHANGED, MAP_INSTANCE_GETTER__MAP_OBTAINED
+    INSTALLATION__SELECTED_ID_CHANGED, INSTALLATION__SELECTED_INSTALLATION_CHANGED, MAP_INSTANCE_GETTER__MAP_OBTAINED,
 } from '../../shared/constants/events.constants';
 import {Subscription} from 'rxjs/Rx';
 import {JhiEventManager} from 'ng-jhipster';
@@ -52,7 +52,7 @@ declare let HeatmapOverlay: any;
 @Component({
   selector: 'full-leaflet-map-widget',
   templateUrl: './full-leaflet-map-widget.component.html',
-  styleUrls: ['full-leaflet-map-widget.component.scss']
+  styleUrls: ['full-leaflet-map-widget.component.scss'],
 
 })
 export class FullLeafletMapWidgetComponent implements OnInit, OnDestroy, AfterViewInit {
@@ -75,32 +75,32 @@ export class FullLeafletMapWidgetComponent implements OnInit, OnDestroy, AfterVi
         showCoverageOnHover: false,
         zoomToBoundsOnClick: true,
         removeOutsideVisibleBounds: true,
-        disableClusteringAtZoom: 14
+        disableClusteringAtZoom: 14,
     });
     lcuCluster = {
         id: 'lcuCluster',
         name: 'LCU',
         enabled: true,
-        layer: this.lcuClusterGroup
+        layer: this.lcuClusterGroup,
     };
     lcuClusterCanvasRendering = {
         id: 'lcuClusterCR',
         name: 'LCU - CR',
         enabled: true,
-        layer: L.canvasIconLayer()
+        layer: L.canvasIconLayer(),
     };
     dcuClusterGroup: L.MarkerClusterGroup = L.markerClusterGroup({
         spiderfyOnMaxZoom: true,
         showCoverageOnHover: true,
         zoomToBoundsOnClick: true,
         removeOutsideVisibleBounds: true,
-        disableClusteringAtZoom: 14
+        disableClusteringAtZoom: 14,
     });
     dcuCluster = {
         id: 'dcuCluster',
         name: 'DCU',
         enabled: true,
-        layer: this.dcuClusterGroup
+        layer: this.dcuClusterGroup,
     };
     mapOptions: MapOptions;
     iconsGroupingOptions = [
@@ -114,7 +114,7 @@ export class FullLeafletMapWidgetComponent implements OnInit, OnDestroy, AfterVi
     alertFilterOptions = [
         { id: 1, label: '> 10', value: 10},
         { id: 2, label: '> 50', value: 50},
-        { id: 3, label: '> 100', value: 100}
+        { id: 3, label: '> 100', value: 100},
     ];
     heatmapEntitiesToAnalyze = [
         { id: 1, label: 'Average Power', value: 'power'},
@@ -142,12 +142,12 @@ export class FullLeafletMapWidgetComponent implements OnInit, OnDestroy, AfterVi
         selectedInterval: 'total',
         startOfInterval: null,
         endOfInterval: null,
-        pendingChanges: false
+        pendingChanges: false,
     };
     public mapIconOptions = {
         useSimpleIcon: false,
         groupBy: '',
-        filterOptions: ''
+        filterOptions: '',
     };
     LAYER_OCM = {
         id: 'opencyclemap',
@@ -155,8 +155,8 @@ export class FullLeafletMapWidgetComponent implements OnInit, OnDestroy, AfterVi
         enabled: false,
         layer: L.tileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {
             maxZoom: 20,
-            attribution: 'Open Cycle Map'
-        })
+            attribution: 'Open Cycle Map',
+        }),
     };
     LAYER_OSM = {
         id: 'openstreetmap',
@@ -164,8 +164,8 @@ export class FullLeafletMapWidgetComponent implements OnInit, OnDestroy, AfterVi
         enabled: false,
         layer: L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 20,
-            attribution: 'Open Street Map'
-        })
+            attribution: 'Open Street Map',
+        }),
     };
     LAYER_GOOGLE_HYBRID = {
         id: 'googlehybrid',
@@ -173,8 +173,8 @@ export class FullLeafletMapWidgetComponent implements OnInit, OnDestroy, AfterVi
         enabled: true,
         layer: L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
             maxZoom: 20,
-            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-        })
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+        }),
     };
     LAYER_GOOGLE_STREET = {
         id: 'googlestreet',
@@ -182,8 +182,8 @@ export class FullLeafletMapWidgetComponent implements OnInit, OnDestroy, AfterVi
         enabled: false,
         layer: L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
             maxZoom: 20,
-            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-        })
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+        }),
     };
     LAYER_HEATMAP = {
         id: 'layerheatmap',
@@ -205,16 +205,16 @@ export class FullLeafletMapWidgetComponent implements OnInit, OnDestroy, AfterVi
                 // which field name in your data represents the longitude - default "lng"
                 lngField: 'lng',
                 // which field name in your data represents the data value - default "value"
-                valueField: 'radius'
-            }
-        )
+                valueField: 'radius',
+            },
+        ),
     };
     leafletMap: L.Map;
     // Form model object
     model = new MapLeafletLayers(
         [ this.LAYER_OSM, this.LAYER_OCM, this.LAYER_GOOGLE_HYBRID, this.LAYER_GOOGLE_STREET ],
         this.LAYER_GOOGLE_HYBRID.id,
-        [  this.lcuCluster, this.lcuClusterCanvasRendering, this.dcuCluster, this.LAYER_HEATMAP ]
+        [  this.lcuCluster, this.lcuClusterCanvasRendering, this.dcuCluster, this.LAYER_HEATMAP ],
     );
     // Values to bind to Leaflet Directive
     layers: L.Layer[];
@@ -223,18 +223,18 @@ export class FullLeafletMapWidgetComponent implements OnInit, OnDestroy, AfterVi
             'Open Street Map': this.LAYER_OSM.layer,
             'Open Cycle Map': this.LAYER_OCM.layer,
             'Google Hybrid Map': this.LAYER_GOOGLE_HYBRID.layer,
-            'Google Streets Map': this.LAYER_GOOGLE_STREET.layer
+            'Google Streets Map': this.LAYER_GOOGLE_STREET.layer,
         },
         overlays: {
             LCU: this.lcuCluster.layer,
             LCU_CR: this.lcuClusterCanvasRendering.layer,
             DCU: this.dcuCluster.layer,
-            HEATMAP: this.LAYER_HEATMAP.layer
-        }
+            HEATMAP: this.LAYER_HEATMAP.layer,
+        },
     };
     options = {
         zoom: 10,
-        center: L.latLng(46.879966, -121.726909)
+        center: L.latLng(46.879966, -121.726909),
     };
     private ciLayer = undefined;
     private eventSubscriber: Subscription;
@@ -293,7 +293,7 @@ export class FullLeafletMapWidgetComponent implements OnInit, OnDestroy, AfterVi
             GLOBALDATABASE__NODES_FETCHED,
             (response) => {
                 this.nodesFetched();
-            }
+            },
         );
         this.eventSubscriberSelectedIdChanged = this.eventManager.subscribe(
             INSTALLATION__SELECTED_INSTALLATION_CHANGED,
@@ -306,7 +306,7 @@ export class FullLeafletMapWidgetComponent implements OnInit, OnDestroy, AfterVi
                 } catch (Exception) {
                     console.warn(Exception);
                 }
-            }
+            },
         );
     }
 
@@ -525,7 +525,7 @@ export class FullLeafletMapWidgetComponent implements OnInit, OnDestroy, AfterVi
                     }
                     const heatmapPoint = {
                             latlng: new L.LatLng(node.latitude, node.longitude),
-                            radius: radiusValue
+                            radius: radiusValue,
                     };
                     maximumValue = 50;
                     result.push(heatmapPoint);

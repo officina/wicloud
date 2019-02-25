@@ -9,7 +9,7 @@ import { LightManagementMeasureWilampService } from './light-management-measure-
 
 @Component({
     selector: 'jhi-light-management-measure-wilamp-detail',
-    templateUrl: './light-management-measure-wilamp-detail.component.html'
+    templateUrl: './light-management-measure-wilamp-detail.component.html',
 })
 export class LightManagementMeasureWilampDetailComponent implements OnInit, OnDestroy {
 
@@ -20,7 +20,7 @@ export class LightManagementMeasureWilampDetailComponent implements OnInit, OnDe
     constructor(
         private eventManager: JhiEventManager,
         private lightManagementMeasureService: LightManagementMeasureWilampService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
     ) {
     }
 
@@ -49,7 +49,7 @@ export class LightManagementMeasureWilampDetailComponent implements OnInit, OnDe
     registerChangeInLightManagementMeasures() {
         this.eventSubscriber = this.eventManager.subscribe(
             'lightManagementMeasureListModification',
-            (response) => this.load(this.lightManagementMeasure.id)
+            (response) => this.load(this.lightManagementMeasure.id),
         );
     }
 }

@@ -16,7 +16,7 @@ import { CustomerWilamp, CustomerWilampService } from '../customer-wilamp';
 
 @Component({
     selector: 'jhi-installation-wilamp-dialog',
-    templateUrl: './installation-wilamp-dialog.component.html'
+    templateUrl: './installation-wilamp-dialog.component.html',
 })
 export class InstallationWilampDialogComponent implements OnInit {
 
@@ -33,7 +33,7 @@ export class InstallationWilampDialogComponent implements OnInit {
         private installationService: InstallationWilampService,
         private addressService: AddressWilampService,
         private customerService: CustomerWilampService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
     }
 
@@ -101,7 +101,7 @@ export class InstallationWilampDialogComponent implements OnInit {
 
 @Component({
     selector: 'jhi-installation-wilamp-popup',
-    template: ''
+    template: '',
 })
 export class InstallationWilampPopupComponent implements OnInit, OnDestroy {
 
@@ -109,7 +109,7 @@ export class InstallationWilampPopupComponent implements OnInit, OnDestroy {
 
     constructor(
         private route: ActivatedRoute,
-        private installationPopupService: InstallationWilampPopupService
+        private installationPopupService: InstallationWilampPopupService,
     ) {}
 
     ngOnInit() {

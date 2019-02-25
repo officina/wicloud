@@ -10,7 +10,7 @@ import { TwilightManagementModuleWilampService } from './twilight-management-mod
 
 @Component({
     selector: 'jhi-twilight-management-module-wilamp-delete-dialog',
-    templateUrl: './twilight-management-module-wilamp-delete-dialog.component.html'
+    templateUrl: './twilight-management-module-wilamp-delete-dialog.component.html',
 })
 export class TwilightManagementModuleWilampDeleteDialogComponent {
 
@@ -19,7 +19,7 @@ export class TwilightManagementModuleWilampDeleteDialogComponent {
     constructor(
         private twilightManagementModuleService: TwilightManagementModuleWilampService,
         public activeModal: NgbActiveModal,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
     }
 
@@ -31,7 +31,7 @@ export class TwilightManagementModuleWilampDeleteDialogComponent {
         this.twilightManagementModuleService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'twilightManagementModuleListModification',
-                content: 'Deleted an twilightManagementModule'
+                content: 'Deleted an twilightManagementModule',
             });
             this.activeModal.dismiss(true);
         });
@@ -40,7 +40,7 @@ export class TwilightManagementModuleWilampDeleteDialogComponent {
 
 @Component({
     selector: 'jhi-twilight-management-module-wilamp-delete-popup',
-    template: ''
+    template: '',
 })
 export class TwilightManagementModuleWilampDeletePopupComponent implements OnInit, OnDestroy {
 
@@ -48,7 +48,7 @@ export class TwilightManagementModuleWilampDeletePopupComponent implements OnIni
 
     constructor(
         private route: ActivatedRoute,
-        private twilightManagementModulePopupService: TwilightManagementModuleWilampPopupService
+        private twilightManagementModulePopupService: TwilightManagementModuleWilampPopupService,
     ) {}
 
     ngOnInit() {

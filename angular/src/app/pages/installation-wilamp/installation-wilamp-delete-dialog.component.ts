@@ -10,7 +10,7 @@ import { InstallationWilampService } from './installation-wilamp.service';
 
 @Component({
     selector: 'jhi-installation-wilamp-delete-dialog',
-    templateUrl: './installation-wilamp-delete-dialog.component.html'
+    templateUrl: './installation-wilamp-delete-dialog.component.html',
 })
 export class InstallationWilampDeleteDialogComponent {
 
@@ -19,7 +19,7 @@ export class InstallationWilampDeleteDialogComponent {
     constructor(
         private installationService: InstallationWilampService,
         public activeModal: NgbActiveModal,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
     }
 
@@ -31,7 +31,7 @@ export class InstallationWilampDeleteDialogComponent {
         this.installationService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'installationListModification',
-                content: 'Deleted an installation'
+                content: 'Deleted an installation',
             });
             this.activeModal.dismiss(true);
         });
@@ -40,7 +40,7 @@ export class InstallationWilampDeleteDialogComponent {
 
 @Component({
     selector: 'jhi-installation-wilamp-delete-popup',
-    template: ''
+    template: '',
 })
 export class InstallationWilampDeletePopupComponent implements OnInit, OnDestroy {
 
@@ -48,7 +48,7 @@ export class InstallationWilampDeletePopupComponent implements OnInit, OnDestroy
 
     constructor(
         private route: ActivatedRoute,
-        private installationPopupService: InstallationWilampPopupService
+        private installationPopupService: InstallationWilampPopupService,
     ) {}
 
     ngOnInit() {

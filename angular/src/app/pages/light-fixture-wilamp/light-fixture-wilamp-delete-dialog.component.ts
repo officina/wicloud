@@ -10,7 +10,7 @@ import { LightFixtureWilampService } from './light-fixture-wilamp.service';
 
 @Component({
     selector: 'jhi-light-fixture-wilamp-delete-dialog',
-    templateUrl: './light-fixture-wilamp-delete-dialog.component.html'
+    templateUrl: './light-fixture-wilamp-delete-dialog.component.html',
 })
 export class LightFixtureWilampDeleteDialogComponent {
 
@@ -19,7 +19,7 @@ export class LightFixtureWilampDeleteDialogComponent {
     constructor(
         private lightFixtureService: LightFixtureWilampService,
         public activeModal: NgbActiveModal,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
     }
 
@@ -31,7 +31,7 @@ export class LightFixtureWilampDeleteDialogComponent {
         this.lightFixtureService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'lightFixtureListModification',
-                content: 'Deleted an lightFixture'
+                content: 'Deleted an lightFixture',
             });
             this.activeModal.dismiss(true);
         });
@@ -40,7 +40,7 @@ export class LightFixtureWilampDeleteDialogComponent {
 
 @Component({
     selector: 'jhi-light-fixture-wilamp-delete-popup',
-    template: ''
+    template: '',
 })
 export class LightFixtureWilampDeletePopupComponent implements OnInit, OnDestroy {
 
@@ -48,7 +48,7 @@ export class LightFixtureWilampDeletePopupComponent implements OnInit, OnDestroy
 
     constructor(
         private route: ActivatedRoute,
-        private lightFixturePopupService: LightFixtureWilampPopupService
+        private lightFixturePopupService: LightFixtureWilampPopupService,
     ) {}
 
     ngOnInit() {

@@ -14,7 +14,7 @@ import { EnergyIntervalService } from './energy-interval.service';
 
 @Component({
     selector: 'jhi-energy-interval-dialog',
-    templateUrl: './energy-interval-dialog.component.html'
+    templateUrl: './energy-interval-dialog.component.html',
 })
 export class EnergyIntervalDialogComponent implements OnInit {
 
@@ -24,7 +24,7 @@ export class EnergyIntervalDialogComponent implements OnInit {
     constructor(
         public activeModal: NgbActiveModal,
         private energyIntervalService: EnergyIntervalService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
     }
 
@@ -65,7 +65,7 @@ export class EnergyIntervalDialogComponent implements OnInit {
 
 @Component({
     selector: 'jhi-energy-interval-popup',
-    template: ''
+    template: '',
 })
 export class EnergyIntervalPopupComponent implements OnInit, OnDestroy {
 
@@ -73,7 +73,7 @@ export class EnergyIntervalPopupComponent implements OnInit, OnDestroy {
 
     constructor(
         private route: ActivatedRoute,
-        private energyIntervalPopupService: EnergyIntervalPopupService
+        private energyIntervalPopupService: EnergyIntervalPopupService,
     ) {}
 
     ngOnInit() {
