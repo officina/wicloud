@@ -14,10 +14,10 @@ export const installationDashboardRoute: Routes = [
                 component: InstallationDashboardComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'Dashboard'
+                    pageTitle: 'Dashboard',
                 },
-                canActivate: [UserRouteAccessService]
-            }
-        ]
-    }
+                canActivate: [UserRouteAccessService],
+            },
+        ],
+    },
 ];

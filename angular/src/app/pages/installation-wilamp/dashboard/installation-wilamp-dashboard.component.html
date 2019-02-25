@@ -1,0 +1,454 @@
+<div style="width: 100%;" *ngIf="globalDatabase.selectedInstallation">
+
+    <!-- BEGIN: Subheader -->
+    <div class="m-subheader"  *ngIf="globalDatabase.selectedInstallation.installation">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                <h3 class="m-subheader__title m-subheader__title--separator">
+                    Installation {{globalDatabase.selectedInstallation.installation.name}}
+                </h3>
+                <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                    <li class="m-nav__item m-nav__item--home">
+                        <a href="#" class="m-nav__link m-nav__link--icon">
+                            <i class="m-nav__link-icon la la-home"></i>
+                        </a>
+                    </li>
+                    <li class="m-nav__separator">
+                        -
+                    </li>
+                    <li class="m-nav__item">
+                        <a href="" class="m-nav__link">
+						<span class="m-nav__link-text">
+							Widgets
+						</span>
+                        </a>
+                    </li>
+                    <li class="m-nav__separator">
+                        -
+                    </li>
+                    <li class="m-nav__item">
+                        <a href="" class="m-nav__link">
+						<span class="m-nav__link-text">
+							Chart Widgets
+						</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="upper-clock m-subheader__title "><div> <i class="fa flaticon-clock-1"></i> {{getLocalDateTime() | date:'HH:mm'}}</div><div><i class="fa flaticon-calendar-1"></i> {{startInterval | date:'yyyy-MM-dd'}} - {{endInterval | date:'yyyy-MM-dd'}} </div></div>
+            </div>
+            <div>
+                <div *ngIf="globalDatabase.selectedInstallation.customer">{{globalDatabase.selectedInstallation.customer.companyName}} </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Subheader -->
+
+
+    <!--Begin::Interval picker-->
+     <div class="upper-calendar" >
+        <i class="fa flaticon-calendar-1"></i>
+         <input type="datetime-local" class="form-control" id="currentAnalyzedDate" [ngModel]="currentAnalyzedDate | date:'yyyy-MM-ddThh:mm'" (ngModelChange)="currentAnalyzedDateChanged($event)" name="currentAnalyzedDate">
+         <!-- <input type="datetime-local" class="form-control" id="startInterval" [ngModel]="startInterval | date:'yyyy-MM-ddThh:mm'" (ngModelChange)="startIntervalChanged($event)" name="startInterval">
+        <input type="datetime-local" class="form-control" id="endInterval" [ngModel]="endInterval | date:'yyyy-MM-ddThh:mm'" (ngModelChange)="endIntervalChanged($event)" name="endInterval">-->
+    </div>
+    <!--end::Interval picker-->
+    <div class="m-content" *ngIf="globalDatabase.selectedInstallation.installation">
+
+
+        <!--- Row alerts and Dimming --->
+        <div class="row" style="margin-top:50px">
+            <div class="col-xl-12">
+                <div class="row row-stat">
+                    <div class="col-md-4">
+                        <div class="panel panel-primary noborder">
+                            <div class="panel-heading noborder">
+                                <div class="panel-btns">
+                                    <a href="" class="panel-close tooltips" data-toggle="tooltip" title="Close Panel"><i class="fa fa-times"></i></a>
+                                </div><!-- panel-btns -->
+                                <div class="panel-icon"><i class="fa flaticon-network"></i></div>
+                                <div class="media-body">
+                                    <h5 class="md-title nomargin">Installation status</h5>
+                                    <h1 class="mt5">OK</h1>
+                                </div><!-- media-body -->
+                                <hr>
+                                <div class="clearfix mt20">
+                                    <div class="pull-left">
+                                        <h5 class="md-title nomargin">ALERTS</h5>
+                                        <h4 class="nomargin">45</h4>
+                                    </div>
+                                    <div class="pull-right">
+                                        <h5 class="md-title nomargin">Open tickets</h5>
+                                        <h4 class="nomargin">2</h4>
+                                    </div>
+                                </div>
+                            </div><!-- panel-body -->
+                        </div><!-- panel -->
+                    </div><!-- col-md-4 -->
+
+                    <div class="col-md-4">
+                        <div class="panel panel-dark noborder">
+                            <div class="bg-color-cadetblue panel-heading noborder">
+                                <div class="panel-btns">
+                                    <a href="" class="panel-close tooltips" data-toggle="tooltip" title="Close Panel"><i class="fa fa-times"></i></a>
+                                </div><!-- panel-btns -->
+                                <div class="panel-icon"><i class="fa flaticon-map"></i></div>
+                                <div class="media-body">
+                                    <h5 class="md-title nomargin">Number of DCU</h5>
+                                    <h1 class="mt5" *ngIf="globalDatabase.selectedInstallation && globalDatabase.selectedInstallation.gateways">{{globalDatabase.selectedInstallation.gateways.length}}</h1>
+                                </div><!-- media-body -->
+                                <hr>
+                                <div class="clearfix mt20">
+                                    <div class="pull-left">
+                                        <h5 class="md-title nomargin">ONLINE</h5>
+                                        <h4 class="nomargin" *ngIf="globalDatabase.selectedInstallation && globalDatabase.selectedInstallation.gateways">{{globalDatabase.selectedInstallation.onlineGateways()}}</h4>
+                                    </div>
+                                    <div class="pull-right">
+                                        <h5 class="md-title nomargin">DOWN</h5>
+                                        <h4 class="nomargin" *ngIf="globalDatabase.selectedInstallation && globalDatabase.selectedInstallation.gateways">{{globalDatabase.selectedInstallation.gateways.length - globalDatabase.selectedInstallation.onlineGateways()}}</h4>
+                                    </div>
+                                </div>
+
+                            </div><!-- panel-body -->
+                        </div><!-- panel -->
+                    </div><!-- col-md-4 -->
+
+                    <div class="col-md-4">
+                        <div class="panel panel-dark noborder">
+                            <div class="bg-color-cornflowerblue panel-heading noborder">
+                                <div class="panel-btns">
+                                    <a href="" class="panel-close tooltips" data-toggle="tooltip" title="Close Panel"><i class="fa fa-times"></i></a>
+                                </div><!-- panel-btns -->
+                                <div class="panel-icon"><i class="fa flaticon-map"></i></div>
+                                <div class="media-body">
+                                    <h5 class="md-title nomargin">Number of light fixtures</h5>
+                                    <h1 class="mt5" *ngIf="globalDatabase.selectedInstallation && globalDatabase.selectedInstallation.lightFixtures">{{globalDatabase.selectedInstallation.lightFixtures.length}}</h1>
+                                </div><!-- media-body -->
+                                <hr>
+                                <div class="clearfix mt20">
+                                    <div class="pull-left">
+                                        <h5 class="md-title nomargin">ONLINE lightFixtures</h5>
+                                        <h4 class="nomargin" *ngIf="globalDatabase.selectedInstallation && globalDatabase.selectedInstallation.lightFixtures">{{globalDatabase.selectedInstallation.onlineNodes()}}</h4>
+                                    </div>
+                                    <div class="pull-right">
+                                        <h5 class="md-title nomargin">DOWN</h5>
+                                        <h4 class="nomargin" *ngIf="globalDatabase.selectedInstallation && globalDatabase.selectedInstallation.lightFixtures">{{globalDatabase.selectedInstallation.lightFixtures.length - globalDatabase.selectedInstallation.onlineNodes()}}</h4>
+                                    </div>
+                                </div>
+
+                            </div><!-- panel-body -->
+                        </div><!-- panel -->
+                    </div><!-- col-md-4 -->
+
+                </div><!-- row -->
+            </div>
+        </div>
+
+        <!--- Row Number of DCU and Nodes ---->
+        <div class="row" style="margin-top:50px">
+            <div class="col-xl-12">
+                <div class="row row-stat">
+
+                    <div class="col-md-4">
+                        <div class="panel panel-success-alt noborder">
+                            <div class="panel-heading noborder">
+                                <div class="panel-btns">
+                                    <a href="" class="panel-close tooltips" data-toggle="tooltip" title="Close Panel"><i class="fa fa-times"></i></a>
+                                </div><!-- panel-btns -->
+                                <div class="panel-icon"><i class="fa flaticon-warning-sign"></i></div>
+                                <div class="media-body">
+                                    <h5 class="md-title nomargin">Alerts</h5>
+                                    <h1 class="mt5">n/a</h1>
+                                </div><!-- media-body -->
+                                <hr>
+                                <div class="clearfix mt20">
+                                    <div class="pull-left">
+                                        <h5 class="md-title nomargin">Critical</h5>
+                                        <h4 class="nomargin">0</h4>
+                                    </div>
+                                    <div class="pull-right">
+                                        <h5 class="md-title nomargin">Info</h5>
+                                        <h4 class="nomargin">n/a</h4>
+                                    </div>
+                                </div>
+
+                            </div><!-- panel-body -->
+                        </div><!-- panel -->
+                    </div><!-- col-md-4 -->
+
+                    <div class="col-md-4">
+                        <div class="panel panel-dark noborder">
+                            <div [class.fetchingData]="dataFetchingStatus.isFetchingAddress"></div>
+                            <div [class.bg-color-night]="!localIsDayTime" [class.bg-color-daylight]="localIsDayTime" class="panel-heading noborder">
+                                <div class="panel-btns">
+                                    <a href="" class="panel-close tooltips" data-toggle="tooltip" data-placement="left" title="Close Panel"><i class="fa fa-times"></i></a>
+                                </div><!-- panel-btns -->
+                                <div class="panel-icon"><i class="fa fa-moon" *ngIf="!localIsDayTime"></i><i class="fa fa-sun" *ngIf="localIsDayTime"></i></div>
+                                <div class="media-body">
+                                    <h5 class="md-title nomargin">Local time</h5>
+                                    <h2 class="mt5">{{localTime}}</h2>
+                                </div><!-- media-body -->
+                                <hr>
+                                <div class="clearfix mt20">
+                                    <div class="pull-left">
+                                        <h5 class="md-title nomargin">Sunrise</h5>
+                                        <h4 class="nomargin">{{sunriseTime}}</h4>
+                                    </div>
+                                    <div class="pull-right">
+                                        <h5 class="md-title nomargin">Sunset</h5>
+                                        <h4 class="nomargin">{{sunsetTime}}</h4>
+                                    </div>
+                                </div>
+                            </div><!-- panel-body -->
+                        </div><!-- panel -->
+                    </div><!-- col-md-4 -->
+
+
+                    <div class="col-md-4">
+                        <div class="panel panel-dark noborder">
+                            <div [class.fetchingData]="dataFetchingStatus.isFetchingGlobalStatistics"></div>
+                            <div class="bg-color-purple panel-heading noborder">
+                                <div class="panel-btns">
+                                    <a href="" class="panel-close tooltips" data-toggle="tooltip" data-placement="left" title="Close Panel"><i class="fa fa-times"></i></a>
+                                </div><!-- panel-btns -->
+                                <div class="panel-icon"><i class="fa flaticon-dashboard"></i></div>
+                                <div class="media-body">
+                                    <h5 class="md-title nomargin">Last data record</h5>
+                                    <h1 class="mt5" *ngIf="lastMeasureReceivedTimestamp">{{lastMeasureReceivedTimeAgo}} </h1>
+                                    <h1 class="mt5" *ngIf="!lastMeasureReceivedTimestamp">n/a</h1>
+                                </div><!-- media-body -->
+                                <hr>
+                                <div class="clearfix mt20">
+                                    <div class="pull-left">
+                                        <h5 class="md-title nomargin">Record calculated on</h5>
+                                        <h4 class="nomargin" *ngIf="lastMeasureReceivedTimestamp">{{lastMeasureReceivedTimestamp | date : 'medium'}}</h4>
+                                        <h4 class="nomargin" *ngIf="!lastMeasureReceivedTimestamp">n/a</h4>
+                                    </div>
+                                </div>
+
+                            </div><!-- panel-body -->
+                        </div><!-- panel -->
+                    </div><!-- col-md-4 -->
+
+                </div><!-- row -->
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <energy-consumption-small-graph-widget chartType="daily" [(currentDate)]="currentAnalyzedDate"></energy-consumption-small-graph-widget>
+            </div>
+
+            <div class="col-md-4">
+                <energy-consumption-small-graph-widget chartType="weekly" [(currentDate)]="currentAnalyzedDate"></energy-consumption-small-graph-widget>
+            </div>
+
+            <div class="col-md-4">
+                <energy-consumption-small-graph-widget chartType="monthly" [(currentDate)]="currentAnalyzedDate"></energy-consumption-small-graph-widget>
+            </div>
+
+        </div>
+
+        <div class="row" style="margin-top:50px">
+            <div class="col-xl-12">
+                <div class="row row-stat">
+
+                    <div class="col-md-4">
+                        <div class="panel panel-danger-alt noborder">
+                            <div class="panel-heading noborder">
+                                <div [class.fetchingData]="dataFetchingStatus.isFetchingMeasuresByNodeId"></div>
+                                <div class="panel-btns">
+                                    <a href="" class="panel-close tooltips" data-toggle="tooltip" title="Close Panel"><i class="fa fa-times"></i></a>
+                                </div><!-- panel-btns -->
+                                <div class="panel-icon"><i class="fa fa-sun-o"></i></div>
+                                <div class="media-body">
+                                    <h5 class="md-title nomargin">Absorbed Power Estimation</h5>
+                                    <h1 class="mt5">{{absorbedPowerEstimation}} KW</h1>
+                                </div><!-- media-body -->
+                                <hr>
+                                <div class="clearfix mt20">
+                                    <div class="pull-left">
+                                        <h5 class="md-title nomargin">Average dimming</h5>
+                                        <h4 class="nomargin">{{averageDimming}}%</h4>
+                                    </div>
+                                    <div class="pull-right">
+                                        <h5 class="md-title nomargin">Plant power</h5>
+                                        <h4 class="nomargin">{{plantPower}} KW</h4>
+                                    </div>
+                                </div>
+                            </div><!-- panel-body -->
+                        </div><!-- panel -->
+                    </div><!-- col-md-4 -->
+
+
+                    <div class="col-md-4">
+                        <div class="panel panel-warning-alt noborder">
+                            <div class="panel-heading noborder">
+                                <div [class.fetchingData]="dataFetchingStatus.isFetchingMonthlyStatistics"></div>
+                                <div class="panel-btns">
+                                    <a href="" class="panel-close tooltips" data-toggle="tooltip" title="Close Panel"><i class="fa fa-times"></i></a>
+                                </div><!-- panel-btns -->
+                                <div class="panel-icon"><i class="fa fa-bolt"></i></div>
+                                <div class="media-body">
+                                    <h5 class="md-title nomargin">Monthly Energy consumption</h5>
+                                    <h1 class="mt5">{{formatPowerConsumption(monthlyEnergyConsumptionMax)}}</h1>
+                                </div><!-- media-body -->
+                                <hr>
+                                <div class="clearfix mt20">
+                                    <div class="pull-left">
+                                        <h5 class="md-title nomargin">LAST MONTH</h5>
+                                        <h4 class="nomargin">{{formatPowerConsumption(lastMonthEnergyConsumptionMax)}}</h4>
+                                    </div>
+                                    <div class="pull-right">
+                                        <h5 class="md-title nomargin">TOTAL</h5>
+                                        <h4 class="nomargin">{{formatPowerConsumption(totalEnergyConsumption)}}</h4>
+                                    </div>
+                                </div>
+
+                            </div><!-- panel-body -->
+                        </div><!-- panel -->
+                    </div><!-- col-md-4 -->
+
+
+                    <div class="col-md-4">
+                        <div class="panel panel-dark noborder">
+                            <div class=" panel-heading noborder">
+                                <div [class.fetchingData]="dataFetchingStatus.isFetchingGlobalStatistics"></div>
+                                <div class="panel-btns">
+                                    <a href="" class="panel-close tooltips" data-toggle="tooltip" title="Close Panel"><i class="fa fa-times"></i></a>
+                                </div><!-- panel-btns -->
+                                <div class="panel-icon"><i class="fa fa-power-off"></i></div>
+                                <div class="media-body">
+                                    <h5 class="md-title nomargin">Total energy consumption</h5>
+                                    <h1 class="mt5">{{formatPowerConsumption(totalEnergyConsumption)}}</h1>
+                                </div><!-- media-body -->
+                                <hr>
+                                <div class="clearfix mt20">
+                                    <div class="pull-left">
+                                        <h5 class="md-title nomargin">WITHOUT DIMMING</h5>
+                                        <h4 class="nomargin">{{formatPowerConsumption(totalEnergyConsumptionWithoutDimming)}}</h4>
+                                    </div>
+                                    <div class="pull-right">
+                                        <h5 class="md-title nomargin">OLD INSTALLATION</h5>
+                                        <h4 class="nomargin">{{formatPowerConsumption(totalEnergyConsumptionOldInstallation)}}</h4>
+                                    </div>
+                                </div>
+
+                            </div><!-- panel-body -->
+                        </div><!-- panel -->
+                    </div><!-- col-md-4 -->
+
+                </div><!-- row -->
+            </div>
+        </div>
+
+
+        <div class="row" style="margin-top:50px">
+            <div class="col-xl-12">
+                <div class="row row-stat">
+
+
+                    <div class="col-md-4">
+                        <div class="panel panel-info-alt noborder">
+                            <div class=" panel-heading noborder">
+                                <div [class.fetchingData]="dataFetchingStatus.isFetchingMonthlyStatistics"></div>
+                                <div class="panel-btns">
+                                    <a href="" class="panel-close tooltips" data-toggle="tooltip" title="Close Panel"><i class="fa fa-times"></i></a>
+                                </div><!-- panel-btns -->
+                                <div class="panel-icon"><i class="fa fa-lightbulb"></i></div>
+                                <div class="media-body">
+                                    <h5 class="md-title nomargin">Monthly Energy saved</h5>
+                                    <h1 class="mt5">{{formatPowerConsumption(monthlyEnergySaved)}}</h1>
+                                </div><!-- media-body -->
+                                <hr>
+                                <div class="clearfix mt20">
+                                    <div class="pull-left">
+                                        <h5 class="md-title nomargin">LAST MONTH</h5>
+                                        <h4 class="nomargin">{{formatPowerConsumption(lastMonthEnergySaved)}}</h4>
+                                    </div>
+                                    <div class="pull-right">
+                                        <h5 class="md-title nomargin">TOTAL</h5>
+                                        <h4 class="nomargin">{{formatPowerConsumption(totalEnergySaved)}}</h4>
+                                    </div>
+                                </div>
+
+                            </div><!-- panel-body -->
+                        </div><!-- panel -->
+                    </div><!-- col-md-4 -->
+
+                    <div class="col-md-4">
+                        <div class="panel panel-success-alt noborder">
+                            <div class=" panel-heading noborder">
+                                <div [class.fetchingData]="dataFetchingStatus.isFetchingMonthlyStatistics"></div>
+                                <div class="panel-btns">
+                                    <a href="" class="panel-close tooltips" data-toggle="tooltip" title="Close Panel"><i class="fa fa-times"></i></a>
+                                </div><!-- panel-btns -->
+                                <div class="panel-icon"><i class="fa fa-leaf"></i></div>
+                                <div class="media-body">
+                                    <h5 class="md-title nomargin">Monthly CO2 Saved</h5>
+                                    <h1 class="mt5">{{monthlyCo2Saved}} Kg</h1>
+                                </div><!-- media-body -->
+                                <hr>
+                                <div class="clearfix mt20">
+                                    <div class="pull-left">
+                                        <h5 class="md-title nomargin">LAST MONTH</h5>
+                                        <h4 class="nomargin">{{lastMonthCo2Saved}} Kg</h4>
+                                    </div>
+                                    <div class="pull-right">
+                                        <h5 class="md-title nomargin">TOTAL</h5>
+                                        <h4 class="nomargin">{{totalCo2Saved}} Kg</h4>
+                                    </div>
+                                </div>
+
+                            </div><!-- panel-body -->
+                        </div><!-- panel -->
+                    </div><!-- col-md-4 -->
+
+                    <div class="col-md-4">
+                        <div class="panel panel-brand-alt noborder">
+                            <div class="panel-heading noborder">
+                                <div [class.fetchingData]="dataFetchingStatus.isFetchingMonthlyStatistics"></div>
+                                <div class="panel-btns">
+                                    <a href="" class="panel-close tooltips" data-toggle="tooltip" title="Close Panel"><i class="fa fa-times"></i></a>
+                                </div><!-- panel-btns -->
+                                <div class="panel-icon"><i class="fa fa-send"></i></div>
+                                <div class="media-body">
+                                    <h5 class="md-title nomargin">Earnings</h5>
+                                    <h1 class="mt5">{{monthlyEarnings}} €</h1>
+                                </div><!-- media-body -->
+                                <hr>
+                                <div class="clearfix mt20">
+                                    <div class="pull-left">
+                                        <h5 class="md-title nomargin">LAST MONTH</h5>
+                                        <h4 class="nomargin">{{lastMonthEarnings}} €</h4>
+                                    </div>
+                                    <div class="pull-right">
+                                        <h5 class="md-title nomargin">TOTAL</h5>
+                                        <h4 class="nomargin">{{totalEarnings}} €</h4>
+                                    </div>
+                                </div>
+
+                            </div><!-- panel-body -->
+                        </div><!-- panel -->
+                    </div><!-- col-md-4 -->
+
+
+
+                </div><!-- row -->
+            </div>
+        </div>
+
+        <div class="row" style="margin-top:50px">
+            <div class="col-lg-12">
+
+                <panel-chart-widget chartType="daily" [(currentDate)]="currentAnalyzedDate" subClass="cyan"> </panel-chart-widget>
+
+                <panel-chart-widget chartType="monthly" [(currentDate)]="currentAnalyzedDate" subClass="darkred"> </panel-chart-widget>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+</div>

@@ -10,7 +10,7 @@ import { ITEMS_PER_PAGE } from '../../shared';
 
 @Component({
     selector: '.m-grid__item.m-grid__item--fluid.m-wrapper',
-    templateUrl: './gateway-installation-request.component.html'
+    templateUrl: './gateway-installation-request.component.html',
 })
 export class GatewayInstallationRequestComponent implements OnInit, OnDestroy {
 
@@ -36,7 +36,7 @@ currentAccount: any;
         private jhiAlertService: JhiAlertService,
         private activatedRoute: ActivatedRoute,
         private router: Router,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.routeData = this.activatedRoute.data.subscribe((data) => {
@@ -57,7 +57,7 @@ currentAccount: any;
                 size: this.itemsPerPage,
                 sort: this.sort()}).subscribe(
                     (res: HttpResponse<GatewayInstallationRequest[]>) => this.onSuccess(res.body, res.headers),
-                    (res: HttpErrorResponse) => this.onError(res.message)
+                    (res: HttpErrorResponse) => this.onError(res.message),
                 );
             return;
         }2
@@ -66,7 +66,7 @@ currentAccount: any;
             size: this.itemsPerPage,
             sort: this.sort()}).subscribe(
                 (res: HttpResponse<GatewayInstallationRequest[]>) => this.onSuccess(res.body, res.headers),
-                (res: HttpErrorResponse) => this.onError(res.message)
+                (res: HttpErrorResponse) => this.onError(res.message),
         );
     }
     loadPage(page: number) {
@@ -81,8 +81,8 @@ currentAccount: any;
                 page: this.page,
                 size: this.itemsPerPage,
                 search: this.currentSearch,
-                sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
-            }
+                sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc'),
+            },
         });
         this.loadAll();
     }
@@ -92,7 +92,7 @@ currentAccount: any;
         this.currentSearch = '';
         this.router.navigate(['/gateway-installation-request', {
             page: this.page,
-            sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
+            sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc'),
         }]);
         this.loadAll();
     }
@@ -105,7 +105,7 @@ currentAccount: any;
         this.router.navigate(['/gateway-installation-request', {
             search: this.currentSearch,
             page: this.page,
-            sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
+            sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc'),
         }]);
         this.loadAll();
     }

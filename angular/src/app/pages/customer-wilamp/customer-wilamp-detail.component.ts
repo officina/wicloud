@@ -10,7 +10,7 @@ import { CustomerWilampService } from './customer-wilamp.service';
 @Component({
     selector: 'jhi-customer-wilamp-detail',
     templateUrl: './customer-wilamp-detail.component.html',
-    styleUrls: [ './customer-wilamp.css' ]
+    styleUrls: [ './customer-wilamp.css' ],
 })
 export class CustomerWilampDetailComponent implements OnInit, OnDestroy {
 
@@ -28,7 +28,7 @@ export class CustomerWilampDetailComponent implements OnInit, OnDestroy {
     constructor(
         private eventManager: JhiEventManager,
         private customerService: CustomerWilampService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
     ) {
     }
 
@@ -57,7 +57,7 @@ export class CustomerWilampDetailComponent implements OnInit, OnDestroy {
     registerChangeInCustomers() {
         this.eventSubscriber = this.eventManager.subscribe(
             'customerListModification',
-            (response) => this.load(this.customer.id)
+            (response) => this.load(this.customer.id),
         );
     }
 }

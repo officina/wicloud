@@ -15,8 +15,8 @@ declare let lightProfileViewer: any;
     selector: 'jhi-light-profile-wilamp-detail',
     templateUrl: './light-profile-wilamp-detail.component.html',
     styleUrls: [
-        'lightProfileViewer.css'
-    ]
+        'lightProfileViewer.css',
+    ],
 })
 export class LightProfileWilampDetailComponent implements OnInit, OnDestroy, AfterViewInit {
 
@@ -30,7 +30,7 @@ export class LightProfileWilampDetailComponent implements OnInit, OnDestroy, Aft
         private eventManager: JhiEventManager,
         private lightProfileService: LightProfileWilampService,
         private lightProfileSlotService: LightProfileSlotWilampService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
     ) {
     }
 
@@ -74,7 +74,7 @@ export class LightProfileWilampDetailComponent implements OnInit, OnDestroy, Aft
     registerChangeInLightProfiles() {
         this.eventSubscriber = this.eventManager.subscribe(
             'lightProfileListModification',
-            (response) => this.load(this.lightProfile.id)
+            (response) => this.load(this.lightProfile.id),
         );
     }
 

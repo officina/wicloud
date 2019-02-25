@@ -17,7 +17,7 @@ const ENTITY_STATES = [
     imports: [
         WiCloudSharedModule,
         RouterModule.forChild(ENTITY_STATES),
-        WidgetsModule
+        WidgetsModule,
     ],
     declarations: [
         InstallationDashboardComponent,
@@ -29,6 +29,6 @@ const ENTITY_STATES = [
     ],
     providers: [
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class InstallationDashboardModule {}

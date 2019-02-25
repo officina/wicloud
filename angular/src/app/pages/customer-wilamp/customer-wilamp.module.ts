@@ -44,6 +44,6 @@ const ENTITY_STATES = [
         CustomerWilampService,
         CustomerWilampPopupService,
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class WilampCloudCustomerWilampModule {}

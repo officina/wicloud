@@ -10,7 +10,7 @@ import { GatewayWilampService } from './gateway-wilamp.service';
 
 @Component({
     selector: 'jhi-gateway-wilamp-delete-dialog',
-    templateUrl: './gateway-wilamp-delete-dialog.component.html'
+    templateUrl: './gateway-wilamp-delete-dialog.component.html',
 })
 export class GatewayWilampDeleteDialogComponent {
 
@@ -19,7 +19,7 @@ export class GatewayWilampDeleteDialogComponent {
     constructor(
         private gatewayService: GatewayWilampService,
         public activeModal: NgbActiveModal,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
     }
 
@@ -31,7 +31,7 @@ export class GatewayWilampDeleteDialogComponent {
         this.gatewayService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'gatewayListModification',
-                content: 'Deleted an gateway'
+                content: 'Deleted an gateway',
             });
             this.activeModal.dismiss(true);
         });
@@ -40,7 +40,7 @@ export class GatewayWilampDeleteDialogComponent {
 
 @Component({
     selector: 'jhi-gateway-wilamp-delete-popup',
-    template: ''
+    template: '',
 })
 export class GatewayWilampDeletePopupComponent implements OnInit, OnDestroy {
 
@@ -48,7 +48,7 @@ export class GatewayWilampDeletePopupComponent implements OnInit, OnDestroy {
 
     constructor(
         private route: ActivatedRoute,
-        private gatewayPopupService: GatewayWilampPopupService
+        private gatewayPopupService: GatewayWilampPopupService,
     ) {}
 
     ngOnInit() {

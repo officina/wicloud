@@ -15,14 +15,14 @@ const ENTITY_STATES = [
     imports: [
         WiCloudSharedModule,
         RouterModule.forChild(ENTITY_STATES),
-        WidgetsModule
+        WidgetsModule,
     ],
     declarations: [
-        MapDashboardComponent
+        MapDashboardComponent,
     ],
     entryComponents: [
         MapDashboardComponent,
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MapDashboardModule {}

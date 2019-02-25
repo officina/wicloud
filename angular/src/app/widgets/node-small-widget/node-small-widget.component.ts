@@ -4,7 +4,7 @@ import {NodeWilamp} from '../../pages/node-wilamp';
 @Component({
   selector: 'jhi-node-small-widget',
   templateUrl: './node-small-widget.component.html',
-  styles: []
+  styles: [],
 })
 export class NodeSmallWidgetComponent implements OnInit {
   @Input() node: NodeWilamp;

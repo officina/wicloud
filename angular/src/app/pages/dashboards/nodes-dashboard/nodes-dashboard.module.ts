@@ -25,6 +25,6 @@ const ENTITY_STATES = [
     ],
     providers: [
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class NodesDashboardModule {}

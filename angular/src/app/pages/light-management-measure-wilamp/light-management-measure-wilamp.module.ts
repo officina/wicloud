@@ -23,7 +23,7 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         WiCloudSharedModule,
-        RouterModule.forChild(ENTITY_STATES)
+        RouterModule.forChild(ENTITY_STATES),
     ],
     declarations: [
         LightManagementMeasureWilampComponent,
@@ -44,6 +44,6 @@ const ENTITY_STATES = [
         LightManagementMeasureWilampService,
         LightManagementMeasureWilampPopupService,
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class WilampCloudLightManagementMeasureWilampModule {}

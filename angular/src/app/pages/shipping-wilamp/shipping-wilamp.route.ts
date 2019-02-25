@@ -17,20 +17,20 @@ export const shippingRoute: Routes = [
                 component: ShippingWilampComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.shipping.home.title'
+                    pageTitle: 'wilampCloudApp.shipping.home.title',
                 },
-                canActivate: [UserRouteAccessService]
+                canActivate: [UserRouteAccessService],
             }, {
                 path: 'shipping-wilamp/:id',
                 component: ShippingWilampDetailComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.shipping.home.title'
+                    pageTitle: 'wilampCloudApp.shipping.home.title',
                 },
-                canActivate: [UserRouteAccessService]
-            }
-        ]
-    }
+                canActivate: [UserRouteAccessService],
+            },
+        ],
+    },
 ];
 
 export const shippingPopupRoute: Routes = [
@@ -39,29 +39,29 @@ export const shippingPopupRoute: Routes = [
         component: ShippingWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.shipping.home.title'
+            pageTitle: 'wilampCloudApp.shipping.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'shipping-wilamp/:id/edit',
         component: ShippingWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.shipping.home.title'
+            pageTitle: 'wilampCloudApp.shipping.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'shipping-wilamp/:id/delete',
         component: ShippingWilampDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.shipping.home.title'
+            pageTitle: 'wilampCloudApp.shipping.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    }
+        outlet: 'popup',
+    },
 ];

@@ -8,7 +8,7 @@ import { AmChartsService, AmChart } from '@amcharts/amcharts3-angular';
 
 import {
     InstallationRuntimeParameters, InstallationWilamp, EnergyStatistics,
-    EnergyStatisticsRowByInterval, GlobalStatistics
+    EnergyStatisticsRowByInterval, GlobalStatistics,
 } from './installation-wilamp.model';
 import { InstallationWilampService } from './installation-wilamp.service';
 import {ScriptLoaderService} from '../../_services/script-loader.service';
@@ -33,7 +33,7 @@ declare var google: any;
 @Component({
     selector: 'jhi-installation-wilamp-detail',
     templateUrl: './installation-wilamp-detail.component.html',
-    styleUrls: ['installation-wilamp-detail.component.css']
+    styleUrls: ['installation-wilamp-detail.component.css'],
 })
 export class InstallationWilampDetailComponent implements OnInit, OnDestroy, AfterViewInit {
     Dashboard: any;
@@ -52,12 +52,12 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
     layersControl = {
         baseLayers: {
             'Open Street Map': tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' }),
-            'Open Cycle Map': tileLayer('http://{s}.tile.opencyclemap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
+            'Open Cycle Map': tileLayer('http://{s}.tile.opencyclemap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' }),
         },
         overlays: {
             'Big Circle': circle([ 46.95, -122 ], { radius: 5000 }),
-            'Big Square': polygon([[ 46.8, -121.55 ], [ 46.9, -121.55 ], [ 46.9, -121.7 ], [ 46.8, -121.7 ]])
-        }
+            'Big Square': polygon([[ 46.8, -121.55 ], [ 46.9, -121.55 ], [ 46.9, -121.7 ], [ 46.8, -121.7 ]]),
+        },
     };
     itemsPerPage: number;
     links: any;
@@ -73,8 +73,6 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
     private googleGeocoder: any;
 
     constructor(
-        private mapsAPILoader: MapsAPILoader,
-        private mapsAPIWrapper: GoogleMapsAPIWrapper,
         private AmCharts: AmChartsService,
         private eventManager: JhiEventManager,
         private installationService: InstallationWilampService,
@@ -83,7 +81,7 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
         private nodeService: NodeWilampService,
         private gatewayService: GatewayWilampService,
         private route: ActivatedRoute,
-        private _script: ScriptLoaderService
+        private _script: ScriptLoaderService,
     ) {
         this.Math = Math;
         this.endInterval = new Date();
@@ -92,15 +90,11 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
         this.itemsPerPage = 100;
         this.page = 1;
         this.links = {
-            last: 0
+            last: 0,
         };
         this.predicate = 'id';
         this.reverse = true;
         this.mapOptions = new MapOptions();
-        this.mapsAPILoader.load().then(() => {
-            this.googleMapsLoaded = true;
-            this.googleGeocoder = new google.maps.Geocoder();
-        });
 
         // this.startInterval = this.startInterval.toISOString().slice(0, 16);
     }
@@ -129,8 +123,8 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
                                 pointHoverBackgroundColor: mUtil.getColor('danger'),
                                 pointHoverBorderColor: Chart.helpers.color('#000000').alpha(.1).rgbString(),
                                 fill: !1,
-                                data: t
-                            }]
+                                data: t,
+                            }],
                         },
                         options: {
                             title: {display: !1},
@@ -140,7 +134,7 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
                                 mode: 'nearest',
                                 xPadding: 10,
                                 yPadding: 10,
-                                caretPadding: 10
+                                caretPadding: 10,
                             },
                             legend: {display: !1, labels: {usePointStyle: !1}},
                             responsive: !0,
@@ -152,12 +146,12 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
                                     display: !1,
                                     gridLines: !1,
                                     scaleLabel: {display: !0, labelString: 'Value'},
-                                    ticks: {beginAtZero: !0}
-                                }]
+                                    ticks: {beginAtZero: !0},
+                                }],
                             },
                             elements: {point: {radius: 4, borderWidth: 12}},
-                            layout: {padding: {left: 0, right: 10, top: 5, bottom: 0}}
-                        }
+                            layout: {padding: {left: 0, right: 10, top: 5, bottom: 0}},
+                        },
                     };
                     return new Chart(el1, o);
                 }
@@ -176,18 +170,18 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
                             series: [{
                                 value: phaseDurations.phase1,
                                 className: 'custom',
-                                meta: {color: mUtil.getColor('accent')}
+                                meta: {color: mUtil.getColor('accent')},
                             },
                                 {
                                     value: phaseDurations.phase2,
                                     className: 'custom',
-                                    meta: {color: mUtil.getColor('warning')}
+                                    meta: {color: mUtil.getColor('warning')},
                                 },
                                 {
                                     value: phaseDurations.remaining,
                                     className: 'custom',
-                                    meta: {color: mUtil.getColor('brand')}
-                                }], labels: [1, 2, 3]
+                                    meta: {color: mUtil.getColor('brand')},
+                                }], labels: [1, 2, 3],
                         }, {donut: !0, donutWidth: 17, showLabel: !1});
                         chartElement.on('draw', function(elm) {
                             if ('slice' === elm.type) {
@@ -201,12 +195,12 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
                                         to: '0px',
                                         easing: Chartist.Svg.Easing.easeOutQuint,
                                         fill: 'freeze',
-                                        stroke: elm.meta.color
-                                    }
+                                        stroke: elm.meta.color,
+                                    },
                                 };
                                 0 !== elm.index && ((<any>a['stroke-dashoffset']).begin = 'anim' + (elm.index - 1) + '.end'), elm.element.attr({
                                     'stroke-dashoffset': -t + 'px',
-                                    stroke: elm.meta.color
+                                    stroke: elm.meta.color,
                                 }), elm.element.animate(a, !1);
                             }
                         }), chartElement.on('created', function() {
@@ -222,11 +216,11 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
                         labels,
                         datasets: [{
                             backgroundColor: mUtil.getColor('success'),
-                            data: values
+                            data: values,
                         }, {
                             backgroundColor: '#f3f3fb',
-                            data: values
-                        }]
+                            data: values,
+                        }],
                     }, t = $('#m_chart_daily_sales');
                     const result = 0 !== t.length && new Chart(t, {
                         type: 'bar',
@@ -240,10 +234,10 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
                             barRadius: 4,
                             scales: {
                                 xAxes: [{display: !1, gridLines: !1, stacked: !0}],
-                                yAxes: [{display: !1, stacked: !0, gridLines: !1}]
+                                yAxes: [{display: !1, stacked: !0, gridLines: !1}],
                             },
-                            layout: {padding: {left: 0, right: 0, top: 0, bottom: 0}}
-                        }
+                            layout: {padding: {left: 0, right: 0, top: 0, bottom: 0}},
+                        },
                     });
                 },
 
@@ -268,8 +262,8 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
                                     pointBorderColor: Chart.helpers.color('#000000').alpha(0).rgbString(),
                                     pointHoverBackgroundColor: mUtil.getColor('danger'),
                                     pointHoverBorderColor: Chart.helpers.color('#000000').alpha(.1).rgbString(),
-                                    data: values
-                                }]
+                                    data: values,
+                                }],
                             },
                             options: {
                                 title: {display: !1},
@@ -279,7 +273,7 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
                                     position: 'nearest',
                                     xPadding: 10,
                                     yPadding: 10,
-                                    caretPadding: 10
+                                    caretPadding: 10,
                                 },
                                 legend: {display: !1},
                                 responsive: !0,
@@ -290,12 +284,12 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
                                         display: !1,
                                         gridLines: !1,
                                         scaleLabel: {display: !0, labelString: 'Value'},
-                                        ticks: {beginAtZero: !0}
-                                    }]
+                                        ticks: {beginAtZero: !0},
+                                    }],
                                 },
                                 elements: {line: {tension: 1e-7}, point: {radius: 4, borderWidth: 12}},
-                                layout: {padding: {left: 0, right: 0, top: 10, bottom: 0}}
-                            }
+                                layout: {padding: {left: 0, right: 0, top: 10, bottom: 0}},
+                            },
                         };
                         const newChart = new Chart(chartElement, a);
                     }
@@ -317,9 +311,9 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
                                     pointBorderColor: Chart.helpers.color('#000000').alpha(0).rgbString(),
                                     pointHoverBackgroundColor: mUtil.getColor('danger'),
                                     pointHoverBorderColor: Chart.helpers.color('#000000').alpha(.1).rgbString(),
-                                    data: [8.2, 11.5, 9.8, 13.1, 7.4, 9, 10.7, 7.4, 10.7, 12.3]
+                                    data: [8.2, 11.5, 9.8, 13.1, 7.4, 9, 10.7, 7.4, 10.7, 12.3],
                                     /*data: [10, 24, 36, 52, 61, 72, 85, 94, 107, 122]*/
-                                }]
+                                }],
                             },
                             options: {
                                 title: {display: !1},
@@ -329,7 +323,7 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
                                     position: 'nearest',
                                     xPadding: 10,
                                     yPadding: 10,
-                                    caretPadding: 10
+                                    caretPadding: 10,
                                 },
                                 legend: {display: !1},
                                 responsive: !0,
@@ -340,12 +334,12 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
                                         display: !1,
                                         gridLines: !1,
                                         scaleLabel: {display: !0, labelString: 'Value'},
-                                        ticks: {beginAtZero: !0}
-                                    }]
+                                        ticks: {beginAtZero: !0},
+                                    }],
                                 },
                                 elements: {line: {tension: 1e-7}, point: {radius: 4, borderWidth: 12}},
-                                layout: {padding: {left: 0, right: 0, top: 10, bottom: 0}}
-                            }
+                                layout: {padding: {left: 0, right: 0, top: 10, bottom: 0}},
+                            },
                         };
                         const newChart = new Chart(chartElement, a);
                     }
@@ -371,8 +365,8 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
                                     pointBorderColor: Chart.helpers.color('#000000').alpha(0).rgbString(),
                                     pointHoverBackgroundColor: mUtil.getColor('light'),
                                     pointHoverBorderColor: Chart.helpers.color('#ffffff').alpha(.1).rgbString(),
-                                    data: values
-                                }]
+                                    data: values,
+                                }],
                             },
                             options: {
                                 title: {display: !1},
@@ -382,7 +376,7 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
                                     position: 'nearest',
                                     xPadding: 10,
                                     yPadding: 10,
-                                    caretPadding: 10
+                                    caretPadding: 10,
                                 },
                                 legend: {display: !1},
                                 responsive: !0,
@@ -393,12 +387,12 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
                                         display: !1,
                                         gridLines: !1,
                                         scaleLabel: {display: !0, labelString: 'Value'},
-                                        ticks: {beginAtZero: !0}
-                                    }]
+                                        ticks: {beginAtZero: !0},
+                                    }],
                                 },
                                 elements: {line: {tension: 1e-7}, point: {radius: 4, borderWidth: 12}},
-                                layout: {padding: {left: 0, right: 0, top: 10, bottom: 0}}
-                            }
+                                layout: {padding: {left: 0, right: 0, top: 10, bottom: 0}},
+                            },
                         };
                         const newChart = new Chart(chartElement, a);
                     }
@@ -431,7 +425,7 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
                                         'balloonText': baloonText,
                                         'lineThickness': 2,
                                         'title': days[day],
-                                        'valueField': valueField + '_' + day
+                                        'valueField': valueField + '_' + day,
                                     };
                                     graphs.push(graph);
                                 }
@@ -452,23 +446,23 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
                                     'fillColor': '#888888',
                                     'lineAlpha': 0,
                                     'toValue': 16,
-                                    'value': 10
+                                    'value': 10,
                                 }],
                                 'position': 'left',
-                                'tickLength': 0
+                                'tickLength': 0,
                             }],
                             'graphs': graphs,
                             'zoomOutButtonRollOverAlpha': 0.15,
                             'chartCursor': {
                                 'categoryBalloonDateFormat': 'MMM DD JJ:NN',
                                 'cursorPosition': 'mouse',
-                                'showNextAvailable': true
+                                'showNextAvailable': true,
                             },
                             'columnWidth': 1,
                             'categoryField': 'date',
                             'categoryAxis': {
                                 'minPeriod': 'hh',
-                                'parseDates': false
+                                'parseDates': false,
                             },
                             /*'legend': {}*/
                         };
@@ -489,25 +483,25 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
                                 'balloonText': baloonText,
                                 'lineThickness': 2,
                                 'title': 'Energy consumption',
-                                'valueField': 'sumEnergy'
+                                'valueField': 'sumEnergy',
                             },
                             {
                                 'balloonText': baloonText,
                                 'lineThickness': 2,
                                 'title': 'Energy consumption without dim',
-                                'valueField': 'sumEnergyWithoutDim'
+                                'valueField': 'sumEnergyWithoutDim',
                             },
                             {
                                 'balloonText': baloonText,
                                 'lineThickness': 2,
                                 'title': 'Energy consumption without control',
-                                'valueField': 'sumEnergyWithoutControl'
+                                'valueField': 'sumEnergyWithoutControl',
                             },
                             {
                                 'balloonText': baloonText,
                                 'lineThickness': 2,
                                 'title': 'Energy consumption previous installation',
-                                'valueField': 'sumEnergyOldLamps'
+                                'valueField': 'sumEnergyOldLamps',
                             },
                         ];
                         const serialGraphDefinition = {
@@ -524,24 +518,24 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
                                     'fillColor': '#888888',
                                     'lineAlpha': 0,
                                     'toValue': 16,
-                                    'value': 10
+                                    'value': 10,
                                 }],
                                 'position': 'left',
-                                'tickLength': 0
+                                'tickLength': 0,
                             }],
                             'graphs': graphs,
                             'zoomOutButtonRollOverAlpha': 0.15,
                             'chartCursor': {
                                 'categoryBalloonDateFormat': 'MMM DD JJ:NN',
                                 'cursorPosition': 'mouse',
-                                'showNextAvailable': true
+                                'showNextAvailable': true,
                             },
                             'columnWidth': 1,
                             'categoryField': 'weekNumber',
                             'categoryAxis': {
                                 'minPeriod': 'hh',
-                                'parseDates': false
-                            }
+                                'parseDates': false,
+                            },
                         };
                         const chart = this.AmCharts.makeChart(chartDivElement, serialGraphDefinition);
                     }
@@ -565,7 +559,7 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
                                 'minimum': 0,
                                 'maximum': energyStatisticsByWeekNumber.sumEnergyOldLamps,
                                 'stackType': 'regular',
-                                'gridAlpha': 0
+                                'gridAlpha': 0,
                             } ],
                             'startDuration': 1,
                             'graphs': [
@@ -601,7 +595,7 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
                                     'valueField': 'sumEnergyWithoutDim',
                                     'cornerRadiusTop': 10,
                                     'lineColor': '#FCD410',
-                                    'balloonText': '[[value]] KWh'
+                                    'balloonText': '[[value]] KWh',
                                 },
                                 {
                                     'clustered': false,
@@ -613,7 +607,7 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
                                     'cornerRadiusTop': 10,
                                     'lineThickness': 0,
                                     'lineColor': '#1EC622',
-                                    'balloonText': '[[value]] KWh'
+                                    'balloonText': '[[value]] KWh',
 
                                 },
                                 {
@@ -623,8 +617,8 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
                                     'noStepRisers': true,
                                     'stackable': false,
                                     'type': 'step',
-                                    'valueField': 'limit'
-                                }
+                                    'valueField': 'limit',
+                                },
                             ],
                             'rotate': true,
                             'columnWidth': 0.1,
@@ -649,7 +643,7 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
 
                     this.initChartConsumptionBullet( energyStatistics.globalEnergyConsumption, 'Global consumption', 'chart_global_consumption' );
                     this.initChartConsumptionBullet( energyStatistics.currentIntervalEnergyConsumption, 'Global consumption', 'chart_current_interval_consumption' );
-                }
+                },
             };
         }();
         this.Dashboard.AmCharts = this.AmCharts;
@@ -755,7 +749,7 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
         this.gatewayService.findByInstallation(installationId, {
             page,
             size,
-            sort: this.sort()
+            sort: this.sort(),
         }).subscribe((res: HttpResponse<GatewayWilamp[]>) => {
             if (page === 0) {
                 this.gatewaysCount = parseInt(res.headers.get('X-Total-Count'), 10);
@@ -773,7 +767,7 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
         this.nodeService.findByInstallation(installationId, {
             page,
             size,
-            sort: this.sort()
+            sort: this.sort(),
         }).subscribe((res: HttpResponse<NodeWilamp[]>) => {
             if (page === 0) {
                 this.nodesCount = parseInt(res.headers.get('X-Total-Count'), 10);
@@ -830,7 +824,7 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
     registerChangeInInstallations() {
         this.eventSubscriber = this.eventManager.subscribe(
             'installationListModification',
-            (response) => this.load(this.installation.id)
+            (response) => this.load(this.installation.id),
         );
     }
 

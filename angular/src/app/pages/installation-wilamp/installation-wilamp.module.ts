@@ -14,6 +14,12 @@ import {
     installationRoute,
     installationPopupRoute,
 } from './';
+import {InstallationWilampWidgetComponent} from './widget/installation-wilamp-widget.component';
+import {InstallationWilampListComponent} from './installation-wilamp-list.component';
+import {ThemeModule} from '../../@theme/theme.module';
+import {LeafletMapWidgetComponent} from './leaflet-map-widget/leaflet-map-widget.component';
+import {LeafletModule} from '@asymmetrik/ngx-leaflet';
+import {InstallationWilampDashboardComponent} from './dashboard/installation-wilamp-dashboard.component';
 
 const ENTITY_STATES = [
     ...installationRoute,
@@ -22,16 +28,22 @@ const ENTITY_STATES = [
 
 @NgModule({
     imports: [
+        ThemeModule,
+        LeafletModule,
         WiCloudSharedModule,
         RouterModule.forChild(ENTITY_STATES),
     ],
     declarations: [
         InstallationWilampComponent,
+        InstallationWilampListComponent,
         InstallationWilampDetailComponent,
         InstallationWilampDialogComponent,
         InstallationWilampDeleteDialogComponent,
         InstallationWilampPopupComponent,
         InstallationWilampDeletePopupComponent,
+        InstallationWilampWidgetComponent,
+        InstallationWilampDashboardComponent,
+        LeafletMapWidgetComponent,
     ],
     entryComponents: [
         InstallationWilampComponent,
@@ -44,6 +56,6 @@ const ENTITY_STATES = [
         InstallationWilampService,
         InstallationWilampPopupService,
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class WilampCloudInstallationWilampModule {}

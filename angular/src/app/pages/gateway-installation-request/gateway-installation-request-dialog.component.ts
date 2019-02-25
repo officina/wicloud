@@ -15,7 +15,7 @@ import { GatewayWilamp, GatewayWilampService } from '../gateway-wilamp';
 
 @Component({
     selector: 'jhi-gateway-installation-request-dialog',
-    templateUrl: './gateway-installation-request-dialog.component.html'
+    templateUrl: './gateway-installation-request-dialog.component.html',
 })
 export class GatewayInstallationRequestDialogComponent implements OnInit {
 
@@ -29,7 +29,7 @@ export class GatewayInstallationRequestDialogComponent implements OnInit {
         private jhiAlertService: JhiAlertService,
         private gatewayInstallationRequestService: GatewayInstallationRequestService,
         private gatewayService: GatewayWilampService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
     }
 
@@ -91,7 +91,7 @@ export class GatewayInstallationRequestDialogComponent implements OnInit {
 
 @Component({
     selector: 'jhi-gateway-installation-request-popup',
-    template: ''
+    template: '',
 })
 export class GatewayInstallationRequestPopupComponent implements OnInit, OnDestroy {
 
@@ -99,7 +99,7 @@ export class GatewayInstallationRequestPopupComponent implements OnInit, OnDestr
 
     constructor(
         private route: ActivatedRoute,
-        private gatewayInstallationRequestPopupService: GatewayInstallationRequestPopupService
+        private gatewayInstallationRequestPopupService: GatewayInstallationRequestPopupService,
     ) {}
 
     ngOnInit() {

@@ -10,7 +10,7 @@ import { JhiDateUtils } from 'ng-jhipster';
 import {
     InstallationRuntimeParameters,
     EnergyStatistics,
-    EnergyStatisticsByResourceId
+    EnergyStatisticsByResourceId,
 } from './installation-wilamp.model';
 import DateTimeFormat = Intl.DateTimeFormat;
 import { InstallationWilamp } from './installation-wilamp.model';

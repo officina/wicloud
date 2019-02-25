@@ -14,7 +14,7 @@ export class TwilightManagementModuleWilampPopupService {
         private datePipe: DatePipe,
         private modalService: NgbModal,
         private router: Router,
-        private twilightManagementModuleService: TwilightManagementModuleWilampService
+        private twilightManagementModuleService: TwilightManagementModuleWilampService,
 
     ) {
         this.ngbModalRef = null;

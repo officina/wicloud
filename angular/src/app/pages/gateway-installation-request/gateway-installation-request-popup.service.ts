@@ -14,7 +14,7 @@ export class GatewayInstallationRequestPopupService {
         private datePipe: DatePipe,
         private modalService: NgbModal,
         private router: Router,
-        private gatewayInstallationRequestService: GatewayInstallationRequestService
+        private gatewayInstallationRequestService: GatewayInstallationRequestService,
 
     ) {
         this.ngbModalRef = null;

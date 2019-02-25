@@ -10,7 +10,7 @@ import { NodeModulesWilampService } from './node-modules-wilamp.service';
 
 @Component({
     selector: 'jhi-node-modules-wilamp-delete-dialog',
-    templateUrl: './node-modules-wilamp-delete-dialog.component.html'
+    templateUrl: './node-modules-wilamp-delete-dialog.component.html',
 })
 export class NodeModulesWilampDeleteDialogComponent {
 
@@ -19,7 +19,7 @@ export class NodeModulesWilampDeleteDialogComponent {
     constructor(
         private nodeModulesService: NodeModulesWilampService,
         public activeModal: NgbActiveModal,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
     }
 
@@ -31,7 +31,7 @@ export class NodeModulesWilampDeleteDialogComponent {
         this.nodeModulesService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'nodeModulesListModification',
-                content: 'Deleted an nodeModules'
+                content: 'Deleted an nodeModules',
             });
             this.activeModal.dismiss(true);
         });
@@ -40,7 +40,7 @@ export class NodeModulesWilampDeleteDialogComponent {
 
 @Component({
     selector: 'jhi-node-modules-wilamp-delete-popup',
-    template: ''
+    template: '',
 })
 export class NodeModulesWilampDeletePopupComponent implements OnInit, OnDestroy {
 
@@ -48,7 +48,7 @@ export class NodeModulesWilampDeletePopupComponent implements OnInit, OnDestroy 
 
     constructor(
         private route: ActivatedRoute,
-        private nodeModulesPopupService: NodeModulesWilampPopupService
+        private nodeModulesPopupService: NodeModulesWilampPopupService,
     ) {}
 
     ngOnInit() {

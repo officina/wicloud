@@ -4,7 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import {
     GLOBALDATABASE__INSTALLATION_WEEKLY_STATISTICS_FETCHED,
     INSTALLATION_DASHBOARD__DAILY_STATISTICS_FETCHED,
-    INSTALLATION_DASHBOARD__MONTHLY_STATISTICS_FETCHED, INSTALLATION_DASHBOARD__WEEKLY_STATISTICS_FETCHED
+    INSTALLATION_DASHBOARD__MONTHLY_STATISTICS_FETCHED, INSTALLATION_DASHBOARD__WEEKLY_STATISTICS_FETCHED,
 } from '../../shared/constants/events.constants';
 import {KWtoCO2Factor} from '../../shared/constants/graph.constants';
 import {GlobalDatabaseService} from '../../shared/global-database/global-database.service';
@@ -16,7 +16,7 @@ import {Subscription} from 'rxjs/Rx';
 @Component({
   selector: 'energy-saving-widget',
   templateUrl: './energy-saving-widget.component.html',
-  styleUrls: ['energy-saving-widget.component.css']
+  styleUrls: ['energy-saving-widget.component.css'],
 
 })
 export class EnergySavingWidgetComponent implements OnInit {
@@ -44,7 +44,7 @@ export class EnergySavingWidgetComponent implements OnInit {
     constructor(
         private _DomSanitizationService: DomSanitizer,
         public globalDatabase: GlobalDatabaseService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) { }
 
     ngOnInit() {
@@ -52,14 +52,14 @@ export class EnergySavingWidgetComponent implements OnInit {
         this.graphBottomLeftSPOptions = {
             type: 'bar',
             height: '30px',
-            barColor: '#428BCA'
+            barColor: '#428BCA',
         };
 
         this.graphBottomRightSPData = [9, 8, 8, 6, 9, 10, 6, 5, 6, 3, 4, 2];
         this.graphBottomRightSPOptions = {
             type: 'bar',
             height: '30px',
-            barColor: '#999'
+            barColor: '#999',
         };
         switch (this.chartType) {
             case 'daily':
@@ -89,33 +89,33 @@ export class EnergySavingWidgetComponent implements OnInit {
             this.chartData = [{
                 data: [[0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [5, 0], [6, 0], [7, 0], [8, 0], [9, 0], [10, 0], [11, 0], [12, 0], [13, 0], [14, 0], [15, 0], [16, 0], [17, 0], [18, 0], [19, 0], [20, 0], [21, 0], [22, 0], [23, 0]],
                 label: 'Today (' + Helpers.getWeekName(this.currentDate) + ')',
-                color: '#905dd1'
+                color: '#905dd1',
             },
                 {
                     data: [[0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [5, 0], [6, 0], [7, 0], [8, 0], [9, 0], [10, 0], [11, 0], [12, 0], [13, 0], [14, 0], [15, 0], [16, 0], [17, 0], [18, 0], [19, 0], [20, 0], [21, 0], [22, 0], [23, 0]],
                     label: 'Yesterday',
-                    color: '#03c3c4'
+                    color: '#03c3c4',
                 }];
 
             this.chartOptions = {
                 series: {
                     lines: {
-                        show: false
+                        show: false,
                     },
                     splines: {
                         show: true,
                         tension: 0.4,
                         lineWidth: 1,
-                        fill: 0.4
+                        fill: 0.4,
                     },
-                    shadowSize: 0
+                    shadowSize: 0,
                 },
                 points: {
                     show: true,
                 },
                 legend: {
                     container: '#' + this.legendId,
-                    noColumns: 0
+                    noColumns: 0,
                 },
                 grid: {
                     hoverable: true,
@@ -123,16 +123,16 @@ export class EnergySavingWidgetComponent implements OnInit {
                     borderColor: '#ddd',
                     borderWidth: 0,
                     labelMargin: 5,
-                    backgroundColor: '#fff'
+                    backgroundColor: '#fff',
                 },
                 yaxis: {
                     min: 0,
                     max: this.chartDataYMaxValue + 1,
-                    color: '#656565'
+                    color: '#656565',
                 },
                 xaxis: {
-                    color: '#656565'
-                }
+                    color: '#656565',
+                },
             };
             const currentWeekKey = this.currentDate.getFullYear() + '_' + Helpers.getWeekNumber(this.currentDate)[1];
             const yesterday = new Date(this.currentDate);
@@ -160,7 +160,7 @@ export class EnergySavingWidgetComponent implements OnInit {
             this.chartOptions.yaxis.max = this.chartDataYMaxValue + 1.0;
             this.eventManager.broadcast({
                 name: this.flotEventToGenerate,
-                content: { dataset: this.chartData, options: this.chartOptions }
+                content: { dataset: this.chartData, options: this.chartOptions },
             });
         } catch (Exception) {
             console.warn(Exception);
@@ -176,33 +176,33 @@ export class EnergySavingWidgetComponent implements OnInit {
             this.chartData = [{
                 data: [[0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [5, 0], [6, 0]],
                 label: 'Current Week',
-                color: '#b830b3'
+                color: '#b830b3',
             },
                 {
                     data: [[0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [5, 0], [6, 0]],
                     label: 'Last week',
-                    color: '#428bca'
+                    color: '#428bca',
                 }];
 
             this.chartOptions = {
                 series: {
                     lines: {
-                        show: false
+                        show: false,
                     },
                     splines: {
                         show: true,
                         tension: 0.4,
                         lineWidth: 1,
-                        fill: 0.4
+                        fill: 0.4,
                     },
-                    shadowSize: 0
+                    shadowSize: 0,
                 },
                 points: {
                     show: true,
                 },
                 legend: {
                     container: '#' + this.legendId,
-                    noColumns: 0
+                    noColumns: 0,
                 },
                 grid: {
                     hoverable: true,
@@ -210,17 +210,17 @@ export class EnergySavingWidgetComponent implements OnInit {
                     borderColor: '#ddd',
                     borderWidth: 0,
                     labelMargin: 5,
-                    backgroundColor: '#fff'
+                    backgroundColor: '#fff',
                 },
                 yaxis: {
                     min: 0,
                     max: this.chartDataYMaxValue + 1 ,
-                    color: '#656565'
+                    color: '#656565',
                 },
                 xaxis: {
                     color: '#656565',
-                    ticks: [[0, 'Mon'], [1, 'Tue'], [2, 'Wed'], [3, 'Thu'], [4, 'Fri'], [5, 'Sat'], [6, 'Sun']]
-                }
+                    ticks: [[0, 'Mon'], [1, 'Tue'], [2, 'Wed'], [3, 'Thu'], [4, 'Fri'], [5, 'Sat'], [6, 'Sun']],
+                },
             };
             const currentWeekKey = this.currentDate.getFullYear() + '_' + Helpers.getWeekNumber(this.currentDate)[1];
             const previousWeek = new Date(this.currentDate);
@@ -248,7 +248,7 @@ export class EnergySavingWidgetComponent implements OnInit {
             this.chartOptions.yaxis.max = this.chartDataYMaxValue + 1.0;
             this.eventManager.broadcast({
                 name: this.flotEventToGenerate,
-                content: { dataset: this.chartData, options: this.chartOptions }
+                content: { dataset: this.chartData, options: this.chartOptions },
             });
 
         } catch (Exception) {
@@ -265,33 +265,33 @@ export class EnergySavingWidgetComponent implements OnInit {
             this.chartData = [{
                 data: [[0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [5, 0], [6, 0], [7, 0], [8, 0], [9, 0], [10, 0], [11, 0], [12, 0], [13, 0], [14, 0], [15, 0], [16, 0], [17, 0], [18, 0], [19, 0], [20, 0], [21, 0], [22, 0], [23, 0], [24, 0], [25, 0], [26, 0], [27, 0], [28, 0], [29, 0], [30, 0], [31, 0]],
                 label: 'Current month',
-                color: '#905dd1'
+                color: '#905dd1',
             },
                 {
                     data: [[0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [5, 0], [6, 0], [7, 0], [8, 0], [9, 0], [10, 0], [11, 0], [12, 0], [13, 0], [14, 0], [15, 0], [16, 0], [17, 0], [18, 0], [19, 0], [20, 0], [21, 0], [22, 0], [23, 0], [24, 0], [25, 0], [26, 0], [27, 0], [28, 0], [29, 0], [30, 0], [31, 0]],
                     label: 'Last month',
-                    color: '#428bca'
+                    color: '#428bca',
                 }];
 
             this.chartOptions = {
                 series: {
                     lines: {
-                        show: false
+                        show: false,
                     },
                     splines: {
                         show: true,
                         tension: 0.4,
                         lineWidth: 1,
-                        fill: 0.4
+                        fill: 0.4,
                     },
-                    shadowSize: 0
+                    shadowSize: 0,
                 },
                 points: {
                     show: true,
                 },
                 legend: {
                     container: '#' + this.legendId,
-                    noColumns: 0
+                    noColumns: 0,
                 },
                 grid: {
                     hoverable: true,
@@ -299,18 +299,18 @@ export class EnergySavingWidgetComponent implements OnInit {
                     borderColor: '#ddd',
                     borderWidth: 0,
                     labelMargin: 5,
-                    backgroundColor: '#fff'
+                    backgroundColor: '#fff',
                 },
                 yaxis: {
                     min: 0,
                     max: this.chartDataYMaxValue + 1 ,
-                    color: '#656565'
+                    color: '#656565',
                 },
                 xaxis: {
                     color: '#656565',
-                    ticks: [[0, '1'], [1, '2'], [2, '3'], [3, '4'], [4, '5'], [5, '6'], [6, '7'], [7, '8'], [8, '9'], [9, '10'], [10, '11'], [11, '12'], [12, '13'], [13, '14'], [14, '15'], [15, '16'], [16, '17'], [17, '18'], [18, '19'], [19, '20'], [20, '21'], [21, '22'], [22, '23'], [23, '24'], [24, '25'], [25, '26'], [26, '27'], [27, '28'], [28, '29'], [29, '30'], [30, '31']]
+                    ticks: [[0, '1'], [1, '2'], [2, '3'], [3, '4'], [4, '5'], [5, '6'], [6, '7'], [7, '8'], [8, '9'], [9, '10'], [10, '11'], [11, '12'], [12, '13'], [13, '14'], [14, '15'], [15, '16'], [16, '17'], [17, '18'], [18, '19'], [19, '20'], [20, '21'], [21, '22'], [22, '23'], [23, '24'], [24, '25'], [25, '26'], [26, '27'], [27, '28'], [28, '29'], [29, '30'], [30, '31']],
 
-                }
+                },
             };
             const currentMonthKey = this.currentDate.getFullYear() + '_' + (this.currentDate.getMonth() + 1);
             const previousMonth = new Date(this.currentDate);
@@ -346,7 +346,7 @@ export class EnergySavingWidgetComponent implements OnInit {
             this.chartOptions.yaxis.max = this.chartDataYMaxValue + 1.0;
             this.eventManager.broadcast({
                 name: this.flotEventToGenerate,
-                content: { dataset: this.chartData, options: this.chartOptions }
+                content: { dataset: this.chartData, options: this.chartOptions },
             });
         } catch (Exception) {
             console.warn(Exception);
@@ -372,7 +372,7 @@ export class EnergySavingWidgetComponent implements OnInit {
     registerEvents() {
         this.eventSubscriber = this.eventManager.subscribe(
             this.eventwatch,
-            (response) => this.updateChartEnergyStatistics(this)
+            (response) => this.updateChartEnergyStatistics(this),
         );
     }
 

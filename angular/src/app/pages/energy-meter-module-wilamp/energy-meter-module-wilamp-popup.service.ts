@@ -12,7 +12,7 @@ export class EnergyMeterModuleWilampPopupService {
     constructor(
         private modalService: NgbModal,
         private router: Router,
-        private energyMeterModuleService: EnergyMeterModuleWilampService
+        private energyMeterModuleService: EnergyMeterModuleWilampService,
 
     ) {
         this.ngbModalRef = null;

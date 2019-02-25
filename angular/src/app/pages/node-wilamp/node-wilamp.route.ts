@@ -17,20 +17,20 @@ export const nodeRoute: Routes = [
                 component: NodeWilampComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.node.home.title'
+                    pageTitle: 'wilampCloudApp.node.home.title',
                 },
-                canActivate: [UserRouteAccessService]
+                canActivate: [UserRouteAccessService],
             }, {
                 path: 'node-wilamp/:id',
                 component: NodeWilampDetailComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.node.home.title'
+                    pageTitle: 'wilampCloudApp.node.home.title',
                 },
-                canActivate: [UserRouteAccessService]
-            }
-        ]
-    }
+                canActivate: [UserRouteAccessService],
+            },
+        ],
+    },
 ];
 
 export const nodePopupRoute: Routes = [
@@ -39,29 +39,29 @@ export const nodePopupRoute: Routes = [
         component: NodeWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.node.home.title'
+            pageTitle: 'wilampCloudApp.node.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'node-wilamp/:id/edit',
         component: NodeWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.node.home.title'
+            pageTitle: 'wilampCloudApp.node.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'node-wilamp/:id/delete',
         component: NodeWilampDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.node.home.title'
+            pageTitle: 'wilampCloudApp.node.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    }
+        outlet: 'popup',
+    },
 ];

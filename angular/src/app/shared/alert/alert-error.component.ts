@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
                     <pre [innerHTML]="alert.msg"></pre>
                 </ngb-alert>
             </div>
-        </div>`
+        </div>`,
 })
 export class JhiAlertErrorComponent implements OnDestroy {
 
@@ -94,10 +94,10 @@ export class JhiAlertErrorComponent implements OnDestroy {
                     params: data,
                     timeout: 5000,
                     toast: this.alertService.isToast(),
-                    scoped: true
+                    scoped: true,
                 },
-                this.alerts
-            )
+                this.alerts,
+            ),
         );
     }
 }

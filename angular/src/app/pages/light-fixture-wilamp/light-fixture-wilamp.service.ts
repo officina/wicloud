@@ -5,14 +5,16 @@ import { Observable } from 'rxjs/Observable';
 import { LightFixtureWilamp } from './light-fixture-wilamp.model';
 import { createRequestOption } from '../../shared';
 import {environment} from '../../../environments/environment';
+import {GatewayWilamp} from '../gateway-wilamp';
+import {map} from 'rxjs/operators';
 
 export type EntityResponseType = HttpResponse<LightFixtureWilamp>;
 
 @Injectable()
 export class LightFixtureWilampService {
 
-    private resourceUrl =  `${environment.apiUrl}/api/light-fixtures`;
-    private resourceSearchUrl =  `${environment.apiUrl}/api/_search/light-fixtures`;
+    private resourceUrl =  `${environment.apiUrl}/api/light-fixture`;
+    private resourceSearchUrl =  `${environment.apiUrl}/api/_search/light-fixture`;
 
     constructor(private http: HttpClient) { }
 
@@ -31,6 +33,12 @@ export class LightFixtureWilampService {
     find(id: number): Observable<EntityResponseType> {
         return this.http.get<LightFixtureWilamp>(`${this.resourceUrl}/${id}/`, { observe: 'response'})
             .map((res: EntityResponseType) => this.convertResponse(res));
+    }
+
+    findByInstallation(id: number, req?: any): Observable<HttpResponse<LightFixtureWilamp[]>> {
+        const options = createRequestOption(req);
+        return this.http.get<LightFixtureWilamp[]>(`${this.resourceUrl}-by-installation/${id}/`, { params: options, observe: 'response'})
+            .map((res: HttpResponse<LightFixtureWilamp[]>) => this.convertArrayResponse(res));
     }
 
     query(req?: any): Observable<HttpResponse<LightFixtureWilamp[]>> {

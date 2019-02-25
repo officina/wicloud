@@ -401,7 +401,7 @@ urlpatterns = [
     url(
         r'^light-fixture-by-installation/(?P<id>[-\w]+)/$',
         model_views.Light_fixtureByInstallationListAPIView.as_view(),
-        name='gateway_by_serial_number'
+        name='light-fixture-by-installation'
     ),
     url(
         r'^light-fixture/set-status/(?P<pk>\w+)/$',

@@ -10,7 +10,7 @@ import { Principal } from '../../shared';
 
 @Component({
     selector: 'jhi-light-profile-slot-wilamp',
-    templateUrl: './light-profile-slot-wilamp.component.html'
+    templateUrl: './light-profile-slot-wilamp.component.html',
 })
 export class LightProfileSlotWilampComponent implements OnInit, OnDestroy {
 lightProfileSlots: LightProfileSlotWilamp[];
@@ -23,7 +23,7 @@ lightProfileSlots: LightProfileSlotWilamp[];
         private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
         private activatedRoute: ActivatedRoute,
-        private principal: Principal
+        private principal: Principal,
     ) {
         this.currentSearch = this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search'] ?
             this.activatedRoute.snapshot.params['search'] : '';
@@ -35,7 +35,7 @@ lightProfileSlots: LightProfileSlotWilamp[];
                 query: this.currentSearch,
                 }).subscribe(
                     (res: HttpResponse<LightProfileSlotWilamp[]>) => this.lightProfileSlots = res.body,
-                    (res: HttpErrorResponse) => this.onError(res.message)
+                    (res: HttpErrorResponse) => this.onError(res.message),
                 );
             return;
        }
@@ -44,7 +44,7 @@ lightProfileSlots: LightProfileSlotWilamp[];
                 this.lightProfileSlots = res.body;
                 this.currentSearch = '';
             },
-            (res: HttpErrorResponse) => this.onError(res.message)
+            (res: HttpErrorResponse) => this.onError(res.message),
         );
     }
 

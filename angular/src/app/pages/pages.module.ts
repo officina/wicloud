@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { ECommerceModule } from './e-commerce/e-commerce.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { ThemeModule } from '../@theme/theme.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
@@ -27,7 +28,9 @@ import { WilampCloudEnergyIntervalModule } from './energy-interval/energy-interv
 import {WiCloudHomeModule} from './home';
 import {WilampCloudLightProfileWilampModule} from './light-profile-wilamp/light-profile-wilamp.module';
 import {WilampCloudLightProfileSlotWilampModule} from './light-profile-slot-wilamp/light-profile-slot-wilamp.module';
-import {DashboardsModule} from './dashboards/dashboards.module';
+import {InstallationDashboardModule} from './dashboards/installation-dashboard/installation-dashboard.module';
+import {GlobalDatabaseService} from '../shared/global-database/global-database.service';
+import {WilampCloudLightFixtureWilampModule} from './light-fixture-wilamp/light-fixture-wilamp.module';
 
 
 const PAGES_COMPONENTS = [
@@ -36,9 +39,10 @@ const PAGES_COMPONENTS = [
 
 @NgModule({
     imports: [
-        DashboardsModule,
+        InstallationDashboardModule,
         PagesRoutingModule,
         WiCloudHomeModule,
+        ECommerceModule,
         ThemeModule,
         DashboardModule,
         InstallationsModule,
@@ -61,10 +65,14 @@ const PAGES_COMPONENTS = [
         WilampCloudEnergyIntervalModule,
         WilampCloudLightProfileWilampModule,
         WilampCloudLightProfileSlotWilampModule,
+        WilampCloudLightFixtureWilampModule,
     ],
     declarations: [
         ...PAGES_COMPONENTS,
-    ]
+    ],
+    providers: [
+              GlobalDatabaseService,
+    ],
 })
 export class PagesModule {
 }

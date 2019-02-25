@@ -14,10 +14,10 @@ export const notificationsDashboardRoute: Routes = [
                 component: NotificationsDashboardComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'Dashboard'
+                    pageTitle: 'Dashboard',
                 },
-                canActivate: [UserRouteAccessService]
-            }
-        ]
-    }
+                canActivate: [UserRouteAccessService],
+            },
+        ],
+    },
 ];

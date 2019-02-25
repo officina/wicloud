@@ -14,7 +14,7 @@ export class MotionManagementModuleWilampPopupService {
         private datePipe: DatePipe,
         private modalService: NgbModal,
         private router: Router,
-        private motionManagementModuleService: MotionManagementModuleWilampService
+        private motionManagementModuleService: MotionManagementModuleWilampService,
 
     ) {
         this.ngbModalRef = null;

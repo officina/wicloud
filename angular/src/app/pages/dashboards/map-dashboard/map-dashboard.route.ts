@@ -14,10 +14,10 @@ export const mapDashboardRoute: Routes = [
                 component: MapDashboardComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'Dashboard'
+                    pageTitle: 'Dashboard',
                 },
-                canActivate: [UserRouteAccessService]
-            }
-        ]
-    }
+                canActivate: [UserRouteAccessService],
+            },
+        ],
+    },
 ];

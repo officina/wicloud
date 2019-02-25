@@ -9,7 +9,7 @@ import { EnergyMeterModuleWilampService } from './energy-meter-module-wilamp.ser
 
 @Component({
     selector: 'jhi-energy-meter-module-wilamp-detail',
-    templateUrl: './energy-meter-module-wilamp-detail.component.html'
+    templateUrl: './energy-meter-module-wilamp-detail.component.html',
 })
 export class EnergyMeterModuleWilampDetailComponent implements OnInit, OnDestroy {
 
@@ -20,7 +20,7 @@ export class EnergyMeterModuleWilampDetailComponent implements OnInit, OnDestroy
     constructor(
         private eventManager: JhiEventManager,
         private energyMeterModuleService: EnergyMeterModuleWilampService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
     ) {
     }
 
@@ -49,7 +49,7 @@ export class EnergyMeterModuleWilampDetailComponent implements OnInit, OnDestroy
     registerChangeInEnergyMeterModules() {
         this.eventSubscriber = this.eventManager.subscribe(
             'energyMeterModuleListModification',
-            (response) => this.load(this.energyMeterModule.id)
+            (response) => this.load(this.energyMeterModule.id),
         );
     }
 }

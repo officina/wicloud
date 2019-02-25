@@ -9,7 +9,7 @@ import { LightProfileSlotWilampService } from './light-profile-slot-wilamp.servi
 
 @Component({
     selector: 'jhi-light-profile-slot-wilamp-detail',
-    templateUrl: './light-profile-slot-wilamp-detail.component.html'
+    templateUrl: './light-profile-slot-wilamp-detail.component.html',
 })
 export class LightProfileSlotWilampDetailComponent implements OnInit, OnDestroy {
 
@@ -20,7 +20,7 @@ export class LightProfileSlotWilampDetailComponent implements OnInit, OnDestroy 
     constructor(
         private eventManager: JhiEventManager,
         private lightProfileSlotService: LightProfileSlotWilampService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
     ) {
     }
 
@@ -49,7 +49,7 @@ export class LightProfileSlotWilampDetailComponent implements OnInit, OnDestroy 
     registerChangeInLightProfileSlots() {
         this.eventSubscriber = this.eventManager.subscribe(
             'lightProfileSlotListModification',
-            (response) => this.load(this.lightProfileSlot.id)
+            (response) => this.load(this.lightProfileSlot.id),
         );
     }
 }

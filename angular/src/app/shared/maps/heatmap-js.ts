@@ -15,7 +15,7 @@ declare var window: {
     h337: {
         create: Function,
         register: Function,
-    }
+    },
 };
 
 export const CSS_TRANSFORM = (() => {
@@ -25,7 +25,7 @@ export const CSS_TRANSFORM = (() => {
         'WebkitTransform',
         'MozTransform',
         'OTransform',
-        'msTransform'
+        'msTransform',
     ];
     for (let i = 0; i < props.length; i++) {
         const prop = props[i];

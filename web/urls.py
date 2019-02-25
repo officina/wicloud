@@ -48,7 +48,6 @@ urlpatterns = [
     url(r'^api-token-verify/', verify_jwt_token),
     # REST AUTH URL
     url(r'^rest-auth/', include('rest_auth.urls')),
-
     url(r'^api/', include('apps.wicloud.api.urls')),
 
     url(r'^$',views.home),

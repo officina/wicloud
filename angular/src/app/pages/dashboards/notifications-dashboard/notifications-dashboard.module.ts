@@ -36,7 +36,7 @@ const ENTITY_STATES = [
         FontAwesomeModule,
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyBV2K_NZJykwOD3gg2WtijUm7zfdPfSOBg',
-            libraries: ['places', 'visualization']
+            libraries: ['places', 'visualization'],
         }),
     ],
     declarations: [
@@ -46,8 +46,8 @@ const ENTITY_STATES = [
         NotificationsDashboardComponent,
     ],
     providers: [
-        GoogleMapsAPIWrapper
+        GoogleMapsAPIWrapper,
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class NotificationsDashboardModule {}

@@ -5,7 +5,7 @@ import { LightManagementMeasureWilampComponent } from './light-management-measur
 import { LightManagementMeasureWilampDetailComponent } from './light-management-measure-wilamp-detail.component';
 import { LightManagementMeasureWilampPopupComponent } from './light-management-measure-wilamp-dialog.component';
 import {
-    LightManagementMeasureWilampDeletePopupComponent
+    LightManagementMeasureWilampDeletePopupComponent,
 } from './light-management-measure-wilamp-delete-dialog.component';
 import {PagesComponent} from '../pages.component';
 
@@ -19,20 +19,20 @@ export const lightManagementMeasureRoute: Routes = [
                 component: LightManagementMeasureWilampComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.lightManagementMeasure.home.title'
+                    pageTitle: 'wilampCloudApp.lightManagementMeasure.home.title',
                 },
-                canActivate: [UserRouteAccessService]
+                canActivate: [UserRouteAccessService],
             }, {
                 path: 'light-management-measure-wilamp/:id',
                 component: LightManagementMeasureWilampDetailComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.lightManagementMeasure.home.title'
+                    pageTitle: 'wilampCloudApp.lightManagementMeasure.home.title',
                 },
-                canActivate: [UserRouteAccessService]
-            }
-        ]
-    }
+                canActivate: [UserRouteAccessService],
+            },
+        ],
+    },
 ];
 
 export const lightManagementMeasurePopupRoute: Routes = [
@@ -41,29 +41,29 @@ export const lightManagementMeasurePopupRoute: Routes = [
         component: LightManagementMeasureWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.lightManagementMeasure.home.title'
+            pageTitle: 'wilampCloudApp.lightManagementMeasure.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'light-management-measure-wilamp/:id/edit',
         component: LightManagementMeasureWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.lightManagementMeasure.home.title'
+            pageTitle: 'wilampCloudApp.lightManagementMeasure.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'light-management-measure-wilamp/:id/delete',
         component: LightManagementMeasureWilampDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.lightManagementMeasure.home.title'
+            pageTitle: 'wilampCloudApp.lightManagementMeasure.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    }
+        outlet: 'popup',
+    },
 ];

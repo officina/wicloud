@@ -9,7 +9,7 @@ import { ContactWilampService } from './contact-wilamp.service';
 
 @Component({
     selector: 'jhi-contact-wilamp-detail',
-    templateUrl: './contact-wilamp-detail.component.html'
+    templateUrl: './contact-wilamp-detail.component.html',
 })
 export class ContactWilampDetailComponent implements OnInit, OnDestroy {
 
@@ -20,7 +20,7 @@ export class ContactWilampDetailComponent implements OnInit, OnDestroy {
     constructor(
         private eventManager: JhiEventManager,
         private contactService: ContactWilampService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
     ) {
     }
 
@@ -49,7 +49,7 @@ export class ContactWilampDetailComponent implements OnInit, OnDestroy {
     registerChangeInContacts() {
         this.eventSubscriber = this.eventManager.subscribe(
             'contactListModification',
-            (response) => this.load(this.contact.id)
+            (response) => this.load(this.contact.id),
         );
     }
 }

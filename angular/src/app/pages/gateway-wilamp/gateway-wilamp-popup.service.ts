@@ -14,7 +14,7 @@ export class GatewayWilampPopupService {
         private datePipe: DatePipe,
         private modalService: NgbModal,
         private router: Router,
-        private gatewayService: GatewayWilampService
+        private gatewayService: GatewayWilampService,
 
     ) {
         this.ngbModalRef = null;

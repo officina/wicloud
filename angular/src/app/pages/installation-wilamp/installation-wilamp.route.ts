@@ -6,6 +6,7 @@ import { InstallationWilampDetailComponent } from './installation-wilamp-detail.
 import { InstallationWilampPopupComponent } from './installation-wilamp-dialog.component';
 import { InstallationWilampDeletePopupComponent } from './installation-wilamp-delete-dialog.component';
 import {PagesComponent} from '../pages.component';
+import {InstallationWilampDashboardComponent} from './dashboard/installation-wilamp-dashboard.component';
 
 export const installationRoute: Routes = [
     {
@@ -17,20 +18,20 @@ export const installationRoute: Routes = [
                 component: InstallationWilampComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.installation.home.title'
+                    pageTitle: 'wilampCloudApp.installation.home.title',
                 },
-                canActivate: [UserRouteAccessService]
+                canActivate: [UserRouteAccessService],
             }, {
                 path: 'installation-wilamp/:id',
-                component: InstallationWilampDetailComponent,
+                component: InstallationWilampDashboardComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.installation.home.title'
+                    pageTitle: 'wilampCloudApp.installation.home.title',
                 },
-                canActivate: [UserRouteAccessService]
-            }
-        ]
-    }
+                canActivate: [UserRouteAccessService],
+            },
+        ],
+    },
 ];
 
 export const installationPopupRoute: Routes = [
@@ -39,29 +40,29 @@ export const installationPopupRoute: Routes = [
         component: InstallationWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.installation.home.title'
+            pageTitle: 'wilampCloudApp.installation.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'installation-wilamp/:id/edit',
         component: InstallationWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.installation.home.title'
+            pageTitle: 'wilampCloudApp.installation.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'installation-wilamp/:id/delete',
         component: InstallationWilampDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.installation.home.title'
+            pageTitle: 'wilampCloudApp.installation.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    }
+        outlet: 'popup',
+    },
 ];

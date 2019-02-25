@@ -14,7 +14,7 @@ import { CustomerWilampService } from '../customer-wilamp/customer-wilamp.servic
 
 @Component({
     selector: 'jhi-contact-wilamp-dialog',
-    templateUrl: './contact-wilamp-dialog.component.html'
+    templateUrl: './contact-wilamp-dialog.component.html',
 })
 export class ContactWilampDialogComponent implements OnInit {
 
@@ -31,7 +31,7 @@ export class ContactWilampDialogComponent implements OnInit {
         private contactService: ContactWilampService,
         private addressService: AddressWilampService,
         private customerService: CustomerWilampService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
     }
 
@@ -99,7 +99,7 @@ export class ContactWilampDialogComponent implements OnInit {
 
 @Component({
     selector: 'jhi-contact-wilamp-popup',
-    template: ''
+    template: '',
 })
 export class ContactWilampPopupComponent implements OnInit, OnDestroy {
 
@@ -107,7 +107,7 @@ export class ContactWilampPopupComponent implements OnInit, OnDestroy {
 
     constructor(
         private route: ActivatedRoute,
-        private contactPopupService: ContactWilampPopupService
+        private contactPopupService: ContactWilampPopupService,
     ) {}
 
     ngOnInit() {
