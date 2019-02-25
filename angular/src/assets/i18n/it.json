@@ -1,5 +1,39 @@
 {
-  "dashboard": {
-    "light": "Luce"
-  }
+    "entity": {
+        "delete": {
+            "title": "Titolo"
+        },
+        "action": {
+            "cancel": "Annulla",
+            "delete": "Elimina",
+            "save": "Salva",
+            "view": "Visualizza",
+            "edit": "Modifica"
+        },
+        "validation": {
+            "required": "Obbligatorio"
+        }
+    },
+    "installation": {
+        "delete": {
+            "question": "Cancella domanda"
+        },
+        "home": {
+            "createOrEditLabel": "Aggiorna",
+            "title": "Titolo",
+            "createLabel": "Crea"
+        },
+        "name": "Nome",
+        "description": "Descrizione",
+        "preparationDate": "Data di preparazione",
+        "installationDate": "Data di installazione",
+        "notes": "Note",
+        "address": "Indirizzo",
+        "customer": "Cliente"
+    },
+    "global": {
+        "field": {
+            "id": "Id"
+        }
+    }
 }

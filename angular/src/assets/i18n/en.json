@@ -1,5 +1,39 @@
 {
-  "dashboard": {
-    "light": "Light"
-  }
+   "global":{
+      "field":{
+         "id":"global.field.id"
+      }
+   },
+   "entity":{
+      "delete":{
+         "title":"entity.delete.title"
+      },
+      "action":{
+         "cancel":"entity.action.cancel",
+         "delete":"entity.action.delete",
+         "save":"entity.action.save",
+         "view":"entity.action.view",
+         "edit":"entity.action.edit"
+      },
+      "validation":{
+         "required":"entity.validation.required"
+      }
+   },
+   "installation":{
+      "delete":{
+         "question":"installation.delete.question"
+      },
+      "home":{
+         "createOrEditLabel":"installation.home.createOrEditLabel",
+         "title":"installation.home.title",
+         "createLabel":"installation.home.createLabel"
+      },
+      "name":"installation.name",
+      "description":"installation.description",
+      "preparationDate":"installation.preparationDate",
+      "installationDate":"installation.installationDate",
+      "notes":"installation.notes",
+      "address":"installation.address",
+      "customer":"installation.customer"
+   }
 }
