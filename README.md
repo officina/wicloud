@@ -173,6 +173,8 @@ yarn start
 
     ng lint
 
+    ./node_modules/stylelint/bin/stylelint.js ./src/**/*.scss
+ 
 # Remote tests
 
 ```
