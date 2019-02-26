@@ -1,7 +1,9 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
+import { NbButtonModule } from '@nebular/theme';
 import { WiCloudSharedModule } from '../../shared';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+
 import {
     InstallationWilampService,
     InstallationWilampPopupService,
@@ -15,6 +17,7 @@ import {
     installationPopupRoute,
 } from './';
 
+
 const ENTITY_STATES = [
     ...installationRoute,
     ...installationPopupRoute,
@@ -24,6 +27,8 @@ const ENTITY_STATES = [
     imports: [
         WiCloudSharedModule,
         RouterModule.forChild(ENTITY_STATES),
+        NbButtonModule,
+        Ng2SmartTableModule
     ],
     declarations: [
         InstallationWilampComponent,

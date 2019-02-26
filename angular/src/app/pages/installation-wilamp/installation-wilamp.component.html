@@ -1,7 +1,7 @@
 <div>
     <h2>
         <span [translate]="'installation.home.title'">Installations</span>
-        <button class="btn btn-primary float-right jh-create-entity create-installation-wilamp" [routerLink]="['/', { outlets: { popup: ['installation-wilamp-new'] } }]">
+        <button nbButton status="primary" class="float-right" [routerLink]="['/', { outlets: { popup: ['installation-wilamp-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down"  [translate]="'installation.home.createLabel'">
             Create new Installation
@@ -60,27 +60,25 @@
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
-                                [routerLink]="['../installation-wilamp', installation.id ]"
-                                class="btn btn-info btn-sm">
-                            <span class="fa fa-eye"></span>
-                            <span class="d-none d-md-inline" [translate]="'entity.action.view'">View</span>
+                        <button type="submit" [routerLink]="['../installation-wilamp', installation.id ]" nbButton status="success" size="xsmall" shape="rectangle">
+                            <i class="ion ion-eye"></i>
+                            {{'entity.action.view' | translate}}
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'installation-wilamp/'+ installation.id + '/edit'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
-                                class="btn btn-primary btn-sm">
-                            <span class="fa fa-pencil"></span>
-                            <span class="d-none d-md-inline" [translate]="'entity.action.edit'">Edit</span>
+                                nbButton status="info" size="xsmall" shape="rectangle">
+                            <i class="ion ion-edit"></i>
+                            {{'entity.action.edit' | translate}}
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'installation-wilamp/'+ installation.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
-                                class="btn btn-danger btn-sm">
-                            <span class="fa fa-remove"></span>
-                            <span class="d-none d-md-inline" [translate]="'entity.action.delete'">Delete</span>
+                                nbButton status="danger" size="xsmall" shape="rectangle">
+                            <i class="ion ion-android-delete"></i>
+                            {{'entity.action.delete' | translate}}
                         </button>
                     </div>
                 </td>
