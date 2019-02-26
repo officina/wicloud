@@ -60,7 +60,7 @@ export class EnergyStatistics implements BaseEntity {
         public statisticsOfTodayByDayOfWeek?: EnergyStatisticsRowByInterval[],
         public statisticsOfLastWeekByDayOfWeek?: EnergyStatisticsRowByInterval[],
         public statisticsOfTodayByDayOfMonth?: EnergyStatisticsRowByInterval[],
-        public statisticsOfLastMonthByDayOfMonth?: EnergyStatisticsRowByInterval[]
+        public statisticsOfLastMonthByDayOfMonth?: EnergyStatisticsRowByInterval[],
     ) {
     }
 }
@@ -80,7 +80,7 @@ export class EnergyStatisticsRowByInterval implements BaseEntity {
         public sumEnergyOldLamps?: number,
         public measureCount?: number,
         public activePower?: number,
-        public burningTime?: number
+        public burningTime?: number,
     ) {
     }
 }
@@ -101,7 +101,7 @@ export class EnergyStatisticsByResourceId implements BaseEntity {
         public nominalPower?: number,
         public burningTime?: number,
         public nodeLife?: number,
-        public lastMeasureTimestamp?: Date
+        public lastMeasureTimestamp?: Date,
     ) {
     }
 }

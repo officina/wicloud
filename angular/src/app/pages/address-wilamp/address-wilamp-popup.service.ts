@@ -12,7 +12,7 @@ export class AddressWilampPopupService {
     constructor(
         private modalService: NgbModal,
         private router: Router,
-        private addressService: AddressWilampService
+        private addressService: AddressWilampService,
 
     ) {
         this.ngbModalRef = null;

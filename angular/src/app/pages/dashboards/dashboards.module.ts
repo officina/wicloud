@@ -15,15 +15,15 @@ import {WidgetsModule} from '../../widgets/widgets.module';
         /*MapDashboardModule,
         NodesDashboardModule,
         NotificationsDashboardModule,*/
-        WidgetsModule
+        WidgetsModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [
     ],
     entryComponents: [],
     providers: [
-        WidgetsModule
+        WidgetsModule,
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class DashboardsModule {}

@@ -19,15 +19,15 @@ export class MapLeafletLayers {
             id: string,
             name: string,
             enabled: boolean,
-            layer: Layer
+            layer: Layer,
         }[],
         public baseLayer: string,
         public overlayLayers: {
             id: string,
             name: string,
             enabled: boolean,
-            layer: Layer
-        }[] = []
+            layer: Layer,
+        }[] = [],
     ) { }
 }
 

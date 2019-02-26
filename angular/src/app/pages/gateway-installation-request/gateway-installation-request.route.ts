@@ -20,7 +20,7 @@ export class GatewayInstallationRequestResolvePagingParams implements Resolve<an
         return {
             page: this.paginationUtil.parsePage(page),
             predicate: this.paginationUtil.parsePredicate(sort),
-            ascending: this.paginationUtil.parseAscending(sort)
+            ascending: this.paginationUtil.parseAscending(sort),
         };
     }
 }
@@ -34,24 +34,24 @@ export const gatewayInstallationRequestRoute: Routes = [
                 path: 'gateway-installation-request',
                 component: GatewayInstallationRequestComponent,
                 resolve: {
-                    'pagingParams': GatewayInstallationRequestResolvePagingParams
+                    'pagingParams': GatewayInstallationRequestResolvePagingParams,
                 },
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.gatewayInstallationRequest.home.title'
+                    pageTitle: 'wilampCloudApp.gatewayInstallationRequest.home.title',
                 },
-                canActivate: [UserRouteAccessService]
+                canActivate: [UserRouteAccessService],
             }, {
                 path: 'gateway-installation-request/:id',
                 component: GatewayInstallationRequestDetailComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.gatewayInstallationRequest.home.title'
+                    pageTitle: 'wilampCloudApp.gatewayInstallationRequest.home.title',
                 },
-                canActivate: [UserRouteAccessService]
-            }
-        ]
-    }
+                canActivate: [UserRouteAccessService],
+            },
+        ],
+    },
 ];
 
 export const gatewayInstallationRequestPopupRoute: Routes = [
@@ -60,29 +60,29 @@ export const gatewayInstallationRequestPopupRoute: Routes = [
         component: GatewayInstallationRequestPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.gatewayInstallationRequest.home.title'
+            pageTitle: 'wilampCloudApp.gatewayInstallationRequest.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'gateway-installation-request/:id/edit',
         component: GatewayInstallationRequestPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.gatewayInstallationRequest.home.title'
+            pageTitle: 'wilampCloudApp.gatewayInstallationRequest.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'gateway-installation-request/:id/delete',
         component: GatewayInstallationRequestDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.gatewayInstallationRequest.home.title'
+            pageTitle: 'wilampCloudApp.gatewayInstallationRequest.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    }
+        outlet: 'popup',
+    },
 ];

@@ -21,14 +21,14 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
     ],
     providers: [
         DatePipe,
-        Principal
+        Principal,
     ],
     exports: [
         WilampCloudSharedCommonModule,
         DatePipe,
         TranslateModule
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
 })
 export class WiCloudSharedModule {

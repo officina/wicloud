@@ -10,7 +10,7 @@ import { EnergyMeterModuleWilampService } from './energy-meter-module-wilamp.ser
 
 @Component({
     selector: 'jhi-energy-meter-module-wilamp-delete-dialog',
-    templateUrl: './energy-meter-module-wilamp-delete-dialog.component.html'
+    templateUrl: './energy-meter-module-wilamp-delete-dialog.component.html',
 })
 export class EnergyMeterModuleWilampDeleteDialogComponent {
 
@@ -19,7 +19,7 @@ export class EnergyMeterModuleWilampDeleteDialogComponent {
     constructor(
         private energyMeterModuleService: EnergyMeterModuleWilampService,
         public activeModal: NgbActiveModal,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
     }
 
@@ -31,7 +31,7 @@ export class EnergyMeterModuleWilampDeleteDialogComponent {
         this.energyMeterModuleService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'energyMeterModuleListModification',
-                content: 'Deleted an energyMeterModule'
+                content: 'Deleted an energyMeterModule',
             });
             this.activeModal.dismiss(true);
         });
@@ -40,7 +40,7 @@ export class EnergyMeterModuleWilampDeleteDialogComponent {
 
 @Component({
     selector: 'jhi-energy-meter-module-wilamp-delete-popup',
-    template: ''
+    template: '',
 })
 export class EnergyMeterModuleWilampDeletePopupComponent implements OnInit, OnDestroy {
 
@@ -48,7 +48,7 @@ export class EnergyMeterModuleWilampDeletePopupComponent implements OnInit, OnDe
 
     constructor(
         private route: ActivatedRoute,
-        private energyMeterModulePopupService: EnergyMeterModuleWilampPopupService
+        private energyMeterModulePopupService: EnergyMeterModuleWilampPopupService,
     ) {}
 
     ngOnInit() {

@@ -15,7 +15,7 @@ import { LightManagementModuleWilamp, LightManagementModuleWilampService } from 
 
 @Component({
     selector: 'jhi-light-management-measure-wilamp-dialog',
-    templateUrl: './light-management-measure-wilamp-dialog.component.html'
+    templateUrl: './light-management-measure-wilamp-dialog.component.html',
 })
 export class LightManagementMeasureWilampDialogComponent implements OnInit {
 
@@ -29,7 +29,7 @@ export class LightManagementMeasureWilampDialogComponent implements OnInit {
         private jhiAlertService: JhiAlertService,
         private lightManagementMeasureService: LightManagementMeasureWilampService,
         private lightManagementModuleService: LightManagementModuleWilampService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
     }
 
@@ -80,7 +80,7 @@ export class LightManagementMeasureWilampDialogComponent implements OnInit {
 
 @Component({
     selector: 'jhi-light-management-measure-wilamp-popup',
-    template: ''
+    template: '',
 })
 export class LightManagementMeasureWilampPopupComponent implements OnInit, OnDestroy {
 
@@ -88,7 +88,7 @@ export class LightManagementMeasureWilampPopupComponent implements OnInit, OnDes
 
     constructor(
         private route: ActivatedRoute,
-        private lightManagementMeasurePopupService: LightManagementMeasureWilampPopupService
+        private lightManagementMeasurePopupService: LightManagementMeasureWilampPopupService,
     ) {}
 
     ngOnInit() {

@@ -33,7 +33,7 @@ class AddressAdmin(UserAdminMixin, import_export_admin.ImportExportModelAdmin):
     #         'fields': ('creator', 'created_date', 'last_modifier', 'last_modified_date')
     #     }),
     # )
-    list_display = ('id', 'fullName','description', 'city', 'country', 'lat', 'lng', 'installation')
+    list_display = ('id', 'fullName','description', 'city', 'country', 'lat', 'lng')
     readonly_fields = ('creator', 'created_date', 'last_modifier', 'last_modified_date')
 
 

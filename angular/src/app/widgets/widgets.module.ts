@@ -23,7 +23,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCoffee, faStroopwafel, faCalendar, faBraille, faBrush, faPaintBrush, faPaintRoller } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { faArrowAltRight, faLightbulb, faHeading, faLightbulbOn, faInfoCircle, } from '@fortawesome/pro-light-svg-icons';
+import { faArrowAltRight, faLightbulb, faHeading, faLightbulbOn, faInfoCircle } from '@fortawesome/pro-light-svg-icons';
 import { faPalette, faLayerGroup } from '@fortawesome/pro-solid-svg-icons';
 import {GatewayAdministrationWebsiteWidgetComponent} from './gateway-administration-website-widget/gateway-administration-website-widget.component';
 import {UnwrapTagDirective} from './_directives/unwrap-tag.directive';
@@ -39,7 +39,7 @@ library.add(faCoffee, faStroopwafel, faCalendar, faHeading, faLayerGroup, faInfo
             // set below to true to make alerts look like toast
             alertAsToast: false,
             i18nEnabled: true,
-            defaultI18nLang: 'en'
+            defaultI18nLang: 'en',
         }),
         FontAwesomeModule,
         FormsModule,
@@ -55,7 +55,7 @@ library.add(faCoffee, faStroopwafel, faCalendar, faHeading, faLayerGroup, faInfo
         MatRadioModule,
         NpnSliderModule,
         LeafletModule,
-        MatFormFieldModule
+        MatFormFieldModule,
     ],
     providers: [
 
@@ -73,7 +73,7 @@ library.add(faCoffee, faStroopwafel, faCalendar, faHeading, faLayerGroup, faInfo
         FullLeafletMapWidgetComponent,
         /*MapInstanceGetterComponent,*/
         GatewayAdministrationWidgetComponent,
-        GatewayAdministrationWebsiteWidgetComponent
+        GatewayAdministrationWebsiteWidgetComponent,
     ],
     exports: [
         EnergyConsumptionSmallGraphWidgetComponent,
@@ -84,7 +84,7 @@ library.add(faCoffee, faStroopwafel, faCalendar, faHeading, faLayerGroup, faInfo
         FullLeafletMapWidgetComponent,
         /*MapInstanceGetterComponent,*/
         GatewayAdministrationWidgetComponent,
-        GatewayAdministrationWebsiteWidgetComponent
-    ]
+        GatewayAdministrationWebsiteWidgetComponent,
+    ],
 })
 export class WidgetsModule {}

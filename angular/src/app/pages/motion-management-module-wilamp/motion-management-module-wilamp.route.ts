@@ -5,7 +5,7 @@ import { MotionManagementModuleWilampComponent } from './motion-management-modul
 import { MotionManagementModuleWilampDetailComponent } from './motion-management-module-wilamp-detail.component';
 import { MotionManagementModuleWilampPopupComponent } from './motion-management-module-wilamp-dialog.component';
 import {
-    MotionManagementModuleWilampDeletePopupComponent
+    MotionManagementModuleWilampDeletePopupComponent,
 } from './motion-management-module-wilamp-delete-dialog.component';
 import {PagesComponent} from '../pages.component';
 
@@ -19,20 +19,20 @@ export const motionManagementModuleRoute: Routes = [
                 component: MotionManagementModuleWilampComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.motionManagementModule.home.title'
+                    pageTitle: 'wilampCloudApp.motionManagementModule.home.title',
                 },
-                canActivate: [UserRouteAccessService]
+                canActivate: [UserRouteAccessService],
             }, {
                 path: 'motion-management-module-wilamp/:id',
                 component: MotionManagementModuleWilampDetailComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.motionManagementModule.home.title'
+                    pageTitle: 'wilampCloudApp.motionManagementModule.home.title',
                 },
-                canActivate: [UserRouteAccessService]
-            }
-        ]
-    }
+                canActivate: [UserRouteAccessService],
+            },
+        ],
+    },
 ];
 
 export const motionManagementModulePopupRoute: Routes = [
@@ -41,29 +41,29 @@ export const motionManagementModulePopupRoute: Routes = [
         component: MotionManagementModuleWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.motionManagementModule.home.title'
+            pageTitle: 'wilampCloudApp.motionManagementModule.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'motion-management-module-wilamp/:id/edit',
         component: MotionManagementModuleWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.motionManagementModule.home.title'
+            pageTitle: 'wilampCloudApp.motionManagementModule.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'motion-management-module-wilamp/:id/delete',
         component: MotionManagementModuleWilampDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.motionManagementModule.home.title'
+            pageTitle: 'wilampCloudApp.motionManagementModule.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    }
+        outlet: 'popup',
+    },
 ];

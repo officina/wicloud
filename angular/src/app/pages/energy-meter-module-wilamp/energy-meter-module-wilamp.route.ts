@@ -17,20 +17,20 @@ export const energyMeterModuleRoute: Routes = [
                 component: EnergyMeterModuleWilampComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.energyMeterModule.home.title'
+                    pageTitle: 'wilampCloudApp.energyMeterModule.home.title',
                 },
-                canActivate: [UserRouteAccessService]
+                canActivate: [UserRouteAccessService],
             }, {
                 path: 'energy-meter-module-wilamp/:id',
                 component: EnergyMeterModuleWilampDetailComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.energyMeterModule.home.title'
+                    pageTitle: 'wilampCloudApp.energyMeterModule.home.title',
                 },
-                canActivate: [UserRouteAccessService]
-            }
-        ]
-    }
+                canActivate: [UserRouteAccessService],
+            },
+        ],
+    },
 ];
 
 export const energyMeterModulePopupRoute: Routes = [
@@ -39,29 +39,29 @@ export const energyMeterModulePopupRoute: Routes = [
         component: EnergyMeterModuleWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.energyMeterModule.home.title'
+            pageTitle: 'wilampCloudApp.energyMeterModule.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'energy-meter-module-wilamp/:id/edit',
         component: EnergyMeterModuleWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.energyMeterModule.home.title'
+            pageTitle: 'wilampCloudApp.energyMeterModule.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'energy-meter-module-wilamp/:id/delete',
         component: EnergyMeterModuleWilampDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.energyMeterModule.home.title'
+            pageTitle: 'wilampCloudApp.energyMeterModule.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    }
+        outlet: 'popup',
+    },
 ];

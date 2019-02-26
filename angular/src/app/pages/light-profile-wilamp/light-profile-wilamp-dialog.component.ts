@@ -12,7 +12,7 @@ import { LightProfileWilampService } from './light-profile-wilamp.service';
 
 @Component({
     selector: 'jhi-light-profile-wilamp-dialog',
-    templateUrl: './light-profile-wilamp-dialog.component.html'
+    templateUrl: './light-profile-wilamp-dialog.component.html',
 })
 export class LightProfileWilampDialogComponent implements OnInit {
 
@@ -22,7 +22,7 @@ export class LightProfileWilampDialogComponent implements OnInit {
     constructor(
         public activeModal: NgbActiveModal,
         private lightProfileService: LightProfileWilampService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
     }
 
@@ -63,7 +63,7 @@ export class LightProfileWilampDialogComponent implements OnInit {
 
 @Component({
     selector: 'jhi-light-profile-wilamp-popup',
-    template: ''
+    template: '',
 })
 export class LightProfileWilampPopupComponent implements OnInit, OnDestroy {
 
@@ -71,7 +71,7 @@ export class LightProfileWilampPopupComponent implements OnInit, OnDestroy {
 
     constructor(
         private route: ActivatedRoute,
-        private lightProfilePopupService: LightProfileWilampPopupService
+        private lightProfilePopupService: LightProfileWilampPopupService,
     ) {}
 
     ngOnInit() {

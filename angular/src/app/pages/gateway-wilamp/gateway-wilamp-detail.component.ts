@@ -9,7 +9,7 @@ import { GatewayWilampService } from './gateway-wilamp.service';
 
 @Component({
     selector: '.m-grid__item.m-grid__item--fluid.m-wrapper',
-    templateUrl: './gateway-wilamp-detail.component.html'
+    templateUrl: './gateway-wilamp-detail.component.html',
 })
 export class GatewayWilampDetailComponent implements OnInit, OnDestroy {
 
@@ -20,7 +20,7 @@ export class GatewayWilampDetailComponent implements OnInit, OnDestroy {
     constructor(
         private eventManager: JhiEventManager,
         private gatewayService: GatewayWilampService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
     ) {
     }
 
@@ -49,7 +49,7 @@ export class GatewayWilampDetailComponent implements OnInit, OnDestroy {
     registerChangeInGateways() {
         this.eventSubscriber = this.eventManager.subscribe(
             'gatewayListModification',
-            (response) => this.load(this.gateway.id)
+            (response) => this.load(this.gateway.id),
         );
     }
 }

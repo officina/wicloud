@@ -17,20 +17,20 @@ export const nodeModulesRoute: Routes = [
                 component: NodeModulesWilampComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.nodeModules.home.title'
+                    pageTitle: 'wilampCloudApp.nodeModules.home.title',
                 },
-                canActivate: [UserRouteAccessService]
+                canActivate: [UserRouteAccessService],
             }, {
                 path: 'node-modules-wilamp/:id',
                 component: NodeModulesWilampDetailComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.nodeModules.home.title'
+                    pageTitle: 'wilampCloudApp.nodeModules.home.title',
                 },
-                canActivate: [UserRouteAccessService]
-            }
-        ]
-    }
+                canActivate: [UserRouteAccessService],
+            },
+        ],
+    },
 ];
 
 export const nodeModulesPopupRoute: Routes = [
@@ -39,29 +39,29 @@ export const nodeModulesPopupRoute: Routes = [
         component: NodeModulesWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.nodeModules.home.title'
+            pageTitle: 'wilampCloudApp.nodeModules.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'node-modules-wilamp/:id/edit',
         component: NodeModulesWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.nodeModules.home.title'
+            pageTitle: 'wilampCloudApp.nodeModules.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'node-modules-wilamp/:id/delete',
         component: NodeModulesWilampDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.nodeModules.home.title'
+            pageTitle: 'wilampCloudApp.nodeModules.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    }
+        outlet: 'popup',
+    },
 ];

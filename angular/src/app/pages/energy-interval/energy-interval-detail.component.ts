@@ -9,7 +9,7 @@ import { EnergyIntervalService } from './energy-interval.service';
 
 @Component({
     selector: 'jhi-energy-interval-detail',
-    templateUrl: './energy-interval-detail.component.html'
+    templateUrl: './energy-interval-detail.component.html',
 })
 export class EnergyIntervalDetailComponent implements OnInit, OnDestroy {
 
@@ -20,7 +20,7 @@ export class EnergyIntervalDetailComponent implements OnInit, OnDestroy {
     constructor(
         private eventManager: JhiEventManager,
         private energyIntervalService: EnergyIntervalService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
     ) {
     }
 
@@ -49,7 +49,7 @@ export class EnergyIntervalDetailComponent implements OnInit, OnDestroy {
     registerChangeInEnergyIntervals() {
         this.eventSubscriber = this.eventManager.subscribe(
             'energyIntervalListModification',
-            (response) => this.load(this.energyInterval.id)
+            (response) => this.load(this.energyInterval.id),
         );
     }
 }

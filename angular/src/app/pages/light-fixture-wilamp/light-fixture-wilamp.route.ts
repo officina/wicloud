@@ -17,20 +17,20 @@ export const lightFixtureRoute: Routes = [
                 component: LightFixtureWilampComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.lightFixture.home.title'
+                    pageTitle: 'wilampCloudApp.lightFixture.home.title',
                 },
-                canActivate: [UserRouteAccessService]
+                canActivate: [UserRouteAccessService],
             }, {
                 path: 'light-fixture-wilamp/:id',
                 component: LightFixtureWilampDetailComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.lightFixture.home.title'
+                    pageTitle: 'wilampCloudApp.lightFixture.home.title',
                 },
-                canActivate: [UserRouteAccessService]
-            }
-        ]
-    }
+                canActivate: [UserRouteAccessService],
+            },
+        ],
+    },
 ];
 
 
@@ -40,29 +40,29 @@ export const lightFixturePopupRoute: Routes = [
         component: LightFixtureWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.lightFixture.home.title'
+            pageTitle: 'wilampCloudApp.lightFixture.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'light-fixture-wilamp/:id/edit',
         component: LightFixtureWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.lightFixture.home.title'
+            pageTitle: 'wilampCloudApp.lightFixture.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'light-fixture-wilamp/:id/delete',
         component: LightFixtureWilampDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.lightFixture.home.title'
+            pageTitle: 'wilampCloudApp.lightFixture.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    }
+        outlet: 'popup',
+    },
 ];

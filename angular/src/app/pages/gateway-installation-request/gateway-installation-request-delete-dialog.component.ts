@@ -10,7 +10,7 @@ import { GatewayInstallationRequestService } from './gateway-installation-reques
 
 @Component({
     selector: 'jhi-gateway-installation-request-delete-dialog',
-    templateUrl: './gateway-installation-request-delete-dialog.component.html'
+    templateUrl: './gateway-installation-request-delete-dialog.component.html',
 })
 export class GatewayInstallationRequestDeleteDialogComponent {
 
@@ -19,7 +19,7 @@ export class GatewayInstallationRequestDeleteDialogComponent {
     constructor(
         private gatewayInstallationRequestService: GatewayInstallationRequestService,
         public activeModal: NgbActiveModal,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
     }
 
@@ -31,7 +31,7 @@ export class GatewayInstallationRequestDeleteDialogComponent {
         this.gatewayInstallationRequestService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'gatewayInstallationRequestListModification',
-                content: 'Deleted an gatewayInstallationRequest'
+                content: 'Deleted an gatewayInstallationRequest',
             });
             this.activeModal.dismiss(true);
         });
@@ -40,7 +40,7 @@ export class GatewayInstallationRequestDeleteDialogComponent {
 
 @Component({
     selector: 'jhi-gateway-installation-request-delete-popup',
-    template: ''
+    template: '',
 })
 export class GatewayInstallationRequestDeletePopupComponent implements OnInit, OnDestroy {
 
@@ -48,7 +48,7 @@ export class GatewayInstallationRequestDeletePopupComponent implements OnInit, O
 
     constructor(
         private route: ActivatedRoute,
-        private gatewayInstallationRequestPopupService: GatewayInstallationRequestPopupService
+        private gatewayInstallationRequestPopupService: GatewayInstallationRequestPopupService,
     ) {}
 
     ngOnInit() {

@@ -15,7 +15,7 @@ import { NodeModulesWilamp, NodeModulesWilampService } from '../node-modules-wil
 
 @Component({
     selector: 'jhi-motion-management-module-wilamp-dialog',
-    templateUrl: './motion-management-module-wilamp-dialog.component.html'
+    templateUrl: './motion-management-module-wilamp-dialog.component.html',
 })
 export class MotionManagementModuleWilampDialogComponent implements OnInit {
 
@@ -29,7 +29,7 @@ export class MotionManagementModuleWilampDialogComponent implements OnInit {
         private jhiAlertService: JhiAlertService,
         private motionManagementModuleService: MotionManagementModuleWilampService,
         private nodeModulesService: NodeModulesWilampService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
     }
 
@@ -80,7 +80,7 @@ export class MotionManagementModuleWilampDialogComponent implements OnInit {
 
 @Component({
     selector: 'jhi-motion-management-module-wilamp-popup',
-    template: ''
+    template: '',
 })
 export class MotionManagementModuleWilampPopupComponent implements OnInit, OnDestroy {
 
@@ -88,7 +88,7 @@ export class MotionManagementModuleWilampPopupComponent implements OnInit, OnDes
 
     constructor(
         private route: ActivatedRoute,
-        private motionManagementModulePopupService: MotionManagementModuleWilampPopupService
+        private motionManagementModulePopupService: MotionManagementModuleWilampPopupService,
     ) {}
 
     ngOnInit() {

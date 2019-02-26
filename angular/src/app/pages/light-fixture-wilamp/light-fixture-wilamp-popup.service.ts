@@ -12,7 +12,7 @@ export class LightFixtureWilampPopupService {
     constructor(
         private modalService: NgbModal,
         private router: Router,
-        private lightFixtureService: LightFixtureWilampService
+        private lightFixtureService: LightFixtureWilampService,
 
     ) {
         this.ngbModalRef = null;

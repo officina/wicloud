@@ -17,20 +17,20 @@ export const addressRoute: Routes = [
                 component: AddressWilampComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.address.home.title'
+                    pageTitle: 'wilampCloudApp.address.home.title',
                 },
-                canActivate: [UserRouteAccessService]
+                canActivate: [UserRouteAccessService],
             }, {
                 path: 'address-wilamp/:id',
                 component: AddressWilampDetailComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.address.home.title'
+                    pageTitle: 'wilampCloudApp.address.home.title',
                 },
-                canActivate: [UserRouteAccessService]
-            }
-        ]
-    }
+                canActivate: [UserRouteAccessService],
+            },
+        ],
+    },
 
 ];
 
@@ -40,29 +40,29 @@ export const addressPopupRoute: Routes = [
         component: AddressWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.address.home.title'
+            pageTitle: 'wilampCloudApp.address.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'address-wilamp/:id/edit',
         component: AddressWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.address.home.title'
+            pageTitle: 'wilampCloudApp.address.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'address-wilamp/:id/delete',
         component: AddressWilampDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.address.home.title'
+            pageTitle: 'wilampCloudApp.address.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    }
+        outlet: 'popup',
+    },
 ];

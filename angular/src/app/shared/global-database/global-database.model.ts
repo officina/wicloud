@@ -1,15 +1,17 @@
 import {
     EnergyStatisticsByResourceId,
     EnergyStatisticsRowByInterval,
-    InstallationWilamp
+    InstallationWilamp,
 } from '../../pages/installation-wilamp';
 import {CustomerWilamp} from '../../pages/customer-wilamp';
 import {AddressWilamp} from '../../pages/address-wilamp';
 import {NodeWilamp} from '../../pages/node-wilamp';
 import {GatewayWilamp} from '../../pages/gateway-wilamp';
 import {Helpers} from '../helpers';
+import {LightFixtureWilamp} from '../../pages/light-fixture-wilamp';
 
 /**
+ * TODO: Implement with https://netbasal.com/introducing-akita-a-new-state-management-pattern-for-angular-applications-f2f0fab5a8
  * Interval Energy consumption could contain sub intervals, in the content variable.
  * This is useful to model, for example, the statisticsByWeek, where data contains the vector with the values of each day of week and
  * average and total contains the value of the measures of the full week.
@@ -136,7 +138,9 @@ export class InstallationDatabase {
     public customer: CustomerWilamp;
     public address: AddressWilamp;
     public nodes: NodeWilamp[] = [];
+    public lightFixtures: LightFixtureWilamp[] = [];
     public nodesCount: number;
+    public lightFixturesCount: number;
     public gateways: GatewayWilamp[] = [];
     public gatewaysCount: number;
     public energyStatistics = new InstallationEnergyStatistics();
@@ -148,7 +152,7 @@ export class InstallationDatabase {
     private ___statisticsByNodeId: EnergyStatisticsByResourceId[];
 
     constructor(
-        public installationId
+        public installationId,
     ) {
     }
 

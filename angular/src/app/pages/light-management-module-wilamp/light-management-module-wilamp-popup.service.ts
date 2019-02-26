@@ -12,7 +12,7 @@ export class LightManagementModuleWilampPopupService {
     constructor(
         private modalService: NgbModal,
         private router: Router,
-        private lightManagementModuleService: LightManagementModuleWilampService
+        private lightManagementModuleService: LightManagementModuleWilampService,
 
     ) {
         this.ngbModalRef = null;

@@ -9,7 +9,7 @@ import { GatewayInstallationRequestService } from './gateway-installation-reques
 
 @Component({
     selector: 'jhi-gateway-installation-request-detail',
-    templateUrl: './gateway-installation-request-detail.component.html'
+    templateUrl: './gateway-installation-request-detail.component.html',
 })
 export class GatewayInstallationRequestDetailComponent implements OnInit, OnDestroy {
 
@@ -20,7 +20,7 @@ export class GatewayInstallationRequestDetailComponent implements OnInit, OnDest
     constructor(
         private eventManager: JhiEventManager,
         private gatewayInstallationRequestService: GatewayInstallationRequestService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
     ) {
     }
 
@@ -49,7 +49,7 @@ export class GatewayInstallationRequestDetailComponent implements OnInit, OnDest
     registerChangeInGatewayInstallationRequests() {
         this.eventSubscriber = this.eventManager.subscribe(
             'gatewayInstallationRequestListModification',
-            (response) => this.load(this.gatewayInstallationRequest.id)
+            (response) => this.load(this.gatewayInstallationRequest.id),
         );
     }
 }

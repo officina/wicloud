@@ -2,14 +2,14 @@ import {Component} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 @Component({
     selector: 'gateway-administration-component',
-    template: '<div [innerHTML]="fetchedHtml"></div>'
+    template: '<div [innerHTML]="fetchedHtml"></div>',
 })
 export class GatewayAdministrationWidgetComponent {
 
     public fetchedHtml = '';
 
     constructor(
-        private http: HttpClient
+        private http: HttpClient,
     ) {
         const headers = new Headers();
         headers.append('x-forwarded-host', 'foo');

@@ -1,7 +1,7 @@
 import {AfterViewInit, Directive, ElementRef, HostListener, Input} from '@angular/core';
 
 @Directive({
-    selector: '[href]'
+    selector: '[href]',
 })
 export class HrefPreventDefaultDirective implements AfterViewInit {
     @Input() href: string;

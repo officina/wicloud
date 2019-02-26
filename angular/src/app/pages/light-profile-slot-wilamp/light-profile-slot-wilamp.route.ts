@@ -17,20 +17,20 @@ export const lightProfileSlotRoute: Routes = [
                 component: LightProfileSlotWilampComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.lightProfileSlot.home.title'
+                    pageTitle: 'wilampCloudApp.lightProfileSlot.home.title',
                 },
-                canActivate: [UserRouteAccessService]
+                canActivate: [UserRouteAccessService],
             }, {
                 path: 'light-profile-slot-wilamp/:id',
                 component: LightProfileSlotWilampDetailComponent,
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'wilampCloudApp.lightProfileSlot.home.title'
+                    pageTitle: 'wilampCloudApp.lightProfileSlot.home.title',
                 },
-                canActivate: [UserRouteAccessService]
-            }
-        ]
-    }
+                canActivate: [UserRouteAccessService],
+            },
+        ],
+    },
 ];
 
 export const lightProfileSlotPopupRoute: Routes = [
@@ -39,29 +39,29 @@ export const lightProfileSlotPopupRoute: Routes = [
         component: LightProfileSlotWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.lightProfileSlot.home.title'
+            pageTitle: 'wilampCloudApp.lightProfileSlot.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'light-profile-slot-wilamp/:id/edit',
         component: LightProfileSlotWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.lightProfileSlot.home.title'
+            pageTitle: 'wilampCloudApp.lightProfileSlot.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
+        outlet: 'popup',
     },
     {
         path: 'light-profile-slot-wilamp/:id/delete',
         component: LightProfileSlotWilampDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'wilampCloudApp.lightProfileSlot.home.title'
+            pageTitle: 'wilampCloudApp.lightProfileSlot.home.title',
         },
         canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    }
+        outlet: 'popup',
+    },
 ];

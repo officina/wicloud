@@ -10,7 +10,7 @@ import { ShippingWilampService } from './shipping-wilamp.service';
 
 @Component({
     selector: 'jhi-shipping-wilamp-delete-dialog',
-    templateUrl: './shipping-wilamp-delete-dialog.component.html'
+    templateUrl: './shipping-wilamp-delete-dialog.component.html',
 })
 export class ShippingWilampDeleteDialogComponent {
 
@@ -19,7 +19,7 @@ export class ShippingWilampDeleteDialogComponent {
     constructor(
         private shippingService: ShippingWilampService,
         public activeModal: NgbActiveModal,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
     }
 
@@ -31,7 +31,7 @@ export class ShippingWilampDeleteDialogComponent {
         this.shippingService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'shippingListModification',
-                content: 'Deleted an shipping'
+                content: 'Deleted an shipping',
             });
             this.activeModal.dismiss(true);
         });
@@ -40,7 +40,7 @@ export class ShippingWilampDeleteDialogComponent {
 
 @Component({
     selector: 'jhi-shipping-wilamp-delete-popup',
-    template: ''
+    template: '',
 })
 export class ShippingWilampDeletePopupComponent implements OnInit, OnDestroy {
 
@@ -48,7 +48,7 @@ export class ShippingWilampDeletePopupComponent implements OnInit, OnDestroy {
 
     constructor(
         private route: ActivatedRoute,
-        private shippingPopupService: ShippingWilampPopupService
+        private shippingPopupService: ShippingWilampPopupService,
     ) {}
 
     ngOnInit() {

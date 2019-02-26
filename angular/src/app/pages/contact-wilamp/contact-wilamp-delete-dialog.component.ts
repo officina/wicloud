@@ -10,7 +10,7 @@ import { ContactWilampService } from './contact-wilamp.service';
 
 @Component({
     selector: 'jhi-contact-wilamp-delete-dialog',
-    templateUrl: './contact-wilamp-delete-dialog.component.html'
+    templateUrl: './contact-wilamp-delete-dialog.component.html',
 })
 export class ContactWilampDeleteDialogComponent {
 
@@ -19,7 +19,7 @@ export class ContactWilampDeleteDialogComponent {
     constructor(
         private contactService: ContactWilampService,
         public activeModal: NgbActiveModal,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
     }
 
@@ -31,7 +31,7 @@ export class ContactWilampDeleteDialogComponent {
         this.contactService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'contactListModification',
-                content: 'Deleted an contact'
+                content: 'Deleted an contact',
             });
             this.activeModal.dismiss(true);
         });
@@ -40,7 +40,7 @@ export class ContactWilampDeleteDialogComponent {
 
 @Component({
     selector: 'jhi-contact-wilamp-delete-popup',
-    template: ''
+    template: '',
 })
 export class ContactWilampDeletePopupComponent implements OnInit, OnDestroy {
 
@@ -48,7 +48,7 @@ export class ContactWilampDeletePopupComponent implements OnInit, OnDestroy {
 
     constructor(
         private route: ActivatedRoute,
-        private contactPopupService: ContactWilampPopupService
+        private contactPopupService: ContactWilampPopupService,
     ) {}
 
     ngOnInit() {

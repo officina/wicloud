@@ -15,7 +15,7 @@ import { NodeModulesWilamp, NodeModulesWilampService } from '../node-modules-wil
 
 @Component({
     selector: 'jhi-energy-meter-module-wilamp-dialog',
-    templateUrl: './energy-meter-module-wilamp-dialog.component.html'
+    templateUrl: './energy-meter-module-wilamp-dialog.component.html',
 })
 export class EnergyMeterModuleWilampDialogComponent implements OnInit {
 
@@ -29,7 +29,7 @@ export class EnergyMeterModuleWilampDialogComponent implements OnInit {
         private jhiAlertService: JhiAlertService,
         private energyMeterModuleService: EnergyMeterModuleWilampService,
         private nodeModulesService: NodeModulesWilampService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
     }
 
@@ -80,7 +80,7 @@ export class EnergyMeterModuleWilampDialogComponent implements OnInit {
 
 @Component({
     selector: 'jhi-energy-meter-module-wilamp-popup',
-    template: ''
+    template: '',
 })
 export class EnergyMeterModuleWilampPopupComponent implements OnInit, OnDestroy {
 
@@ -88,7 +88,7 @@ export class EnergyMeterModuleWilampPopupComponent implements OnInit, OnDestroy 
 
     constructor(
         private route: ActivatedRoute,
-        private energyMeterModulePopupService: EnergyMeterModuleWilampPopupService
+        private energyMeterModulePopupService: EnergyMeterModuleWilampPopupService,
     ) {}
 
     ngOnInit() {

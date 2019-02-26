@@ -4,6 +4,7 @@ import {ThemeModule} from '../../@theme/theme.module';
 import { DetailComponent } from './detail/detail.component';
 import {NbBadgeModule} from '@nebular/theme';
 import { WiCloudSharedModule } from '../../shared/shared.module';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 
 const PAGES_COMPONENTS = [
@@ -15,7 +16,8 @@ const PAGES_COMPONENTS = [
   imports: [
       ThemeModule,
       NbBadgeModule,
-      WiCloudSharedModule
+      WiCloudSharedModule,
+      LeafletModule
   ],
   declarations: [
     ...PAGES_COMPONENTS,

@@ -10,7 +10,7 @@ import { AddressWilampService } from './address-wilamp.service';
 
 @Component({
     selector: 'jhi-address-wilamp-delete-dialog',
-    templateUrl: './address-wilamp-delete-dialog.component.html'
+    templateUrl: './address-wilamp-delete-dialog.component.html',
 })
 export class AddressWilampDeleteDialogComponent {
 
@@ -19,7 +19,7 @@ export class AddressWilampDeleteDialogComponent {
     constructor(
         private addressService: AddressWilampService,
         public activeModal: NgbActiveModal,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
     }
 
@@ -31,7 +31,7 @@ export class AddressWilampDeleteDialogComponent {
         this.addressService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'addressListModification',
-                content: 'Deleted an address'
+                content: 'Deleted an address',
             });
             this.activeModal.dismiss(true);
         });
@@ -40,7 +40,7 @@ export class AddressWilampDeleteDialogComponent {
 
 @Component({
     selector: 'jhi-address-wilamp-delete-popup',
-    template: ''
+    template: '',
 })
 export class AddressWilampDeletePopupComponent implements OnInit, OnDestroy {
 
@@ -48,7 +48,7 @@ export class AddressWilampDeletePopupComponent implements OnInit, OnDestroy {
 
     constructor(
         private route: ActivatedRoute,
-        private addressPopupService: AddressWilampPopupService
+        private addressPopupService: AddressWilampPopupService,
     ) {}
 
     ngOnInit() {

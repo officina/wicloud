@@ -10,7 +10,7 @@ import { LightManagementMeasureWilampService } from './light-management-measure-
 
 @Component({
     selector: 'jhi-light-management-measure-wilamp-delete-dialog',
-    templateUrl: './light-management-measure-wilamp-delete-dialog.component.html'
+    templateUrl: './light-management-measure-wilamp-delete-dialog.component.html',
 })
 export class LightManagementMeasureWilampDeleteDialogComponent {
 
@@ -19,7 +19,7 @@ export class LightManagementMeasureWilampDeleteDialogComponent {
     constructor(
         private lightManagementMeasureService: LightManagementMeasureWilampService,
         public activeModal: NgbActiveModal,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
     }
 
@@ -31,7 +31,7 @@ export class LightManagementMeasureWilampDeleteDialogComponent {
         this.lightManagementMeasureService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'lightManagementMeasureListModification',
-                content: 'Deleted an lightManagementMeasure'
+                content: 'Deleted an lightManagementMeasure',
             });
             this.activeModal.dismiss(true);
         });
@@ -40,7 +40,7 @@ export class LightManagementMeasureWilampDeleteDialogComponent {
 
 @Component({
     selector: 'jhi-light-management-measure-wilamp-delete-popup',
-    template: ''
+    template: '',
 })
 export class LightManagementMeasureWilampDeletePopupComponent implements OnInit, OnDestroy {
 
@@ -48,7 +48,7 @@ export class LightManagementMeasureWilampDeletePopupComponent implements OnInit,
 
     constructor(
         private route: ActivatedRoute,
-        private lightManagementMeasurePopupService: LightManagementMeasureWilampPopupService
+        private lightManagementMeasurePopupService: LightManagementMeasureWilampPopupService,
     ) {}
 
     ngOnInit() {

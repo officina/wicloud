@@ -24,7 +24,7 @@ import { NodeWilampService } from '../node-wilamp/node-wilamp.service';
 
 @Component({
     selector: 'jhi-node-modules-wilamp-dialog',
-    templateUrl: './node-modules-wilamp-dialog.component.html'
+    templateUrl: './node-modules-wilamp-dialog.component.html',
 })
 export class NodeModulesWilampDialogComponent implements OnInit {
 
@@ -50,7 +50,7 @@ export class NodeModulesWilampDialogComponent implements OnInit {
         private twilightManagementModuleService: TwilightManagementModuleWilampService,
         private motionManagementModuleService: MotionManagementModuleWilampService,
         private nodeService: NodeWilampService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
     }
 
@@ -169,7 +169,7 @@ export class NodeModulesWilampDialogComponent implements OnInit {
 
 @Component({
     selector: 'jhi-node-modules-wilamp-popup',
-    template: ''
+    template: '',
 })
 export class NodeModulesWilampPopupComponent implements OnInit, OnDestroy {
 
@@ -177,7 +177,7 @@ export class NodeModulesWilampPopupComponent implements OnInit, OnDestroy {
 
     constructor(
         private route: ActivatedRoute,
-        private nodeModulesPopupService: NodeModulesWilampPopupService
+        private nodeModulesPopupService: NodeModulesWilampPopupService,
     ) {}
 
     ngOnInit() {

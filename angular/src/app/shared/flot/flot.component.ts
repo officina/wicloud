@@ -5,12 +5,12 @@ import {
     ChangeDetectionStrategy,
     OnChanges,
     ElementRef,
-    SimpleChanges, OnInit, HostListener, OnDestroy
+    SimpleChanges, OnInit, HostListener, OnDestroy,
 } from '@angular/core';
 import {
     GLOBALDATABASE__INSTALLATION_WEEKLY_STATISTICS_FETCHED,
     INSTALLATION__LIST_MODIFICATION,
-    INSTALLATION__SELECTED_ID_CHANGED
+    INSTALLATION__SELECTED_ID_CHANGED,
 } from '../constants/events.constants';
 import {JhiEventManager} from 'ng-jhipster';
 import {Subscription} from 'rxjs/Rx';
@@ -24,7 +24,7 @@ declare var $: any;
 @Component({
     selector: 'flot-graph',
     template: `<div>Loading...</div>`,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FlotGraphComponent implements OnChanges, OnInit, OnDestroy {
     static initialized = false;
@@ -51,7 +51,7 @@ export class FlotGraphComponent implements OnChanges, OnInit, OnDestroy {
             this.plotArea = $(this.el.nativeElement).find('div').empty();
             this.plotArea.css({
                 width: this.width,
-                height: this.height
+                height: this.height,
             });
             this.plotGraph();
 
@@ -108,7 +108,7 @@ export class FlotGraphComponent implements OnChanges, OnInit, OnDestroy {
                             }
                             this.plotGraph();
                         }
-                    }
+                    },
                 );
             }
         } catch (Exception) { }

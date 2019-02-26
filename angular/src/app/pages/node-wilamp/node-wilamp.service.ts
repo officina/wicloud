@@ -39,7 +39,7 @@ export class NodeWilampService {
 
     findByInstallation(installationId: number, req?: any): Observable<HttpResponse<NodeWilamp[]>> {
         const options = createRequestOption(req);
-        return this.http.get(`${this.resourceUrl}/byInstallationWithFullInfo/${installationId}`, { params: options, observe: 'response' }).pipe(
+        return this.http.get(`${this.resourceUrl}-by-installation/${installationId}`, { params: options, observe: 'response' }).pipe(
             map((res: HttpResponse<NodeWilamp[]>)  => this.convertArrayResponse(res)));
     }
 

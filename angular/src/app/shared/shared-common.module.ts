@@ -13,27 +13,27 @@ import { JhiAlertErrorComponent } from './alert/alert-error.component';
 
 @NgModule({
     imports: [
-        WilampCloudSharedLibsModule
+        WilampCloudSharedLibsModule,
     ],
     declarations: [
         FindLanguageFromKeyPipe,
         JhiAlertComponent,
-        JhiAlertErrorComponent
+        JhiAlertErrorComponent,
     ],
     providers: [
         JhiLanguageHelper,
         Title,
         {
             provide: LOCALE_ID,
-            useValue: 'en'
+            useValue: 'en',
         },
     ],
     exports: [
         WilampCloudSharedLibsModule,
         FindLanguageFromKeyPipe,
         JhiAlertComponent,
-        JhiAlertErrorComponent
-    ]
+        JhiAlertErrorComponent,
+    ],
 })
 export class WilampCloudSharedCommonModule {
     constructor() {

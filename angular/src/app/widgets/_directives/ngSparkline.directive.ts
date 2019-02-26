@@ -3,7 +3,7 @@ require('jquery-sparkline');
 declare var sparkline: any;
 
 @Directive({
-    selector: '[sparkline]'
+    selector: '[sparkline]',
 })
 export class NgSparklineDirective implements AfterViewInit {
     @Input() data: any;

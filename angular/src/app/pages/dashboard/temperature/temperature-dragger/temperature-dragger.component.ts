@@ -1,14 +1,14 @@
 import {
-  HostListener, ViewChild, ElementRef, Input, Output, EventEmitter, AfterViewInit, OnChanges,
+  Component, HostListener, ViewChild, ElementRef, Input, Output, EventEmitter, AfterViewInit, OnChanges,
 } from '@angular/core';
 
 const VIEW_BOX_SIZE = 300;
 
-/*@Component({
+@Component({
   selector: 'ngx-temperature-dragger',
-  template: `<div>Missing Component</div>`,
+  templateUrl: './temperature-dragger.component.html',
   styleUrls: ['./temperature-dragger.component.scss'],
-})*/
+})
 export class TemperatureDraggerComponent implements AfterViewInit, OnChanges {
 
   @ViewChild('svgRoot') svgRoot: ElementRef;
@@ -22,7 +22,7 @@ export class TemperatureDraggerComponent implements AfterViewInit, OnChanges {
   @Input() maxLeap = 0.4;
 
   value = 50;
-  @Output('valueChange') valueChange = new EventEmitter<Number>();
+  @Output() valueChange = new EventEmitter<Number>();
   @Input('value') set setValue(value) {
     this.value = value;
   }
@@ -125,7 +125,7 @@ export class TemperatureDraggerComponent implements AfterViewInit, OnChanges {
     // TODO: review set data to styles object
     setTimeout(() => {
       this.invalidateGradientArcs();
-    })
+    });
   }
 
   private calculateVars() {

@@ -5,25 +5,28 @@ import {
     GLOBALDATABASE__GATEWAYS_FETCHED, GLOBALDATABASE__INSTALLATION_FETCHED,
     GLOBALDATABASE__INSTALLATION_STATISTICS_BY_NODEID_FETCHED,
     GLOBALDATABASE__INSTALLATION_WEEKLY_STATISTICS_FETCHED, GLOBALDATABASE__INSTALLATION_WEEKLY_STATISTICS_FETCHING,
-    GLOBALDATABASE__NODES_FETCHED,
+    GLOBALDATABASE__LIGHT_FIXTURES_FETCHED,
     INSTALLATION__LIST_MODIFICATION,
     INSTALLATION__SELECTED_ID_CHANGED,
     INSTALLATION__SELECTED_INSTALLATION_CHANGED,
     INSTALLATION_DASHBOARD__DAILY_STATISTICS_FETCHED,
     INSTALLATION_DASHBOARD__MONTHLY_STATISTICS_FETCHED, INSTALLATION_DASHBOARD__WEEKLY_STATISTICS_FETCHED,
-    MAP_INSTANCE_GETTER__MAP_OBTAINED
+    MAP_INSTANCE_GETTER__MAP_OBTAINED,
 } from '../constants/events.constants';
 import {JhiEventManager} from 'ng-jhipster';
 import {Subscription} from 'rxjs/Rx';
 import {InstallationDatabase, IntervalEnergyConsumption} from './global-database.model';
 import {Helpers, Principal} from '../';
 import {KWtoCO2Factor} from '../constants/graph.constants';
-import {LightProfileWilamp, LightProfileWilampService} from '../../pages/light-profile-wilamp';
-import {EnergyStatistics, InstallationWilampService} from '../../pages/installation-wilamp';
-import {NodeWilampService} from '../../pages/node-wilamp';
-import {CustomerWilampService} from '../../pages/customer-wilamp';
-import {AddressWilampService} from '../../pages/address-wilamp';
-import {GatewayWilampService} from '../../pages/gateway-wilamp';
+import {LightProfileWilamp} from '../../pages/light-profile-wilamp/light-profile-wilamp.model';
+import {LightProfileWilampService} from '../../pages/light-profile-wilamp/light-profile-wilamp.service';
+import {EnergyStatistics} from '../../pages/installation-wilamp/installation-wilamp.model';
+import {InstallationWilampService} from '../../pages/installation-wilamp/installation-wilamp.service';
+import {NodeWilampService} from '../../pages/node-wilamp/node-wilamp.service';
+import {CustomerWilampService} from '../../pages/customer-wilamp/customer-wilamp.service';
+import {AddressWilampService} from '../../pages/address-wilamp/address-wilamp.service';
+import {GatewayWilampService} from '../../pages/gateway-wilamp/gateway-wilamp.service';
+import {LightFixtureWilampService} from '../../pages/light-fixture-wilamp/light-fixture-wilamp.service';
 declare var window: any;
 
 /***
@@ -44,12 +47,13 @@ export class GlobalDatabaseService {
     constructor(
         private installationService: InstallationWilampService,
         private nodeService: NodeWilampService,
+        private lightFixtureService: LightFixtureWilampService,
         private customerService: CustomerWilampService,
         private addressService: AddressWilampService,
         private gatewayService: GatewayWilampService,
         private lightProfilesService: LightProfileWilampService,
         private eventManager: JhiEventManager,
-        private principal: Principal
+        private principal: Principal,
         ) {
     }
 
@@ -97,12 +101,13 @@ export class GlobalDatabaseService {
                         this.installationDatabase[id].address = address.body;
                         this.eventManager.broadcast({
                             name: GLOBALDATABASE__INSTALLATION_FETCHED,
-                            content: 'Sending Selected Installation Fetched event'
+                            content: 'Sending Selected Installation Fetched event',
                         });
                     });
                 }
-                this.fetchGateways(id, 0, 100);
-                this.fetchNodes(id, 0, 100);
+                this.fetchGateways(id, 1, 100);
+                this.fetchLightFixtures(id, 1, 100);
+                this.fetchNodes(id, 1, 100);
                 const startInterval = new Date();
                 startInterval.setFullYear(1990);
                 this.fetchWeeklyEnergyStatisticsByInstallationId(id, startInterval, new Date(), new Date());
@@ -113,7 +118,7 @@ export class GlobalDatabaseService {
         }
         this.eventManager.broadcast({
             name: INSTALLATION__SELECTED_INSTALLATION_CHANGED,
-            content: 'Sending Selected Installation Changed event'
+            content: 'Sending Selected Installation Changed event',
         });
 
     }
@@ -122,9 +127,9 @@ export class GlobalDatabaseService {
         this.gatewayService.findByInstallation(installationId, {
             page,
             size,
-            sort: ['id,asc']
+            sort: ['id,asc'],
         }).subscribe((res) => {
-            if (page === 0) {
+            if (page === 1) {
                 this.selectedInstallation.gatewaysCount = parseInt(res.headers.get('X-Total-Count'), 10);
                 this.selectedInstallation.gateways = res.body;
 
@@ -135,7 +140,7 @@ export class GlobalDatabaseService {
                 this.installationDatabase[installationId].gateways = this.selectedInstallation.gateways;
                 this.eventManager.broadcast({
                     name: GLOBALDATABASE__GATEWAYS_FETCHED,
-                    content: 'Sending fetch event'
+                    content: 'Sending fetch event',
                 });
             } else {
                 this.fetchGateways(installationId, page + 1, size);
@@ -143,13 +148,39 @@ export class GlobalDatabaseService {
         });
     }
 
+    fetchLightFixtures(installationId, page, size) {
+        this.lightFixtureService.findByInstallation(installationId, {
+            page,
+            size,
+            sort: ['id,asc'],
+        }).subscribe((res) => {
+            if (page === 1) {
+                this.selectedInstallation.nodesCount = parseInt(res.headers.get('X-Total-Count'), 10);
+                this.selectedInstallation.lightFixtures = res.body;
+            } else {
+                this.selectedInstallation.lightFixtures.push.apply(this.selectedInstallation.lightFixtures, res.body);
+            }
+            if (res.body.length === 0) {
+                this.installationDatabase[installationId].lightFixtures = this.selectedInstallation.lightFixtures;
+                this.eventManager.broadcast({
+                    name: GLOBALDATABASE__LIGHT_FIXTURES_FETCHED,
+                    content: 'Sending fetch event',
+                });
+            } else {
+                this.fetchLightFixtures(installationId, page + 1, size);
+            }
+        });
+    }
+
+
+
     fetchNodes(installationId, page, size) {
         this.nodeService.findByInstallation(installationId, {
             page,
             size,
-            sort: ['id,asc']
+            sort: ['id,asc'],
         }).subscribe((res) => {
-            if (page === 0) {
+            if (page === 1) {
                 this.selectedInstallation.nodesCount = parseInt(res.headers.get('X-Total-Count'), 10);
                 this.selectedInstallation.nodes = res.body;
             } else {
@@ -158,8 +189,8 @@ export class GlobalDatabaseService {
             if (res.body.length === 0) {
                 this.installationDatabase[installationId].nodes = this.selectedInstallation.nodes;
                 this.eventManager.broadcast({
-                    name: GLOBALDATABASE__NODES_FETCHED,
-                    content: 'Sending fetch event'
+                    name: GLOBALDATABASE__LIGHT_FIXTURES_FETCHED,
+                    content: 'Sending fetch event',
                 });
             } else {
                 this.fetchNodes(installationId, page + 1, size);
@@ -180,7 +211,7 @@ export class GlobalDatabaseService {
             this.selectedInstallation.statisticsByNodeId = statisticsByNodeId.body;
             this.eventManager.broadcast({
                 name: GLOBALDATABASE__INSTALLATION_STATISTICS_BY_NODEID_FETCHED,
-                content: 'Sending fetch event'
+                content: 'Sending fetch event',
             });
 
         });
@@ -191,7 +222,7 @@ export class GlobalDatabaseService {
             this.selectedInstallation.statisticsByNodeId = statisticsByNodeId.body;
             this.eventManager.broadcast({
                 name: GLOBALDATABASE__INSTALLATION_STATISTICS_BY_NODEID_FETCHED,
-                content: 'Sending fetch event'
+                content: 'Sending fetch event',
             });
 
         });
@@ -200,13 +231,13 @@ export class GlobalDatabaseService {
     fetchWeeklyEnergyStatisticsByInstallationId(installationId, startInterval, endInterval, currentAnalyzedDate) {
         this.eventManager.broadcast({
             name: GLOBALDATABASE__INSTALLATION_WEEKLY_STATISTICS_FETCHING,
-            content: 'Sending fetch event'
+            content: 'Sending fetch event',
         });
         this.installationService.getWeeklyEnergyStatistics(installationId, null, startInterval, endInterval, currentAnalyzedDate).subscribe((energyStatistics) => {
             this.populateSelectedInstallationWithEnergyStatistics(energyStatistics);
             this.eventManager.broadcast({
                 name: GLOBALDATABASE__INSTALLATION_WEEKLY_STATISTICS_FETCHED,
-                content: 'Sending fetch event'
+                content: 'Sending fetch event',
             });
             });
     }
@@ -214,11 +245,11 @@ export class GlobalDatabaseService {
     registerEvents() {
         this.eventSubscriber = this.eventManager.subscribe(
             INSTALLATION__LIST_MODIFICATION,
-            (response) => this.load(this.principal.selectedInstallationId)
+            (response) => this.load(this.principal.selectedInstallationId),
         );
         this.eventSubscriberSelectedIdChanged = this.eventManager.subscribe(
             INSTALLATION__SELECTED_ID_CHANGED,
-            (response) => this.load(this.principal.selectedInstallationId)
+            (response) => this.load(this.principal.selectedInstallationId),
         );
     }
 

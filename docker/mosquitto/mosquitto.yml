@@ -1,0 +1,12 @@
+version: '2'
+services:
+    wilampcloud-mosquitto:
+        image: toke/mosquitto
+        #volumes:
+             #- ../../../mosquittoConfig/config:/mqtt/config
+        environment:
+            - POSTGRES_USER=WiLampCloud
+            - POSTGRES_PASSWORD=
+        ports:
+            - 8883:8883
+            - 1883:1883
