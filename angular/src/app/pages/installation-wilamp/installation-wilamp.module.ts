@@ -2,7 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NbButtonModule } from '@nebular/theme';
 import { WiCloudSharedModule } from '../../shared';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
+// import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 import {
     InstallationWilampService,
@@ -28,7 +28,7 @@ const ENTITY_STATES = [
         WiCloudSharedModule,
         RouterModule.forChild(ENTITY_STATES),
         NbButtonModule,
-        Ng2SmartTableModule
+        // Ng2SmartTableModule
     ],
     declarations: [
         InstallationWilampComponent,
