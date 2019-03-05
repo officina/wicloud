@@ -28,6 +28,7 @@ const ENTITY_STATES = [
 
 @NgModule({
     imports: [
+        Ng2SmartTableModule,
         ThemeModule,
         LeafletModule,
         WiCloudSharedModule,
@@ -55,6 +56,8 @@ const ENTITY_STATES = [
     providers: [
         InstallationWilampService,
         InstallationWilampPopupService,
+        { provide: HTTP_INTERCEPTORS, useClass: NbAuthJWTInterceptor, multi: true}, // TODO: AT è una porcata ma c'è un bug con gli interceptors importando NG2SmartTable
+
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

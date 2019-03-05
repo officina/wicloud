@@ -391,12 +391,12 @@ export class FullLeafletMapWidgetComponent implements OnInit, OnDestroy, AfterVi
     updateMarkers() {
         if (this.enableLeafletMap && this.globalDatabase.selectedInstallation != null) {
             let count = 0;
-            this.globalDatabase.selectedInstallation.nodes.forEach((node) => {
+            this.globalDatabase.selectedInstallation.lightFixtures.forEach((node) => {
                 if (node.latitude !== 0 && node.longitude !== 0 && node.latitude != null && node.longitude != null) {
                     const newMarker = new EntityIconMarker(node, [node.latitude, node.longitude]);
                     newMarker.refreshIcon(this.mapIconOptions);
                     count++;
-                    if (node.nodeType === 10) {
+                    if (node.deviceType === 10) {
                         /* const redMarker = L.AwesomeMarkers.icon({
                             icon: 'coffee',
                             markerColor: 'red'
@@ -478,7 +478,7 @@ export class FullLeafletMapWidgetComponent implements OnInit, OnDestroy, AfterVi
         if (this.heatmapOptions.enabled) {
             let maximumValue = 20;
             this.LAYER_HEATMAP.layer.configure({'maxOpacity': this.heatmapOptions.alpha});
-            this.globalDatabase.selectedInstallation.nodes.forEach((function(node) {
+            this.globalDatabase.selectedInstallation.lightFixtures.forEach((function(node) {
                 let radiusValue = Helpers.getRandomInt(1, 50) * this.heatmapOptions.radiusMultiplier;
                 if (node.latitude !== 0 && node.longitude !== 0) {
                     switch (this.heatmapOptions.entityToAnalyze) {

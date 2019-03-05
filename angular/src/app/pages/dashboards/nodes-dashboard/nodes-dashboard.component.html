@@ -3,10 +3,10 @@
 
     <div class="m-content" *ngIf="globalDatabase.selectedInstallation.installation">
 
-        <node-list-grid-widget ([nodes])="globalDatabase.selectedInstallation.nodes"></node-list-grid-widget>
+        <node-list-grid-widget ([nodes])="globalDatabase.selectedInstallation.lightFixtures"></node-list-grid-widget>
 
         <!--<div>
-           <jhi-node-small-widget [node]="node" *ngFor="let node of globalDatabase.selectedInstallation.nodes">
+           <jhi-node-small-widget [node]="node" *ngFor="let node of globalDatabase.selectedInstallation.lightFixtures">
 
            </jhi-node-small-widget>
        </div>-->

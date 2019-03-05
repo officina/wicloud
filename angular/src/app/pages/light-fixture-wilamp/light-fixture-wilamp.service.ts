@@ -7,6 +7,7 @@ import { createRequestOption } from '../../shared';
 import {environment} from '../../../environments/environment';
 import {GatewayWilamp} from '../gateway-wilamp';
 import {map} from 'rxjs/operators';
+import {NodeWilamp} from "../node-wilamp";
 
 export type EntityResponseType = HttpResponse<LightFixtureWilamp>;
 
@@ -75,7 +76,8 @@ export class LightFixtureWilampService {
      * Convert a returned JSON object to LightFixtureWilamp.
      */
     private convertItemFromServer(lightFixture: LightFixtureWilamp): LightFixtureWilamp {
-        const copy: LightFixtureWilamp = Object.assign({}, lightFixture);
+        const lightFixtureW = new LightFixtureWilamp();
+        const copy = Object.assign(lightFixtureW, lightFixture);
         return copy;
     }
 

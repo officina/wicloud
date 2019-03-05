@@ -2,7 +2,6 @@
 import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {Http, Response, URLSearchParams} from '@angular/http';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
 import { JhiDateUtils } from 'ng-jhipster';

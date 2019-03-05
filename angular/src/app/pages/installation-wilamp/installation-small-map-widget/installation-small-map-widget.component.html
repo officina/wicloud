@@ -1,0 +1,14 @@
+<nb-card>
+  <nb-card-header>
+      Map        <div class="right"><a [routerLink]="'/pages/map'"> Details </a></div>
+  </nb-card-header>
+  <nb-card-body style="padding: 0; height: 605px">
+        <div id="leaflet_map_div" leaflet style="z-index:0;"
+             [leafletOptions]="options"
+             [leafletLayers]="layers"
+             [leafletLayersControl]="layersControl"
+             (leafletMapReady)="onLMapReady($event)"
+             width="100%" height="600px">
+        </div>
+  </nb-card-body>
+</nb-card>

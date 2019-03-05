@@ -22,30 +22,6 @@ function layerFactory(L) {
             this._redraw(true);
         },
 
-        clear: function() {
-            this._latlngMarkers.clear();
-            this.redraw();
-        },
-
-        /*
-         * Recursively retrieve all child markers of this cluster.
-         */
-        getAllChildMarkers: function() {
-            if (this._latlngMarkers) {
-                return this._latlngMarkers.all();
-            }
-            else return [];
-        },
-
-        //Override FeatureGroup.getBounds as it doesn't work
-        getBounds: function () {
-            var bounds = new L.LatLngBounds();
-            this._latlngMarkers.all().forEach(function (marker) {
-                bounds.extend(marker.data.getLatLng());
-            });
-            return bounds;
-        },
-
         //Multiple layers at a time for rBush performance
         addMarkers: function (markers) {
 
@@ -158,12 +134,25 @@ function layerFactory(L) {
 
             if (this.options.pane) this.getPane().removeChild(this._canvas);
             else map.getPanes().overlayPane.removeChild(this._canvas);
+
+            map.off('click', this._executeListeners, this);
+            map.off('mousemove', this._executeListeners, this);
+
+            map.off('moveend', this._reset, this);
+            map.off('resize',this._reset,this);
         },
 
         addTo: function (map) {
 
             map.addLayer(this);
             return this;
+        },
+
+        clearLayers: function() {
+
+            this._latlngMarkers = null;
+            this._markers = null;
+            this._redraw(true);
         },
 
         _addMarker: function(marker,latlng,isDisplaying) {
@@ -252,7 +241,7 @@ function layerFactory(L) {
                     //Image,isLoaded,marker\pointPos ref
                     self._imageLookup[iconUrl] = [i, false, [[marker, pointPos]]];
 
-                    i.onload = function() {
+                    i.onload = function(image) {
 
                         self._imageLookup[iconUrl][1] = true;
                         self._imageLookup[iconUrl][2].forEach(function (e) {
@@ -294,13 +283,13 @@ function layerFactory(L) {
 
             var self = this;
 
-            if (!this._map) return;
             if (clear) this._context.clearRect(0, 0, this._canvas.width, this._canvas.height);
+            if (!this._map || !this._latlngMarkers) return;
 
             var tmp = [];
 
             //If we are 10% individual inserts\removals, reconstruct lookup for efficiency
-            if (self._latlngMarkers && self._latlngMarkers.dirty/self._latlngMarkers.total >= .1) {
+            if (self._latlngMarkers.dirty/self._latlngMarkers.total >= .1) {
 
                 self._latlngMarkers.all().forEach(function(e) {
 
@@ -379,6 +368,8 @@ function layerFactory(L) {
 
         _executeListeners: function (event) {
 
+            if (!this._markers) return;
+
             var me = this;
             var x = event.containerPoint.x;
             var y = event.containerPoint.y;
@@ -388,9 +379,8 @@ function layerFactory(L) {
                 me._openToolTip.closeTooltip();
                 delete me._openToolTip;
             }
-            if (this._markers !== undefined && this._markers !== null)
-                var ret = this._markers.search({ minX: x, minY: y, maxX: x, maxY: y });
-            else ret = null;
+
+            var ret = this._markers.search({ minX: x, minY: y, maxX: x, maxY: y });
 
             if (ret && ret.length > 0) {
 
@@ -415,12 +405,8 @@ function layerFactory(L) {
                 }
             }
             else {
-                try {
-                    me._map._container.style.cursor = "";
-                }
-                catch(Exception) {
-                    console.log(Exception);
-                }
+
+                me._map._container.style.cursor="";
             }
         }
     });

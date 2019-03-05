@@ -31,6 +31,7 @@ import {WilampCloudLightProfileSlotWilampModule} from './light-profile-slot-wila
 import {InstallationDashboardModule} from './dashboards/installation-dashboard/installation-dashboard.module';
 import {GlobalDatabaseService} from '../shared/global-database/global-database.service';
 import {WilampCloudLightFixtureWilampModule} from './light-fixture-wilamp/light-fixture-wilamp.module';
+import {DashboardsModule} from './dashboards/dashboards.module';
 
 
 const PAGES_COMPONENTS = [
@@ -45,6 +46,7 @@ const PAGES_COMPONENTS = [
         ECommerceModule,
         ThemeModule,
         DashboardModule,
+        DashboardsModule,
         InstallationsModule,
         MiscellaneousModule,
         WilampCloudAddressWilampModule,

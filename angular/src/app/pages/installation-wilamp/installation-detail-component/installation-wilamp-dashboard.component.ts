@@ -599,7 +599,7 @@ export class InstallationWilampDashboardComponent implements OnInit, OnDestroy, 
     }
 
     waitForEntities() {
-        if (this.globalDatabase.selectedInstallation && this.globalDatabase.selectedInstallation.nodes.length > 0) {
+        if (this.globalDatabase.selectedInstallation && this.globalDatabase.selectedInstallation.lightFixtures.length > 0) {
             this.updateMapBounds();
         } else {
             setTimeout(this.waitForEntities.bind(this), 250);
@@ -931,7 +931,7 @@ export class InstallationWilampDashboardComponent implements OnInit, OnDestroy, 
 
     updateMapBounds() {
         if (this.googleMapsLoaded) {
-            this.mapOptions.bounds = MapHelpers.generateBounds(this.globalDatabase.selectedInstallation.nodes);
+            this.mapOptions.bounds = MapHelpers.generateBounds(this.globalDatabase.selectedInstallation.lightFixtures);
             /* this.mapOptions.center.lat = (this.mapOptions.bounds.northeast.latitude + this.mapOptions.bounds.southwest.latitude) / 2;
             this.mapOptions.center.lng = (this.mapOptions.bounds.northeast.longitude + this.mapOptions.bounds.southwest.longitude) / 2;
 
