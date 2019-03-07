@@ -25,6 +25,8 @@ import { WiCloudSharedModule, UserRouteAccessService } from './shared';
 import {AmChartsModule} from '@amcharts/amcharts3-angular';
 import { ScriptLoaderService } from './_services/script-loader.service';
 import {LeafletModule} from '@asymmetrik/ngx-leaflet';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {Ng2SmartTableModule} from 'ng2-smart-table';
 
 
 
@@ -40,6 +42,8 @@ import {LeafletModule} from '@asymmetrik/ngx-leaflet';
       BrowserAnimationsModule,
       CommonModule,
       FormsModule,
+      FontAwesomeModule,
+      Ng2SmartTableModule,
       HttpClientModule,
       AppRoutingModule,
       NgbModule.forRoot(),

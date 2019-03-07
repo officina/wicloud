@@ -679,13 +679,13 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
         this.installationService.find(id).subscribe((response) => {
             const installation = response.body;
             this.installation = installation;
-            if (installation.customerId != null) {
-                this.customerService.find(installation.customerId).subscribe((customer) => {
+            if (installation.customer != null) {
+                this.customerService.find(installation.customer).subscribe((customer) => {
                     this.customer = customer.body;
                 });
             }
-            if (installation.addressId != null) {
-                this.addressService.find(installation.addressId).subscribe((address) => {
+            if (installation.address != null) {
+                this.addressService.find(installation.address).subscribe((address) => {
                     this.address = address.body;
                 });
             }

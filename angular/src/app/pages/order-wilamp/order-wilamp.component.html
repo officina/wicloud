@@ -50,8 +50,8 @@
                 <td>{{order.preparationDate | date:'medium'}}</td>
                 <td>{{order.totalAmount}}</td>
                 <td>
-                    <div *ngIf="order.customerId">
-                        <a [routerLink]="['../customer-wilamp', order.customerId  ]" >{{order.customerCompanyName}}</a>
+                    <div *ngIf="order.customer">
+                        <a [routerLink]="['../customer-wilamp', order.customer  ]" >{{order.customerCompanyName}}</a>
                     </div>
                 </td>
                 <td class="text-right">

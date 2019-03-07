@@ -121,17 +121,17 @@
                                 <div class="panel-icon"><i class="fa flaticon-map"></i></div>
                                 <div class="media-body">
                                     <h5 class="md-title nomargin">Number of nodes</h5>
-                                    <h1 class="mt5" *ngIf="globalDatabase.selectedInstallation && globalDatabase.selectedInstallation.nodes">{{globalDatabase.selectedInstallation.nodes.length}}</h1>
+                                    <h1 class="mt5" *ngIf="globalDatabase.selectedInstallation && globalDatabase.selectedInstallation.lightFixtures">{{globalDatabase.selectedInstallation.lightFixtures.length}}</h1>
                                 </div><!-- media-body -->
                                 <hr>
                                 <div class="clearfix mt20">
                                     <div class="pull-left">
                                         <h5 class="md-title nomargin">ONLINE Nodes</h5>
-                                        <h4 class="nomargin" *ngIf="globalDatabase.selectedInstallation && globalDatabase.selectedInstallation.nodes">{{globalDatabase.selectedInstallation.onlineNodes()}}</h4>
+                                        <h4 class="nomargin" *ngIf="globalDatabase.selectedInstallation && globalDatabase.selectedInstallation.lightFixtures">{{globalDatabase.selectedInstallation.onlineNodes()}}</h4>
                                     </div>
                                     <div class="pull-right">
                                         <h5 class="md-title nomargin">DOWN</h5>
-                                        <h4 class="nomargin" *ngIf="globalDatabase.selectedInstallation && globalDatabase.selectedInstallation.nodes">{{globalDatabase.selectedInstallation.nodes.length - globalDatabase.selectedInstallation.onlineNodes()}}</h4>
+                                        <h4 class="nomargin" *ngIf="globalDatabase.selectedInstallation && globalDatabase.selectedInstallation.lightFixtures">{{globalDatabase.selectedInstallation.lightFixtures.length - globalDatabase.selectedInstallation.onlineNodes()}}</h4>
                                     </div>
                                 </div>
 

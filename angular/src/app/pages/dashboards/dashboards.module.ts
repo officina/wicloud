@@ -12,9 +12,9 @@ import {WidgetsModule} from '../../widgets/widgets.module';
 @NgModule({
     imports: [
         InstallationDashboardModule,
-        /*MapDashboardModule,
+        MapDashboardModule,
         NodesDashboardModule,
-        NotificationsDashboardModule,*/
+        NotificationsDashboardModule,
         WidgetsModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],

@@ -126,8 +126,8 @@ export class NodeListGridWidgetComponent implements OnInit, AfterViewInit, OnDes
 
     createXgrid() {
         this.nodesGrid.clearAll();
-        this.globalDatabase.selectedInstallation.nodes.forEach( (node) => {
-            const rowDefinition = [node.mac, node.name, node.description, node.nodeType];
+        this.globalDatabase.selectedInstallation.lightFixtures.forEach( (node) => {
+            const rowDefinition = [node.serialNumber, node.name, node.description, node.deviceType];
             if (!isNaN(node.nominalPower) && node.nominalPower !== null) { rowDefinition.push(node.nominalPower + ' W'); } else { rowDefinition.push('n/a'); }
             const nodeStatistics = this.globalDatabase.selectedInstallation.statisticsByNodeIdHMap.get(node.id);
             if (nodeStatistics !== undefined) {
@@ -135,7 +135,7 @@ export class NodeListGridWidgetComponent implements OnInit, AfterViewInit, OnDes
             } else {
                 rowDefinition.push('n/a', 'n/a', 'n/a');
             }
-            this.nodesGrid.addRow(node.mac, rowDefinition );
+            this.nodesGrid.addRow(node.serialNumber, rowDefinition );
         });
 
         this.nodesGrid.groupBy(3);

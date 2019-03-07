@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="258px" height="76px" viewBox="0 0 258 76" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Scene@1,5x</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-2.8%" y="-7.4%" width="105.6%" height="120.6%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.290196078   0 0 0 0 0.290196078   0 0 0 0 0.290196078  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <rect x="17.2672673" y="11.3333333" width="45.045045" height="45.3333333" id="rect-2"></rect>
+    </defs>
+    <g id="Asset" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Scene" transform="translate(4.000000, 2.000000)">
+            <g id="BtnStatusDX" filter="url(#filter-1)">
+                <path d="M94.5945946,45.7852371 L103.09272,37.2871113 C104.85185,35.5279817 104.85916,32.6831788 103.101855,30.9258737 L94.5945946,22.4186135 L94.5945946,8.99477989 C94.5945946,4.02492011 98.6233728,0 103.593122,0 L241.001472,0 C245.962834,0 250,4.02710013 250,8.99477989 L250,59.0052201 C250,63.9750799 245.971222,68 241.001472,68 L103.593122,68 C98.6317602,68 94.5945946,63.9728999 94.5945946,59.0052201 L94.5945946,45.7852371 Z" id="Rectangle-117" fill="#FFFFFF"></path>
+                <path d="M90.0900901,24.6708657 L96.3450981,30.9258737 C98.1024032,32.6831788 98.0950933,35.5279817 96.3359637,37.2871113 L90.0900901,43.5329849 L90.0900901,59.0052201 C90.0900901,63.9750799 86.0565936,68 81.0810236,68 L9.00906651,68 C4.03129088,68 0,63.9728999 0,59.0052201 L0,8.99477989 C0,4.02492011 4.03349647,0 9.00906651,0 L81.0810236,0 C86.0587992,0 90.0900901,4.02710013 90.0900901,8.99477989 L90.0900901,24.6708657 Z" id="Rectangle-118-Copy-2" fill="#4A4A4A"></path>
+            </g>
+            <g id="org_unit">
+                <image x="17.2672673" y="11.3333333" width="45.045045" height="45.3333333" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAABGdBTUEAALGOGCHvlwAAAZZJREFUeAHt3EFOw0AUBNEEcSnff5FjwQ26hAprEqnY/mkYnjvGE0U8r+v6eRz8er1eT/PjT+//y2y+7OMRoGxBgAFKARmvgQFKARmvgRLwm/Kf/px29/5rIDUI5gECEI0DJCGY4z0Q8np8+ixrf4EaKAUDDFAKyHgNDFAKyHgNDFAKyPjx58C7z6rSB+O9hJFoLwhw++A0QCTaC/Ae+Oln1bv3XwN3wXAaIBLtBQFuH5wGiER7QYDbB6cBItFeEOD2wemfP5tHz1X2bIs7lgv+e/81UF6QAAOUAjJeAwOUAjJeAwOUAjJeAwOUAjJeAwOUAjJeAwOUAjJeAwOUAjL+pPfH5PfHuH3/8PT+ewnjJd4LAtw+OA0QifaCALcPTgNEor0gwO2D0wCRaC/Azwfu+PtP737OrIGyAwEGKAVk/Pg98PRZVvr1r58CtAIy3x+RAKWAjNfAAKWAjNdACXj8OfDus6r0wXgNRKK9IMDtg9MAkWgvOH4P3Nvz07vP2jVQXqMAA5QCMl4DA5QCMl4DA5QCMv4LFCkwVPN3txwAAAAASUVORK5CYII="></image>
+                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#rect-2"></use>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import collections
 import datetime
-
+import dateutil.parser
 from django.http import Http404, HttpResponseNotFound, HttpResponse, HttpResponseBadRequest, HttpResponseServerError
 
 from rest_framework import generics, status, viewsets
@@ -41,10 +41,31 @@ class InstallationGlobalStatisticsViewSet(viewsets.ViewSet):
 
             if "installationId" in request.query_params:
                 installationId = request.query_params["installationId"]
-                today = datetime.date.today()
-                datetime_object = today
-                mondayPreviousWeek = datetime_object + datetime.timedelta(days=-datetime_object.weekday(), weeks=-1)
-                sundayEndOfWeek = datetime_object + datetime.timedelta(days=-datetime_object.weekday() + 6)
+                currentAnalyzedDate = request.query_params["currentAnalyzedDate"] if "currentAnalyzedDate" in request.query_params else datetime.datetime.utcnow().replace(hour=0,minute=0,second=0,microsecond=0)
+                if isinstance(currentAnalyzedDate, str):
+                    try:
+                        currentAnalyzedDate = dateutil.parser.parse(request.query_params["currentAnalyzedDate"])
+                    except:
+                        return Response(data="currentAnalyzedDate is not in ISO DATE format", status=status.HTTP_400_BAD_REQUEST)
+                installationId = request.query_params["installationId"]
+                mondayPreviousWeek = (currentAnalyzedDate + datetime.timedelta(days=-currentAnalyzedDate.weekday(), weeks=-1)).replace(hour=0,minute=0,second=0,microsecond=0)
+                sundayEndOfWeek = currentAnalyzedDate + datetime.timedelta(days=-currentAnalyzedDate.weekday() + 6)
+                sundayEndOfWeek = sundayEndOfWeek.replace(hour=23,minute=59,second=59,microsecond=999999)
+                beginningLastMonth = (currentAnalyzedDate.replace(day=1) + dateutil.relativedelta.relativedelta(months=-1)).replace(hour=0,minute=0,second=0,microsecond=0)
+                endCurrentMonth = (currentAnalyzedDate.replace(day=1) + dateutil.relativedelta.relativedelta(months=+1, days=-1)).replace(hour=23,minute=59,second=59,microsecond=999999)
+                startInterval = request.query_params["startInterval"] if "startInterval" in request.query_params else mondayPreviousWeek
+                if isinstance(startInterval, str):
+                    try:
+                        startInterval = dateutil.parser.parse(request.query_params["startInterval"])
+                    except:
+                        return Response(data="startInterval is not in ISO DATE format", status=status.HTTP_400_BAD_REQUEST)
+                endInterval = request.query_params["endInterval"] if "endInterval" in request.query_params else sundayEndOfWeek
+                if isinstance(endInterval, str):
+                    try:
+                        endInterval = dateutil.parser.parse(request.query_params["endInterval"])
+                    except:
+                        return Response(data="endInterval is not in ISO DATE format", status=status.HTTP_400_BAD_REQUEST)
+
 
                 installations = models.Installation.objects.all().filter(id=installationId)
                 if installations.count() > 0:
@@ -54,10 +75,23 @@ class InstallationGlobalStatisticsViewSet(viewsets.ViewSet):
 
                     monthlyEnergyIntervals = InstallationQueries.getMonthlyEnergyStatisticsByInstallationAndDateInterval(
                         installationId=installationId,
-                        startDate=mondayPreviousWeek, endDate=sundayEndOfWeek, installationObject=installation)
+                        startDate=beginningLastMonth, endDate=endCurrentMonth, installationObject=installation)
+
+                    intervalEnergyStatistics = InstallationQueries.getGlobalEnergyStatistics(installationId=installationId,
+                        startDate=startInterval, endDate=endInterval, installationObject=installation)
+
+                    globalEnergyStatistics = InstallationQueries.getGlobalEnergyStatistics(
+                        installationId=installationId, installationObject=installation)
+
+                    absorbedPowerEstimation = InstallationQueries.getAbsorbedPowerEstimation(
+                        installationId=installationId, calculationTimestamp=endInterval, installationObject=installation)
+
                     installationGlobalStatistics = InstallationGlobalStatistics()
                     installationGlobalStatistics.byWeek = weeklyEnergyIntervals
                     installationGlobalStatistics.byMonth = monthlyEnergyIntervals
+                    installationGlobalStatistics.globalEnergyConsumption = globalEnergyStatistics
+                    installationGlobalStatistics.currentIntervalEnergyConsumption = intervalEnergyStatistics
+                    installationGlobalStatistics.absorbedPowerEstimation = absorbedPowerEstimation
                     serializer = serializers.InstallationGlobalStatisticsSerializer(instance=installationGlobalStatistics)
                     return Response(serializer.data)
 

@@ -17,6 +17,7 @@ import {FullLeafletMapWidgetComponent} from './full-leaflet-map-widget/full-leaf
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {GatewayAdministrationWidgetComponent} from './gateway-administration-widget/gateway-administration-widget.component';
+import {ThemeModule} from '../@theme/theme.module';
 
 /* Font awesome */
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -28,12 +29,15 @@ import { faPalette, faLayerGroup } from '@fortawesome/pro-solid-svg-icons';
 import {GatewayAdministrationWebsiteWidgetComponent} from './gateway-administration-website-widget/gateway-administration-website-widget.component';
 import {UnwrapTagDirective} from './_directives/unwrap-tag.directive';
 import {HrefPreventDefaultDirective} from './_directives/href-prevent-default.directive';
+import {LightFixtureListComponent} from './light-fixture-list-widget/light-fixture-list.component';
+import {Ng2SmartTableModule} from 'ng2-smart-table';
 // Add an icon to the library for convenient access in other components
 library.add(faCoffee, faStroopwafel, faCalendar, faHeading, faLayerGroup, faInfoCircle, faPalette, faTwitter, faArrowAltRight, faLightbulb, faLightbulbOn, faBraille, faBrush, faPaintBrush, faPaintRoller);
 /* Font awesome */
 
 @NgModule({
     imports: [
+        ThemeModule,
         NgbModule.forRoot(),
         NgJhipsterModule.forRoot({
             // set below to true to make alerts look like toast
@@ -56,6 +60,8 @@ library.add(faCoffee, faStroopwafel, faCalendar, faHeading, faLayerGroup, faInfo
         NpnSliderModule,
         LeafletModule,
         MatFormFieldModule,
+        Ng2SmartTableModule,
+
     ],
     providers: [
 
@@ -66,6 +72,7 @@ library.add(faCoffee, faStroopwafel, faCalendar, faHeading, faLayerGroup, faInfo
         NodeListGridWidgetComponent,
         NodeSmallWidgetComponent,
         NodeSmallDetailsWidgetComponent,
+        LightFixtureListComponent,
         FlotGraphComponent,
         NgSparklineDirective,
         UnwrapTagDirective,
@@ -78,6 +85,7 @@ library.add(faCoffee, faStroopwafel, faCalendar, faHeading, faLayerGroup, faInfo
     exports: [
         EnergyConsumptionSmallGraphWidgetComponent,
         EnergySavingWidgetComponent,
+        LightFixtureListComponent,
         NodeListGridWidgetComponent,
         NodeSmallWidgetComponent,
         NodeSmallDetailsWidgetComponent,

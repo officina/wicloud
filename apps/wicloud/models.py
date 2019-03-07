@@ -115,12 +115,14 @@ class Customer(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
 
 class Energy_interval(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
-
     mac = models.CharField(max_length=255, null=True)
     startInterval = models.DateTimeField(blank=True, null=True)
     endInterval = models.DateTimeField(blank=True, null=True)
     startIintervalMeasureTimestamp = models.DateTimeField(blank=True, null=True)
     endIntervalMeasureTimestamp = models.DateTimeField(blank=True, null=True)
+    dimLevel = models.FloatField(blank=True, null=True)
+    adc0Value = models.FloatField(blank=True, null=True)
+    adc1Value = models.FloatField(blank=True, null=True)
     activePower = models.FloatField(blank=True, null=True)
     reactivePower = models.FloatField(blank=True, null=True)
     startIntervalActiveEnergyCounterValue = models.FloatField(blank=True, null=True) #da modificare

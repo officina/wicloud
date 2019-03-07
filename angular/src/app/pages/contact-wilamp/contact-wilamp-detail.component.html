@@ -36,8 +36,8 @@
         </dd>
         <dt><span jhiTranslate="wilampCloudApp.contact.customer">Customer</span></dt>
         <dd>
-            <div *ngIf="contact.customerId">
-                <a [routerLink]="['/customer-wilamp', contact.customerId]">{{contact.customerCompanyName}}</a>
+            <div *ngIf="contact.customer">
+                <a [routerLink]="['/customer-wilamp', contact.customer]">{{contact.customerCompanyName}}</a>
             </div>
         </dd>
     </dl>

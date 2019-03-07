@@ -19,16 +19,17 @@ import {Subscription} from 'rxjs/Rx';
 @Component({
   selector: 'energy-consumption-small-graph-widget',
   templateUrl: './energy-consumption-small-graph-widget.component.html',
-  styleUrls: ['energy-consumption-small-graph-widget.component.css'],
+  styleUrls: ['energy-consumption-small-graph-widget.component.scss'],
 
 })
 export class EnergyConsumptionSmallGraphWidgetComponent implements OnInit, OnDestroy {
     @Input() chartType = 'daily';
     @Input() currentDate: Date;
     @Input() eventwatch: string;
+    @Input() accentType: string;
 
     public chartData: any;
-    public chartDataYMaxValue = 40.0;
+    public chartDataYMaxValue = 0.1;
     public chartOptions: any;
     public flotEventToGenerate = Helpers.makeid();
     public legendId = Helpers.makeid();
@@ -83,7 +84,6 @@ export class EnergyConsumptionSmallGraphWidgetComponent implements OnInit, OnDes
                 this.createDailySmallGraph();
         }
         this.registerEvents();
-        this.isFetchingData = true;
     }
 
     createDailySmallGraph() {
@@ -124,6 +124,7 @@ export class EnergyConsumptionSmallGraphWidgetComponent implements OnInit, OnDes
                     noColumns: 0,
                 },
                 grid: {
+                    color: 'inherit',
                     hoverable: true,
                     clickable: true,
                     borderColor: '#ddd',
@@ -147,17 +148,33 @@ export class EnergyConsumptionSmallGraphWidgetComponent implements OnInit, OnDes
             // Extract values from the week statistics using the key
             if (this.globalDatabase.selectedInstallation.energyStatistics.statisticsByWeek.has(currentWeekKey)) {
                 const weekStatistics = this.globalDatabase.selectedInstallation.energyStatistics.statisticsByWeek.get(currentWeekKey);
-                this.chartData[0].data = weekStatistics.content[this.currentDate.getDay()].data;
+                this.chartData[0].data.forEach( (tuple, key) => {
+                    try {
+                        tuple[1] = weekStatistics.content.get(this.currentDate.getDay()).content.get(key).activeEnergyTotal;
+                        this.chartData[0].data[key] = tuple;
+                    } catch (Exception) {
+                        console.warn(); // do nothing and continue
+                    }
+                });
+                // this.chartData[0].data = weekStatistics.content.get(this.currentDate.getDay()).data;
                 // Search for graph boundaries
                 this.chartData[0].data.forEach( (valArray) => {
                    if (valArray[1] > this.chartDataYMaxValue) { this.chartDataYMaxValue = valArray[1]; }
                 });
-                this.graphBottomLeftValue = Math.round(weekStatistics.content[this.currentDate.getDay()].activeEnergyAverage);
-                this.graphBottomRightValue = Math.round(weekStatistics.content[this.currentDate.getDay()].activeEnergyTotal);
+                this.graphBottomLeftValue = Math.round(weekStatistics.content.get(this.currentDate.getDay()).activeEnergyAverage);
+                this.graphBottomRightValue = Math.round(weekStatistics.content.get(this.currentDate.getDay()).activeEnergyTotal);
             }
             if (this.globalDatabase.selectedInstallation.energyStatistics.statisticsByWeek.has(yesterdayKey)) {
                 const weekStatistics = this.globalDatabase.selectedInstallation.energyStatistics.statisticsByWeek.get(yesterdayKey);
-                this.chartData[1].data = weekStatistics.content[yesterday.getDay()].data;
+                // this.chartData[1].data = weekStatistics.content.get(yesterday.getDay()).data;
+                this.chartData[1].data.forEach( (tuple, key) => {
+                    try {
+                        tuple[1] = weekStatistics.content.get(yesterday.getDay()).content.get(key).activeEnergyTotal;
+                        this.chartData[1].data[key] = tuple;
+                    } catch (Exception) {
+                        console.warn(); // do nothing and continue
+                    }
+                });
                 // Search for graph boundaries
                 this.chartData[1].data.forEach( (valArray) => {
                     if (valArray[1] > this.chartDataYMaxValue) { this.chartDataYMaxValue = valArray[1]; }
@@ -212,6 +229,7 @@ export class EnergyConsumptionSmallGraphWidgetComponent implements OnInit, OnDes
                     noColumns: 0,
                 },
                 grid: {
+                    color: 'inherit',
                     hoverable: true,
                     clickable: true,
                     borderColor: '#ddd',
@@ -236,7 +254,15 @@ export class EnergyConsumptionSmallGraphWidgetComponent implements OnInit, OnDes
             // Extract values from the week statistics using the key
             if (this.globalDatabase.selectedInstallation.energyStatistics.statisticsByWeek.has(currentWeekKey)) {
                 const weekStatistics = this.globalDatabase.selectedInstallation.energyStatistics.statisticsByWeek.get(currentWeekKey);
-                this.chartData[0].data = weekStatistics.data;
+                // this.chartData[0].data = weekStatistics.data;
+                this.chartData[0].data.forEach( (tuple, key) => {
+                    try {
+                        tuple[1] = weekStatistics.content.get(key + 1).activeEnergyTotal;
+                        this.chartData[0].data[key] = tuple;
+                    } catch (Exception) {
+                        console.warn(); // do nothing and continue
+                    }
+                });
                 // Search for graph boundaries
                 this.chartData[0].data.forEach( (valArray) => {
                     if (valArray[1] > this.chartDataYMaxValue) { this.chartDataYMaxValue = valArray[1]; }
@@ -246,7 +272,15 @@ export class EnergyConsumptionSmallGraphWidgetComponent implements OnInit, OnDes
             }
             if (this.globalDatabase.selectedInstallation.energyStatistics.statisticsByWeek.has(previousWeekKey)) {
                 const weekStatistics = this.globalDatabase.selectedInstallation.energyStatistics.statisticsByWeek.get(previousWeekKey);
-                this.chartData[1].data = weekStatistics.data;
+                // this.chartData[1].data = weekStatistics.data;
+                this.chartData[1].data.forEach( (tuple, key) => {
+                    try {
+                        tuple[1] = weekStatistics.content.get(key + 1).activeEnergyTotal;
+                        this.chartData[1].data[key] = tuple;
+                    } catch (Exception) {
+                        console.warn(); // do nothing and continue
+                    }
+                });
                 // Search for graph boundaries
                 this.chartData[1].data.forEach( (valArray) => {
                     if (valArray[1] > this.chartDataYMaxValue) { this.chartDataYMaxValue = valArray[1]; }
@@ -302,6 +336,7 @@ export class EnergyConsumptionSmallGraphWidgetComponent implements OnInit, OnDes
                     noColumns: 0,
                 },
                 grid: {
+                    color: 'inherit',
                     hoverable: true,
                     clickable: true,
                     borderColor: '#ddd',
@@ -328,10 +363,19 @@ export class EnergyConsumptionSmallGraphWidgetComponent implements OnInit, OnDes
             if (this.globalDatabase.selectedInstallation.energyStatistics.statisticsByMonth.has(currentMonthKey)) {
                 const monthStatistics = this.globalDatabase.selectedInstallation.energyStatistics.statisticsByMonth.get(currentMonthKey);
                 const chartData = [];
-                monthStatistics.data.slice(1, 32).forEach( (val) => {
+                /* monthStatistics.data.slice(1, 32).forEach( (val) => {
                     chartData.push([val[0] - 1, val[1]]);
+                });*/
+                // this.chartData[0].data = chartData;
+                this.chartData[0].data.forEach( (tuple, key) => {
+                    try {
+                        tuple[1] = monthStatistics.content.get(key + 1).activeEnergyTotal;
+                        this.chartData[0].data[key] = tuple;
+                    } catch (Exception) {
+                        console.warn(); // do nothing and continue
+                    }
                 });
-                this.chartData[0].data = chartData;
+
                 // Search for graph boundaries
                 this.chartData[0].data.forEach( (valArray) => {
                     if (valArray[1] > this.chartDataYMaxValue) { this.chartDataYMaxValue = valArray[1]; }
@@ -341,11 +385,20 @@ export class EnergyConsumptionSmallGraphWidgetComponent implements OnInit, OnDes
             }
             if (this.globalDatabase.selectedInstallation.energyStatistics.statisticsByMonth.has(previousMonthKey)) {
                 const monthStatistics = this.globalDatabase.selectedInstallation.energyStatistics.statisticsByMonth.get(previousMonthKey);
-                const chartData = [];
+                /*const chartData = [];
                 monthStatistics.data.slice(1, 32).forEach( (val) => {
                     chartData.push([val[0] - 1, val[1]]);
                 });
-                this.chartData[1].data = chartData;
+                this.chartData[1].data = chartData;*/
+                this.chartData[1].data.forEach( (tuple, key) => {
+                    try {
+                        tuple[1] = monthStatistics.content.get(key + 1).activeEnergyTotal;
+                        this.chartData[1].data[key] = tuple;
+                    } catch (Exception) {
+                        console.warn(); // do nothing and continue
+                    }
+                });
+
                 // Search for graph boundaries
                 this.chartData[1].data.forEach( (valArray) => {
                     if (valArray[1] > this.chartDataYMaxValue) { this.chartDataYMaxValue = valArray[1]; }

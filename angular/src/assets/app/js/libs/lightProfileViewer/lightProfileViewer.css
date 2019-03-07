@@ -1,0 +1,238 @@
+.gantt_container {
+    margin-top: 10px;
+}
+.gantt_slider {
+    width: 80px;
+    height: 20px;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.gantt_slider input{
+    width: 34px;
+    height: 18px;
+    border: none;
+
+}
+.gantt_slider div:first-child, .gantt_slider .gantt_slider_value{
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 13px;
+}
+
+.gantt_slider .gantt_slider_value{
+    font-size: 15px;
+    color: black;
+    margin: 0px 210px;
+
+}
+
+.gantt_side_content.gantt_left {
+    right: 100%;
+    padding-right: 15px;
+    height: 29px;
+    top: 0px;
+}
+
+.lightBoxCheckBoxes{
+    font-size: 15px;
+    color: black;
+    margin: 5px 10px;
+
+}
+
+
+.sensorsContainer {
+    width: 61px;
+}
+
+.twilightSensor {
+    width: 19px;
+    height: 22px;
+//margin-left: -11px;
+    margin-right: 0px;
+    margin-left: 2px;
+    margin-top: 3px;
+    z-index: 1;
+    background: url("/images/icons/sun.png") center no-repeat;
+    background-size: contain;
+    float:right
+}
+
+.astroSensor {
+    width: 17px;
+    height: 22px;
+//margin-left: -11px;
+    margin-right: 3px;
+    margin-top: 3px;
+    z-index: 1;
+    background: url("/images/icons/astro.png") center no-repeat;
+    background-size: contain;
+
+    float:right
+}
+
+.motionSensor {
+    width: 22px;
+    height: 22px;
+    margin-right: -3px;
+    margin-top: 3px;
+    z-index: 1;
+    background: url("/images/icons/motion.png") center no-repeat;
+    background-size: contain;
+    float:right
+}
+
+.twilightSensorBottom {
+    width: 11px;
+    height: 11px;
+    margin-right: 3px;
+    margin-right: 2px;
+    margin-top: 4px;
+    z-index: 1;
+    background: url("/images/icons/sun.png") center no-repeat;
+    background-size: contain;
+    float:left
+}
+
+.astroSensorBottom {
+    width: 11px;
+    height: 11px;
+    margin-right: 3px;
+    margin-top: 4px;
+    z-index: 1;
+    background: url("/images/icons/astro.png") center no-repeat;
+    background-size: contain;
+    float: left;
+}
+
+.motionSensorBottom {
+    width: 15px;
+    height: 14px;
+    margin-right: -3px;
+    margin-top: 2px;
+    z-index: 1;
+    background: url("/images/icons/motion.png") center no-repeat;
+    background-size: contain;
+    float:left
+}
+
+.gantt_task_line.taskHalfSize {
+    height: 22px;
+}
+
+.complex_gantt_bar{
+    background: transparent;
+    border:none;
+}
+.complex_gantt_bar .gantt_task_progress{
+    display:none;
+}
+.complex_gantt_bar .gantt_task_content{
+    display:none;
+}
+
+
+.gantt_task_line, .gantt_line_wrapper {
+    margin-top: -6px;
+}
+
+.gantt_side_content {
+    margin-bottom: 7px;
+}
+.gantt_task_link .gantt_link_arrow {
+    margin-top: -12px
+}
+
+.gantt_side_content.gantt_right {
+    bottom: 0;
+}
+
+.gantt_task_content {
+    overflow: visible;
+}
+
+.baseline {
+    position: absolute;
+    border-radius: 2px;
+    opacity: 0.6;
+    margin-top: -7px;
+    height: 12px;
+    background: #ffd180;
+    border: 1px solid rgb(255,153,0);
+}
+
+.taskBottomDiv {
+//color: rgb(255,153,0);
+    top: 16px;
+    position: inherit;
+    width: 250px;
+
+    white-space: nowrap;
+    color: #6e6e6e;
+    font-size: 11px;
+}
+
+.taskGridHeaderDiv {
+//color: rgb(255,153,0);
+    white-space: nowrap;
+    color: #6e6e6e;
+    font-size: 11px;
+}
+
+.taskGridHeaderDiv .topLine {
+    white-space: nowrap;
+    color: #6e6e6e;
+    font-size: 10px;
+    margin-top: -8px;
+    height: 15px;
+}
+
+
+.taskGridHeaderDiv .bottomLine {
+    white-space: nowrap;
+    color: #6e6e6e;
+    font-size: 11px;
+}
+
+
+#motionParameters{
+    display: block;
+    float: left;
+}
+
+.motion_input {
+    display: block;
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.motion_input input{
+    margin-left: 11px;
+    width: 60px;
+}
+
+.motion_slider_div {
+    float: left;
+    display: block;
+}
+
+.motion_slider {
+    float: left;
+    display: block;
+    width: 100px;
+    height: 20px;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+
+
+
+.taskBottomDescription {
+    position: relative;
+    float: left;
+}
+
+.night{ background: #f4f7f4 !important;}

@@ -11,8 +11,8 @@ import {environment} from '../../../environments/environment';
 @Injectable()
 export class LightProfileWilampService {
 
-    private resourceUrl =  `${environment.apiUrl}/api/light-profiles`;
-    private resourceSearchUrl =  `${environment.apiUrl}/api/_search/light-profiles`;
+    private resourceUrl =  `${environment.apiUrl}/api/light-profile`;
+    private resourceSearchUrl =  `${environment.apiUrl}/api/_search/light-profile`;
 
     constructor(private http: HttpClient) { }
 

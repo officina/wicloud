@@ -49,7 +49,7 @@
 
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="wilampCloudApp.order.customer" for="field_customer">Customer</label>
-            <select class="form-control" id="field_customer" name="customer" [(ngModel)]="order.customerId" >
+            <select class="form-control" id="field_customer" name="customer" [(ngModel)]="order.customer" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="customerOption.id" *ngFor="let customerOption of customers; trackBy: trackCustomerById">{{customerOption.companyName}}</option>
             </select>
