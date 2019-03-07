@@ -108,7 +108,7 @@ export class PanelChartWidgetComponent implements OnInit, OnDestroy {
                 if (statisticsOfPreviousWeek != null) {
                     for (let hour = 0; hour < 24; hour++) {
                         for (let day = 0; day < 7; day++) {
-                            if (statisticsOfPreviousWeek.content.get(day).content.get(hour)[valueField] < 0) { //TODO AT CHECK
+                            if (statisticsOfPreviousWeek.content.get(day).content.get(hour)[valueField] < 0) { // TODO AT CHECK
                                 statisticsOfPreviousWeek.content.get(day).content.get(hour)[valueField] = 0;
                             }
                             if (day === 0) {

@@ -7,7 +7,7 @@ import { createRequestOption } from '../../shared';
 import {environment} from '../../../environments/environment';
 import {GatewayWilamp} from '../gateway-wilamp';
 import {map} from 'rxjs/operators';
-import {NodeWilamp} from "../node-wilamp";
+import {NodeWilamp} from '../node-wilamp';
 
 export type EntityResponseType = HttpResponse<LightFixtureWilamp>;
 
