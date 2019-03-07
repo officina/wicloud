@@ -49,13 +49,13 @@
                 <td>{{installation.installationDate | date:'medium'}}</td>
                 <td>{{installation.notes}}</td>
                 <td>
-                    <div *ngIf="installation.addressId">
-                        <a [routerLink]="['../address-wilamp', installation.addressId  ]" >{{installation.addressAddressDescription}}</a>
+                    <div *ngIf="installation.address">
+                        <a [routerLink]="['../address-wilamp', installation.address  ]" >{{installation.addressAddressDescription}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="installation.customerId">
-                        <a [routerLink]="['../customer-wilamp', installation.customerId  ]" >{{installation.customerCompanyName}}</a>
+                    <div *ngIf="installation.customer">
+                        <a [routerLink]="['../customer-wilamp', installation.customer  ]" >{{installation.customerCompanyName}}</a>
                     </div>
                 </td>
                 <td class="text-right">

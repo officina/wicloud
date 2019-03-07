@@ -36,11 +36,12 @@ export class LightFixtureWilamp implements EntityWithIcon, BaseEntity {
         public altitude?: number,
         public nodes?: BaseEntity[],
         public gatewayGatewayHostname?: string,
-        public gatewayId?: number,
+        public gateway?: number,
         public installationName?: string,
-        public installationId?: number,
+        public installation?: number,
         public lightProfileName?: string,
-        public lightProfileId?: number,
+        public lightProfile?: number,
+        public icon?: '/assets/app/media/img/wilamp-icons/0x/pole_icon.png',
     ) {
     }
 

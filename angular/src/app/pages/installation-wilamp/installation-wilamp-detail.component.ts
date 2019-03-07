@@ -634,13 +634,13 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
                 },
                 initChartEnergyStatistics(energyStatistics: EnergyStatistics) {
 
-                    this.initChartSerialByDayOfWeek( energyStatistics.statisticsByDayOfWeek,  'Average power by day of week', 'hour', 'activePower', '[[title]]: [[value]]', 'char_day_of_week_avgpwr');
+                    /*this.initChartSerialByDayOfWeek( energyStatistics.statisticsByDayOfWeek,  'Average power by day of week', 'hour', 'activePower', '[[title]]: [[value]]', 'char_day_of_week_avgpwr');
                     this.initChartSerialByDayOfWeek( energyStatistics.statisticsByDayOfWeek,  'Energy by day of week', 'hour', 'activeEnergy', '[[title]]: [[value]]', 'char_day_of_week_energy_intervals');
                     this.initChartSerialByDayOfWeek( energyStatistics.statisticsByDayOfWeek,  'Number of measures by day of week', 'hour', 'measureCount', '[[title]]: [[value]]', 'char_day_of_week_measure_count');
 
                     this.initChartSerialByWeekNumber( energyStatistics.statisticsByWeekNumber,  'Average power by week number', 'hour', 'measureCount', '[[title]]: [[value]]', 'char_weekly_avgpwr');
                     this.initChartSerialByWeekNumber( energyStatistics.statisticsByWeekNumber,  'Average power by week number', 'hour', 'measureCount', '[[title]]: [[value]]', 'char_weekly_energy_intervals');
-
+                       */ // TODO: AT implement
                     this.initChartConsumptionBullet( energyStatistics.globalEnergyConsumption, 'Global consumption', 'chart_global_consumption' );
                     this.initChartConsumptionBullet( energyStatistics.currentIntervalEnergyConsumption, 'Global consumption', 'chart_current_interval_consumption' );
                 },
@@ -679,13 +679,13 @@ export class InstallationWilampDetailComponent implements OnInit, OnDestroy, Aft
         this.installationService.find(id).subscribe((response) => {
             const installation = response.body;
             this.installation = installation;
-            if (installation.customerId != null) {
-                this.customerService.find(installation.customerId).subscribe((customer) => {
+            if (installation.customer != null) {
+                this.customerService.find(installation.customer).subscribe((customer) => {
                     this.customer = customer.body;
                 });
             }
-            if (installation.addressId != null) {
-                this.addressService.find(installation.addressId).subscribe((address) => {
+            if (installation.address != null) {
+                this.addressService.find(installation.address).subscribe((address) => {
                     this.address = address.body;
                 });
             }

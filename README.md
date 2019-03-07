@@ -179,6 +179,18 @@ yarn start
 
     ./node_modules/stylelint/bin/stylelint.js ./src/**/*.scss
  
+# If the production build fails because of memory issues
+https://geeklearning.io/angular-aot-webpack-memory-trick/
+
+    npm install -g increase-memory-limit
+
+and then in the project folder execute
+
+    increase-memory-limit
+or
+
+    /usr/local/Cellar/node/9.8.0/lib/node_modules/increase-memory-limit/index.js
+
 # Remote tests
 
 ```

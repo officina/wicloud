@@ -3,7 +3,7 @@
 from rest_framework import serializers
 
 from apps.wicloud.domain.statistics.installation import WeeklyEnergyStatistics, InstallationGlobalStatistics, \
-    MonthlyEnergyStatistics
+    MonthlyEnergyStatistics, IntervalEnergyStatistics, AbsorbedPowerEstimation
 from apps.wicloud.models import Address
 from .. import models
 from rest_framework import serializers
@@ -1265,6 +1265,47 @@ class ChangePasswordSerializer(serializers.Serializer):
 #  |_____/ \__\__,_|\__|_|___/\__|_|\___|___/
 #
 
+class IntervalEnergyStatisticsSerializer(serializers.Serializer):
+    startIntervalTimestamp = serializers.DateTimeField()
+    endIntervalTimestamp = serializers.DateTimeField()
+    sumEnergy = serializers.FloatField()
+    sumEnergyWithoutDim = serializers.FloatField()
+    sumEnergyWithoutControl = serializers.FloatField()
+    sumEnergyOldLamps = serializers.FloatField()
+    lastMeasureIntervalTimestamp = serializers.DateTimeField()
+
+    def create(self, validated_data):
+        return IntervalEnergyStatistics(**validated_data)
+
+    def update(self, instance, validated_data):
+        for field, value in validated_data.items():
+            setattr(instance, field, value)
+        return instance
+
+
+class AbsorbedPowerEstimationSerializer(serializers.Serializer):
+    countMeasures = serializers.IntegerField()
+    startIntervalTimestamp = serializers.DateTimeField()
+    endIntervalTimestamp = serializers.DateTimeField()
+    avgDimLevel = serializers.FloatField()
+    avgAdc0Value = serializers.FloatField()
+    avgAdc1Value = serializers.FloatField()
+    sumActivePower = serializers.FloatField()
+    sumEnergy = serializers.FloatField()
+    sumEnergyWithoutDim = serializers.FloatField()
+    sumEnergyWithoutControl = serializers.FloatField()
+    sumEnergyOldLamps = serializers.FloatField()
+    lastMeasureIntervalTimestamp = serializers.DateTimeField()
+
+    def create(self, validated_data):
+        return AbsorbedPowerEstimation(**validated_data)
+
+    def update(self, instance, validated_data):
+        for field, value in validated_data.items():
+            setattr(instance, field, value)
+        return instance
+
+
 class WeeklyEnergyStatisticsSerializer(serializers.Serializer):
     year = serializers.IntegerField()
     weekNumber = serializers.IntegerField()
@@ -1315,9 +1356,12 @@ class MonthlyEnergyStatisticsSerializer(serializers.Serializer):
 class InstallationGlobalStatisticsSerializer(serializers.Serializer):
     byWeek = WeeklyEnergyStatisticsSerializer(many=True)
     byMonth = MonthlyEnergyStatisticsSerializer(many=True)
+    globalEnergyConsumption = IntervalEnergyStatisticsSerializer()
+    currentIntervalEnergyConsumption = IntervalEnergyStatisticsSerializer()
+    absorbedPowerEstimation =  AbsorbedPowerEstimationSerializer()
 
     def create(self, validated_data):
-        result = InstallationGlobalStatistics()
+        result = InstallationGlobalStatistics(**validated_data)
         if 'byWeek' in validated_data.keys():
             byWeekSerializer = WeeklyEnergyStatisticsSerializer(data=validated_data['byWeek'], many=True)
             if byWeekSerializer.is_valid():

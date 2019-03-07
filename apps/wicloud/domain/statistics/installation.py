@@ -4,10 +4,40 @@ from apps.wicloud.domain.base import BaseDomainEntity
 
 
 class InstallationGlobalStatistics(BaseDomainEntity):
-    def __init__(self):
+    def __init__(self, **kwargs):
+        self.globalEnergyConsumption = None #type: IntervalEnergyStatistics
+        self.currentIntervalEnergyConsumption = None #type: IntervalEnergyStatistics
+        self.absorbedPowerEstimation = None #type: AbsorbedPowerEstimation
         self.byWeek = [] #type: List[Optional[WeeklyEnergyStatistics]]
         self.byMonth = []  #type: List[Optional[MonthlyEnergyStatistics]]
         super(InstallationGlobalStatistics, self).__init__(**kwargs)
+
+class IntervalEnergyStatistics(BaseDomainEntity):
+    def __init__(self, **kwargs):
+        self.startIntervalTimestamp = None
+        self.endIntervalTimestamp = None
+        self.sumEnergy = 0.0
+        self.sumEnergyWithoutDim = 0.0
+        self.sumEnergyWithoutControl = 0.0
+        self.sumEnergyOldLamps = 0.0
+        self.lastMeasureIntervalTimestamp = None
+        super(IntervalEnergyStatistics, self).__init__(**kwargs)
+
+class AbsorbedPowerEstimation(BaseDomainEntity):
+    def __init__(self, **kwargs):
+        self.countMeasures = 0
+        self.startIntervalTimestamp = None
+        self.endIntervalTimestamp = None
+        self.avgDimLevel = 0.0
+        self.avgAdc0Value = 0.0
+        self.avgAdc1Value = 0.0
+        self.sumActivePower = 0.0
+        self.sumEnergy = 0.0
+        self.sumEnergyWithoutDim = 0.0
+        self.sumEnergyWithoutControl = 0.0
+        self.sumEnergyOldLamps = 0.0
+        self.lastMeasureIntervalTimestamp = None
+        super(AbsorbedPowerEstimation, self).__init__(**kwargs)
 
 class WeeklyEnergyStatistics(BaseDomainEntity):
     def __init__(self, **kwargs):

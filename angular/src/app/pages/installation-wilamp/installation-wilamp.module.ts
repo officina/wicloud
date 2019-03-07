@@ -14,12 +14,19 @@ import {
     installationRoute,
     installationPopupRoute,
 } from './';
-import {InstallationWilampWidgetComponent} from './widget/installation-wilamp-widget.component';
+import {InstallationWilampWidgetComponent} from './installation-wilamp-widget/installation-wilamp-widget.component';
 import {InstallationWilampListComponent} from './installation-wilamp-list.component';
 import {ThemeModule} from '../../@theme/theme.module';
 import {LeafletMapWidgetComponent} from './leaflet-map-widget/leaflet-map-widget.component';
 import {LeafletModule} from '@asymmetrik/ngx-leaflet';
-import {InstallationWilampDashboardComponent} from './dashboard/installation-wilamp-dashboard.component';
+import {InstallationWilampDashboardComponent} from './installation-detail-component/installation-wilamp-dashboard.component';
+import {InstallationStatusCardComponent} from './installation-status-card/installation-status-card.component';
+import {WidgetsModule} from '../../widgets/widgets.module';
+import {InstallationLightFixtureListComponent} from './installation-light-fixture-list-widget/installation-light-fixture-list.component';
+import {Ng2SmartTableModule} from 'ng2-smart-table';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {NbAuthJWTInterceptor} from '@nebular/auth';  // TODO: AT wait for bug https://github.com/akveo/ng2-smart-table/issues/892"
+import {InstallationSmallMapWidgetComponent} from './installation-small-map-widget/installation-small-map-widget.component';
 
 const ENTITY_STATES = [
     ...installationRoute,
@@ -33,6 +40,7 @@ const ENTITY_STATES = [
         LeafletModule,
         WiCloudSharedModule,
         RouterModule.forChild(ENTITY_STATES),
+        WidgetsModule,
     ],
     declarations: [
         InstallationWilampComponent,
@@ -45,6 +53,9 @@ const ENTITY_STATES = [
         InstallationWilampWidgetComponent,
         InstallationWilampDashboardComponent,
         LeafletMapWidgetComponent,
+        InstallationStatusCardComponent,
+        InstallationLightFixtureListComponent,
+        InstallationSmallMapWidgetComponent,
     ],
     entryComponents: [
         InstallationWilampComponent,

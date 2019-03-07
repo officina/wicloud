@@ -19,6 +19,18 @@ import {LightFixtureWilamp} from '../../pages/light-fixture-wilamp';
  * In this case content variable will contain 7 IntervalEnergyConsumptions each with the daily consumption, where data contains the vector with
  * the values for each hour of that day and average and total the sum of the measures of the full day.
  */
+
+export interface IIntervalEnergyConsumptionParams {
+        day?: number,
+        dayOfWeek?: number,
+        month?: number,
+        year?: number,
+        weekNumber?: number,
+        hour?: number,
+        numberOfSubIntervalForAverage?: number,
+        energyStatisticRow?: EnergyStatisticsRowByInterval,
+}
+
 export class IntervalEnergyConsumption {
     public data = [];
     public activePowerAverage = 0.0;
@@ -33,8 +45,99 @@ export class IntervalEnergyConsumption {
     public activeEnergyOldLampsAverage = 0.0;
     public activeEnergyOldLampsTotal = 0.0;
     public timestamp = null;
-    public content: IntervalEnergyConsumption[] = [];
+    public content: Map<number, IntervalEnergyConsumption> = new Map<number, IntervalEnergyConsumption>();
+    public numberOfSubIntervalForAverage = 0;
+    public day: number;
+    public dayOfWeek: number;
+    public month: number;
+    public year: number;
+    public weekNumber: number;
+    public hour: number;
+
+    constructor(
+        params?: IIntervalEnergyConsumptionParams,
+    ) {
+        if (params.energyStatisticRow) {
+            this.day = params.energyStatisticRow.day;
+            this.dayOfWeek = params.energyStatisticRow.dayOfWeek;
+            this.month = params.energyStatisticRow.month;
+            this.year = params.energyStatisticRow.year;
+            this.weekNumber = params.energyStatisticRow.weekNumber;
+            this.hour = params.energyStatisticRow.hour;
+            this.activePowerAverage = params.energyStatisticRow.activePowerAverage;
+            this.burningTimeAverage = params.energyStatisticRow.burningTimeAverage;
+            this.burningTimeTotal = params.energyStatisticRow.burningTimeAverage;
+            this.activeEnergyAverage = params.energyStatisticRow.activeEnergySum;
+            this.activeEnergyTotal = params.energyStatisticRow.activeEnergySum;
+            this.activeEnergyWithoutDimAverage = params.energyStatisticRow.activeEnergyWithoutDimSum;
+            this.activeEnergyWithoutDimTotal = params.energyStatisticRow.activeEnergyWithoutDimSum;
+            this.activeEnergyWithoutControlAverage = params.energyStatisticRow.activeEnergyWithoutControlSum;
+            this.activeEnergyWithoutControlTotal = params.energyStatisticRow.activeEnergyWithoutControlSum;
+            this.activeEnergyOldLampsAverage = params.energyStatisticRow.activeEnergyOldLampsSum;
+            this.activeEnergyOldLampsTotal = params.energyStatisticRow.activeEnergyOldLampsSum;
+        }
+
+        /* Override date/time informations if present */
+        if (params.day != null) { this.day = params.day; }
+        if (params.dayOfWeek != null) { this.dayOfWeek = params.dayOfWeek; }
+        if (params.month != null) { this.month = params.month; }
+        if (params.year != null) { this.year = params.year; }
+        if (params.weekNumber != null) { this.weekNumber = params.weekNumber; }
+        if (params.hour != null) { this.hour = params.hour; }
+        if (params.numberOfSubIntervalForAverage != null) { this.numberOfSubIntervalForAverage = params.numberOfSubIntervalForAverage; }
+    }
+
+    static populateAveragesFromSubIntervals(intervalEnergyConsumption: IntervalEnergyConsumption): IntervalEnergyConsumption {
+        if (intervalEnergyConsumption.content.size > 0) {
+            intervalEnergyConsumption.content.forEach( subintervalEnergyConsumption => {
+                if (subintervalEnergyConsumption.content.size > 0) {
+                    const tempInterval = IntervalEnergyConsumption.populateAveragesFromSubIntervals(subintervalEnergyConsumption);
+                    intervalEnergyConsumption.burningTimeAverage += tempInterval.burningTimeTotal / intervalEnergyConsumption.numberOfSubIntervalForAverage;
+                    intervalEnergyConsumption.burningTimeTotal += tempInterval.burningTimeTotal;
+                    intervalEnergyConsumption.activePowerAverage += tempInterval.activePowerAverage / intervalEnergyConsumption.numberOfSubIntervalForAverage;
+                    intervalEnergyConsumption.activeEnergyAverage += tempInterval.activeEnergyTotal / intervalEnergyConsumption.numberOfSubIntervalForAverage;
+                    intervalEnergyConsumption.activeEnergyTotal += tempInterval.activeEnergyTotal;
+                    intervalEnergyConsumption.activeEnergyWithoutDimAverage += tempInterval.activeEnergyWithoutDimTotal / intervalEnergyConsumption.numberOfSubIntervalForAverage;
+                    intervalEnergyConsumption.activeEnergyWithoutDimTotal += tempInterval.activeEnergyWithoutDimTotal;
+                    intervalEnergyConsumption.activeEnergyWithoutControlAverage += tempInterval.activeEnergyWithoutControlTotal / intervalEnergyConsumption.numberOfSubIntervalForAverage;
+                    intervalEnergyConsumption.activeEnergyWithoutControlTotal += tempInterval.activeEnergyWithoutControlTotal;
+                    intervalEnergyConsumption.activeEnergyOldLampsAverage += tempInterval.activeEnergyOldLampsTotal / intervalEnergyConsumption.numberOfSubIntervalForAverage;
+                    intervalEnergyConsumption.activeEnergyOldLampsTotal += tempInterval.activeEnergyOldLampsTotal;
+                    return tempInterval;
+                } else {
+                    intervalEnergyConsumption.burningTimeAverage += subintervalEnergyConsumption.burningTimeTotal / intervalEnergyConsumption.numberOfSubIntervalForAverage;
+                    intervalEnergyConsumption.burningTimeTotal += subintervalEnergyConsumption.burningTimeTotal;
+                    intervalEnergyConsumption.activePowerAverage += subintervalEnergyConsumption.activePowerAverage / intervalEnergyConsumption.numberOfSubIntervalForAverage;
+                    intervalEnergyConsumption.activeEnergyAverage += subintervalEnergyConsumption.activeEnergyTotal / intervalEnergyConsumption.numberOfSubIntervalForAverage;
+                    intervalEnergyConsumption.activeEnergyTotal += subintervalEnergyConsumption.activeEnergyTotal;
+                    intervalEnergyConsumption.activeEnergyWithoutDimAverage += subintervalEnergyConsumption.activeEnergyWithoutDimTotal / intervalEnergyConsumption.numberOfSubIntervalForAverage;
+                    intervalEnergyConsumption.activeEnergyWithoutDimTotal += subintervalEnergyConsumption.activeEnergyWithoutDimTotal;
+                    intervalEnergyConsumption.activeEnergyWithoutControlAverage += subintervalEnergyConsumption.activeEnergyWithoutControlTotal / intervalEnergyConsumption.numberOfSubIntervalForAverage;
+                    intervalEnergyConsumption.activeEnergyWithoutControlTotal += subintervalEnergyConsumption.activeEnergyWithoutControlTotal;
+                    intervalEnergyConsumption.activeEnergyOldLampsAverage += subintervalEnergyConsumption.activeEnergyOldLampsTotal / intervalEnergyConsumption.numberOfSubIntervalForAverage;
+                    intervalEnergyConsumption.activeEnergyOldLampsTotal += subintervalEnergyConsumption.activeEnergyOldLampsTotal;
+                }
+            });
+        }
+        return intervalEnergyConsumption;
+    }
 }
+
+export class IntervalEnergyConsumptionAverages {
+    public activePowerAverage = 0.0;
+    public burningTimeAverage = 0.0;
+    public burningTimeTotal = 0.0;
+    public activeEnergyAverage = 0.0;
+    public activeEnergyTotal = 0.0;
+    public activeEnergyWithoutDimAverage = 0.0;
+    public activeEnergyWithoutDimTotal = 0.0;
+    public activeEnergyWithoutControlAverage = 0.0;
+    public activeEnergyWithoutControlTotal = 0.0;
+    public activeEnergyOldLampsAverage = 0.0;
+    public activeEnergyOldLampsTotal = 0.0;
+}
+
+
 
 export class RangeInterval {
     public min = 0.0;
@@ -128,9 +231,6 @@ export class InstallationEnergyStatistics {
     }
 }
 
-
-
-
 export class InstallationDatabase {
     public installation: InstallationWilamp;
     public customer: CustomerWilamp;
@@ -144,7 +244,7 @@ export class InstallationDatabase {
     public energyStatistics = new InstallationEnergyStatistics();
     public statisticsByLightManagementModule = new Map<number, EnergyStatisticsByResourceId>();
     public statisticsByNodeIdHMap = new Map<number, EnergyStatisticsByResourceId>();
-    public weeklyEnergyStatisticsByInstallationId: any;
+    public energyStatisticsByInstallationId: any;
     private ___calculatedOnlineNodes = null;
     private ___calculatedOnlineGateways = null;
     private ___statisticsByNodeId: EnergyStatisticsByResourceId[];

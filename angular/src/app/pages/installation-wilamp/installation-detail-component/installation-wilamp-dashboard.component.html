@@ -1,0 +1,330 @@
+<div style="width: 100%;" *ngIf="globalDatabase.selectedInstallation">
+
+    <div class="col-md-12" *ngIf="globalDatabase.selectedInstallation.installation">
+        <nb-card>
+          <nb-card-header>
+              <h2 class="title">Installation {{globalDatabase.selectedInstallation.installation.name}}</h2>
+          </nb-card-header>
+          <nb-card-body>
+            <div class="flex-centered col-xl-4 col-lg-6 col-md-8 col-sm-12" *ngIf="globalDatabase.selectedInstallation.address">
+
+                  <div class="row">
+                      <div class="col-12">
+                          <h5>{{globalDatabase.selectedInstallation.address.street}}, {{ globalDatabase.selectedInstallation.address.houseNumber }}</h5>
+                      </div>
+                      <div class="col-12">
+                          <h5>{{globalDatabase.selectedInstallation.address.zipCode}}, {{ globalDatabase.selectedInstallation.address.city }} {{ globalDatabase.selectedInstallation.address.country }}</h5>
+                      </div>
+                  </div>
+
+                <div *ngIf="globalDatabase.selectedInstallation.customer">{{globalDatabase.selectedInstallation.customer.companyName}} </div>
+
+                <div class="upper-clock m-subheader__title "><div> <i class="fa flaticon-clock-1"></i> {{getLocalDateTime() | date:'HH:mm'}}</div><div><i class="fa fa-calendar"></i> {{startInterval | date:'yyyy-MM-dd'}} - {{endInterval | date:'yyyy-MM-dd'}} </div></div>
+
+            </div>
+          </nb-card-body>
+        </nb-card>
+    </div>
+
+    <div style="clear:both"></div>
+    <!--end::Interval picker-->
+    <div class="m-content" *ngIf="globalDatabase.selectedInstallation.installation">
+
+
+        <!--- Row alerts and Dimming --->
+
+
+        <div class="row">
+            <div class="col-sm-12 col-md-8">
+                <ngx-instsallation-small-map-widget></ngx-instsallation-small-map-widget>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <ngx-installation-light-fixture-list-card></ngx-installation-light-fixture-list-card>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <ngx-installation-status-card
+                            headTitle="INSTALLATION STATUS"
+                            headValue="OK"
+                            param1Title="ALERTS"
+                            param1Value="45"
+                            param2Title="OPEN TICKETS"
+                            param2Value="2"
+                            type="primary">
+                        <i class="fal fa-info-square"></i>
+                    </ngx-installation-status-card>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <ngx-installation-status-card
+                            headTitle="NUMBER OF DCU"
+                            headValue="{{ (globalDatabase.selectedInstallation && globalDatabase.selectedInstallation.gateways) ? globalDatabase.selectedInstallation.gateways.length : 'n/a' }}"
+                            param1Title="ONLINE"
+                            param1Value="{{ (globalDatabase.selectedInstallation && globalDatabase.selectedInstallation.gateways) ? globalDatabase.selectedInstallation.onlineGateways() : 'n/a' }}"
+                            param2Title="DOWN"
+                            param2Value="{{ (globalDatabase.selectedInstallation && globalDatabase.selectedInstallation.gateways) ? globalDatabase.selectedInstallation.gateways.length - globalDatabase.selectedInstallation.onlineGateways() : 'n/a' }}"
+                            type="success">
+                        <i class="fab fa-codepen"></i>
+                    </ngx-installation-status-card>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <ngx-installation-status-card
+                            headTitle="NUMBER OF LIGHT FIXTURES"
+                            headValue="{{ (globalDatabase.selectedInstallation && globalDatabase.selectedInstallation.lightFixtures) ? globalDatabase.selectedInstallation.lightFixtures.length : 'n/a' }}"
+                            param1Title="ONLINE"
+                            param1Value="{{ (globalDatabase.selectedInstallation && globalDatabase.selectedInstallation.lightFixtures) ? globalDatabase.selectedInstallation.onlineNodes() : 'n/a' }}"
+                            param2Title="DOWN"
+                            param2Value="{{ (globalDatabase.selectedInstallation && globalDatabase.selectedInstallation.lightFixtures) ? globalDatabase.selectedInstallation.lightFixtures.length - globalDatabase.selectedInstallation.onlineNodes() : 'n/a' }}"
+                            type="info">
+                        <i class="{{ (globalDatabase.selectedInstallation && globalDatabase.selectedInstallation.lightFixtures) ? (globalDatabase.selectedInstallation.lightFixtures.length - globalDatabase.selectedInstallation.onlineNodes())>0 ? 'fal fa-lightbulb-exclamation' : 'fal fa-lightbulb' : 'n/a' }}"></i>
+                    </ngx-installation-status-card>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <ngx-installation-status-card
+                            headTitle="ALERTS"
+                            headValue="n/a"
+                            param1Title="CRITICAL"
+                            param1Value="0"
+                            param2Title="INFO"
+                            param2Value="0"
+                            type="info">
+                        <i class="fal fa-exclamation-triangle"></i>
+                    </ngx-installation-status-card>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <ngx-installation-status-card
+                            headTitle="LOCAL TIME"
+                            headValue="{{localTime}}"
+                            param1Title="SUNRISE"
+                            param1Value="{{sunriseTime}}"
+                            param2Title="SUNSET"
+                            param2Value="{{sunsetTime}}"
+                            type="{{ localIsDayTime? 'bg-color-daylight' : 'bg-color-night' }}">
+                        <i class="{{ localIsDayTime ? 'fa fa-sun' : 'fa fa-moon' }}"></i>
+                    </ngx-installation-status-card>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <ngx-installation-status-card
+                            headTitle="LAST DATA RECORD"
+                            headValue="{{ lastMeasureReceivedTimestamp ? lastMeasureReceivedTimeAgo : 'n/a'}}"
+                            param1Title="RECORD CALCULATED ON"
+                            param1Value="{{ lastMeasureReceivedTimestamp ? (lastMeasureReceivedTimestamp | date : 'medium') : 'n/a' }}"
+                            type="danger">
+                        <i class="fal fa-clock"></i>
+                    </ngx-installation-status-card>
+                </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <energy-consumption-small-graph-widget accentType="info" chartType="daily" [(currentDate)]="currentAnalyzedDate"></energy-consumption-small-graph-widget>
+            </div>
+
+            <div class="col-md-4">
+                <energy-consumption-small-graph-widget accentType="warning" chartType="weekly" [(currentDate)]="currentAnalyzedDate"></energy-consumption-small-graph-widget>
+            </div>
+
+            <div class="col-md-4">
+                <energy-consumption-small-graph-widget accentType="danger" chartType="monthly" [(currentDate)]="currentAnalyzedDate"></energy-consumption-small-graph-widget>
+            </div>
+
+        </div>
+
+        <div class="row" style="margin-top:50px">
+            <div class="col-xl-12">
+                <div class="row row-stat">
+
+                    <div class="col-md-4">
+                        <div class="panel panel-danger-alt noborder">
+                            <div class="panel-heading noborder">
+                                <div [class.fetchingData]="dataFetchingStatus.isFetchingGlobalStatistics"></div>
+                                <div class="panel-btns">
+                                </div><!-- panel-btns -->
+                                <div class="panel-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="media-body">
+                                    <h5 class="md-title nomargin">Absorbed Power Estimation</h5>
+                                    <h1 class="mt5">{{absorbedPowerEstimation}}</h1>
+                                </div><!-- media-body -->
+                                <hr>
+                                <div class="clearfix mt20">
+                                    <div class="pull-left">
+                                        <h5 class="md-title nomargin">Average dimming</h5>
+                                        <h4 class="nomargin">{{averageDimming}}%</h4>
+                                    </div>
+                                    <div class="pull-right">
+                                        <h5 class="md-title nomargin">Plant power</h5>
+                                        <h4 class="nomargin">{{plantPower}}</h4>
+                                    </div>
+                                </div>
+                            </div><!-- panel-body -->
+                        </div><!-- panel -->
+                    </div><!-- col-md-4 -->
+
+
+                    <div class="col-md-4">
+                        <div class="panel panel-warning-alt noborder">
+                            <div class="panel-heading noborder">
+                                <div [class.fetchingData]="dataFetchingStatus.isFetchingMonthlyStatistics"></div>
+                                <div class="panel-btns">
+                                </div><!-- panel-btns -->
+                                <div class="panel-icon"><i class="fa fa-bolt"></i></div>
+                                <div class="media-body">
+                                    <h5 class="md-title nomargin">Monthly Energy consumption</h5>
+                                    <h1 class="mt5">{{formatPowerConsumption(monthlyEnergyConsumptionMax)}}</h1>
+                                </div><!-- media-body -->
+                                <hr>
+                                <div class="clearfix mt20">
+                                    <div class="pull-left">
+                                        <h5 class="md-title nomargin">LAST MONTH</h5>
+                                        <h4 class="nomargin">{{formatPowerConsumption(lastMonthEnergyConsumptionMax)}}</h4>
+                                    </div>
+                                    <div class="pull-right">
+                                        <h5 class="md-title nomargin">TOTAL</h5>
+                                        <h4 class="nomargin">{{formatPowerConsumption(totalEnergyConsumption)}}</h4>
+                                    </div>
+                                </div>
+
+                            </div><!-- panel-body -->
+                        </div><!-- panel -->
+                    </div><!-- col-md-4 -->
+
+
+                    <div class="col-md-4">
+                        <div class="panel panel-dark noborder">
+                            <div class=" panel-heading noborder">
+                                <div [class.fetchingData]="dataFetchingStatus.isFetchingGlobalStatistics"></div>
+                                <div class="panel-btns">
+                                </div><!-- panel-btns -->
+                                <div class="panel-icon"><i class="fa fa-power-off"></i></div>
+                                <div class="media-body">
+                                    <h5 class="md-title nomargin">Total energy consumption</h5>
+                                    <h1 class="mt5">{{formatPowerConsumption(totalEnergyConsumption)}}</h1>
+                                </div><!-- media-body -->
+                                <hr>
+                                <div class="clearfix mt20">
+                                    <div class="pull-left">
+                                        <h5 class="md-title nomargin">WITHOUT DIMMING</h5>
+                                        <h4 class="nomargin">{{formatPowerConsumption(totalEnergyConsumptionWithoutDimming)}}</h4>
+                                    </div>
+                                    <div class="pull-right">
+                                        <h5 class="md-title nomargin">OLD INSTALLATION</h5>
+                                        <h4 class="nomargin">{{formatPowerConsumption(totalEnergyConsumptionOldInstallation)}}</h4>
+                                    </div>
+                                </div>
+
+                            </div><!-- panel-body -->
+                        </div><!-- panel -->
+                    </div><!-- col-md-4 -->
+
+                </div><!-- row -->
+            </div>
+        </div>
+
+
+        <div class="row" style="margin-top:50px">
+            <div class="col-xl-12">
+                <div class="row row-stat">
+
+
+                    <div class="col-md-4">
+                        <div class="panel panel-info-alt noborder">
+                            <div class=" panel-heading noborder">
+                                <div [class.fetchingData]="dataFetchingStatus.isFetchingMonthlyStatistics"></div>
+                                <div class="panel-btns">
+                                </div><!-- panel-btns -->
+                                <div class="panel-icon"><i class="fa fa-lightbulb"></i></div>
+                                <div class="media-body">
+                                    <h5 class="md-title nomargin">Monthly Energy saved</h5>
+                                    <h1 class="mt5">{{formatPowerConsumption(monthlyEnergySaved)}}</h1>
+                                </div><!-- media-body -->
+                                <hr>
+                                <div class="clearfix mt20">
+                                    <div class="pull-left">
+                                        <h5 class="md-title nomargin">LAST MONTH</h5>
+                                        <h4 class="nomargin">{{formatPowerConsumption(lastMonthEnergySaved)}}</h4>
+                                    </div>
+                                    <div class="pull-right">
+                                        <h5 class="md-title nomargin">TOTAL</h5>
+                                        <h4 class="nomargin">{{formatPowerConsumption(totalEnergySaved)}}</h4>
+                                    </div>
+                                </div>
+
+                            </div><!-- panel-body -->
+                        </div><!-- panel -->
+                    </div><!-- col-md-4 -->
+
+                    <div class="col-md-4">
+                        <div class="panel panel-success-alt noborder">
+                            <div class=" panel-heading noborder">
+                                <div [class.fetchingData]="dataFetchingStatus.isFetchingMonthlyStatistics"></div>
+                                <div class="panel-btns">
+                                </div><!-- panel-btns -->
+                                <div class="panel-icon"><i class="fa fa-leaf"></i></div>
+                                <div class="media-body">
+                                    <h5 class="md-title nomargin">Monthly CO2 Saved</h5>
+                                    <h1 class="mt5">{{monthlyCo2Saved}} Kg</h1>
+                                </div><!-- media-body -->
+                                <hr>
+                                <div class="clearfix mt20">
+                                    <div class="pull-left">
+                                        <h5 class="md-title nomargin">LAST MONTH</h5>
+                                        <h4 class="nomargin">{{lastMonthCo2Saved}} Kg</h4>
+                                    </div>
+                                    <div class="pull-right">
+                                        <h5 class="md-title nomargin">TOTAL</h5>
+                                        <h4 class="nomargin">{{totalCo2Saved}} Kg</h4>
+                                    </div>
+                                </div>
+
+                            </div><!-- panel-body -->
+                        </div><!-- panel -->
+                    </div><!-- col-md-4 -->
+
+                    <div class="col-md-4">
+                        <div class="panel panel-brand-alt panel-light noborder">
+                            <div class="panel-heading noborder">
+                                <div [class.fetchingData]="dataFetchingStatus.isFetchingMonthlyStatistics"></div>
+                                <div class="panel-btns">
+                                </div><!-- panel-btns -->
+                                <div class="panel-icon"><i class="fas fa-money-bill-wave"></i></div>
+                                <div class="media-body">
+                                    <h5 class="md-title nomargin">Earnings</h5>
+                                    <h1 class="mt5">{{monthlyEarnings}} €</h1>
+                                </div><!-- media-body -->
+                                <hr>
+                                <div class="clearfix mt20">
+                                    <div class="pull-left">
+                                        <h5 class="md-title nomargin">LAST MONTH</h5>
+                                        <h4 class="nomargin">{{lastMonthEarnings}} €</h4>
+                                    </div>
+                                    <div class="pull-right">
+                                        <h5 class="md-title nomargin">TOTAL</h5>
+                                        <h4 class="nomargin">{{totalEarnings}} €</h4>
+                                    </div>
+                                </div>
+
+                            </div><!-- panel-body -->
+                        </div><!-- panel -->
+                    </div><!-- col-md-4 -->
+
+
+
+                </div><!-- row -->
+            </div>
+        </div>
+
+        <div class="row" style="margin-top:50px">
+            <div class="col-lg-12">
+
+                <panel-chart-widget chartType="daily" [(currentDate)]="currentAnalyzedDate" subClass="cyan"> </panel-chart-widget>
+
+                <panel-chart-widget chartType="monthly" [(currentDate)]="currentAnalyzedDate" subClass="darkred"> </panel-chart-widget>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+</div>

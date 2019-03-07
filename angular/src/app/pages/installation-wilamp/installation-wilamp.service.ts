@@ -22,6 +22,7 @@ export type EntityResponseType = HttpResponse<InstallationWilamp>;
 export class InstallationWilampService {
 
     private resourceUrl =  `${environment.apiUrl}/api/installation`;
+    private statisticsUrl =  `${environment.apiUrl}/api/statistics/installation`;
     private resourceSearchUrl =  `${environment.apiUrl}/api/_search/installation`;
 
     constructor(private http: HttpClient, private dateUtils: JhiDateUtils) { }
@@ -50,6 +51,23 @@ export class InstallationWilampService {
 
         return this.http.get(`${this.resourceUrl}/runtimeParameters/${id}`, { params: options, observe: 'response' }).pipe(map((res: HttpResponse<InstallationRuntimeParameters>) => {
             const copy: InstallationRuntimeParameters = Object.assign({}, res.body);
+            return copy;
+        }));
+    }
+
+    getEnergyStatistics(id: number, startInterval?: Date, endInterval?: Date, currentAnalyzedDate?: Date): Observable<EnergyStatistics> {
+        let options = createRequestOption();
+        options = options.set('installationId', id.toString());
+        if (startInterval != null) {   options = options.set('startInterval', startInterval.toISOString()); }
+        if (endInterval != null) {   options = options.set('endInterval', endInterval.toISOString()); }
+        if (currentAnalyzedDate != null) {   options = options.set('currentAnalyzedDate', currentAnalyzedDate.toISOString()); }
+        return this.http.get(`${this.statisticsUrl}/global/`, { params: options, observe: 'response' }).pipe(map((res: HttpResponse<EnergyStatistics>) => {
+            const copy: EnergyStatistics = Object.assign({}, res.body);
+            try {
+                copy.globalEnergyConsumption.lastIntervalTimestamp = this.dateUtils.toDate(copy.globalEnergyConsumption.lastIntervalTimestamp);
+            } catch (e) {
+                console.warn(e);
+            }
             return copy;
         }));
     }

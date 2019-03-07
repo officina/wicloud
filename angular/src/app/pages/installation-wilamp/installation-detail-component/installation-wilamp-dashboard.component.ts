@@ -51,7 +51,7 @@ declare var window: any;
 @Component({
     selector: '.m-grid__item.m-grid__item--fluid.m-wrapper',
     templateUrl: './installation-wilamp-dashboard.component.html',
-    styleUrls: ['installation-wilamp-dashboard.component.css'],
+    styleUrls: ['installation-wilamp-dashboard.component.scss'],
 })
 export class InstallationWilampDashboardComponent implements OnInit, OnDestroy, AfterViewInit {
 
@@ -518,7 +518,7 @@ export class InstallationWilampDashboardComponent implements OnInit, OnDestroy, 
                     }
                 },
                 initChartEnergyStatistics(energyStatistics: EnergyStatistics) {
-                    this.initChartSerialByDayOfWeek( energyStatistics.statisticsByDayOfWeek,  'Average power by day of week', 'hour', 'activePower', '[[title]]: [[value]]', 'char_day_of_week_avgpwr');
+                    /*this.initChartSerialByDayOfWeek( energyStatistics.statisticsByDayOfWeek,  'Average power by day of week', 'hour', 'activePower', '[[title]]: [[value]]', 'char_day_of_week_avgpwr');
                     this.initChartSerialByDayOfWeek( energyStatistics.statisticsByDayOfWeek,  'Consumption by day of week', 'hour', 'activeEnergy', '[[title]]: [[value]]', 'char_day_of_week_energy_intervals');
                     this.initChartSerialByDayOfWeek( energyStatistics.statisticsByDayOfWeek,  'Number of measures by day of week', 'hour', 'measureCount', '[[title]]: [[value]]', 'char_day_of_week_measure_count');
                     this.initChartSerialByDayOfWeek( energyStatistics.statisticsByDayOfWeek,  'Number of measures by day of week', 'hour', 'burningTime', '[[title]]: [[value]]', 'char_day_of_week_burning_time');
@@ -527,7 +527,7 @@ export class InstallationWilampDashboardComponent implements OnInit, OnDestroy, 
                     this.initChartSerialByWeekNumber( energyStatistics.statisticsByWeekNumber,  'Consumption by week number', 'hour', 'activeEnergy', '[[title]]: [[value]]', 'char_weekly_energy_intervals');
                     this.initChartSerialByWeekNumber( energyStatistics.statisticsByWeekNumber,  'Number of measures by week number', 'hour', 'measureCount', '[[title]]: [[value]]', 'char_weekly_measure_count');
                     this.initChartSerialByWeekNumber( energyStatistics.statisticsByWeekNumber,  'Burning time by week number', 'hour', 'burningTime', '[[title]]: [[value]]', 'char_weekly_burning_time');
-
+                    */ // TODO: AT Implement
                     this.initChartConsumptionBullet( energyStatistics.globalEnergyConsumption, 'Global consumption', 'chart_global_consumption' );
                     this.initChartConsumptionBullet( energyStatistics.currentIntervalEnergyConsumption, 'Global consumption', 'chart_current_interval_consumption' );
                 },
@@ -648,7 +648,6 @@ export class InstallationWilampDashboardComponent implements OnInit, OnDestroy, 
 
     load(id) {
         this.resetInstallationData();
-        this.getRuntimeParameters(id);
         // this.getRuntimeParameters(id);
     }
 
@@ -710,7 +709,7 @@ export class InstallationWilampDashboardComponent implements OnInit, OnDestroy, 
         });
         // The following function will trigger an event (GLOBALDATABASE__INSTALLATION_WEEKLY_STATISTICS_FETCHED)
         // that will be managed by the function updateChartEnergyStatistics
-        this.globalDatabase.fetchWeeklyEnergyStatisticsByInstallationId(installationId, this.startInterval, this.endInterval, this.currentAnalyzedDate);
+        this.globalDatabase.fetchEnergyStatisticsByInstallationId(installationId, this.startInterval, this.endInterval, this.currentAnalyzedDate);
         this.globalDatabase.fetchEnergyStatisticsByNodeId(installationId, null, this.startInterval, this.endInterval, this.currentAnalyzedDate);
         this.initializeTimeAndSunrise();
         // this.installationService.getWeeklyEnergyStatistics(installationId, null, this.startInterval, this.endInterval);
@@ -725,7 +724,7 @@ export class InstallationWilampDashboardComponent implements OnInit, OnDestroy, 
     updateChartEnergyStatistics() {
 
         try {
-            this.energyStatistics = this.globalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId;
+            this.energyStatistics = this.globalDatabase.selectedInstallation.energyStatisticsByInstallationId;
         } catch (e) {
         }
 
@@ -769,22 +768,22 @@ export class InstallationWilampDashboardComponent implements OnInit, OnDestroy, 
         }
 
         try {
-            if (window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId && window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByHour.length > 0) {
+            if (window.GlobalDatabase.selectedInstallation.energyStatisticsByInstallationId && window.GlobalDatabase.selectedInstallation.energyStatisticsByInstallationId.statisticsOfTodayByHour.length > 0) {
                 const todayData = Array();
                 const currentDayOfWeek = (this.currentAnalyzedDate).getDay();
                 let maxValue = 0.0;
                 this.dailyEnergyConsumptionAvg = 0.0;
                 this.dailyEnergyConsumptionMax = 0.0;
-                for (let i = 0; i < window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByHour.length; i++) {
-                    todayData[i] = [i, Math.round(window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByHour[i].activeEnergy * 10.0) / 10.0];
+                for (let i = 0; i < window.GlobalDatabase.selectedInstallation.energyStatisticsByInstallationId.statisticsOfTodayByHour.length; i++) {
+                    todayData[i] = [i, Math.round(window.GlobalDatabase.selectedInstallation.energyStatisticsByInstallationId.statisticsOfTodayByHour[i].activeEnergy * 10.0) / 10.0];
                     // if (window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByHour[i].day > 0) { currentDayOfWeek = window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByHour[i].day; }
                     this.dailyEnergyConsumptionAvg += todayData[i][1] / 24.0;
                     this.dailyEnergyConsumptionMax += todayData[i][1];
                     if (todayData[i][1] > maxValue) { maxValue = todayData[i][1]; }
                 }
                 const todayAvgData = Array();
-                for (let i = 0; i < window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsByDayOfWeek[currentDayOfWeek].length; i++) {
-                    todayAvgData[i] = [i, window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsByDayOfWeek[currentDayOfWeek][i].sumEnergy];
+                for (let i = 0; i < window.GlobalDatabase.selectedInstallation.energyStatisticsByInstallationId.statisticsByDayOfWeek[currentDayOfWeek].length; i++) {
+                    todayAvgData[i] = [i, window.GlobalDatabase.selectedInstallation.energyStatisticsByInstallationId.statisticsByDayOfWeek[currentDayOfWeek][i].sumEnergy];
                     if (todayAvgData[i][1] > maxValue) { maxValue = todayAvgData[i][1]; }
                 }
                 this.dailyEnergyConsumptionAvg = Math.round(this.dailyEnergyConsumptionAvg);
@@ -802,24 +801,24 @@ export class InstallationWilampDashboardComponent implements OnInit, OnDestroy, 
         }
 
         try {
-            if (window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId && window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByDayOfWeek.length > 0) {
+            if (window.GlobalDatabase.selectedInstallation.energyStatisticsByInstallationId && window.GlobalDatabase.selectedInstallation.energyStatisticsByInstallationId.statisticsOfTodayByDayOfWeek.length > 0) {
                 const todayData = Array();
                 this.weeklyEnergyConsumptionAvg = 0.0;
                 this.weeklyEnergyConsumptionMax = 0.0;
                 this.lastWeekEnergyConsumptionAvg = 0.0;
                 this.lastWeekEnergyConsumptionMax = 0.0;
                 let maxValue = 0.0;
-                for (let i = 0; i < window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByDayOfWeek.length; i++) {
-                    todayData[i] = [i, Math.round(window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByDayOfWeek[i].sumEnergy * 10.0) / 10.0];
+                for (let i = 0; i < window.GlobalDatabase.selectedInstallation.energyStatisticsByInstallationId.statisticsOfTodayByDayOfWeek.length; i++) {
+                    todayData[i] = [i, Math.round(window.GlobalDatabase.selectedInstallation.energyStatisticsByInstallationId.statisticsOfTodayByDayOfWeek[i].sumEnergy * 10.0) / 10.0];
                     // if (window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByHour[i].day > 0) { currentDayOfWeek = window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByHour[i].day; }
                     this.weeklyEnergyConsumptionAvg += todayData[i][1] / 7.0;
                     this.weeklyEnergyConsumptionMax += todayData[i][1];
                     if (todayData[i][1] > maxValue) { maxValue = todayData[i][1]; }
                 }
                 const todayAvgData = Array();
-                for (let i = 0; i < window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfLastWeekByDayOfWeek.length; i++) {
+                for (let i = 0; i < window.GlobalDatabase.selectedInstallation.energyStatisticsByInstallationId.statisticsOfLastWeekByDayOfWeek.length; i++) {
                     let sumEnergy = 0.0;
-                    sumEnergy += window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfLastWeekByDayOfWeek[i].sumEnergy;
+                    sumEnergy += window.GlobalDatabase.selectedInstallation.energyStatisticsByInstallationId.statisticsOfLastWeekByDayOfWeek[i].sumEnergy;
                     todayAvgData[i] = [i, sumEnergy];
                     if (todayAvgData[i][1] > maxValue) { maxValue = todayAvgData[i][1]; }
                     this.lastWeekEnergyConsumptionAvg += todayAvgData[i][1] / 7.0;
@@ -843,7 +842,7 @@ export class InstallationWilampDashboardComponent implements OnInit, OnDestroy, 
         }
 
         try {
-            if (window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId && window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByDayOfMonth.length > 0) {
+            if (window.GlobalDatabase.selectedInstallation.energyStatisticsByInstallationId && window.GlobalDatabase.selectedInstallation.energyStatisticsByInstallationId.statisticsOfTodayByDayOfMonth.length > 0) {
                 const todayData = Array();
                 const daysInCurrentMonth = new Date((this.currentAnalyzedDate).getFullYear(), (this.currentAnalyzedDate).getMonth(), 0).getDate();
                 this.monthlyEnergyConsumptionAvg = 0.0;
@@ -855,24 +854,24 @@ export class InstallationWilampDashboardComponent implements OnInit, OnDestroy, 
                 this.monthlyEnergySaved = 0.0;
                 this.monthlyCo2Saved = 0.0;
                 let maxValue = 0.0;
-                for (let i = 0; i < window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByDayOfMonth.length; i++) {
-                    todayData[i] = [i, Math.round(window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByDayOfMonth[i].sumEnergy * 10.0) / 10.0];
+                for (let i = 0; i < window.GlobalDatabase.selectedInstallation.energyStatisticsByInstallationId.statisticsOfTodayByDayOfMonth.length; i++) {
+                    todayData[i] = [i, Math.round(window.GlobalDatabase.selectedInstallation.energyStatisticsByInstallationId.statisticsOfTodayByDayOfMonth[i].sumEnergy * 10.0) / 10.0];
                     // if (window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByHour[i].day > 0) { currentDayOfWeek = window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByHour[i].day; }
                     this.monthlyEnergyConsumptionAvg += todayData[i][1] / daysInCurrentMonth;
                     this.monthlyEnergyConsumptionMax += todayData[i][1];
-                    const energySaved = window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByDayOfMonth[i].sumEnergyOldLamps - window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByDayOfMonth[i].sumEnergy;
+                    const energySaved = window.GlobalDatabase.selectedInstallation.energyStatisticsByInstallationId.statisticsOfTodayByDayOfMonth[i].sumEnergyOldLamps - window.GlobalDatabase.selectedInstallation.energyStatisticsByInstallationId.statisticsOfTodayByDayOfMonth[i].sumEnergy;
                     if (energySaved > 0) { this.monthlyEnergySaved += energySaved; }
                     if (todayData[i][1] > maxValue) { maxValue = todayData[i][1]; }
                 }
                 const todayAvgData = Array();
-                for (let i = 0; i < window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfLastMonthByDayOfMonth.length; i++) {
+                for (let i = 0; i < window.GlobalDatabase.selectedInstallation.energyStatisticsByInstallationId.statisticsOfLastMonthByDayOfMonth.length; i++) {
                     let sumEnergy = 0.0;
-                    sumEnergy += window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfLastMonthByDayOfMonth[i].sumEnergy;
+                    sumEnergy += window.GlobalDatabase.selectedInstallation.energyStatisticsByInstallationId.statisticsOfLastMonthByDayOfMonth[i].sumEnergy;
                     todayAvgData[i] = [i, sumEnergy];
                     if (todayAvgData[i][1] > maxValue) { maxValue = todayAvgData[i][1]; }
                     this.lastMonthEnergyConsumptionAvg += todayAvgData[i][1] / daysInCurrentMonth;
                     this.lastMonthEnergyConsumptionMax += todayAvgData[i][1];
-                    const energySaved = window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfLastMonthByDayOfMonth[i].sumEnergyOldLamps - window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfLastMonthByDayOfMonth[i].sumEnergy;
+                    const energySaved = window.GlobalDatabase.selectedInstallation.energyStatisticsByInstallationId.statisticsOfLastMonthByDayOfMonth[i].sumEnergyOldLamps - window.GlobalDatabase.selectedInstallation.energyStatisticsByInstallationId.statisticsOfLastMonthByDayOfMonth[i].sumEnergy;
                     if (energySaved > 0) { this.lastMonthEnergySaved += energySaved; }
                 }
                 this.monthlyCo2Saved = this.monthlyEnergySaved * KWtoCO2Factor;

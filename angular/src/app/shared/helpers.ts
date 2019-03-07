@@ -183,4 +183,8 @@ export class Helpers {
         $(element).removeAttr('appunwraptag').unwrap();
     }
 
+    static daysInMonth (month, year) {
+        return new Date(year, month, 0).getDate();
+    }
+
 }

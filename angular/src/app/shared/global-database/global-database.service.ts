@@ -90,14 +90,14 @@ export class GlobalDatabaseService {
                     this.installationDatabase[id] = new InstallationDatabase(id);
                     this.installationDatabase[id].installation = installation;
                 }
-                if (installation.customerId != null) {
-                    this.customerService.find(installation.customerId).subscribe((customer) => {
+                if (installation.customer != null) {
+                    this.customerService.find(installation.customer).subscribe((customer) => {
                         this.selectedInstallation.customer = customer.body;
                         this.installationDatabase[id].customer = customer.body;
                     });
                 }
-                if (installation.addressId != null) {
-                    this.addressService.find(installation.addressId).subscribe((address) => {
+                if (installation.address != null) {
+                    this.addressService.find(installation.address).subscribe((address) => {
                         this.selectedInstallation.address = address.body;
                         this.installationDatabase[id].address = address.body;
                         this.eventManager.broadcast({
@@ -108,10 +108,9 @@ export class GlobalDatabaseService {
                 }
                 this.fetchGateways(id, 1, 100);
                 this.fetchLightFixtures(id, 1, 100);
-                this.fetchNodes(id, 1, 100);
                 const startInterval = new Date();
                 startInterval.setFullYear(1990);
-                this.fetchWeeklyEnergyStatisticsByInstallationId(id, startInterval, new Date(), new Date());
+                this.fetchEnergyStatisticsByInstallationId(id, startInterval, new Date(), new Date());
                 this.fetchEnergyStatisticsByNodeId(id, null, startInterval, new Date(), new Date());
 
                 // this.fetchEnergyStatisticsByNodeId(id);
@@ -137,7 +136,8 @@ export class GlobalDatabaseService {
             } else {
                 this.selectedInstallation.gateways.push.apply(this.selectedInstallation.gateways, res.body);
             }
-            if (res.body.length === 0) {
+            const totalPages = parseInt(res.headers.get('x-total-pages'), 10);
+            if (page === totalPages) {
                 this.installationDatabase[installationId].gateways = this.selectedInstallation.gateways;
                 this.eventManager.broadcast({
                     name: GLOBALDATABASE__GATEWAYS_FETCHED,
@@ -161,7 +161,8 @@ export class GlobalDatabaseService {
             } else {
                 this.selectedInstallation.lightFixtures.push.apply(this.selectedInstallation.lightFixtures, res.body);
             }
-            if (res.body.length === 0) {
+            const totalPages = parseInt(res.headers.get('x-total-pages'), 10);
+            if (page === totalPages) {
                 this.installationDatabase[installationId].lightFixtures = this.selectedInstallation.lightFixtures;
                 this.eventManager.broadcast({
                     name: GLOBALDATABASE__LIGHT_FIXTURES_FETCHED,
@@ -187,7 +188,8 @@ export class GlobalDatabaseService {
             } else {
                 this.selectedInstallation.nodes.push.apply(this.selectedInstallation.nodes, res.body);
             }
-            if (res.body.length === 0) {
+            const totalPages = parseInt(res.headers.get('x-total-pages'), 10);
+            if (page === totalPages) {
                 this.installationDatabase[installationId].nodes = this.selectedInstallation.nodes;
                 this.eventManager.broadcast({
                     name: GLOBALDATABASE__LIGHT_FIXTURES_FETCHED,
@@ -229,12 +231,12 @@ export class GlobalDatabaseService {
         });
     }
 
-    fetchWeeklyEnergyStatisticsByInstallationId(installationId, startInterval, endInterval, currentAnalyzedDate) {
+    fetchEnergyStatisticsByInstallationId(installationId, startInterval, endInterval, currentAnalyzedDate) {
         this.eventManager.broadcast({
             name: GLOBALDATABASE__INSTALLATION_WEEKLY_STATISTICS_FETCHING,
             content: 'Sending fetch event',
         });
-        this.installationService.getWeeklyEnergyStatistics(installationId, null, startInterval, endInterval, currentAnalyzedDate).subscribe((energyStatistics) => {
+        this.installationService.getEnergyStatistics(installationId, startInterval, endInterval, currentAnalyzedDate).subscribe((energyStatistics) => {
             this.populateSelectedInstallationWithEnergyStatistics(energyStatistics);
             this.eventManager.broadcast({
                 name: GLOBALDATABASE__INSTALLATION_WEEKLY_STATISTICS_FETCHED,
@@ -261,280 +263,70 @@ export class GlobalDatabaseService {
 
     populateSelectedInstallationWithEnergyStatistics(energyStatistics: EnergyStatistics) {
         try {
-            this.selectedInstallation.weeklyEnergyStatisticsByInstallationId = energyStatistics;
+            this.selectedInstallation.energyStatisticsByInstallationId = energyStatistics;
             this.selectedInstallation.energyStatistics.totalEnergyConsumption = energyStatistics.globalEnergyConsumption.sumEnergy;
             this.selectedInstallation.energyStatistics.totalEnergyConsumptionWithoutDimming = energyStatistics.globalEnergyConsumption.sumEnergyWithoutDim;
             this.selectedInstallation.energyStatistics.totalEnergyConsumptionWithoutControl = energyStatistics.globalEnergyConsumption.sumEnergyWithoutControl;
             this.selectedInstallation.energyStatistics.totalEnergyConsumptionOldInstallation = energyStatistics.globalEnergyConsumption.sumEnergyOldLamps;
             this.selectedInstallation.energyStatistics.lastMeasureReceivedTimestamp = energyStatistics.globalEnergyConsumption.lastIntervalTimestamp;
+            this.selectedInstallation.energyStatistics.absorbedPowerEstimation = energyStatistics.absorbedPowerEstimation;
+            if (energyStatistics.byWeek.length > 0) {
+                const weeklyEnergyConsumption: Map<string, IntervalEnergyConsumption> = new Map<string, IntervalEnergyConsumption>();
+                let databaseKey = '';
 
-            if (energyStatistics.energyStatisticsByWeekNumberDayOfWeekAndHour.length > 0) {
-                energyStatistics.energyStatisticsByWeekNumberDayOfWeekAndHour.forEach((week) => {
-                    let databaseKey = '';
-                    const weeklyEnergyConsumption = new IntervalEnergyConsumption();
-                    const allDaysEnergyConsumption = new IntervalEnergyConsumption();
-                    week.forEach((dayArray) => {
-                        let day = 0;
-                        const dailyEnergyConsumption = new IntervalEnergyConsumption();
-                        for (let i = 0; i < 24; i++) {
-                            const hourEnergyStatistics = dayArray[i];
-                            day = hourEnergyStatistics.dayOfWeek;
-                            if (databaseKey === '') { databaseKey = hourEnergyStatistics.year + '_' + hourEnergyStatistics.weekNumber; }
-                            // Create a new EnergyConsumptionInterval for the current Hour.
-                            const hourlyEnergyConsumption = new IntervalEnergyConsumption();
-                            hourlyEnergyConsumption.activePowerAverage = hourEnergyStatistics.activePower;
-                            hourlyEnergyConsumption.activeEnergyAverage = hourEnergyStatistics.sumEnergy;
-                            hourlyEnergyConsumption.activeEnergyTotal = hourEnergyStatistics.sumEnergy;
-                            hourlyEnergyConsumption.activeEnergyWithoutDimAverage = hourEnergyStatistics.sumEnergyWithoutDim;
-                            hourlyEnergyConsumption.activeEnergyWithoutDimTotal = hourEnergyStatistics.sumEnergyWithoutDim;
-                            hourlyEnergyConsumption.activeEnergyWithoutControlAverage = hourEnergyStatistics.sumEnergyWithoutControl;
-                            hourlyEnergyConsumption.activeEnergyWithoutControlTotal = hourEnergyStatistics.sumEnergyWithoutControl;
-                            hourlyEnergyConsumption.activeEnergyOldLampsAverage = hourEnergyStatistics.sumEnergyOldLamps;
-                            hourlyEnergyConsumption.activeEnergyOldLampsTotal = hourEnergyStatistics.sumEnergyOldLamps;
-                            dailyEnergyConsumption.content.push(hourlyEnergyConsumption);
-                            dailyEnergyConsumption.data[i] = [i, Math.round(hourEnergyStatistics.sumEnergy * 10.0) / 10.0];
-                            // if (window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByHour[i].day > 0) { currentDayOfWeek = window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByHour[i].day; }
-
-                            // Update the EnergyConsumptionInterval for the current Day.
-                            dailyEnergyConsumption.activePowerAverage += hourlyEnergyConsumption.activePowerAverage / 24.0;
-                            dailyEnergyConsumption.activeEnergyAverage += hourlyEnergyConsumption.activeEnergyAverage ;
-                            dailyEnergyConsumption.activeEnergyTotal += hourlyEnergyConsumption.activeEnergyAverage;
-                            dailyEnergyConsumption.activeEnergyWithoutDimAverage += hourlyEnergyConsumption.activeEnergyWithoutDimAverage ;
-                            dailyEnergyConsumption.activeEnergyWithoutDimTotal += hourlyEnergyConsumption.activeEnergyWithoutDimAverage;
-                            dailyEnergyConsumption.activeEnergyWithoutControlAverage += hourlyEnergyConsumption.activeEnergyWithoutControlAverage ;
-                            dailyEnergyConsumption.activeEnergyWithoutControlTotal += hourlyEnergyConsumption.activeEnergyWithoutControlAverage;
-                            dailyEnergyConsumption.activeEnergyOldLampsAverage += hourlyEnergyConsumption.activeEnergyOldLampsAverage;
-                            dailyEnergyConsumption.activeEnergyOldLampsTotal += hourlyEnergyConsumption.activeEnergyOldLampsAverage;
-                        }
-                        weeklyEnergyConsumption.content.push(dailyEnergyConsumption);
-
-                        // Update the EnergyConsumptionInterval for the current Week.
-                        weeklyEnergyConsumption.activePowerAverage += dailyEnergyConsumption.activePowerAverage / 7.0;
-                        weeklyEnergyConsumption.activeEnergyAverage += dailyEnergyConsumption.activeEnergyAverage / 7.0;
-                        weeklyEnergyConsumption.activeEnergyTotal += dailyEnergyConsumption.activeEnergyTotal;
-                        weeklyEnergyConsumption.activeEnergyWithoutDimAverage += dailyEnergyConsumption.activeEnergyWithoutDimAverage / 7.0;
-                        weeklyEnergyConsumption.activeEnergyWithoutDimTotal += dailyEnergyConsumption.activeEnergyWithoutDimTotal;
-                        weeklyEnergyConsumption.activeEnergyWithoutControlAverage += dailyEnergyConsumption.activeEnergyWithoutControlAverage / 7.0;
-                        weeklyEnergyConsumption.activeEnergyWithoutControlTotal += dailyEnergyConsumption.activeEnergyWithoutControlTotal;
-                        weeklyEnergyConsumption.activeEnergyOldLampsAverage += dailyEnergyConsumption.activeEnergyOldLampsAverage / 7.0;
-                        weeklyEnergyConsumption.activeEnergyOldLampsTotal += dailyEnergyConsumption.activeEnergyOldLampsTotal;
-                        weeklyEnergyConsumption.data[day] = [day, Math.round(dailyEnergyConsumption.activeEnergyTotal * 10.0) / 10.0];
-                    });
-
-                    weeklyEnergyConsumption.activePowerAverage = Helpers.round(weeklyEnergyConsumption.activeEnergyAverage);
-                    weeklyEnergyConsumption.activeEnergyAverage = Helpers.round(weeklyEnergyConsumption.activeEnergyAverage);
-                    weeklyEnergyConsumption.activeEnergyTotal = Helpers.round(weeklyEnergyConsumption.activeEnergyTotal);
-                    weeklyEnergyConsumption.activeEnergyWithoutDimAverage = Helpers.round(weeklyEnergyConsumption.activeEnergyWithoutDimAverage);
-                    weeklyEnergyConsumption.activeEnergyWithoutDimTotal = Helpers.round(weeklyEnergyConsumption.activeEnergyWithoutDimTotal);
-                    weeklyEnergyConsumption.activeEnergyWithoutControlAverage = Helpers.round(weeklyEnergyConsumption.activeEnergyWithoutControlAverage);
-                    weeklyEnergyConsumption.activeEnergyWithoutControlTotal = Helpers.round(weeklyEnergyConsumption.activeEnergyWithoutControlTotal);
-                    weeklyEnergyConsumption.activeEnergyOldLampsAverage = Helpers.round(weeklyEnergyConsumption.activeEnergyOldLampsAverage);
-                    weeklyEnergyConsumption.activeEnergyOldLampsTotal = Helpers.round(weeklyEnergyConsumption.activeEnergyOldLampsTotal);
-                    this.selectedInstallation.energyStatistics.statisticsByWeek.set(databaseKey, weeklyEnergyConsumption);
+                energyStatistics.byWeek.forEach((hourEnergyInterval) => {
+                    databaseKey = hourEnergyInterval.year + '_' + hourEnergyInterval.weekNumber;
+                    if (!weeklyEnergyConsumption.has(databaseKey)) {
+                        weeklyEnergyConsumption.set(databaseKey, new IntervalEnergyConsumption({
+                            year: hourEnergyInterval.year,
+                            weekNumber: hourEnergyInterval.weekNumber,
+                            numberOfSubIntervalForAverage: 7,
+                        }));
+                    }
+                    if (!weeklyEnergyConsumption.get(databaseKey).content.has(hourEnergyInterval.dayOfWeek)) {
+                        weeklyEnergyConsumption.get(databaseKey).content.set(hourEnergyInterval.dayOfWeek, new IntervalEnergyConsumption({
+                            year: hourEnergyInterval.year,
+                            weekNumber: hourEnergyInterval.weekNumber,
+                            dayOfWeek: hourEnergyInterval.dayOfWeek,
+                            numberOfSubIntervalForAverage: 24,
+                        }));
+                    }
+                    weeklyEnergyConsumption.get(databaseKey).content.get(hourEnergyInterval.dayOfWeek).content.set(hourEnergyInterval.hour, new IntervalEnergyConsumption({energyStatisticRow: hourEnergyInterval}));
                 });
-                /*
-                for (let i = 0; i < this.selectedInstallation.weeklyEnergyStatisticsByInstallationId.energyStatisticsByWeekNumberDayOfWeekAndHour.length; i++) {
-                    const weekNumber = this.selectedInstallation.weeklyEnergyStatisticsByInstallationId.energyStatisticsByWeekNumberDayOfWeekAndHour[i]
-
-                    todayData[i] = [i, Math.round(this.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByHour[i].sumEnergy * 10.0) / 10.0];
-
-                    // if (window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByHour[i].day > 0) { currentDayOfWeek = window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByHour[i].day; }
-                    this.dailyEnergyConsumptionAvg += todayData[i][1] / 24.0;
-                    this.dailyEnergyConsumptionMax += todayData[i][1];
-                    if (todayData[i][1] > maxValue) { maxValue = todayData[i][1]; }
-                }
-                const todayAvgData = Array();
-                for (let i = 0; i < this.globalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsByDayOfWeek[currentDayOfWeek].length; i++) {
-                    todayAvgData[i] = [i, this.globalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsByDayOfWeek[currentDayOfWeek][i].sumEnergy];
-                    if (todayAvgData[i][1] > maxValue) { maxValue = todayAvgData[i][1]; }
-                }
-                this.dailyEnergyConsumptionAvg = Math.round(this.dailyEnergyConsumptionAvg * 10.0) / 10.0;
-                this.dailyEnergyConsumptionMax = Math.round(this.dailyEnergyConsumptionMax * 10.0) / 10.0;
-                this.dailyEnergyConsumptionOptions.yaxis.max = Math.round(maxValue) + 1;
-                this.dailyEnergyConsumption[0].data = todayData;
-                this.dailyEnergyConsumption[1].data = todayAvgData;
-                this.eventManager.broadcast({
-                    name: INSTALLATION_DASHBOARD__DAILY_STATISTICS_FETCHED,
-                    content: { dataset: this.dailyEnergyConsumption, options: this.dailyEnergyConsumptionOptions }
-                }); */
+                weeklyEnergyConsumption.forEach((singleWeekEnergyConsumption, key) => {
+                    const result = IntervalEnergyConsumption.populateAveragesFromSubIntervals(singleWeekEnergyConsumption);
+                    this.selectedInstallation.energyStatistics.statisticsByWeek.set(key, result);
+                });
             }
         } catch (Exception) {
             console.warn(Exception);
         }
 
         try {
-            this.selectedInstallation.weeklyEnergyStatisticsByInstallationId = energyStatistics;
+            this.selectedInstallation.energyStatisticsByInstallationId = energyStatistics;
+            if (energyStatistics.byMonth.length > 0) {
+                const monthlyEnergyConsumptions: Map<string, IntervalEnergyConsumption> = new Map<string, IntervalEnergyConsumption>();
+                let databaseKey = '';
 
-            if (energyStatistics.energyStatisticsByYearMonthAndDayOfMonthDTOS.length > 0) {
-                energyStatistics.energyStatisticsByYearMonthAndDayOfMonthDTOS.forEach((yearArray) => {
-                    yearArray.forEach((monthArray) => {
-                        let day = 0;
-                        let databaseKey = '';
-                        let numberOfMeasuresForAverage = 0.0;
-                        const monthlyEnergyConsumption = new IntervalEnergyConsumption();
-                        for (let i = 1; i <= 31; i++) {
-                            const dayEnergyStatistics = monthArray[i];
-                            day = dayEnergyStatistics.day;
-                            if (databaseKey === '') {
-                                databaseKey = dayEnergyStatistics.year + '_' + dayEnergyStatistics.month;
-                            }
-
-                            const dailyEnergyConsumption = new IntervalEnergyConsumption();
-                            const dayDate = new Date(dayEnergyStatistics.year, dayEnergyStatistics.month, dayEnergyStatistics.day);
-
-                            dailyEnergyConsumption.activeEnergyAverage = dayEnergyStatistics.sumEnergy;
-                            dailyEnergyConsumption.activeEnergyTotal = dayEnergyStatistics.sumEnergy;
-                            dailyEnergyConsumption.activeEnergyWithoutDimAverage = dayEnergyStatistics.sumEnergyWithoutDim;
-                            dailyEnergyConsumption.activeEnergyWithoutDimTotal = dayEnergyStatistics.sumEnergyWithoutDim;
-                            dailyEnergyConsumption.activeEnergyWithoutControlAverage = dayEnergyStatistics.sumEnergyWithoutControl;
-                            dailyEnergyConsumption.activeEnergyWithoutControlTotal = dayEnergyStatistics.sumEnergyWithoutControl;
-                            dailyEnergyConsumption.activeEnergyOldLampsAverage = dayEnergyStatistics.sumEnergyOldLamps;
-                            dailyEnergyConsumption.activeEnergyOldLampsTotal = dayEnergyStatistics.sumEnergyOldLamps;
-                            dailyEnergyConsumption.timestamp = new Date(dayEnergyStatistics.year, (dayEnergyStatistics.month - 1), dayEnergyStatistics.day);
-                            monthlyEnergyConsumption.data[i] = [i, Math.round(dayEnergyStatistics.sumEnergy * 10.0) / 10.0];
-                            monthlyEnergyConsumption.content.push(dailyEnergyConsumption);
-
-                            // if (window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByHour[i].day > 0) { currentDayOfWeek = window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByHour[i].day; }
-                            if (monthlyEnergyConsumption.data[i][1] > 0) { numberOfMeasuresForAverage++; }
-
-                            monthlyEnergyConsumption.activeEnergyTotal += dailyEnergyConsumption.activeEnergyTotal;
-                            monthlyEnergyConsumption.activeEnergyWithoutDimTotal += dailyEnergyConsumption.activeEnergyWithoutDimTotal;
-                            monthlyEnergyConsumption.activeEnergyWithoutControlTotal += dailyEnergyConsumption.activeEnergyWithoutControlTotal;
-                            monthlyEnergyConsumption.activeEnergyOldLampsTotal += dailyEnergyConsumption.activeEnergyOldLampsTotal;
-                        }
-                        if (numberOfMeasuresForAverage > 0) {
-                            monthlyEnergyConsumption.activeEnergyAverage = monthlyEnergyConsumption.activeEnergyTotal / numberOfMeasuresForAverage;
-                            monthlyEnergyConsumption.activeEnergyWithoutDimAverage = monthlyEnergyConsumption.activeEnergyWithoutDimTotal / numberOfMeasuresForAverage;
-                            monthlyEnergyConsumption.activeEnergyOldLampsAverage = monthlyEnergyConsumption.activeEnergyOldLampsTotal / numberOfMeasuresForAverage;
-                            monthlyEnergyConsumption.activeEnergyWithoutControlAverage = monthlyEnergyConsumption.activeEnergyWithoutControlTotal / numberOfMeasuresForAverage;
-
-                        }
-                        monthlyEnergyConsumption.activeEnergyAverage = Math.round(monthlyEnergyConsumption.activeEnergyAverage * 10.0) / 10.0;
-                        monthlyEnergyConsumption.activeEnergyWithoutDimAverage = Math.round(monthlyEnergyConsumption.activeEnergyWithoutDimAverage * 10.0) / 10.0;
-                        monthlyEnergyConsumption.activeEnergyOldLampsAverage = Math.round(monthlyEnergyConsumption.activeEnergyOldLampsAverage * 10.0) / 10.0;
-                        monthlyEnergyConsumption.activeEnergyWithoutControlAverage = Math.round(monthlyEnergyConsumption.activeEnergyWithoutControlAverage * 10.0) / 10.0;
-                        monthlyEnergyConsumption.activeEnergyTotal = Math.round(monthlyEnergyConsumption.activeEnergyTotal * 10.0) / 10.0;
-                        monthlyEnergyConsumption.activeEnergyWithoutDimTotal = Math.round(monthlyEnergyConsumption.activeEnergyWithoutDimTotal * 10.0) / 10.0;
-                        monthlyEnergyConsumption.activeEnergyWithoutControlTotal = Math.round(monthlyEnergyConsumption.activeEnergyWithoutControlTotal * 10.0) / 10.0;
-                        monthlyEnergyConsumption.activeEnergyOldLampsTotal = Math.round(monthlyEnergyConsumption.activeEnergyOldLampsTotal * 10.0) / 10.0;
-                        this.selectedInstallation.energyStatistics.statisticsByMonth.set(databaseKey, monthlyEnergyConsumption);
-                    });
+                energyStatistics.byMonth.forEach((dayEnergyInterval) => {
+                    databaseKey = dayEnergyInterval.year + '_' + dayEnergyInterval.month;
+                    if (!monthlyEnergyConsumptions.has(databaseKey)) {
+                        monthlyEnergyConsumptions.set(databaseKey, new IntervalEnergyConsumption({
+                            year: dayEnergyInterval.year,
+                            month: dayEnergyInterval.month,
+                            numberOfSubIntervalForAverage: new Date(dayEnergyInterval.year, dayEnergyInterval.month, 0).getDate(),
+                        }));
+                    }
+                    monthlyEnergyConsumptions.get(databaseKey).content.set(dayEnergyInterval.day, new IntervalEnergyConsumption({energyStatisticRow: dayEnergyInterval}));
+                });
+                monthlyEnergyConsumptions.forEach((dayEnergyConsumption, key) => {
+                    const result = IntervalEnergyConsumption.populateAveragesFromSubIntervals(dayEnergyConsumption);
+                    this.selectedInstallation.energyStatistics.statisticsByMonth.set(key, result);
                 });
             }
         } catch (Exception) {
             console.warn(Exception);
         }
-
-    /*
-    try {
-        if (this.globalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId && this.globalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByDayOfWeek.length > 0) {
-            const todayData = Array();
-            this.weeklyEnergyConsumptionAvg = 0.0;
-            this.weeklyEnergyConsumptionMax = 0.0;
-            this.lastWeekEnergyConsumptionAvg = 0.0;
-            this.lastWeekEnergyConsumptionMax = 0.0;
-            let maxValue = 0.0;
-            for (let i = 0; i < this.globalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByDayOfWeek.length; i++) {
-                todayData[i] = [i, Math.round(this.globalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByDayOfWeek[i].sumEnergy * 10.0) / 10.0];
-                // if (window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByHour[i].day > 0) { currentDayOfWeek = window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByHour[i].day; }
-                this.weeklyEnergyConsumptionAvg += todayData[i][1] / 7.0;
-                this.weeklyEnergyConsumptionMax += todayData[i][1];
-                if (todayData[i][1] > maxValue) { maxValue = todayData[i][1]; }
-            }
-            const todayAvgData = Array();
-            for (let i = 0; i < this.globalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfLastWeekByDayOfWeek.length; i++) {
-                let sumEnergy = 0.0;
-                sumEnergy += this.globalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfLastWeekByDayOfWeek[i].sumEnergy;
-                todayAvgData[i] = [i, sumEnergy];
-                if (todayAvgData[i][1] > maxValue) { maxValue = todayAvgData[i][1]; }
-                this.lastWeekEnergyConsumptionAvg += todayAvgData[i][1] / 7.0;
-                this.lastWeekEnergyConsumptionMax += todayAvgData[i][1];
-
-            }
-            this.weeklyEnergyConsumptionAvg = Math.round(this.weeklyEnergyConsumptionAvg * 10.0) / 10.0;
-            this.weeklyEnergyConsumptionMax = Math.round(this.weeklyEnergyConsumptionMax * 10.0) / 10.0;
-            this.lastWeekEnergyConsumptionAvg = Math.round(this.lastWeekEnergyConsumptionAvg * 10.0) / 10.0;
-            this.lastWeekEnergyConsumptionMax = Math.round(this.lastWeekEnergyConsumptionMax * 10.0) / 10.0;
-            this.weeklyEnergyConsumptionOptions.yaxis.max = Math.round(maxValue) + 1;
-            this.weeklyEnergyConsumption[0].data = todayData;
-            this.weeklyEnergyConsumption[1].data = todayAvgData;
-            this.eventManager.broadcast({
-                name: INSTALLATION_DASHBOARD__WEEKLY_STATISTICS_FETCHED,
-                content: { dataset: this.weeklyEnergyConsumption, options: this.weeklyEnergyConsumptionOptions }
-            });
-        }
-    } catch (Exception) {
-        console.log(Exception);
-    }
-
-    try {
-        if (this.globalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId && this.globalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByDayOfMonth.length > 0) {
-            const todayData = Array();
-            const daysInCurrentMonth = new Date((this.currentAnalyzedDate).getFullYear(), (this.currentAnalyzedDate).getMonth(), 0).getDate();
-            this.monthlyEnergyConsumptionAvg = 0.0;
-            this.monthlyEnergyConsumptionMax = 0.0;
-            this.lastMonthEnergyConsumptionMax = 0.0;
-            this.lastMonthEnergyConsumptionAvg = 0.0;
-            this.lastMonthEnergySaved = 0.0;
-            this.lastMonthCo2Saved = 0.0;
-            this.monthlyEnergySaved = 0.0;
-            this.monthlyCo2Saved = 0.0;
-            let maxValue = 0.0;
-            for (let i = 0; i < this.globalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByDayOfMonth.length; i++) {
-                todayData[i] = [i, Math.round(this.globalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByDayOfMonth[i].sumEnergy * 10.0) / 10.0];
-                // if (window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByHour[i].day > 0) { currentDayOfWeek = window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByHour[i].day; }
-                this.monthlyEnergyConsumptionAvg += todayData[i][1] / daysInCurrentMonth;
-                this.monthlyEnergyConsumptionMax += todayData[i][1];
-                const energySaved = this.globalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByDayOfMonth[i].sumEnergyOldLamps - window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfTodayByDayOfMonth[i].sumEnergy;
-                if (energySaved > 0) { this.monthlyEnergySaved += energySaved; }
-                if (todayData[i][1] > maxValue) { maxValue = todayData[i][1]; }
-            }
-            const todayAvgData = Array();
-            for (let i = 0; i < this.globalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfLastMonthByDayOfMonth.length; i++) {
-                let sumEnergy = 0.0;
-                sumEnergy += this.globalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfLastMonthByDayOfMonth[i].sumEnergy;
-                todayAvgData[i] = [i, sumEnergy];
-                if (todayAvgData[i][1] > maxValue) { maxValue = todayAvgData[i][1]; }
-                this.lastMonthEnergyConsumptionAvg += todayAvgData[i][1] / daysInCurrentMonth;
-                this.lastMonthEnergyConsumptionMax += todayAvgData[i][1];
-                const energySaved = this.globalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfLastMonthByDayOfMonth[i].sumEnergyOldLamps - window.GlobalDatabase.selectedInstallation.weeklyEnergyStatisticsByInstallationId.statisticsOfLastMonthByDayOfMonth[i].sumEnergy;
-                if (energySaved > 0) { this.lastMonthEnergySaved += energySaved; }
-            }
-            this.monthlyCo2Saved = this.monthlyEnergySaved * KWtoCO2Factor;
-            this.monthlyCo2Saved = Math.round(this.monthlyCo2Saved * 10.0) / 10.0;
-            this.monthlyEnergySaved = Math.round(this.monthlyEnergySaved * 10.0) / 10.0;
-            this.lastMonthCo2Saved = this.lastMonthEnergySaved * KWtoCO2Factor;
-            this.lastMonthCo2Saved = Math.round(this.lastMonthCo2Saved * 10.0) / 10.0;
-            this.lastMonthEnergySaved = Math.round(this.lastMonthEnergySaved * 10.0) / 10.0;
-            this.monthlyEnergyConsumptionAvg = Math.round(this.monthlyEnergyConsumptionAvg * 10.0) / 10.0;
-            this.monthlyEnergyConsumptionMax = Math.round(this.monthlyEnergyConsumptionMax * 10.0) / 10.0;
-            this.lastMonthEnergyConsumptionAvg = Math.round(this.lastMonthEnergyConsumptionAvg * 10.0) / 10.0;
-            this.lastMonthEnergyConsumptionMax = Math.round(this.lastMonthEnergyConsumptionMax * 10.0) / 10.0;
-            this.monthlyEnergyConsumptionOptions.yaxis.max = Math.round(maxValue) + 1;
-            this.monthlyEnergyConsumption[0].data = todayData;
-            this.monthlyEnergyConsumption[1].data = todayAvgData;
-            this.eventManager.broadcast({
-                name: INSTALLATION_DASHBOARD__MONTHLY_STATISTICS_FETCHED,
-                content: { dataset: this.monthlyEnergyConsumption, options: this.monthlyEnergyConsumptionOptions }
-            });
-        }
-    } catch (Exception) {
-        console.log(Exception);
-    }
-
-    this.Dashboard.initChartEnergyStatistics(this.energyStatistics);
-    this.totalEnergyConsumption = this.energyStatistics.globalEnergyConsumption.sumEnergy;
-    this.totalEnergyConsumptionWithoutDimming = this.energyStatistics.globalEnergyConsumption.sumEnergyWithoutDim;
-    this.totalEnergyConsumptionOldInstallation = this.energyStatistics.globalEnergyConsumption.sumEnergyOldLamps;
-    this.totalEnergySaved = this.totalEnergyConsumptionOldInstallation - this.totalEnergyConsumption;
-    this.totalCo2Saved = this.totalEnergySaved * KWtoCO2Factor;
-
-    this.totalEnergyConsumption = Math.round(this.totalEnergyConsumption);
-    this.totalEnergyConsumptionWithoutDimming = Math.round(this.totalEnergyConsumptionWithoutDimming);
-    this.totalEnergyConsumptionOldInstallation = Math.round(this.totalEnergyConsumptionOldInstallation);
-    this.totalEnergySaved = Math.round(this.totalEnergySaved);
-    this.totalCo2Saved = Math.round(this.totalCo2Saved);
-    */
     }
 
 }

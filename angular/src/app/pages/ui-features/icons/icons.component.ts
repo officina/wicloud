@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { icons } from 'eva-icons';
 
+
+
 @Component({
   selector: 'ngx-icons',
   styleUrls: ['./icons.component.scss'],
@@ -54,6 +56,7 @@ export class IconsComponent {
     ],
 
     fontAwesome: [
+        'fas fa-igloo',
       'fa fa-adjust', 'fa fa-anchor', 'fa fa-archive', 'fa fa-chart-area', 'fa fa-arrows-alt', 'fa fa-arrows-alt-h',
       'fa fa-arrows-alt-v', 'fa fa-asterisk', 'fa fa-at', 'fa fa-car', 'fa fa-ban', 'fa fa-university',
       'fa fa-chart-bar', 'far fa-chart-bar', 'fa fa-barcode', 'fa fa-bars', 'fa fa-bed', 'fa fa-beer',

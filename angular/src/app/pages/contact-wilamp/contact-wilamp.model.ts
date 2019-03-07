@@ -11,7 +11,7 @@ export class ContactWilamp implements BaseEntity {
         public email?: string,
         public addresses?: BaseEntity[],
         public customerCompanyName?: string,
-        public customerId?: number,
+        public customer?: number,
     ) {
     }
 }

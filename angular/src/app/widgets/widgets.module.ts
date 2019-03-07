@@ -17,6 +17,7 @@ import {FullLeafletMapWidgetComponent} from './full-leaflet-map-widget/full-leaf
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {GatewayAdministrationWidgetComponent} from './gateway-administration-widget/gateway-administration-widget.component';
+import {ThemeModule} from '../@theme/theme.module';
 
 /* Font awesome */
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -36,6 +37,7 @@ library.add(faCoffee, faStroopwafel, faCalendar, faHeading, faLayerGroup, faInfo
 
 @NgModule({
     imports: [
+        ThemeModule,
         NgbModule.forRoot(),
         NgJhipsterModule.forRoot({
             // set below to true to make alerts look like toast
@@ -58,6 +60,8 @@ library.add(faCoffee, faStroopwafel, faCalendar, faHeading, faLayerGroup, faInfo
         NpnSliderModule,
         LeafletModule,
         MatFormFieldModule,
+        Ng2SmartTableModule,
+
     ],
     providers: [
 
