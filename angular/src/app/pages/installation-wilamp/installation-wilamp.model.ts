@@ -118,3 +118,22 @@ export class GlobalStatistics implements BaseEntity {
     ) {
     }
 }
+
+export class AbsorbedPowerEstimation implements BaseEntity {
+    constructor(
+        public id?: number,
+        public countMeasures?: number,
+        public startIntervalTimestamp?: Date,
+        public endIntervalTimestamp?: Date,
+        public avgDimLevel?: number,
+        public avgAdc0Value?: number,
+        public avgAdc1Value?: number,
+        public sumActivePower?: number,
+        public sumEnergy?: number,
+        public sumEnergyWithoutDim?: number,
+        public sumEnergyWithoutControl?: number,
+        public sumEnergyOldLamps?: number,
+        public lastMeasureIntervalTimestamp?: Date,
+    ) {
+    }
+}

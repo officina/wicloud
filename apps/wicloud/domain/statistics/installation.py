@@ -7,6 +7,7 @@ class InstallationGlobalStatistics(BaseDomainEntity):
     def __init__(self):
         self.byWeek = [] #type: List[Optional[WeeklyEnergyStatistics]]
         self.byMonth = []  #type: List[Optional[MonthlyEnergyStatistics]]
+        super(InstallationGlobalStatistics, self).__init__(**kwargs)
 
 class WeeklyEnergyStatistics(BaseDomainEntity):
     def __init__(self, **kwargs):

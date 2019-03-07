@@ -27,7 +27,7 @@ import {
     GLOBALDATABASE__INSTALLATION_WEEKLY_STATISTICS_FETCHED, GLOBALDATABASE__INSTALLATION_WEEKLY_STATISTICS_FETCHING,
     GLOBALDATABASE__LIGHT_FIXTURES_FETCHED,
     INSTALLATION__LIST_MODIFICATION,
-    INSTALLATION__SELECTED_ID_CHANGED,
+    INSTALLATION__SELECTED_ID_CHANGED, INSTALLATION__SELECTED_INSTALLATION_CHANGED,
     INSTALLATION_DASHBOARD__DAILY_STATISTICS_FETCHED,
     INSTALLATION_DASHBOARD__MONTHLY_STATISTICS_FETCHED,
     INSTALLATION_DASHBOARD__WEEKLY_STATISTICS_FETCHED,
@@ -111,9 +111,9 @@ export class InstallationWilampDashboardComponent implements OnInit, OnDestroy, 
     public totalEnergyConsumption = 0.0;
     public totalEnergyConsumptionWithoutDimming = 0.0;
     public totalEnergyConsumptionOldInstallation = 0.0;
-    public absorbedPowerEstimation = 0.0;
+    public absorbedPowerEstimation = 'n/a';
     public averageDimming = 0.0;
-    public plantPower = 0.0;
+    public plantPower = 'n/a';
     public monthlyEnergySaved = 0.0;
     public lastMonthEnergySaved = 0.0;
     public totalEnergySaved = 0.0;
@@ -177,6 +177,11 @@ export class InstallationWilampDashboardComponent implements OnInit, OnDestroy, 
     ngOnInit() {
         this.subscription = this.route.params.subscribe((params) => {
             this.load(params['id']);
+            this.principal.selectedInstallationId = params['id'];
+            this.eventManager.broadcast({
+                name: INSTALLATION__SELECTED_ID_CHANGED,
+                content: 'Sending Selected Id Changed event',
+            });
         });
 
         this.mapOptions.center = latLng(2.71241353356395, 101.99271440506);
@@ -642,7 +647,6 @@ export class InstallationWilampDashboardComponent implements OnInit, OnDestroy, 
     }
 
     load(id) {
-        this.globalDatabase.load(id);
         this.resetInstallationData();
         this.getRuntimeParameters(id);
         // this.getRuntimeParameters(id);
@@ -664,9 +668,9 @@ export class InstallationWilampDashboardComponent implements OnInit, OnDestroy, 
         this.localTime = 'n/a';
         this.sunriseTime = 'n/a';
         this.sunsetTime = 'n/a';
-        this.absorbedPowerEstimation = 0;
+        this.absorbedPowerEstimation = 'n/a';
         this.averageDimming = 0;
-        this.plantPower = 0;
+        this.plantPower = 'n/a';
         this.monthlyEnergyConsumptionMax = 0;
         this.lastMonthEnergyConsumptionMax = 0;
         this.totalEnergyConsumption = 0;
@@ -751,6 +755,9 @@ export class InstallationWilampDashboardComponent implements OnInit, OnDestroy, 
             this.totalEarnings = Helpers.round(this.totalEnergySaved * KWprice);
             this.lastMeasureReceivedTimestamp = this.globalDatabase.selectedInstallation.energyStatistics.lastMeasureReceivedTimestamp;
             this.lastMeasureReceivedTimeAgo = moment(this.lastMeasureReceivedTimestamp).fromNow();
+            this.plantPower = Helpers.formatPower(this.globalDatabase.selectedInstallation.getPlantPower());
+            this.absorbedPowerEstimation = Helpers.formatPower(this.globalDatabase.selectedInstallation.energyStatistics.absorbedPowerEstimation.sumActivePower);
+            this.averageDimming = this.globalDatabase.selectedInstallation.energyStatistics.absorbedPowerEstimation.avgDimLevel;
             this.dataFetchingStatus.isFetchingIntervalStatistics = false;
             this.dataFetchingStatus.isFetchingGlobalStatistics = false;
             this.dataFetchingStatus.isFetchingMonthlyStatistics = false;
@@ -910,17 +917,17 @@ export class InstallationWilampDashboardComponent implements OnInit, OnDestroy, 
                     if (value.burningTime > this.maxBurningTime) { this.maxBurningTime = value.burningTime; }
                     if (this.minBurningTime === 0.0) { this.minBurningTime = value.burningTime; }
                     if (value.burningTime < this.minBurningTime) { this.minBurningTime = value.burningTime; }
-                    if (value.activePower) { this.absorbedPowerEstimation += value.activePower; }
-                    if (value.lightLevel) { this.averageDimming += value.lightLevel / window.GlobalDatabase.selectedInstallation.statisticsByNodeId.length; }
-                    this.plantPower += value.nominalPower;
+                    // if (value.activePower) { this.absorbedPowerEstimation += value.activePower; }
+                    // if (value.lightLevel) { this.averageDimming += value.lightLevel / window.GlobalDatabase.selectedInstallation.statisticsByNodeId.length; }
+                    // this.plantPower += value.nominalPower;
                     // if (new Date(value.lastMeasureTimestamp) > this.lastMeasureReceivedTimestamp) { this.lastMeasureReceivedTimestamp = new Date(value.lastMeasureTimestamp); }
                 }).bind(this));
                 this.averageBurningTime = Math.round(this.averageBurningTime / 60.0);
                 this.minBurningTime = Math.round(this.minBurningTime / 60.0);
                 this.maxBurningTime = Math.round(this.maxBurningTime / 60.0);
-                this.absorbedPowerEstimation =  Math.round(this.absorbedPowerEstimation / 1000.0);
+                // this.absorbedPowerEstimation =  Math.round(this.absorbedPowerEstimation / 1000.0);
                 this.averageDimming =  Math.round(this.averageDimming * 100 / 1023);
-                this.plantPower =  Math.round(this.plantPower / 1000.0 );
+                // this.plantPower =  Math.round(this.plantPower / 1000.0 );
                 // console.warn(date1.getTimezoneOffset());
                 this.dataFetchingStatus.isFetchingMeasuresByNodeId = false;
             }

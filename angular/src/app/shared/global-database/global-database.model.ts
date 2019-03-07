@@ -1,8 +1,9 @@
 import {
+    AbsorbedPowerEstimation,
     EnergyStatisticsByResourceId,
     EnergyStatisticsRowByInterval,
     InstallationWilamp,
-} from '../../pages/installation-wilamp';
+} from '../../pages/installation-wilamp/installation-wilamp.model';
 import {CustomerWilamp} from '../../pages/customer-wilamp';
 import {AddressWilamp} from '../../pages/address-wilamp';
 import {NodeWilamp} from '../../pages/node-wilamp';
@@ -81,15 +82,12 @@ export class InstallationEnergyStatistics {
      */
     public statisticsByWeek = new Map<string, IntervalEnergyConsumption>();
     public statisticsByMonth = new StatisticsByMonth();
-
+    public absorbedPowerEstimation = new AbsorbedPowerEstimation();
     public lastMeasureReceivedTimestamp: Date;
     public totalEnergyConsumption = 0.0;
     public totalEnergyConsumptionWithoutDimming = 0.0;
     public totalEnergyConsumptionWithoutControl = 0.0;
     public totalEnergyConsumptionOldInstallation = 0.0;
-    public absorbedPowerEstimation = 0.0;
-    public averageDimming = 0.0;
-    public plantPower = 0.0;
     public energySavel = new(ValueWithTimeContainer);
     public co2Saved = new(ValueWithTimeContainer);
     public burningTime = new RangeInterval();
@@ -150,6 +148,7 @@ export class InstallationDatabase {
     private ___calculatedOnlineNodes = null;
     private ___calculatedOnlineGateways = null;
     private ___statisticsByNodeId: EnergyStatisticsByResourceId[];
+    private ___totalNominalPower = -1;
 
     constructor(
         public installationId,
@@ -167,6 +166,23 @@ export class InstallationDatabase {
         this.___statisticsByNodeId.forEach((statistic) => {
             this.statisticsByNodeIdHMap.set(statistic.nodeId, statistic);
         });
+    }
+
+    getPlantPower() {
+        if (this.___totalNominalPower >= 0.0) {
+            return this.___totalNominalPower
+        } else {
+            if (this.lightFixtures && this.lightFixtures.length > 0) {
+                let totalNominalPower = 0.0;
+                this.lightFixtures.forEach(function (lightFixture) {
+                    totalNominalPower += lightFixture.nominalPower;
+                });
+                this.___totalNominalPower = totalNominalPower;
+                return this.___totalNominalPower;
+            } else {
+                return 0.0;
+            }
+        }
     }
 
     setGatewayOnlineStatus() {

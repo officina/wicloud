@@ -2,6 +2,7 @@
 
 function layerFactory(L) {
 
+
     var CanvasIconLayer = (L.Layer ? L.Layer : L.Class).extend({
 
         //Add event listeners to initialized section.
@@ -20,6 +21,30 @@ function layerFactory(L) {
 
         redraw: function () {
             this._redraw(true);
+        },
+
+        clear: function() {
+            this._latlngMarkers.clear();
+            this.redraw();
+        },
+
+        /*
+         * Recursively retrieve all child markers of this cluster.
+         */
+        getAllChildMarkers: function() {
+            if (this._latlngMarkers) {
+                return this._latlngMarkers.all();
+            }
+            else return [];
+        },
+
+        //Override FeatureGroup.getBounds as it doesn't work
+        getBounds: function () {
+            var bounds = new L.LatLngBounds();
+            this._latlngMarkers.all().forEach(function (marker) {
+                bounds.extend(marker.data.getLatLng());
+            });
+            return bounds;
         },
 
         //Multiple layers at a time for rBush performance

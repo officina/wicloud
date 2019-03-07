@@ -492,21 +492,21 @@ panel dashboard
     margin-right: 15px;
 }
 
-.panel-icon .fa {
+.panel-icon .fa, .panel-icon .fas {
     color: #000;
     font-size: 36px;
     padding: 12px 0 0 12px;
 }
 
-.panel-bluegreen .panel-icon .fa {
+.panel-bluegreen .panel-icon .fa, .panel-bluegreen .panel-icon .fas {
     color: #03c3c4;
 }
 
-.panel-violet .panel-icon .fa {
+.panel-violet .panel-icon .fa, .panel-violet .panel-icon .fas {
     color: #905dd1;
 }
 
-.panel-blue .panel-icon .fa {
+.panel-blue .panel-icon .fa, .panel-blue .panel-icon .fas {
     color: #428bca;
 }
 
@@ -588,6 +588,14 @@ panel dashboard
 .panel-dark .panel-heading {
     background-color: #4e5154;
     color: #fff;
+}
+
+/deep/ .panel-light .panel-heading {
+    color: #4e5154;
+}
+
+/deep/ .panel-light .panel-heading h1, .panel-light .panel-heading h2, .panel-light .panel-heading h3, .panel-light .panel-heading h4, .panel-light .panel-heading h5 {
+    color: #4e5154;
 }
 
 .panel-success-alt {

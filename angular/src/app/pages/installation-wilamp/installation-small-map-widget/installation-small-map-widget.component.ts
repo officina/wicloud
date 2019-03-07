@@ -17,8 +17,8 @@ import 'leaflet.markercluster';
 import 'leaflet.awesome-markers/dist/leaflet.awesome-markers';
 import 'leaflet-canvas-marker';
 import 'leaflet.awesome-markers';
-import {DomSanitizer} from "@angular/platform-browser";
-import {icon} from "leaflet";
+import {DomSanitizer} from '@angular/platform-browser';
+import {icon} from 'leaflet';
 
 declare let HeatmapOverlay: any;
 
@@ -274,10 +274,10 @@ export class InstallationSmallMapWidgetComponent implements OnInit, OnDestroy, A
                             markerColor: 'red'
                         });*/
                         this.lcuClusterCanvasRendering.layer.addMarker(newMarker);
-                        this.dcuClusterGroup.addLayer(newMarker);
+                        // this.dcuClusterGroup.addLayer(newMarker);
                     } else {
                         this.lcuClusterCanvasRendering.layer.addMarker(newMarker);
-                        this.lcuClusterGroup.addLayer(newMarker);
+                        // this.lcuClusterGroup.addLayer(newMarker);
                     }
                 }
                 this.canvasMarkersInitialized = true;
@@ -334,6 +334,72 @@ export class InstallationSmallMapWidgetComponent implements OnInit, OnDestroy, A
     }
 
     markerClickAction(event, markers) {
+    }
+
+    /**
+     * Not used, was used to test the draw image for a bug in the render of SVG with xml that led to the use of SVG + Base64
+     */
+    overWriteLeaflet() {
+        (<any>this.lcuClusterCanvasRendering.layer)._drawMarker = function (marker, pointPos) {
+
+            const self = this;
+
+            if (!this._imageLookup) this._imageLookup = {};
+            if (!pointPos) {
+
+                pointPos = self._map.latLngToContainerPoint(marker.getLatLng());
+            }
+
+            const iconUrl = marker.options.icon.options.iconUrl;
+
+            if (marker.canvas_img) {
+
+                self._drawImage(marker, pointPos);
+            } else {
+
+                if (self._imageLookup[iconUrl]) {
+
+                    marker.canvas_img = self._imageLookup[iconUrl][0];
+
+                    if (self._imageLookup[iconUrl][1] === false) {
+
+                        self._imageLookup[iconUrl][2].push([marker, pointPos]);
+                    } else {
+
+                        self._drawImage(marker, pointPos);
+                    }
+                } else {
+
+                    const i = new Image();
+                    // i.innerHTML = iconUrl; // data:image/svg+xml;utf-8,
+                    // i.src = 'data:image/gif;base64,R0lGODlhCwALAIAAAAAA3pn/ZiH5BAEAAAEALAAAAAALAAsAAAIUhA+hkcuO4lmNVindo7qyrIXiGBYAOw==';
+                    // let iconB64 = window.btoa(iconUrl);
+                    // iconB64 = 'data:image/svg+xml;base64,' + iconB64;
+                    // const iconXML = 'data:image/svg+xml;charset=utf-8,' + iconUrl;
+                    i.src = iconUrl;
+                    marker.canvas_img = i;
+
+                    // Image,isLoaded,marker\pointPos ref
+                    self._imageLookup[iconUrl] = [i, false, [[marker, pointPos]]];
+                    const placeHolderDiv = document.getElementById('placeholder');
+                    i.onload = function(image) {
+
+                        self._imageLookup[iconUrl][1] = true;
+                        self._imageLookup[iconUrl][2].forEach(function (e) {
+                            self._drawImage(e[0], e[1]);
+                        });
+                    };
+
+                    i.onerror = function(error) {
+                        console.warn(error);
+                        self._imageLookup[iconUrl][1] = true;
+                        self._imageLookup[iconUrl][2].forEach(function (e) {
+                            self._drawImage(e[0], e[1]);
+                        });
+                    }
+                }
+            }
+        }
     }
 
 }

@@ -1,27 +1,28 @@
 import {AfterViewInit, Component, Input, OnDestroy, OnInit} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-
-import {GlobalDatabaseService} from '../../../shared/global-database/global-database.service';
-import {
-    GLOBALDATABASE__GATEWAYS_FETCHED,
-    GLOBALDATABASE__INSTALLATION_FETCHED, GLOBALDATABASE__INSTALLATION_STATISTICS_BY_NODEID_FETCHED,
-    GLOBALDATABASE__INSTALLATION_WEEKLY_STATISTICS_FETCHED, GLOBALDATABASE__INSTALLATION_WEEKLY_STATISTICS_FETCHING,
-    GLOBALDATABASE__LIGHT_FIXTURES_FETCHED,
-    INSTALLATION__SELECTED_ID_CHANGED, INSTALLATION__SELECTED_INSTALLATION_CHANGED,
-} from '../../../shared/constants/events.constants';
 import {JhiEventManager} from 'ng-jhipster';
 import {Subscription} from 'rxjs';
+import {GlobalDatabaseService} from '../../shared/global-database/global-database.service';
+import {
+    GLOBALDATABASE__LIGHT_FIXTURES_FETCHED,
+    INSTALLATION__SELECTED_INSTALLATION_CHANGED,
+} from '../../shared/constants/events.constants';
 
 @Component({
-  selector: 'ngx-installation-light-fixture-list-card',
-  templateUrl: './installation-light-fixture-list.component.html',
+  selector: 'ngx-light-fixture-list',
+  templateUrl: './light-fixture-list.component.html',
+    styleUrls: [ './light-fixture-list.component.scss'],
 })
-export class InstallationLightFixtureListComponent implements AfterViewInit, OnDestroy {
+export class LightFixtureListComponent implements AfterViewInit, OnDestroy {
   private eventSubscriberLightFixturesFetched: Subscription;
   private eventSubscriberInstallationChanged: Subscription;
 
   settings = {
     actions: false,
+    pager: {
+      display: false, // set this to false so as to prevent the Page# //
+      // perPage: 10, //we need to remove this perPage limiter
+    },
     columns: {
       name: {
         title: 'Name',
@@ -35,7 +36,7 @@ export class InstallationLightFixtureListComponent implements AfterViewInit, OnD
         title: 'Nominal Power',
         type: 'string',
       },
-      /*userDistributionBox: {
+      userDistributionBox: {
         title: 'Distribution box',
         type: 'string',
       },
@@ -46,7 +47,7 @@ export class InstallationLightFixtureListComponent implements AfterViewInit, OnD
       lightProfile: {
         title: 'Light profile',
         type: 'number',
-      },*/
+      },
     },
   };
 

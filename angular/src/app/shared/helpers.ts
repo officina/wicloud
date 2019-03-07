@@ -81,6 +81,19 @@ export class Helpers {
         } else { return Helpers.round(power) + ' KWh'; }
     }
 
+    /***
+     * Format the power with KW or MW.
+     * @param duration
+     * @returns {string}
+     */
+    static formatPower(power) {
+         // let interval = Math.floor(power / 100000);
+        if ((power / 100000) > 3) {
+            return Helpers.round(power / 1000) + ' MW';
+        } else { return Helpers.round(power) + ' KW'; }
+    }
+
+
     static getWeekNumber(d) {
         // Copy date so don't modify original
         d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));

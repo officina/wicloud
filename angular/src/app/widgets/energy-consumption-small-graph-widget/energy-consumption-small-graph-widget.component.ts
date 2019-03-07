@@ -83,7 +83,6 @@ export class EnergyConsumptionSmallGraphWidgetComponent implements OnInit, OnDes
                 this.createDailySmallGraph();
         }
         this.registerEvents();
-        this.isFetchingData = true;
     }
 
     createDailySmallGraph() {

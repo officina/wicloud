@@ -5216,7 +5216,13 @@ ldjson-stream@^1.2.1:
     split2 "^0.2.1"
     through2 "^0.6.1"
 
-"leaflet-canvas-marker@file:./custom-packages/leaflet-canvas-marker":
+leaflet-canvas-marker@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/leaflet-canvas-marker/-/leaflet-canvas-marker-0.2.0.tgz#997fc81615c0e118e04ce891bee390aac3066fa1"
+  dependencies:
+    rbush "^2.0.2"
+
+"leaflet-canvas-marker@file:./custom-packages/leaflet-canvas-marker/":
   version "0.2.0"
   dependencies:
     rbush "^2.0.2"
