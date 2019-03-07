@@ -178,6 +178,22 @@ yarn start
     ng lint
 
     ./node_modules/stylelint/bin/stylelint.js ./src/**/*.scss
+    
+# Build for production
+
+     ng build --prod
+     
+In case of error 
+
+```FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory```
+
+Increase the Node memory
+
+    npm install -g increase-memory-limit
+
+    increase-memory-limit
+
+     /usr/local/Cellar/node/9.8.0/lib/node_modules/increase-memory-limit/index.js
  
 # If the production build fails because of memory issues
 https://geeklearning.io/angular-aot-webpack-memory-trick/
@@ -262,5 +278,22 @@ Esempi di query
     localhost:8000/api/search/installations/?search=patata
 
 
-    
+
+##Backup with structure
+pg_dump --user wilampcloud --host localhost --dbname=wicloud --file="/Users/andrea/dump.sql" 
+
+##Backup without structure
+
+###Con copy (+ veloce e compatto)
+pg_dump --user wilampcloud --host localhost --dbname=wilampcloud --file="/Users/andrea/dump.sql" --data-only
+
+
+###Con copy selettivo
+pg_dump --user wilampcloud --host localhost --data-only --dbname=wilampcloud --schema='public'    --table=public.address --table=public.contact --table=public."contact_address" --table=public.customer --table=public."customer_users" --table=public.installation --table=public.gateway --table=public."energy_interval" --table=public."energy_meter_module" --table=public."energy_meter_peak_measure" --table=public."gateway_config" --table=public."gateway_installation_request"  --table=public."last_energy_interval" --table=public."light_management_module" --table=public."light_management_measure"  --table=public."lm_measure_processing_info" --table=public."log_entry" --table=public."motion_event" --table=public."motion_management_module" --table=public."node_modules" --table=public.node  --table=public.shipping --table=public."shipping_order" --table=public."twilight_management_module" --table=public."twilight_measure" --table=public."vpn_configuration" --table=public."ime_power_counter" --table=public."ime_power_measure" --file="./dump.sql"
+
+###Con insert
+pg_dump --user wilampcloud --host localhost --dbname=wilampcloud --file="/Users/andrea/dump.sql" --column-inserts --data-only
+
+##Restore
+psql  --host localhost --user wilampcloud --file="/Users/andrea/dump.sql" 
 
