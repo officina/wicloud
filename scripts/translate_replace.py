@@ -53,7 +53,7 @@ dir_lists = [
     # 'customer-wilamp',
     # 'energy-meter-module-wilamp',
     # 'gateway-wilamp',
-    # 'installation-wilamp',
+    'installation-wilamp',
     # 'light-fixture-wilamp',
     # 'light-management-measure-wilamp',
     # 'light-management-module-wilamp',
@@ -64,7 +64,9 @@ dir_lists = [
     # 'node-wilamp',
     # 'order-wilamp',
     # 'shipping-wilamp',
-    'twilight-management-module-wilamp'
+    # 'twilight-management-module-wilamp',
+    # 'home',
+    # 'energy-interval'
 ]
 
 for single_name in dir_lists:

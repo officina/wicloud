@@ -1,9 +1,9 @@
 <div>
     <h2>
-        <span jhiTranslate="wilampCloudApp.installation.home.title">Installations</span>
+        <span [translate]="'installation.home.title'">Installations</span>
         <button class="btn btn-primary float-right jh-create-entity create-installation-wilamp" [routerLink]="['/', { outlets: { popup: ['installation-wilamp-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span class="hidden-sm-down"  jhiTranslate="wilampCloudApp.installation.home.createLabel">
+            <span class="hidden-sm-down"  [translate]="'installation.home.createLabel'">
             Create new Installation
             </span>
         </button>
@@ -30,13 +30,13 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
             <th jhiSortBy="id"><span [translate]="'global.field.id'">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="name"><span jhiTranslate="wilampCloudApp.installation.name">Name</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="description"><span jhiTranslate="wilampCloudApp.installation.description">Description</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="preparationDate"><span jhiTranslate="wilampCloudApp.installation.preparationDate">Preparation Date</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="installationDate"><span jhiTranslate="wilampCloudApp.installation.installationDate">Installation Date</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="notes"><span jhiTranslate="wilampCloudApp.installation.notes">Notes</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="addressAddressDescription"><span jhiTranslate="wilampCloudApp.installation.address">Address</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="customerCompanyName"><span jhiTranslate="wilampCloudApp.installation.customer">Customer</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span [translate]="'installation.name'">Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="description"><span [translate]="'installation.description'">Description</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="preparationDate"><span [translate]="'installation.preparationDate'">Preparation Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="installationDate"><span [translate]="'installation.installationDate'">Installation Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="notes"><span [translate]="'installation.notes'">Notes</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="addressAddressDescription"><span [translate]="'installation.address'">Address</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="customerCompanyName"><span [translate]="'installation.customer'">Customer</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -64,7 +64,7 @@
                                 [routerLink]="['../installation-wilamp', installation.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            <span class="d-none d-md-inline" [translate]="'entity.action.view'">View</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'installation-wilamp/'+ installation.id + '/edit'} }]"
@@ -72,7 +72,7 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            <span class="d-none d-md-inline" [translate]="'entity.action.edit'">Edit</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'installation-wilamp/'+ installation.id + '/delete'} }]"
@@ -80,7 +80,7 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">
                             <span class="fa fa-remove"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            <span class="d-none d-md-inline" [translate]="'entity.action.delete'">Delete</span>
                         </button>
                     </div>
                 </td>

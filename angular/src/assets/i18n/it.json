@@ -13,7 +13,8 @@
         },
         "validation": {
             "required": "entity.validation.required",
-            "number": "entity.validation.number"
+            "number": "entity.validation.number",
+            "ZonedDateTimelocal": "entity.validation.ZonedDateTimelocal"
         }
     },
     "installation": {
@@ -22,21 +23,34 @@
         },
         "home": {
             "createOrEditLabel": "Aggiorna",
-            "title": "Titolo",
-            "createLabel": "Crea"
+            "title": "installation.home.title",
+            "createLabel": "installation.home.createLabel"
         },
-        "name": "Nome",
-        "description": "Descrizione",
-        "preparationDate": "Data di preparazione",
-        "installationDate": "Data di installazione",
-        "notes": "Note",
-        "address": "Indirizzo",
-        "customer": "Cliente",
+        "name": "installation.name",
+        "description": "installation.description",
+        "preparationDate": "installation.preparationDate",
+        "installationDate": "installation.installationDate",
+        "notes": "installation.notes",
+        "address": "installation.address",
+        "customer": "installation.customer",
         "overview": "Panoramica"
     },
     "global": {
         "field": {
             "id": "global.field.id"
+        },
+        "messages": {
+            "info": {
+                "authenticated": {
+                    "link": "global.messages.info.authenticated.link",
+                    "prefix": "global.messages.info.authenticated.prefix",
+                    "suffix": "global.messages.info.authenticated.suffix"
+                },
+                "register": {
+                    "noaccount": "global.messages.info.register.noaccount",
+                    "link": "global.messages.info.register.link"
+                }
+            }
         }
     },
     "node": {
@@ -480,6 +494,59 @@
         },
         "delete": {
             "question": "twilightManagementModule.delete.question"
+        }
+    },
+    "home": {
+        "title": "home.title",
+        "logged": {
+            "message": "home.logged.message"
+        },
+        "question": "home.question",
+        "link": {
+            "homepage": "home.link.homepage",
+            "stackoverflow": "home.link.stackoverflow",
+            "bugtracker": "home.link.bugtracker",
+            "chat": "home.link.chat",
+            "follow": "home.link.follow"
+        },
+        "like": "home.like",
+        "github": "home.github"
+    },
+    "energyInterval": {
+        "delete": {
+            "question": "energyInterval.delete.question"
+        },
+        "detail": {
+            "title": "energyInterval.detail.title"
+        },
+        "mac": "energyInterval.mac",
+        "lightManagementModuleId": "energyInterval.lightManagementModuleId",
+        "installationId": "energyInterval.installationId",
+        "startInterval": "energyInterval.startInterval",
+        "endInterval": "energyInterval.endInterval",
+        "startIntervalMeasureTimestamp": "energyInterval.startIntervalMeasureTimestamp",
+        "endIntervalMeasureTimestamp": "energyInterval.endIntervalMeasureTimestamp",
+        "activePower": "energyInterval.activePower",
+        "reactivePower": "energyInterval.reactivePower",
+        "startIntervalActiveEnergyCounterValue": "energyInterval.startIntervalActiveEnergyCounterValue",
+        "endIntervalActiveEnergyCounterValue": "energyInterval.endIntervalActiveEnergyCounterValue",
+        "activeEnergy": "energyInterval.activeEnergy",
+        "startIntervalReactiveEnergyCounterValue": "energyInterval.startIntervalReactiveEnergyCounterValue",
+        "endIntervalReactiveEnergyCounterValue": "energyInterval.endIntervalReactiveEnergyCounterValue",
+        "reactiveEnergy": "energyInterval.reactiveEnergy",
+        "activeEnergyMty0": "energyInterval.activeEnergyMty0",
+        "activeEnergyMty1": "energyInterval.activeEnergyMty1",
+        "activeEnergyMty2": "energyInterval.activeEnergyMty2",
+        "activeEnergyMty3": "energyInterval.activeEnergyMty3",
+        "activeEnergyWithoutDim": "energyInterval.activeEnergyWithoutDim",
+        "activeEnergyWithoutControl": "energyInterval.activeEnergyWithoutControl",
+        "activeEnergyOldLamps": "energyInterval.activeEnergyOldLamps",
+        "burningTime": "energyInterval.burningTime",
+        "nodeLife": "energyInterval.nodeLife",
+        "home": {
+            "createOrEditLabel": "energyInterval.home.createOrEditLabel",
+            "title": "energyInterval.home.title",
+            "createLabel": "energyInterval.home.createLabel"
         }
     }
 }
