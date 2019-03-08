@@ -300,5 +300,95 @@
         "delete": {
             "question": "lightManagementModule.delete.question"
         }
+    },
+    "lightProfileSlot": {
+        "detail": {
+            "title": "lightProfileSlot.detail.title"
+        },
+        "name": "lightProfileSlot.name",
+        "description": "lightProfileSlot.description",
+        "don": "lightProfileSlot.don",
+        "dof": "lightProfileSlot.dof",
+        "ton": "lightProfileSlot.ton",
+        "tof": "lightProfileSlot.tof",
+        "eas": "lightProfileSlot.eas",
+        "ecr": "lightProfileSlot.ecr",
+        "emo": "lightProfileSlot.emo",
+        "edw": "lightProfileSlot.edw",
+        "enabled": "lightProfileSlot.enabled",
+        "lightProfileIndex": "lightProfileSlot.lightProfileIndex",
+        "pw0": "lightProfileSlot.pw0",
+        "pw1": "lightProfileSlot.pw1",
+        "pw2": "lightProfileSlot.pw2",
+        "pw3": "lightProfileSlot.pw3",
+        "fadeIn": "lightProfileSlot.fadeIn",
+        "fadeOut": "lightProfileSlot.fadeOut",
+        "slot": "lightProfileSlot.slot",
+        "createdTimestamp": "lightProfileSlot.createdTimestamp",
+        "motionDuration": "lightProfileSlot.motionDuration",
+        "motionDelay": "lightProfileSlot.motionDelay",
+        "mi0": "lightProfileSlot.mi0",
+        "mi1": "lightProfileSlot.mi1",
+        "mi2": "lightProfileSlot.mi2",
+        "mi3": "lightProfileSlot.mi3",
+        "motionFadeIn": "lightProfileSlot.motionFadeIn",
+        "motionFadeOut": "lightProfileSlot.motionFadeOut",
+        "lightProfile": "lightProfileSlot.lightProfile",
+        "home": {
+            "title": "lightProfileSlot.home.title",
+            "createLabel": "lightProfileSlot.home.createLabel",
+            "createOrEditLabel": "lightProfileSlot.home.createOrEditLabel"
+        },
+        "delete": {
+            "question": "lightProfileSlot.delete.question"
+        }
+    },
+    "lightProfile": {
+        "delete": {
+            "question": "lightProfile.delete.question"
+        },
+        "home": {
+            "createOrEditLabel": "lightProfile.home.createOrEditLabel",
+            "title": "lightProfile.home.title",
+            "createLabel": "lightProfile.home.createLabel"
+        },
+        "name": "lightProfile.name",
+        "description": "lightProfile.description",
+        "type": "lightProfile.type",
+        "reference": "lightProfile.reference",
+        "profileCRC": "lightProfile.profileCRC",
+        "lightProfileId": "lightProfile.lightProfileId",
+        "gatewayId": "lightProfile.gatewayId",
+        "enabled": "lightProfile.enabled"
+    },
+    "motionManagementModule": {
+        "home": {
+            "title": "motionManagementModule.home.title",
+            "createLabel": "motionManagementModule.home.createLabel",
+            "createOrEditLabel": "motionManagementModule.home.createOrEditLabel"
+        },
+        "name": "motionManagementModule.name",
+        "description": "motionManagementModule.description",
+        "motionMode": "motionManagementModule.motionMode",
+        "motionType": "motionManagementModule.motionType",
+        "motionGroup": "motionManagementModule.motionGroup",
+        "delayAfter": "motionManagementModule.delayAfter",
+        "retriggerTime": "motionManagementModule.retriggerTime",
+        "triggerDelay": "motionManagementModule.triggerDelay",
+        "mi0": "motionManagementModule.mi0",
+        "mi1": "motionManagementModule.mi1",
+        "mi2": "motionManagementModule.mi2",
+        "mi3": "motionManagementModule.mi3",
+        "fadeIn": "motionManagementModule.fadeIn",
+        "fadeOut": "motionManagementModule.fadeOut",
+        "createdTimestamp": "motionManagementModule.createdTimestamp",
+        "adcInChannel": "motionManagementModule.adcInChannel",
+        "duration": "motionManagementModule.duration",
+        "detail": {
+            "title": "motionManagementModule.detail.title"
+        },
+        "delete": {
+            "question": "motionManagementModule.delete.question"
+        }
     }
 }

@@ -1,227 +1,227 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
-        <h4 class="modal-title" id="myMotionManagementModuleLabel" jhiTranslate="wilampCloudApp.motionManagementModule.home.createOrEditLabel">Create or edit a Motion Management Module</h4>
+        <h4 class="modal-title" id="myMotionManagementModuleLabel" [translate]="'motionManagementModule.home.createOrEditLabel'">Create or edit a Motion Management Module</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;</button>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group" [hidden]="!motionManagementModule.id">
-            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <label for="id" [translate]="'global.field.id'">ID</label>
             <input type="text" class="form-control" id="id" name="id"
                    [(ngModel)]="motionManagementModule.id" readonly />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.motionManagementModule.name" for="field_name">Name</label>
+            <label class="form-control-label" [translate]="'motionManagementModule.name'" for="field_name">Name</label>
             <input type="text" class="form-control" name="name" id="field_name"
                 [(ngModel)]="motionManagementModule.name" required/>
             <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                   [hidden]="!editForm.controls.name?.errors?.required" [translate]="'entity.validation.required'">
                    This field is required.
                 </small>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.motionManagementModule.description" for="field_description">Description</label>
+            <label class="form-control-label" [translate]="'motionManagementModule.description'" for="field_description">Description</label>
             <input type="text" class="form-control" name="description" id="field_description"
                 [(ngModel)]="motionManagementModule.description" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.motionManagementModule.motionMode" for="field_motionMode">Motion Mode</label>
+            <label class="form-control-label" [translate]="'motionManagementModule.motionMode'" for="field_motionMode">Motion Mode</label>
             <input type="number" class="form-control" name="motionMode" id="field_motionMode"
                 [(ngModel)]="motionManagementModule.motionMode" required/>
             <div [hidden]="!(editForm.controls.motionMode?.dirty && editForm.controls.motionMode?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.motionMode?.errors?.required" jhiTranslate="entity.validation.required">
+                   [hidden]="!editForm.controls.motionMode?.errors?.required" [translate]="'entity.validation.required'">
                    This field is required.
                 </small>
                 <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.motionMode?.errors?.number" jhiTranslate="entity.validation.number">
+                    [hidden]="!editForm.controls.motionMode?.errors?.number" [translate]="'entity.validation.number'">
                     This field should be a number.
                 </small>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.motionManagementModule.motionType" for="field_motionType">Motion Type</label>
+            <label class="form-control-label" [translate]="'motionManagementModule.motionType'" for="field_motionType">Motion Type</label>
             <input type="number" class="form-control" name="motionType" id="field_motionType"
                 [(ngModel)]="motionManagementModule.motionType" required/>
             <div [hidden]="!(editForm.controls.motionType?.dirty && editForm.controls.motionType?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.motionType?.errors?.required" jhiTranslate="entity.validation.required">
+                   [hidden]="!editForm.controls.motionType?.errors?.required" [translate]="'entity.validation.required'">
                    This field is required.
                 </small>
                 <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.motionType?.errors?.number" jhiTranslate="entity.validation.number">
+                    [hidden]="!editForm.controls.motionType?.errors?.number" [translate]="'entity.validation.number'">
                     This field should be a number.
                 </small>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.motionManagementModule.motionGroup" for="field_motionGroup">Motion Group</label>
+            <label class="form-control-label" [translate]="'motionManagementModule.motionGroup'" for="field_motionGroup">Motion Group</label>
             <input type="number" class="form-control" name="motionGroup" id="field_motionGroup"
                 [(ngModel)]="motionManagementModule.motionGroup" required/>
             <div [hidden]="!(editForm.controls.motionGroup?.dirty && editForm.controls.motionGroup?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.motionGroup?.errors?.required" jhiTranslate="entity.validation.required">
+                   [hidden]="!editForm.controls.motionGroup?.errors?.required" [translate]="'entity.validation.required'">
                    This field is required.
                 </small>
                 <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.motionGroup?.errors?.number" jhiTranslate="entity.validation.number">
+                    [hidden]="!editForm.controls.motionGroup?.errors?.number" [translate]="'entity.validation.number'">
                     This field should be a number.
                 </small>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.motionManagementModule.delayAfter" for="field_delayAfter">Delay After</label>
+            <label class="form-control-label" [translate]="'motionManagementModule.delayAfter'" for="field_delayAfter">Delay After</label>
             <input type="number" class="form-control" name="delayAfter" id="field_delayAfter"
                 [(ngModel)]="motionManagementModule.delayAfter" required/>
             <div [hidden]="!(editForm.controls.delayAfter?.dirty && editForm.controls.delayAfter?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.delayAfter?.errors?.required" jhiTranslate="entity.validation.required">
+                   [hidden]="!editForm.controls.delayAfter?.errors?.required" [translate]="'entity.validation.required'">
                    This field is required.
                 </small>
                 <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.delayAfter?.errors?.number" jhiTranslate="entity.validation.number">
+                    [hidden]="!editForm.controls.delayAfter?.errors?.number" [translate]="'entity.validation.number'">
                     This field should be a number.
                 </small>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.motionManagementModule.retriggerTime" for="field_retriggerTime">Retrigger Time</label>
+            <label class="form-control-label" [translate]="'motionManagementModule.retriggerTime'" for="field_retriggerTime">Retrigger Time</label>
             <input type="number" class="form-control" name="retriggerTime" id="field_retriggerTime"
                 [(ngModel)]="motionManagementModule.retriggerTime" required/>
             <div [hidden]="!(editForm.controls.retriggerTime?.dirty && editForm.controls.retriggerTime?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.retriggerTime?.errors?.required" jhiTranslate="entity.validation.required">
+                   [hidden]="!editForm.controls.retriggerTime?.errors?.required" [translate]="'entity.validation.required'">
                    This field is required.
                 </small>
                 <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.retriggerTime?.errors?.number" jhiTranslate="entity.validation.number">
+                    [hidden]="!editForm.controls.retriggerTime?.errors?.number" [translate]="'entity.validation.number'">
                     This field should be a number.
                 </small>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.motionManagementModule.triggerDelay" for="field_triggerDelay" [ngbTooltip]="'wilampCloudApp.motionManagementModule.help.triggerDelay' | translate">Trigger Delay</label>
+            <label class="form-control-label" [translate]="'motionManagementModule.triggerDelay'" for="field_triggerDelay" [ngbTooltip]="'wilampCloudApp.motionManagementModule.help.triggerDelay' | translate">Trigger Delay</label>
             <input type="number" class="form-control" name="triggerDelay" id="field_triggerDelay"
                 [(ngModel)]="motionManagementModule.triggerDelay" required/>
             <div [hidden]="!(editForm.controls.triggerDelay?.dirty && editForm.controls.triggerDelay?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.triggerDelay?.errors?.required" jhiTranslate="entity.validation.required">
+                   [hidden]="!editForm.controls.triggerDelay?.errors?.required" [translate]="'entity.validation.required'">
                    This field is required.
                 </small>
                 <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.triggerDelay?.errors?.number" jhiTranslate="entity.validation.number">
+                    [hidden]="!editForm.controls.triggerDelay?.errors?.number" [translate]="'entity.validation.number'">
                     This field should be a number.
                 </small>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.motionManagementModule.mi0" for="field_mi0">Mi 0</label>
+            <label class="form-control-label" [translate]="'motionManagementModule.mi0'" for="field_mi0">Mi 0</label>
             <input type="number" class="form-control" name="mi0" id="field_mi0"
                 [(ngModel)]="motionManagementModule.mi0" required/>
             <div [hidden]="!(editForm.controls.mi0?.dirty && editForm.controls.mi0?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.mi0?.errors?.required" jhiTranslate="entity.validation.required">
+                   [hidden]="!editForm.controls.mi0?.errors?.required" [translate]="'entity.validation.required'">
                    This field is required.
                 </small>
                 <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.mi0?.errors?.number" jhiTranslate="entity.validation.number">
+                    [hidden]="!editForm.controls.mi0?.errors?.number" [translate]="'entity.validation.number'">
                     This field should be a number.
                 </small>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.motionManagementModule.mi1" for="field_mi1">Mi 1</label>
+            <label class="form-control-label" [translate]="'motionManagementModule.mi1'" for="field_mi1">Mi 1</label>
             <input type="number" class="form-control" name="mi1" id="field_mi1"
                 [(ngModel)]="motionManagementModule.mi1" required/>
             <div [hidden]="!(editForm.controls.mi1?.dirty && editForm.controls.mi1?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.mi1?.errors?.required" jhiTranslate="entity.validation.required">
+                   [hidden]="!editForm.controls.mi1?.errors?.required" [translate]="'entity.validation.required'">
                    This field is required.
                 </small>
                 <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.mi1?.errors?.number" jhiTranslate="entity.validation.number">
+                    [hidden]="!editForm.controls.mi1?.errors?.number" [translate]="'entity.validation.number'">
                     This field should be a number.
                 </small>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.motionManagementModule.mi2" for="field_mi2">Mi 2</label>
+            <label class="form-control-label" [translate]="'motionManagementModule.mi2'" for="field_mi2">Mi 2</label>
             <input type="number" class="form-control" name="mi2" id="field_mi2"
                 [(ngModel)]="motionManagementModule.mi2" required/>
             <div [hidden]="!(editForm.controls.mi2?.dirty && editForm.controls.mi2?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.mi2?.errors?.required" jhiTranslate="entity.validation.required">
+                   [hidden]="!editForm.controls.mi2?.errors?.required" [translate]="'entity.validation.required'">
                    This field is required.
                 </small>
                 <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.mi2?.errors?.number" jhiTranslate="entity.validation.number">
+                    [hidden]="!editForm.controls.mi2?.errors?.number" [translate]="'entity.validation.number'">
                     This field should be a number.
                 </small>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.motionManagementModule.mi3" for="field_mi3">Mi 3</label>
+            <label class="form-control-label" [translate]="'motionManagementModule.mi3'" for="field_mi3">Mi 3</label>
             <input type="number" class="form-control" name="mi3" id="field_mi3"
                 [(ngModel)]="motionManagementModule.mi3" required/>
             <div [hidden]="!(editForm.controls.mi3?.dirty && editForm.controls.mi3?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.mi3?.errors?.required" jhiTranslate="entity.validation.required">
+                   [hidden]="!editForm.controls.mi3?.errors?.required" [translate]="'entity.validation.required'">
                    This field is required.
                 </small>
                 <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.mi3?.errors?.number" jhiTranslate="entity.validation.number">
+                    [hidden]="!editForm.controls.mi3?.errors?.number" [translate]="'entity.validation.number'">
                     This field should be a number.
                 </small>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.motionManagementModule.fadeIn" for="field_fadeIn">Fade In</label>
+            <label class="form-control-label" [translate]="'motionManagementModule.fadeIn'" for="field_fadeIn">Fade In</label>
             <input type="number" class="form-control" name="fadeIn" id="field_fadeIn"
                 [(ngModel)]="motionManagementModule.fadeIn" required/>
             <div [hidden]="!(editForm.controls.fadeIn?.dirty && editForm.controls.fadeIn?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.fadeIn?.errors?.required" jhiTranslate="entity.validation.required">
+                   [hidden]="!editForm.controls.fadeIn?.errors?.required" [translate]="'entity.validation.required'">
                    This field is required.
                 </small>
                 <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.fadeIn?.errors?.number" jhiTranslate="entity.validation.number">
+                    [hidden]="!editForm.controls.fadeIn?.errors?.number" [translate]="'entity.validation.number'">
                     This field should be a number.
                 </small>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.motionManagementModule.fadeOut" for="field_fadeOut">Fade Out</label>
+            <label class="form-control-label" [translate]="'motionManagementModule.fadeOut'" for="field_fadeOut">Fade Out</label>
             <input type="number" class="form-control" name="fadeOut" id="field_fadeOut"
                 [(ngModel)]="motionManagementModule.fadeOut" required/>
             <div [hidden]="!(editForm.controls.fadeOut?.dirty && editForm.controls.fadeOut?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.fadeOut?.errors?.required" jhiTranslate="entity.validation.required">
+                   [hidden]="!editForm.controls.fadeOut?.errors?.required" [translate]="'entity.validation.required'">
                    This field is required.
                 </small>
                 <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.fadeOut?.errors?.number" jhiTranslate="entity.validation.number">
+                    [hidden]="!editForm.controls.fadeOut?.errors?.number" [translate]="'entity.validation.number'">
                     This field should be a number.
                 </small>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.motionManagementModule.createdTimestamp" for="field_createdTimestamp">Created Timestamp</label>
+            <label class="form-control-label" [translate]="'motionManagementModule.createdTimestamp'" for="field_createdTimestamp">Created Timestamp</label>
             <div class="d-flex">
                 <input id="field_createdTimestamp" type="datetime-local" class="form-control" name="createdTimestamp" [(ngModel)]="motionManagementModule.createdTimestamp"
                 />
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.motionManagementModule.adcInChannel" for="field_adcInChannel">Adc In Channel</label>
+            <label class="form-control-label" [translate]="'motionManagementModule.adcInChannel'" for="field_adcInChannel">Adc In Channel</label>
             <input type="number" class="form-control" name="adcInChannel" id="field_adcInChannel"
                 [(ngModel)]="motionManagementModule.adcInChannel" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.motionManagementModule.duration" for="field_duration">Duration</label>
+            <label class="form-control-label" [translate]="'motionManagementModule.duration'" for="field_duration">Duration</label>
             <input type="number" class="form-control" name="duration" id="field_duration"
                 [(ngModel)]="motionManagementModule.duration" />
         </div>
@@ -229,10 +229,10 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
-            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+            <span class="fa fa-ban"></span>&nbsp;<span [translate]="'entity.action.cancel'">Cancel</span>
         </button>
         <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+            <span class="fa fa-save"></span>&nbsp;<span [translate]="'entity.action.save'">Save</span>
         </button>
     </div>
 </form>
