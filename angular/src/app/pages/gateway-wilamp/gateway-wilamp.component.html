@@ -1,9 +1,9 @@
 <div>
     <h2>
-        <span jhiTranslate="wilampCloudApp.gateway.home.title">Gateways</span>
+        <span [translate]="'gateway.home.title'">Gateways</span>
         <button class="btn btn-primary float-right jh-create-entity create-gateway-wilamp" [routerLink]="['/', { outlets: { popup: ['gateway-wilamp-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span class="hidden-sm-down"  jhiTranslate="wilampCloudApp.gateway.home.createLabel">
+            <span class="hidden-sm-down"  [translate]="'gateway.home.createLabel'">
             Create new Gateway
             </span>
         </button>
@@ -29,25 +29,25 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="name"><span jhiTranslate="wilampCloudApp.gateway.name">Name</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="description"><span jhiTranslate="wilampCloudApp.gateway.description">Description</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="gatewayUUID"><span jhiTranslate="wilampCloudApp.gateway.gatewayUUID">Gateway UUID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="gatewayHostname"><span jhiTranslate="wilampCloudApp.gateway.gatewayHostname">Gateway Hostname</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="gatewayType"><span jhiTranslate="wilampCloudApp.gateway.gatewayType">Gateway Type</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="notes"><span jhiTranslate="wilampCloudApp.gateway.notes">Notes</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="creationDate"><span jhiTranslate="wilampCloudApp.gateway.creationDate">Creation Date</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="serialNumber"><span jhiTranslate="wilampCloudApp.gateway.serialNumber">Serial Number</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="deviceName"><span jhiTranslate="wilampCloudApp.gateway.deviceName">Device Name</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="hardwareModel"><span jhiTranslate="wilampCloudApp.gateway.hardwareModel">Hardware Model</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="macAddress"><span jhiTranslate="wilampCloudApp.gateway.macAddress">Mac Address</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="coordinatorMac"><span jhiTranslate="wilampCloudApp.gateway.coordinatorMac">Coordinator Mac</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="fileNameEncryptionInfo"><span jhiTranslate="wilampCloudApp.gateway.fileNameEncryptionInfo">File Name Encryption Info</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="hardwareInformations"><span jhiTranslate="wilampCloudApp.gateway.hardwareInformations">Hardware Informations</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="readyToReceiveData"><span jhiTranslate="wilampCloudApp.gateway.readyToReceiveData">Ready To Receive Data</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="installationName"><span jhiTranslate="wilampCloudApp.gateway.installation">Installation</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="shippingShippingDate"><span jhiTranslate="wilampCloudApp.gateway.shipping">Shipping</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="orderId"><span jhiTranslate="wilampCloudApp.gateway.order">Order</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="id"><span [translate]="'global.field.id'">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span [translate]="'gateway.name'">Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="description"><span [translate]="'gateway.description'">Description</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="gatewayUUID"><span [translate]="'gateway.gatewayUUID'">Gateway UUID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="gatewayHostname"><span [translate]="'gateway.gatewayHostname'">Gateway Hostname</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="gatewayType"><span [translate]="'gateway.gatewayType'">Gateway Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="notes"><span [translate]="'gateway.notes'">Notes</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="creationDate"><span [translate]="'gateway.creationDate'">Creation Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="serialNumber"><span [translate]="'gateway.serialNumber'">Serial Number</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="deviceName"><span [translate]="'gateway.deviceName'">Device Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="hardwareModel"><span [translate]="'gateway.hardwareModel'">Hardware Model</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="macAddress"><span [translate]="'gateway.macAddress'">Mac Address</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="coordinatorMac"><span [translate]="'gateway.coordinatorMac'">Coordinator Mac</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="fileNameEncryptionInfo"><span [translate]="'gateway.fileNameEncryptionInfo'">File Name Encryption Info</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="hardwareInformations"><span [translate]="'gateway.hardwareInformations'">Hardware Informations</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="readyToReceiveData"><span [translate]="'gateway.readyToReceiveData'">Ready To Receive Data</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="installationName"><span [translate]="'gateway.installation'">Installation</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="shippingShippingDate"><span [translate]="'gateway.shipping'">Shipping</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="orderId"><span [translate]="'gateway.order'">Order</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -90,7 +90,7 @@
                                 [routerLink]="['../gateway-wilamp', gateway.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            <span class="d-none d-md-inline" [translate]="'entity.action.view'">View</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'gateway-wilamp/'+ gateway.id + '/edit'} }]"
@@ -98,7 +98,7 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            <span class="d-none d-md-inline" [translate]="'entity.action.edit'">Edit</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'gateway-wilamp/'+ gateway.id + '/delete'} }]"
@@ -106,7 +106,7 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">
                             <span class="fa fa-remove"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            <span class="d-none d-md-inline" [translate]="'entity.action.delete'">Delete</span>
                         </button>
                     </div>
                 </td>

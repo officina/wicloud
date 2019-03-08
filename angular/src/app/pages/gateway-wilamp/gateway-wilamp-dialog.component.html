@@ -1,135 +1,135 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
-        <h4 class="modal-title" id="myGatewayLabel" jhiTranslate="wilampCloudApp.gateway.home.createOrEditLabel">Create or edit a Gateway</h4>
+        <h4 class="modal-title" id="myGatewayLabel" [translate]="'gateway.home.createOrEditLabel'">Create or edit a Gateway</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;</button>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group" [hidden]="!gateway.id">
-            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <label for="id" [translate]="'global.field.id'">ID</label>
             <input type="text" class="form-control" id="id" name="id"
                    [(ngModel)]="gateway.id" readonly />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.gateway.name" for="field_name">Name</label>
+            <label class="form-control-label" [translate]="'gateway.name'" for="field_name">Name</label>
             <input type="text" class="form-control" name="name" id="field_name"
                 [(ngModel)]="gateway.name" required/>
             <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                   [hidden]="!editForm.controls.name?.errors?.required" [translate]="'entity.validation.required'">
                    This field is required.
                 </small>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.gateway.description" for="field_description">Description</label>
+            <label class="form-control-label" [translate]="'gateway.description'" for="field_description">Description</label>
             <input type="text" class="form-control" name="description" id="field_description"
                 [(ngModel)]="gateway.description" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.gateway.gatewayUUID" for="field_gatewayUUID">Gateway UUID</label>
+            <label class="form-control-label" [translate]="'gateway.gatewayUUID'" for="field_gatewayUUID">Gateway UUID</label>
             <input type="text" class="form-control" name="gatewayUUID" id="field_gatewayUUID"
                 [(ngModel)]="gateway.gatewayUUID" required/>
             <div [hidden]="!(editForm.controls.gatewayUUID?.dirty && editForm.controls.gatewayUUID?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.gatewayUUID?.errors?.required" jhiTranslate="entity.validation.required">
+                   [hidden]="!editForm.controls.gatewayUUID?.errors?.required" [translate]="'entity.validation.required'">
                    This field is required.
                 </small>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.gateway.gatewayHostname" for="field_gatewayHostname">Gateway Hostname</label>
+            <label class="form-control-label" [translate]="'gateway.gatewayHostname'" for="field_gatewayHostname">Gateway Hostname</label>
             <input type="text" class="form-control" name="gatewayHostname" id="field_gatewayHostname"
                 [(ngModel)]="gateway.gatewayHostname" required/>
             <div [hidden]="!(editForm.controls.gatewayHostname?.dirty && editForm.controls.gatewayHostname?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.gatewayHostname?.errors?.required" jhiTranslate="entity.validation.required">
+                   [hidden]="!editForm.controls.gatewayHostname?.errors?.required" [translate]="'entity.validation.required'">
                    This field is required.
                 </small>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.gateway.gatewayType" for="field_gatewayType">Gateway Type</label>
+            <label class="form-control-label" [translate]="'gateway.gatewayType'" for="field_gatewayType">Gateway Type</label>
             <input type="number" class="form-control" name="gatewayType" id="field_gatewayType"
                 [(ngModel)]="gateway.gatewayType" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.gateway.notes" for="field_notes">Notes</label>
+            <label class="form-control-label" [translate]="'gateway.notes'" for="field_notes">Notes</label>
             <input type="text" class="form-control" name="notes" id="field_notes"
                 [(ngModel)]="gateway.notes" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.gateway.creationDate" for="field_creationDate">Creation Date</label>
+            <label class="form-control-label" [translate]="'gateway.creationDate'" for="field_creationDate">Creation Date</label>
             <div class="d-flex">
                 <input id="field_creationDate" type="datetime-local" class="form-control" name="creationDate" [(ngModel)]="gateway.creationDate"
                 />
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.gateway.serialNumber" for="field_serialNumber">Serial Number</label>
+            <label class="form-control-label" [translate]="'gateway.serialNumber'" for="field_serialNumber">Serial Number</label>
             <input type="text" class="form-control" name="serialNumber" id="field_serialNumber"
                 [(ngModel)]="gateway.serialNumber" required/>
             <div [hidden]="!(editForm.controls.serialNumber?.dirty && editForm.controls.serialNumber?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.serialNumber?.errors?.required" jhiTranslate="entity.validation.required">
+                   [hidden]="!editForm.controls.serialNumber?.errors?.required" [translate]="'entity.validation.required'">
                    This field is required.
                 </small>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.gateway.deviceName" for="field_deviceName">Device Name</label>
+            <label class="form-control-label" [translate]="'gateway.deviceName'" for="field_deviceName">Device Name</label>
             <input type="text" class="form-control" name="deviceName" id="field_deviceName"
                 [(ngModel)]="gateway.deviceName" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.gateway.hardwareModel" for="field_hardwareModel">Hardware Model</label>
+            <label class="form-control-label" [translate]="'gateway.hardwareModel'" for="field_hardwareModel">Hardware Model</label>
             <input type="text" class="form-control" name="hardwareModel" id="field_hardwareModel"
                 [(ngModel)]="gateway.hardwareModel" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.gateway.macAddress" for="field_macAddress">Mac Address</label>
+            <label class="form-control-label" [translate]="'gateway.macAddress'" for="field_macAddress">Mac Address</label>
             <input type="text" class="form-control" name="macAddress" id="field_macAddress"
                 [(ngModel)]="gateway.macAddress" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.gateway.coordinatorMac" for="field_coordinatorMac">Coordinator Mac</label>
+            <label class="form-control-label" [translate]="'gateway.coordinatorMac'" for="field_coordinatorMac">Coordinator Mac</label>
             <input type="text" class="form-control" name="coordinatorMac" id="field_coordinatorMac"
                 [(ngModel)]="gateway.coordinatorMac" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.gateway.fileNameEncryptionInfo" for="field_fileNameEncryptionInfo">File Name Encryption Info</label>
+            <label class="form-control-label" [translate]="'gateway.fileNameEncryptionInfo'" for="field_fileNameEncryptionInfo">File Name Encryption Info</label>
             <input type="text" class="form-control" name="fileNameEncryptionInfo" id="field_fileNameEncryptionInfo"
                 [(ngModel)]="gateway.fileNameEncryptionInfo" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.gateway.hardwareInformations" for="field_hardwareInformations">Hardware Informations</label>
+            <label class="form-control-label" [translate]="'gateway.hardwareInformations'" for="field_hardwareInformations">Hardware Informations</label>
             <input type="text" class="form-control" name="hardwareInformations" id="field_hardwareInformations"
                 [(ngModel)]="gateway.hardwareInformations" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.gateway.readyToReceiveData" for="field_readyToReceiveData">Ready To Receive Data</label>
+            <label class="form-control-label" [translate]="'gateway.readyToReceiveData'" for="field_readyToReceiveData">Ready To Receive Data</label>
             <input type="checkbox" class="form-control" name="readyToReceiveData" id="field_readyToReceiveData"
                 [(ngModel)]="gateway.readyToReceiveData" />
         </div>
 
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.gateway.installation" for="field_installation">Installation</label>
+            <label class="form-control-label" [translate]="'gateway.installation'" for="field_installation">Installation</label>
             <select class="form-control" id="field_installation" name="installation" [(ngModel)]="gateway.installationId" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="installationOption.id" *ngFor="let installationOption of installations; trackBy: trackInstallationById">{{installationOption.name}}</option>
             </select>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.gateway.shipping" for="field_shipping">Shipping</label>
+            <label class="form-control-label" [translate]="'gateway.shipping'" for="field_shipping">Shipping</label>
             <select class="form-control" id="field_shipping" name="shipping" [(ngModel)]="gateway.shippingId" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="shippingOption.id" *ngFor="let shippingOption of shippings; trackBy: trackShippingById">{{shippingOption.shippingDate}}</option>
             </select>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.gateway.order" for="field_order">Order</label>
+            <label class="form-control-label" [translate]="'gateway.order'" for="field_order">Order</label>
             <select class="form-control" id="field_order" name="order" [(ngModel)]="gateway.orderId" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="orderOption.id" *ngFor="let orderOption of orders; trackBy: trackOrderById">{{orderOption.id}}</option>
@@ -138,10 +138,10 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
-            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+            <span class="fa fa-ban"></span>&nbsp;<span [translate]="'entity.action.cancel'">Cancel</span>
         </button>
         <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+            <span class="fa fa-save"></span>&nbsp;<span [translate]="'entity.action.save'">Save</span>
         </button>
     </div>
 </form>

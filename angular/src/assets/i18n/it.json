@@ -151,5 +151,36 @@
         "detail": {
             "title": "energyMeterModule.detail.title"
         }
+    },
+    "gateway": {
+        "detail": {
+            "title": "gateway.detail.title"
+        },
+        "name": "gateway.name",
+        "description": "gateway.description",
+        "gatewayUUID": "gateway.gatewayUUID",
+        "gatewayHostname": "gateway.gatewayHostname",
+        "gatewayType": "gateway.gatewayType",
+        "notes": "gateway.notes",
+        "creationDate": "gateway.creationDate",
+        "serialNumber": "gateway.serialNumber",
+        "deviceName": "gateway.deviceName",
+        "hardwareModel": "gateway.hardwareModel",
+        "macAddress": "gateway.macAddress",
+        "coordinatorMac": "gateway.coordinatorMac",
+        "fileNameEncryptionInfo": "gateway.fileNameEncryptionInfo",
+        "hardwareInformations": "gateway.hardwareInformations",
+        "readyToReceiveData": "gateway.readyToReceiveData",
+        "installation": "gateway.installation",
+        "shipping": "gateway.shipping",
+        "order": "gateway.order",
+        "home": {
+            "title": "gateway.home.title",
+            "createLabel": "gateway.home.createLabel",
+            "createOrEditLabel": "gateway.home.createOrEditLabel"
+        },
+        "delete": {
+            "question": "gateway.delete.question"
+        }
     }
 }
