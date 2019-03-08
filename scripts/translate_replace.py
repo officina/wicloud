@@ -49,7 +49,7 @@ dir_name = '/Users/nicola/Documents/repository/wicloud/angular/src/app/pages/ins
 
 dir_lists = [
     # 'address-wilamp',
-    # 'contact-wilamp',
+    'contact-wilamp',
     # 'customer-wilamp',
     # 'energy-meter-module-wilamp',
     # 'gateway-wilamp',
@@ -61,7 +61,7 @@ dir_lists = [
     # 'light-profile-wilamp',
     # 'motion-management-module-wilamp',
     # 'node-modules-wilamp',
-    'node-wilamp',
+    # 'node-wilamp',
     # 'order-wilamp',
     # 'shipping-wilamp',
     # 'twilight-management-module-wilamp'

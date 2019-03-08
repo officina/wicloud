@@ -69,5 +69,49 @@
             "createLabel": "node.home.createLabel",
             "createOrEditLabel": "node.home.createOrEditLabel"
         }
+    },
+    "address": {
+        "detail": {
+            "title": "address.detail.title"
+        },
+        "addressDescription": "address.addressDescription",
+        "fullName": "address.fullName",
+        "street": "address.street",
+        "houseNumber": "address.houseNumber",
+        "zipCode": "address.zipCode",
+        "city": "address.city",
+        "country": "address.country",
+        "lat": "address.lat",
+        "lng": "address.lng",
+        "timezoneCode": "address.timezoneCode",
+        "home": {
+            "createOrEditLabel": "address.home.createOrEditLabel",
+            "title": "address.home.title",
+            "createLabel": "address.home.createLabel"
+        },
+        "delete": {
+            "question": "address.delete.question"
+        }
+    },
+    "contact": {
+        "detail": {
+            "title": "contact.detail.title"
+        },
+        "contactDescription": "contact.contactDescription",
+        "firstName": "contact.firstName",
+        "lastName": "contact.lastName",
+        "phone": "contact.phone",
+        "mobile": "contact.mobile",
+        "email": "contact.email",
+        "address": "contact.address",
+        "customer": "contact.customer",
+        "home": {
+            "createOrEditLabel": "contact.home.createOrEditLabel",
+            "title": "contact.home.title",
+            "createLabel": "contact.home.createLabel"
+        },
+        "delete": {
+            "question": "contact.delete.question"
+        }
     }
 }
