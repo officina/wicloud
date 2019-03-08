@@ -1,7 +1,7 @@
 <div>
     <h2>
         <span [translate]="'twilightManagementModule.home.title'">Twilight Management Modules</span>
-        <button class="btn btn-primary float-right jh-create-entity create-twilight-management-module-wilamp" [routerLink]="['/', { outlets: { popup: ['twilight-management-module-wilamp-new'] } }]">
+        <button class="btn btn-primary float-right jh-create-entity create-twilight-management-module" [routerLink]="['/', { outlets: { popup: ['twilight-management-module-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down"  [translate]="'twilightManagementModule.home.createLabel'">
             Create new Twilight Management Module
@@ -54,7 +54,7 @@
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
             <tr *ngFor="let twilightManagementModule of twilightManagementModules ;trackBy: trackId">
-                <td><a [routerLink]="['../twilight-management-module-wilamp', twilightManagementModule.id ]">{{twilightManagementModule.id}}</a></td>
+                <td><a [routerLink]="['../twilight-management-module', twilightManagementModule.id ]">{{twilightManagementModule.id}}</a></td>
                 <td>{{twilightManagementModule.name}}</td>
                 <td>{{twilightManagementModule.description}}</td>
                 <td>{{twilightManagementModule.twMode}}</td>
@@ -77,13 +77,13 @@
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                [routerLink]="['../twilight-management-module-wilamp', twilightManagementModule.id ]"
+                                [routerLink]="['../twilight-management-module', twilightManagementModule.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" [translate]="'entity.action.view'">View</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'twilight-management-module-wilamp/'+ twilightManagementModule.id + '/edit'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'twilight-management-module/'+ twilightManagementModule.id + '/edit'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
@@ -91,7 +91,7 @@
                             <span class="d-none d-md-inline" [translate]="'entity.action.edit'">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'twilight-management-module-wilamp/'+ twilightManagementModule.id + '/delete'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'twilight-management-module/'+ twilightManagementModule.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">

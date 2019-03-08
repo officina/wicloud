@@ -1,7 +1,7 @@
 <div>
     <h2>
         <span [translate]="'energyMeterModule.home.title'">Energy Meter Modules</span>
-        <button class="btn btn-primary float-right jh-create-entity create-energy-meter-module-wilamp" [routerLink]="['/', { outlets: { popup: ['energy-meter-module-wilamp-new'] } }]">
+        <button class="btn btn-primary float-right jh-create-entity create-energy-meter-module" [routerLink]="['/', { outlets: { popup: ['energy-meter-module-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down"  [translate]="'energyMeterModule.home.createLabel'">
             Create new Energy Meter Module
@@ -44,7 +44,7 @@
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
             <tr *ngFor="let energyMeterModule of energyMeterModules ;trackBy: trackId">
-                <td><a [routerLink]="['../energy-meter-module-wilamp', energyMeterModule.id ]">{{energyMeterModule.id}}</a></td>
+                <td><a [routerLink]="['../energy-meter-module', energyMeterModule.id ]">{{energyMeterModule.id}}</a></td>
                 <td>{{energyMeterModule.name}}</td>
                 <td>{{energyMeterModule.description}}</td>
                 <td>{{energyMeterModule.iacCalibration}}</td>
@@ -57,13 +57,13 @@
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                [routerLink]="['../energy-meter-module-wilamp', energyMeterModule.id ]"
+                                [routerLink]="['../energy-meter-module', energyMeterModule.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" [translate]="'entity.action.view'">View</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'energy-meter-module-wilamp/'+ energyMeterModule.id + '/edit'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'energy-meter-module/'+ energyMeterModule.id + '/edit'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
@@ -71,7 +71,7 @@
                             <span class="d-none d-md-inline" [translate]="'entity.action.edit'">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'energy-meter-module-wilamp/'+ energyMeterModule.id + '/delete'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'energy-meter-module/'+ energyMeterModule.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">

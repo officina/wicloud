@@ -1,7 +1,7 @@
 <div>
     <h2>
         <span [translate]="'gateway.home.title'">Gateways</span>
-        <button class="btn btn-primary float-right jh-create-entity create-gateway-wilamp" [routerLink]="['/', { outlets: { popup: ['gateway-wilamp-new'] } }]">
+        <button class="btn btn-primary float-right jh-create-entity create-gateway" [routerLink]="['/', { outlets: { popup: ['gateway-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down"  [translate]="'gateway.home.createLabel'">
             Create new Gateway
@@ -53,7 +53,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let gateway of gateways ;trackBy: trackId">
-                <td><a [routerLink]="['../gateway-wilamp', gateway.id ]">{{gateway.id}}</a></td>
+                <td><a [routerLink]="['../gateway', gateway.id ]">{{gateway.id}}</a></td>
                 <td>{{gateway.name}}</td>
                 <td>{{gateway.description}}</td>
                 <td>{{gateway.gatewayUUID}}</td>
@@ -71,29 +71,29 @@
                 <td>{{gateway.readyToReceiveData}}</td>
                 <td>
                     <div *ngIf="gateway.installationId">
-                        <a [routerLink]="['../installation-wilamp', gateway.installationId  ]" >{{gateway.installationName}}</a>
+                        <a [routerLink]="['../installation', gateway.installationId  ]" >{{gateway.installationName}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="gateway.shippingId">
-                        <a [routerLink]="['../shipping-wilamp', gateway.shippingId  ]" >{{gateway.shippingShippingDate}}</a>
+                        <a [routerLink]="['../shipping', gateway.shippingId  ]" >{{gateway.shippingShippingDate}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="gateway.orderId">
-                        <a [routerLink]="['../order-wilamp', gateway.orderId  ]" >{{gateway.orderId}}</a>
+                        <a [routerLink]="['../order', gateway.orderId  ]" >{{gateway.orderId}}</a>
                     </div>
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                [routerLink]="['../gateway-wilamp', gateway.id ]"
+                                [routerLink]="['../gateway', gateway.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" [translate]="'entity.action.view'">View</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'gateway-wilamp/'+ gateway.id + '/edit'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'gateway/'+ gateway.id + '/edit'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
@@ -101,7 +101,7 @@
                             <span class="d-none d-md-inline" [translate]="'entity.action.edit'">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'gateway-wilamp/'+ gateway.id + '/delete'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'gateway/'+ gateway.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">

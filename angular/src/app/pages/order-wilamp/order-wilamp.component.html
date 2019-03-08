@@ -1,7 +1,7 @@
 <div>
     <h2>
         <span [translate]="'order.home.title'">Orders</span>
-        <button class="btn btn-primary float-right jh-create-entity create-order-wilamp" [routerLink]="['/', { outlets: { popup: ['order-wilamp-new'] } }]">
+        <button class="btn btn-primary float-right jh-create-entity create-order-wilamp" [routerLink]="['/', { outlets: { popup: ['order-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down"  [translate]="'order.home.createLabel'">
             Create new Order
@@ -42,7 +42,7 @@
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
             <tr *ngFor="let order of orders ;trackBy: trackId">
-                <td><a [routerLink]="['../order-wilamp', order.id ]">{{order.id}}</a></td>
+                <td><a [routerLink]="['../order', order.id ]">{{order.id}}</a></td>
                 <td>{{order.name}}</td>
                 <td>{{order.description}}</td>
                 <td>{{order.notes}}</td>
@@ -51,19 +51,19 @@
                 <td>{{order.totalAmount}}</td>
                 <td>
                     <div *ngIf="order.customer">
-                        <a [routerLink]="['../customer-wilamp', order.customer  ]" >{{order.customerCompanyName}}</a>
+                        <a [routerLink]="['../customer', order.customer  ]" >{{order.customerCompanyName}}</a>
                     </div>
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                [routerLink]="['../order-wilamp', order.id ]"
+                                [routerLink]="['../order', order.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" [translate]="'entity.action.view'">View</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'order-wilamp/'+ order.id + '/edit'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'order/'+ order.id + '/edit'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
@@ -71,7 +71,7 @@
                             <span class="d-none d-md-inline" [translate]="'entity.action.edit'">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'order-wilamp/'+ order.id + '/delete'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'order/'+ order.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">

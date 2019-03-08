@@ -1,7 +1,7 @@
 <div>
     <h2>
         <span [translate]="'customer.home.title'">Customers</span>
-        <button class="btn btn-primary float-right jh-create-entity create-customer-wilamp" [routerLink]="['/', { outlets: { popup: ['customer-wilamp-new'] } }]">
+        <button class="btn btn-primary float-right jh-create-entity create-customer" [routerLink]="['/', { outlets: { popup: ['customer-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down"  [translate]="'customer.home.createLabel'">
             Create new Customer
@@ -37,19 +37,19 @@
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
             <tr *ngFor="let customer of customers ;trackBy: trackId">
-                <td><a [routerLink]="['../customer-wilamp', customer.id ]">{{customer.id}}</a></td>
+                <td><a [routerLink]="['../customer', customer.id ]">{{customer.id}}</a></td>
                 <td>{{customer.companyName}}</td>
                 <td>{{customer.description}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                [routerLink]="['../customer-wilamp', customer.id ]"
+                                [routerLink]="['../customer', customer.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" [translate]="'entity.action.view'">View</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'customer-wilamp/'+ customer.id + '/edit'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'customer/'+ customer.id + '/edit'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
@@ -57,7 +57,7 @@
                             <span class="d-none d-md-inline" [translate]="'entity.action.edit'">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'customer-wilamp/'+ customer.id + '/delete'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'customer/'+ customer.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">

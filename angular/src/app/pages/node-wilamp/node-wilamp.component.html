@@ -1,7 +1,7 @@
 <div>
     <h2>
         <span [translate]="'node.home.title'">Nodes</span>
-        <button class="btn btn-primary float-right jh-create-entity create-node-wilamp" [routerLink]="['/', { outlets: { popup: ['node-wilamp-new'] } }]">
+        <button class="btn btn-primary float-right jh-create-entity create-node-wilamp" [routerLink]="['/', { outlets: { popup: ['node-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down"  [translate]="'node.home.createLabel'">
             Create new Node
@@ -53,7 +53,7 @@
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
             <tr *ngFor="let node of nodes ;trackBy: trackId">
-                <td><a [routerLink]="['../node-wilamp', node.id ]">{{node.id}}</a></td>
+                <td><a [routerLink]="['../node', node.id ]">{{node.id}}</a></td>
                 <td>{{node.name}}</td>
                 <td>{{node.description}}</td>
                 <td>{{node.nodeType}}</td>
@@ -70,34 +70,34 @@
                 <td>{{node.altitude}}</td>
                 <td>
                     <div *ngIf="node.modulesId">
-                        <a [routerLink]="['../node-modules-wilamp', node.modulesId  ]" >{{node.modulesId}}</a>
+                        <a [routerLink]="['../node-modules', node.modulesId  ]" >{{node.modulesId}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="node.gatewayId">
-                        <a [routerLink]="['../gateway-wilamp', node.gatewayId  ]" >{{node.gatewayGatewayHostname}}</a>
+                        <a [routerLink]="['../gateway', node.gatewayId  ]" >{{node.gatewayGatewayHostname}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="node.shippingId">
-                        <a [routerLink]="['../shipping-wilamp', node.shippingId  ]" >{{node.shippingShippingDate}}</a>
+                        <a [routerLink]="['../shipping', node.shippingId  ]" >{{node.shippingShippingDate}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="node.orderId">
-                        <a [routerLink]="['../order-wilamp', node.orderId  ]" >{{node.orderId}}</a>
+                        <a [routerLink]="['../order', node.orderId  ]" >{{node.orderId}}</a>
                     </div>
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                [routerLink]="['../node-wilamp', node.id ]"
+                                [routerLink]="['../node', node.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" [translate]="'entity.action.view'">View</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'node-wilamp/'+ node.id + '/edit'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'node/'+ node.id + '/edit'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
@@ -105,7 +105,7 @@
                             <span class="d-none d-md-inline" [translate]="'entity.action.edit'">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'node-wilamp/'+ node.id + '/delete'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'node/'+ node.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">

@@ -70,19 +70,19 @@
         <dt><span [translate]="'gateway.installation'">Installation</span></dt>
         <dd>
             <div *ngIf="gateway.installationId">
-                <a [routerLink]="['/installation-wilamp', gateway.installationId]">{{gateway.installationName}}</a>
+                <a [routerLink]="['/installation', gateway.installationId]">{{gateway.installationName}}</a>
             </div>
         </dd>
         <dt><span [translate]="'gateway.shipping'">Shipping</span></dt>
         <dd>
             <div *ngIf="gateway.shippingId">
-                <a [routerLink]="['/shipping-wilamp', gateway.shippingId]">{{gateway.shippingShippingDate}}</a>
+                <a [routerLink]="['/shipping', gateway.shippingId]">{{gateway.shippingShippingDate}}</a>
             </div>
         </dd>
         <dt><span [translate]="'gateway.order'">Order</span></dt>
         <dd>
             <div *ngIf="gateway.orderId">
-                <a [routerLink]="['/order-wilamp', gateway.orderId]">{{gateway.orderId}}</a>
+                <a [routerLink]="['/order', gateway.orderId]">{{gateway.orderId}}</a>
             </div>
         </dd>
     </dl>
@@ -94,7 +94,7 @@
     </button>
 
     <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'gateway-wilamp/'+ gateway.id + '/edit'} }]"
+            [routerLink]="['/', { outlets: { popup: 'gateway/'+ gateway.id + '/edit'} }]"
             replaceUrl="true"
             queryParamsHandling="merge"
             class="btn btn-primary">

@@ -31,13 +31,13 @@
         <dt><span [translate]="'contact.address'">Address</span></dt>
         <dd>
             <span *ngFor="let address of contact.addresses; let last = last">
-                <a [routerLink]="['/address-wilamp', address?.id ]">{{address.addressDescription}}</a>{{last ? '' : ', '}}
+                <a [routerLink]="['/address', address?.id ]">{{address.addressDescription}}</a>{{last ? '' : ', '}}
             </span>
         </dd>
         <dt><span [translate]="'contact.customer'">Customer</span></dt>
         <dd>
             <div *ngIf="contact.customer">
-                <a [routerLink]="['/customer-wilamp', contact.customer]">{{contact.customerCompanyName}}</a>
+                <a [routerLink]="['/customer', contact.customer]">{{contact.customerCompanyName}}</a>
             </div>
         </dd>
     </dl>
@@ -49,7 +49,7 @@
     </button>
 
     <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'contact-wilamp/'+ contact.id + '/edit'} }]"
+            [routerLink]="['/', { outlets: { popup: 'contact/'+ contact.id + '/edit'} }]"
             replaceUrl="true"
             queryParamsHandling="merge"
             class="btn btn-primary">

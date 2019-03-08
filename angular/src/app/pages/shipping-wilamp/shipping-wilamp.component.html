@@ -1,7 +1,7 @@
 <div>
     <h2>
         <span [translate]="'shipping.home.title'">Shippings</span>
-        <button class="btn btn-primary float-right jh-create-entity create-shipping-wilamp" [routerLink]="['/', { outlets: { popup: ['shipping-wilamp-new'] } }]">
+        <button class="btn btn-primary float-right jh-create-entity create-shipping-wilamp" [routerLink]="['/', { outlets: { popup: ['shipping-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down"  [translate]="'shipping.home.createLabel'">
             Create new Shipping
@@ -42,7 +42,7 @@
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
             <tr *ngFor="let shipping of shippings ;trackBy: trackId">
-                <td><a [routerLink]="['../shipping-wilamp', shipping.id ]">{{shipping.id}}</a></td>
+                <td><a [routerLink]="['../shipping', shipping.id ]">{{shipping.id}}</a></td>
                 <td>{{shipping.courier}}</td>
                 <td>{{shipping.trackingCode}}</td>
                 <td>{{shipping.shippingDate}}</td>
@@ -51,19 +51,19 @@
                 <td>{{shipping.isArrived}}</td>
                 <td>
                     <div *ngIf="shipping.shippingContactId">
-                        <a [routerLink]="['../contact-wilamp', shipping.shippingContactId  ]" >{{shipping.shippingContactContactDescription}}</a>
+                        <a [routerLink]="['../contact', shipping.shippingContactId  ]" >{{shipping.shippingContactContactDescription}}</a>
                     </div>
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                [routerLink]="['../shipping-wilamp', shipping.id ]"
+                                [routerLink]="['../shipping', shipping.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" [translate]="'entity.action.view'">View</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'shipping-wilamp/'+ shipping.id + '/edit'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'shipping/'+ shipping.id + '/edit'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
@@ -71,7 +71,7 @@
                             <span class="d-none d-md-inline" [translate]="'entity.action.edit'">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'shipping-wilamp/'+ shipping.id + '/delete'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'shipping/'+ shipping.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">

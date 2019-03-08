@@ -1,7 +1,7 @@
 <div>
     <h2>
         <span [translate]="'contact.home.title'">Contacts</span>
-        <button class="btn btn-primary float-right jh-create-entity create-contact-wilamp" [routerLink]="['/', { outlets: { popup: ['contact-wilamp-new'] } }]">
+        <button class="btn btn-primary float-right jh-create-entity create-contact" [routerLink]="['/', { outlets: { popup: ['contact-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down"  [translate]="'contact.home.createLabel'">
             Create new Contact
@@ -42,7 +42,7 @@
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
             <tr *ngFor="let contact of contacts ;trackBy: trackId">
-                <td><a [routerLink]="['../contact-wilamp', contact.id ]">{{contact.id}}</a></td>
+                <td><a [routerLink]="['../contact', contact.id ]">{{contact.id}}</a></td>
                 <td>{{contact.contactDescription}}</td>
                 <td>{{contact.firstName}}</td>
                 <td>{{contact.lastName}}</td>
@@ -51,19 +51,19 @@
                 <td>{{contact.email}}</td>
                 <td>
                     <div *ngIf="contact.customer">
-                        <a [routerLink]="['../customer-wilamp', contact.customer  ]" >{{contact.customerCompanyName}}</a>
+                        <a [routerLink]="['../customer', contact.customer  ]" >{{contact.customerCompanyName}}</a>
                     </div>
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                [routerLink]="['../contact-wilamp', contact.id ]"
+                                [routerLink]="['../contact', contact.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" [translate]="'entity.action.view'">View</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'contact-wilamp/'+ contact.id + '/edit'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'contact/'+ contact.id + '/edit'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
@@ -71,7 +71,7 @@
                             <span class="d-none d-md-inline" [translate]="'entity.action.edit'">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'contact-wilamp/'+ contact.id + '/delete'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'contact/'+ contact.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">

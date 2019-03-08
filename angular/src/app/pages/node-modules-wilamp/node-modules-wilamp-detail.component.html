@@ -11,25 +11,25 @@
         <dt><span [translate]="'nodeModules.lightManagement'">Light Management</span></dt>
         <dd>
             <div *ngIf="nodeModules.lightManagementId">
-                <a [routerLink]="['/light-management-module-wilamp', nodeModules.lightManagementId]">{{nodeModules.lightManagementName}}</a>
+                <a [routerLink]="['/light-management-module', nodeModules.lightManagementId]">{{nodeModules.lightManagementName}}</a>
             </div>
         </dd>
         <dt><span [translate]="'nodeModules.energyMeter'">Energy Meter</span></dt>
         <dd>
             <div *ngIf="nodeModules.energyMeterId">
-                <a [routerLink]="['/energy-meter-module-wilamp', nodeModules.energyMeterId]">{{nodeModules.energyMeterName}}</a>
+                <a [routerLink]="['/energy-meter-module', nodeModules.energyMeterId]">{{nodeModules.energyMeterName}}</a>
             </div>
         </dd>
         <dt><span [translate]="'nodeModules.twilightManagement'">Twilight Management</span></dt>
         <dd>
             <div *ngIf="nodeModules.twilightManagementId">
-                <a [routerLink]="['/twilight-management-module-wilamp', nodeModules.twilightManagementId]">{{nodeModules.twilightManagementName}}</a>
+                <a [routerLink]="['/twilight-management-module', nodeModules.twilightManagementId]">{{nodeModules.twilightManagementName}}</a>
             </div>
         </dd>
         <dt><span [translate]="'nodeModules.motionManagement'">Motion Management</span></dt>
         <dd>
             <div *ngIf="nodeModules.motionManagementId">
-                <a [routerLink]="['/motion-management-module-wilamp', nodeModules.motionManagementId]">{{nodeModules.motionManagementName}}</a>
+                <a [routerLink]="['/motion-management-module', nodeModules.motionManagementId]">{{nodeModules.motionManagementName}}</a>
             </div>
         </dd>
     </dl>
@@ -41,7 +41,7 @@
     </button>
 
     <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'node-modules-wilamp/'+ nodeModules.id + '/edit'} }]"
+            [routerLink]="['/', { outlets: { popup: 'node-modules/'+ nodeModules.id + '/edit'} }]"
             replaceUrl="true"
             queryParamsHandling="merge"
             class="btn btn-primary">

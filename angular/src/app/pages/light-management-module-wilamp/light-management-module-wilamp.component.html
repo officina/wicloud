@@ -1,7 +1,7 @@
 <div>
     <h2>
         <span [translate]="'lightManagementModule.home.title'">Light Management Modules</span>
-        <button class="btn btn-primary float-right jh-create-entity create-light-management-module-wilamp" [routerLink]="['/', { outlets: { popup: ['light-management-module-wilamp-new'] } }]">
+        <button class="btn btn-primary float-right jh-create-entity create-light-management-module-wilamp" [routerLink]="['/', { outlets: { popup: ['light-management-module-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down"  [translate]="'lightManagementModule.home.createLabel'">
             Create new Light Management Module
@@ -44,7 +44,7 @@
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
             <tr *ngFor="let lightManagementModule of lightManagementModules ;trackBy: trackId">
-                <td><a [routerLink]="['../light-management-module-wilamp', lightManagementModule.id ]">{{lightManagementModule.id}}</a></td>
+                <td><a [routerLink]="['../light-management-module', lightManagementModule.id ]">{{lightManagementModule.id}}</a></td>
                 <td>{{lightManagementModule.name}}</td>
                 <td>{{lightManagementModule.description}}</td>
                 <td>{{lightManagementModule.deviceType}}</td>
@@ -57,13 +57,13 @@
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                [routerLink]="['../light-management-module-wilamp', lightManagementModule.id ]"
+                                [routerLink]="['../light-management-module', lightManagementModule.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" [translate]="'entity.action.view'">View</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'light-management-module-wilamp/'+ lightManagementModule.id + '/edit'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'light-management-module/'+ lightManagementModule.id + '/edit'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
@@ -71,7 +71,7 @@
                             <span class="d-none d-md-inline" [translate]="'entity.action.edit'">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'light-management-module-wilamp/'+ lightManagementModule.id + '/delete'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'light-management-module/'+ lightManagementModule.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">

@@ -31,7 +31,7 @@
         <dt><span [translate]="'order.customer'">Customer</span></dt>
         <dd>
             <div *ngIf="order.customer">
-                <a [routerLink]="['/customer-wilamp', order.customer]">{{order.customerCompanyName}}</a>
+                <a [routerLink]="['/customer', order.customer]">{{order.customerCompanyName}}</a>
             </div>
         </dd>
     </dl>
@@ -43,7 +43,7 @@
     </button>
 
     <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'order-wilamp/'+ order.id + '/edit'} }]"
+            [routerLink]="['/', { outlets: { popup: 'order/'+ order.id + '/edit'} }]"
             replaceUrl="true"
             queryParamsHandling="merge"
             class="btn btn-primary">

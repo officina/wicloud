@@ -1,7 +1,7 @@
 <div>
     <h2>
         <span [translate]="'lightManagementMeasure.home.title'">Light Management Measures</span>
-        <button class="btn btn-primary float-right jh-create-entity create-light-management-measure-wilamp" [routerLink]="['/', { outlets: { popup: ['light-management-measure-wilamp-new'] } }]">
+        <button class="btn btn-primary float-right jh-create-entity create-light-management-measure" [routerLink]="['/', { outlets: { popup: ['light-management-measure-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down"  [translate]="'lightManagementMeasure.home.createLabel'">
             Create new Light Management Measure
@@ -76,7 +76,7 @@
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
             <tr *ngFor="let lightManagementMeasure of lightManagementMeasures ;trackBy: trackId">
-                <td><a [routerLink]="['../light-management-measure-wilamp', lightManagementMeasure.id ]">{{lightManagementMeasure.id}}</a></td>
+                <td><a [routerLink]="['../light-management-measure', lightManagementMeasure.id ]">{{lightManagementMeasure.id}}</a></td>
                 <td>{{lightManagementMeasure.mac}}</td>
                 <td>{{lightManagementMeasure.processingStatus}}</td>
                 <td>{{lightManagementMeasure.nodeHMS}}</td>
@@ -119,19 +119,19 @@
                 <td>{{lightManagementMeasure.installationId}}</td>
                 <td>
                     <div *ngIf="lightManagementMeasure.lightManagementModuleId">
-                        <a [routerLink]="['../light-management-module-wilamp', lightManagementMeasure.lightManagementModuleId  ]" >{{lightManagementMeasure.lightManagementModuleName}}</a>
+                        <a [routerLink]="['../light-management-module', lightManagementMeasure.lightManagementModuleId  ]" >{{lightManagementMeasure.lightManagementModuleName}}</a>
                     </div>
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                [routerLink]="['../light-management-measure-wilamp', lightManagementMeasure.id ]"
+                                [routerLink]="['../light-management-measure', lightManagementMeasure.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" [translate]="'entity.action.view'">View</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'light-management-measure-wilamp/'+ lightManagementMeasure.id + '/edit'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'light-management-measure/'+ lightManagementMeasure.id + '/edit'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
@@ -139,7 +139,7 @@
                             <span class="d-none d-md-inline" [translate]="'entity.action.edit'">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'light-management-measure-wilamp/'+ lightManagementMeasure.id + '/delete'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'light-management-measure/'+ lightManagementMeasure.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">
