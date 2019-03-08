@@ -1,9 +1,9 @@
 <div>
     <h2>
-        <span jhiTranslate="wilampCloudApp.lightManagementModule.home.title">Light Management Modules</span>
+        <span [translate]="'lightManagementModule.home.title'">Light Management Modules</span>
         <button class="btn btn-primary float-right jh-create-entity create-light-management-module-wilamp" [routerLink]="['/', { outlets: { popup: ['light-management-module-wilamp-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span class="hidden-sm-down"  jhiTranslate="wilampCloudApp.lightManagementModule.home.createLabel">
+            <span class="hidden-sm-down"  [translate]="'lightManagementModule.home.createLabel'">
             Create new Light Management Module
             </span>
         </button>
@@ -29,16 +29,16 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="name"><span jhiTranslate="wilampCloudApp.lightManagementModule.name">Name</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="description"><span jhiTranslate="wilampCloudApp.lightManagementModule.description">Description</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="deviceType"><span jhiTranslate="wilampCloudApp.lightManagementModule.deviceType">Device Type</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="lampType"><span jhiTranslate="wilampCloudApp.lightManagementModule.lampType">Lamp Type</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="timerAutoMode"><span jhiTranslate="wilampCloudApp.lightManagementModule.timerAutoMode">Timer Auto Mode</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="timerHPSProtection"><span jhiTranslate="wilampCloudApp.lightManagementModule.timerHPSProtection">Timer HPS Protection</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="lightZone"><span jhiTranslate="wilampCloudApp.lightManagementModule.lightZone">Light Zone</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="lightProfileId"><span jhiTranslate="wilampCloudApp.lightManagementModule.lightProfileId">Light Profile Id</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="lightProfileCRC"><span jhiTranslate="wilampCloudApp.lightManagementModule.lightProfileCRC">Light Profile CRC</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="id"><span [translate]="'global.field.id'">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span [translate]="'lightManagementModule.name'">Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="description"><span [translate]="'lightManagementModule.description'">Description</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="deviceType"><span [translate]="'lightManagementModule.deviceType'">Device Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lampType"><span [translate]="'lightManagementModule.lampType'">Lamp Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="timerAutoMode"><span [translate]="'lightManagementModule.timerAutoMode'">Timer Auto Mode</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="timerHPSProtection"><span [translate]="'lightManagementModule.timerHPSProtection'">Timer HPS Protection</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lightZone"><span [translate]="'lightManagementModule.lightZone'">Light Zone</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lightProfileId"><span [translate]="'lightManagementModule.lightProfileId'">Light Profile Id</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lightProfileCRC"><span [translate]="'lightManagementModule.lightProfileCRC'">Light Profile CRC</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -60,7 +60,7 @@
                                 [routerLink]="['../light-management-module-wilamp', lightManagementModule.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            <span class="d-none d-md-inline" [translate]="'entity.action.view'">View</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'light-management-module-wilamp/'+ lightManagementModule.id + '/edit'} }]"
@@ -68,7 +68,7 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            <span class="d-none d-md-inline" [translate]="'entity.action.edit'">Edit</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'light-management-module-wilamp/'+ lightManagementModule.id + '/delete'} }]"
@@ -76,7 +76,7 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">
                             <span class="fa fa-remove"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            <span class="d-none d-md-inline" [translate]="'entity.action.delete'">Delete</span>
                         </button>
                     </div>
                 </td>

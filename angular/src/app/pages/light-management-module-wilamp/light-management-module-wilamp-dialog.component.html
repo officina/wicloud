@@ -1,105 +1,105 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
-        <h4 class="modal-title" id="myLightManagementModuleLabel" jhiTranslate="wilampCloudApp.lightManagementModule.home.createOrEditLabel">Create or edit a Light Management Module</h4>
+        <h4 class="modal-title" id="myLightManagementModuleLabel" [translate]="'lightManagementModule.home.createOrEditLabel'">Create or edit a Light Management Module</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;</button>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group" [hidden]="!lightManagementModule.id">
-            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <label for="id" [translate]="'global.field.id'">ID</label>
             <input type="text" class="form-control" id="id" name="id"
                    [(ngModel)]="lightManagementModule.id" readonly />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementModule.name" for="field_name">Name</label>
+            <label class="form-control-label" [translate]="'lightManagementModule.name'" for="field_name">Name</label>
             <input type="text" class="form-control" name="name" id="field_name"
                 [(ngModel)]="lightManagementModule.name" required/>
             <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                   [hidden]="!editForm.controls.name?.errors?.required" [translate]="'entity.validation.required'">
                    This field is required.
                 </small>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementModule.description" for="field_description">Description</label>
+            <label class="form-control-label" [translate]="'lightManagementModule.description'" for="field_description">Description</label>
             <input type="text" class="form-control" name="description" id="field_description"
                 [(ngModel)]="lightManagementModule.description" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementModule.deviceType" for="field_deviceType">Device Type</label>
+            <label class="form-control-label" [translate]="'lightManagementModule.deviceType'" for="field_deviceType">Device Type</label>
             <input type="number" class="form-control" name="deviceType" id="field_deviceType"
                 [(ngModel)]="lightManagementModule.deviceType" required/>
             <div [hidden]="!(editForm.controls.deviceType?.dirty && editForm.controls.deviceType?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.deviceType?.errors?.required" jhiTranslate="entity.validation.required">
+                   [hidden]="!editForm.controls.deviceType?.errors?.required" [translate]="'entity.validation.required'">
                    This field is required.
                 </small>
                 <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.deviceType?.errors?.number" jhiTranslate="entity.validation.number">
+                    [hidden]="!editForm.controls.deviceType?.errors?.number" [translate]="'entity.validation.number'">
                     This field should be a number.
                 </small>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementModule.lampType" for="field_lampType">Lamp Type</label>
+            <label class="form-control-label" [translate]="'lightManagementModule.lampType'" for="field_lampType">Lamp Type</label>
             <input type="number" class="form-control" name="lampType" id="field_lampType"
                 [(ngModel)]="lightManagementModule.lampType" required/>
             <div [hidden]="!(editForm.controls.lampType?.dirty && editForm.controls.lampType?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.lampType?.errors?.required" jhiTranslate="entity.validation.required">
+                   [hidden]="!editForm.controls.lampType?.errors?.required" [translate]="'entity.validation.required'">
                    This field is required.
                 </small>
                 <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.lampType?.errors?.number" jhiTranslate="entity.validation.number">
+                    [hidden]="!editForm.controls.lampType?.errors?.number" [translate]="'entity.validation.number'">
                     This field should be a number.
                 </small>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementModule.timerAutoMode" for="field_timerAutoMode">Timer Auto Mode</label>
+            <label class="form-control-label" [translate]="'lightManagementModule.timerAutoMode'" for="field_timerAutoMode">Timer Auto Mode</label>
             <input type="number" class="form-control" name="timerAutoMode" id="field_timerAutoMode"
                 [(ngModel)]="lightManagementModule.timerAutoMode" required/>
             <div [hidden]="!(editForm.controls.timerAutoMode?.dirty && editForm.controls.timerAutoMode?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.timerAutoMode?.errors?.required" jhiTranslate="entity.validation.required">
+                   [hidden]="!editForm.controls.timerAutoMode?.errors?.required" [translate]="'entity.validation.required'">
                    This field is required.
                 </small>
                 <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.timerAutoMode?.errors?.number" jhiTranslate="entity.validation.number">
+                    [hidden]="!editForm.controls.timerAutoMode?.errors?.number" [translate]="'entity.validation.number'">
                     This field should be a number.
                 </small>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementModule.timerHPSProtection" for="field_timerHPSProtection">Timer HPS Protection</label>
+            <label class="form-control-label" [translate]="'lightManagementModule.timerHPSProtection'" for="field_timerHPSProtection">Timer HPS Protection</label>
             <input type="number" class="form-control" name="timerHPSProtection" id="field_timerHPSProtection"
                 [(ngModel)]="lightManagementModule.timerHPSProtection" required/>
             <div [hidden]="!(editForm.controls.timerHPSProtection?.dirty && editForm.controls.timerHPSProtection?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.timerHPSProtection?.errors?.required" jhiTranslate="entity.validation.required">
+                   [hidden]="!editForm.controls.timerHPSProtection?.errors?.required" [translate]="'entity.validation.required'">
                    This field is required.
                 </small>
                 <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.timerHPSProtection?.errors?.number" jhiTranslate="entity.validation.number">
+                    [hidden]="!editForm.controls.timerHPSProtection?.errors?.number" [translate]="'entity.validation.number'">
                     This field should be a number.
                 </small>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementModule.lightZone" for="field_lightZone">Light Zone</label>
+            <label class="form-control-label" [translate]="'lightManagementModule.lightZone'" for="field_lightZone">Light Zone</label>
             <input type="number" class="form-control" name="lightZone" id="field_lightZone"
                 [(ngModel)]="lightManagementModule.lightZone" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementModule.lightProfileId" for="field_lightProfileId">Light Profile Id</label>
+            <label class="form-control-label" [translate]="'lightManagementModule.lightProfileId'" for="field_lightProfileId">Light Profile Id</label>
             <input type="number" class="form-control" name="lightProfileId" id="field_lightProfileId"
                 [(ngModel)]="lightManagementModule.lightProfileId" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightManagementModule.lightProfileCRC" for="field_lightProfileCRC">Light Profile CRC</label>
+            <label class="form-control-label" [translate]="'lightManagementModule.lightProfileCRC'" for="field_lightProfileCRC">Light Profile CRC</label>
             <input type="number" class="form-control" name="lightProfileCRC" id="field_lightProfileCRC"
                 [(ngModel)]="lightManagementModule.lightProfileCRC" />
         </div>
@@ -107,10 +107,10 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
-            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+            <span class="fa fa-ban"></span>&nbsp;<span [translate]="'entity.action.cancel'">Cancel</span>
         </button>
         <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+            <span class="fa fa-save"></span>&nbsp;<span [translate]="'entity.action.save'">Save</span>
         </button>
     </div>
 </form>

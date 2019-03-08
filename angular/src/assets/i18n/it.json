@@ -278,5 +278,27 @@
             "createLabel": "lightManagementMeasure.home.createLabel",
             "createOrEditLabel": "lightManagementMeasure.home.createOrEditLabel"
         }
+    },
+    "lightManagementModule": {
+        "home": {
+            "title": "lightManagementModule.home.title",
+            "createLabel": "lightManagementModule.home.createLabel",
+            "createOrEditLabel": "lightManagementModule.home.createOrEditLabel"
+        },
+        "name": "lightManagementModule.name",
+        "description": "lightManagementModule.description",
+        "deviceType": "lightManagementModule.deviceType",
+        "lampType": "lightManagementModule.lampType",
+        "timerAutoMode": "lightManagementModule.timerAutoMode",
+        "timerHPSProtection": "lightManagementModule.timerHPSProtection",
+        "lightZone": "lightManagementModule.lightZone",
+        "lightProfileId": "lightManagementModule.lightProfileId",
+        "lightProfileCRC": "lightManagementModule.lightProfileCRC",
+        "detail": {
+            "title": "lightManagementModule.detail.title"
+        },
+        "delete": {
+            "question": "lightManagementModule.delete.question"
+        }
     }
 }
