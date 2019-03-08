@@ -408,5 +408,25 @@
         "delete": {
             "question": "nodeModules.delete.question"
         }
+    },
+    "order": {
+        "delete": {
+            "question": "order.delete.question"
+        },
+        "detail": {
+            "title": "order.detail.title"
+        },
+        "name": "order.name",
+        "description": "order.description",
+        "notes": "order.notes",
+        "orderDate": "order.orderDate",
+        "preparationDate": "order.preparationDate",
+        "totalAmount": "order.totalAmount",
+        "customer": "order.customer",
+        "home": {
+            "title": "order.home.title",
+            "createLabel": "order.home.createLabel",
+            "createOrEditLabel": "order.home.createOrEditLabel"
+        }
     }
 }

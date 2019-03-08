@@ -61,8 +61,8 @@ dir_lists = [
     # 'light-profile-wilamp',
     # 'motion-management-module-wilamp',
     # 'node-modules-wilamp',
-    'node-wilamp',
-    # 'order-wilamp',
+    # 'node-wilamp',
+    'order-wilamp',
     # 'shipping-wilamp',
     # 'twilight-management-module-wilamp'
 ]
