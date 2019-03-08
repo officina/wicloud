@@ -1,0 +1,9 @@
+.leaflet-tile { border: 0; }
+.leaflet-tile-container img {
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.05);
+}
+.leaflet-tile { will-change: auto !important; }
+
+.leaflet-container {
+    height: 100%;
+}

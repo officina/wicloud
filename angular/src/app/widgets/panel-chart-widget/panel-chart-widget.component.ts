@@ -108,8 +108,8 @@ export class PanelChartWidgetComponent implements OnInit, OnDestroy {
                 if (statisticsOfPreviousWeek != null) {
                     for (let hour = 0; hour < 24; hour++) {
                         for (let day = 0; day < 7; day++) {
-                            if (statisticsOfPreviousWeek.content[day].content[hour][valueField] < 0) {
-                                statisticsOfPreviousWeek.content[day].content[hour][valueField] = 0;
+                            if (statisticsOfPreviousWeek.content.get(day).content.get(hour)[valueField] < 0) { // TODO AT CHECK
+                                statisticsOfPreviousWeek.content.get(day).content.get(hour)[valueField] = 0;
                             }
                             if (day === 0) {
                                 // first round
@@ -118,7 +118,7 @@ export class PanelChartWidgetComponent implements OnInit, OnDestroy {
                                 };
                                 chartData[hour] = rowDefinition;
                             }
-                            chartData[hour][valueField + '_' + day] = Math.round(statisticsOfPreviousWeek.content[day].content[hour][valueField] * 100) / 100;
+                            chartData[hour][valueField + '_' + day] = Math.round(statisticsOfPreviousWeek.content.get(day).content.get(hour)[valueField] * 100) / 100;
                         }
                     }
                 }
@@ -247,8 +247,8 @@ export class PanelChartWidgetComponent implements OnInit, OnDestroy {
                 this.globalDatabase.selectedInstallation.energyStatistics != null) {
                 const statisticsOfCurrentMonth = this.globalDatabase.selectedInstallation.energyStatistics.getStatisticsOfCurrentMonth(this.currentDate);
                 if (statisticsOfCurrentMonth != null) {
-                    for (let i = 0; i < statisticsOfCurrentMonth.content.length; i++) {
-                        const dayStatistics = statisticsOfCurrentMonth.content[i];
+                    for (let i = 0; i < statisticsOfCurrentMonth.content.size; i++) { // TODO AT: better implementation
+                        const dayStatistics = statisticsOfCurrentMonth.content.get(i);
                         if (lastTimestamp < dayStatistics.timestamp) {
                             lastTimestamp = dayStatistics.timestamp;
                             chartData.push(dayStatistics);

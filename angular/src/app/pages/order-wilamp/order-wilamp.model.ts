@@ -12,7 +12,7 @@ export class OrderWilamp implements BaseEntity {
         public nodes?: BaseEntity[],
         public gateways?: BaseEntity[],
         public customerCompanyName?: string,
-        public customerId?: number,
+        public customer?: number,
         public shippings?: BaseEntity[],
     ) {
     }

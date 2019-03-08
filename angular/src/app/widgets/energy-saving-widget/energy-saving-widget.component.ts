@@ -141,17 +141,17 @@ export class EnergySavingWidgetComponent implements OnInit {
             // Extract values from the week statistics using the key
             if (this.globalDatabase.selectedInstallation.energyStatistics.statisticsByWeek.has(currentWeekKey)) {
                 const weekStatistics = this.globalDatabase.selectedInstallation.energyStatistics.statisticsByWeek.get(currentWeekKey);
-                this.chartData[0].data = weekStatistics.content[this.currentDate.getDay()].data;
+                this.chartData[0].data = weekStatistics.content.get(this.currentDate.getDay()).data;
                 // Search for graph boundaries
                 this.chartData[0].data.forEach( (valArray) => {
                    if (valArray[1] > this.chartDataYMaxValue) { this.chartDataYMaxValue = valArray[1]; }
                 });
-                this.graphBottomLeftValue = Helpers.round(weekStatistics.content[this.currentDate.getDay()].activeEnergyAverage);
-                this.graphBottomRightValue = Helpers.round(weekStatistics.content[this.currentDate.getDay()].activeEnergyTotal);
+                this.graphBottomLeftValue = Helpers.round(weekStatistics.content.get(this.currentDate.getDay()).activeEnergyAverage);
+                this.graphBottomRightValue = Helpers.round(weekStatistics.content.get(this.currentDate.getDay()).activeEnergyTotal);
             }
             if (this.globalDatabase.selectedInstallation.energyStatistics.statisticsByWeek.has(yesterdayKey)) {
                 const weekStatistics = this.globalDatabase.selectedInstallation.energyStatistics.statisticsByWeek.get(yesterdayKey);
-                this.chartData[1].data = weekStatistics.content[yesterday.getDay()].data;
+                this.chartData[1].data = weekStatistics.content.get(yesterday.getDay()).data;
                 // Search for graph boundaries
                 this.chartData[1].data.forEach( (valArray) => {
                     if (valArray[1] > this.chartDataYMaxValue) { this.chartDataYMaxValue = valArray[1]; }

@@ -42,11 +42,11 @@ export class InstallationWilampDialogComponent implements OnInit {
         this.addressService
             .query({filter: 'installation-is-null'})
             .subscribe((res: HttpResponse<AddressWilamp[]>) => {
-                if (!this.installation.addressId) {
+                if (!this.installation.address) {
                     this.addresses = res.body;
                 } else {
                     this.addressService
-                        .find(this.installation.addressId)
+                        .find(this.installation.address)
                         .subscribe((subRes: HttpResponse<AddressWilamp>) => {
                             this.addresses = [subRes.body].concat(res.body);
                         }, (subRes: HttpErrorResponse) => this.onError(subRes.message));

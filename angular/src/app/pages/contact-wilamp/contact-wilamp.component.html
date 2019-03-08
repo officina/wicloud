@@ -50,8 +50,8 @@
                 <td>{{contact.mobile}}</td>
                 <td>{{contact.email}}</td>
                 <td>
-                    <div *ngIf="contact.customerId">
-                        <a [routerLink]="['../customer-wilamp', contact.customerId  ]" >{{contact.customerCompanyName}}</a>
+                    <div *ngIf="contact.customer">
+                        <a [routerLink]="['../customer-wilamp', contact.customer  ]" >{{contact.customerCompanyName}}</a>
                     </div>
                 </td>
                 <td class="text-right">

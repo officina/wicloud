@@ -9,9 +9,9 @@ export class InstallationWilamp implements BaseEntity {
         public installationDate?: any,
         public notes?: string,
         public addressAddressDescription?: string,
-        public addressId?: number,
+        public address?: number,
         public customerCompanyName?: string,
-        public customerId?: number,
+        public customer?: number,
         public gateways?: BaseEntity[],
     ) {
     }
@@ -50,17 +50,9 @@ export class EnergyStatistics implements BaseEntity {
         public id?: number,
         public globalEnergyConsumption?: GlobalStatistics,
         public currentIntervalEnergyConsumption?: GlobalStatistics,
-        public statisticsByLightManagemenentId?: Map<number, EnergyStatisticsByResourceId>,
-        public statisticsByNodeId?: Map<number, EnergyStatisticsByResourceId>,
-        public energyStatisticsByWeekNumberDayOfWeekAndHour?: EnergyStatisticsRowByInterval[][][],
-        public energyStatisticsByYearMonthAndDayOfMonthDTOS?: EnergyStatisticsRowByInterval[][][],
-        public statisticsByDayOfWeek?: EnergyStatisticsRowByInterval[][],
-        public statisticsByWeekNumber?: Map<number, Map<number, EnergyStatisticsRowByInterval>>,
-        public statisticsOfTodayByHour?: EnergyStatisticsRowByInterval[],
-        public statisticsOfTodayByDayOfWeek?: EnergyStatisticsRowByInterval[],
-        public statisticsOfLastWeekByDayOfWeek?: EnergyStatisticsRowByInterval[],
-        public statisticsOfTodayByDayOfMonth?: EnergyStatisticsRowByInterval[],
-        public statisticsOfLastMonthByDayOfMonth?: EnergyStatisticsRowByInterval[],
+        public absorbedPowerEstimation?: AbsorbedPowerEstimation,
+        public byWeek?: EnergyStatisticsRowByInterval[],
+        public byMonth?: EnergyStatisticsRowByInterval[],
     ) {
     }
 }
@@ -74,13 +66,15 @@ export class EnergyStatisticsRowByInterval implements BaseEntity {
         public year?: number,
         public weekNumber?: number,
         public hour?: number,
-        public sumEnergy?: number,
-        public sumEnergyWithoutDim?: number,
-        public sumEnergyWithoutControl?: number,
-        public sumEnergyOldLamps?: number,
-        public measureCount?: number,
-        public activePower?: number,
-        public burningTime?: number,
+        public activePowerAverage?: number,
+        public reactivePowerAverage?: number,
+        public activeEnergySum?: number,
+        public reactiveEnergySum?: number,
+        public activeEnergyWithoutDimSum?: number,
+        public activeEnergyWithoutControlSum?: number,
+        public activeEnergyOldLampsSum?: number,
+        public burningTimeAverage?: number,
+        public nodeLifeAverage?: number,
     ) {
     }
 }
@@ -115,6 +109,25 @@ export class GlobalStatistics implements BaseEntity {
         public sumEnergyOldLamps?: number,
         public burningTime?: number,
         public lastIntervalTimestamp?: Date,
+    ) {
+    }
+}
+
+export class AbsorbedPowerEstimation implements BaseEntity {
+    constructor(
+        public id?: number,
+        public countMeasures?: number,
+        public startIntervalTimestamp?: Date,
+        public endIntervalTimestamp?: Date,
+        public avgDimLevel?: number,
+        public avgAdc0Value?: number,
+        public avgAdc1Value?: number,
+        public sumActivePower?: number,
+        public sumEnergy?: number,
+        public sumEnergyWithoutDim?: number,
+        public sumEnergyWithoutControl?: number,
+        public sumEnergyOldLamps?: number,
+        public lastMeasureIntervalTimestamp?: Date,
     ) {
     }
 }

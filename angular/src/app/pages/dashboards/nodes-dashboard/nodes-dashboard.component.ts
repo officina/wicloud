@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {GlobalDatabaseService} from '../../../shared/global-database/global-database.service';
 
+/**
+ * https://www.jqwidgets.com/angular/angular-grid/index.htm?gclid=CjwKCAiA2fjjBRAjEiwAuewS_Qk4-DOb3aLxtQCddSDLXNZgvTWBoJihMBblgZQp5Hv9iLZgox6LIhoC3l8QAvD_BwE
+ *
+ */
 @Component({
-  selector: '.m-grid__item.m-grid__item--fluid.m-wrapper',
+  selector: 'ngx-nodes-dashboard',
   templateUrl: './nodes-dashboard.component.html',
   styles: [],
 })
