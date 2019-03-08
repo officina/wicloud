@@ -390,5 +390,23 @@
         "delete": {
             "question": "motionManagementModule.delete.question"
         }
+    },
+    "nodeModules": {
+        "home": {
+            "title": "nodeModules.home.title",
+            "createLabel": "nodeModules.home.createLabel",
+            "createOrEditLabel": "nodeModules.home.createOrEditLabel"
+        },
+        "name": "nodeModules.name",
+        "lightManagement": "nodeModules.lightManagement",
+        "energyMeter": "nodeModules.energyMeter",
+        "twilightManagement": "nodeModules.twilightManagement",
+        "motionManagement": "nodeModules.motionManagement",
+        "detail": {
+            "title": "nodeModules.detail.title"
+        },
+        "delete": {
+            "question": "nodeModules.delete.question"
+        }
     }
 }
