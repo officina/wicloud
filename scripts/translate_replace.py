@@ -62,9 +62,9 @@ dir_lists = [
     # 'motion-management-module-wilamp',
     # 'node-modules-wilamp',
     # 'node-wilamp',
-    'order-wilamp',
+    # 'order-wilamp',
     # 'shipping-wilamp',
-    # 'twilight-management-module-wilamp'
+    'twilight-management-module-wilamp'
 ]
 
 for single_name in dir_lists:

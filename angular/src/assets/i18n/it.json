@@ -428,5 +428,58 @@
             "createLabel": "order.home.createLabel",
             "createOrEditLabel": "order.home.createOrEditLabel"
         }
+    },
+    "shipping": {
+        "home": {
+            "createOrEditLabel": "shipping.home.createOrEditLabel",
+            "title": "shipping.home.title",
+            "createLabel": "shipping.home.createLabel"
+        },
+        "courier": "shipping.courier",
+        "trackingCode": "shipping.trackingCode",
+        "shippingDate": "shipping.shippingDate",
+        "estimatedArrival": "shipping.estimatedArrival",
+        "transportDocument": "shipping.transportDocument",
+        "isArrived": "shipping.isArrived",
+        "shippingContact": "shipping.shippingContact",
+        "order": "shipping.order",
+        "detail": {
+            "title": "shipping.detail.title"
+        },
+        "delete": {
+            "question": "shipping.delete.question"
+        }
+    },
+    "twilightManagementModule": {
+        "home": {
+            "title": "twilightManagementModule.home.title",
+            "createLabel": "twilightManagementModule.home.createLabel",
+            "createOrEditLabel": "twilightManagementModule.home.createOrEditLabel"
+        },
+        "name": "twilightManagementModule.name",
+        "description": "twilightManagementModule.description",
+        "twMode": "twilightManagementModule.twMode",
+        "twType": "twilightManagementModule.twType",
+        "twGroup": "twilightManagementModule.twGroup",
+        "validPeriod": "twilightManagementModule.validPeriod",
+        "thsSunsetOn": "twilightManagementModule.thsSunsetOn",
+        "thsSunsetOff": "twilightManagementModule.thsSunsetOff",
+        "thsSunriseOn": "twilightManagementModule.thsSunriseOn",
+        "thsSunriseOff": "twilightManagementModule.thsSunriseOff",
+        "persistencePeriod": "twilightManagementModule.persistencePeriod",
+        "delayOffset": "twilightManagementModule.delayOffset",
+        "voltagemV": "twilightManagementModule.voltagemV",
+        "luxMeasured": "twilightManagementModule.luxMeasured",
+        "samplingPeriod": "twilightManagementModule.samplingPeriod",
+        "numberAverageMeasures": "twilightManagementModule.numberAverageMeasures",
+        "adcInChannel": "twilightManagementModule.adcInChannel",
+        "programmingStatus": "twilightManagementModule.programmingStatus",
+        "createdTimestamp": "twilightManagementModule.createdTimestamp",
+        "detail": {
+            "title": "twilightManagementModule.detail.title"
+        },
+        "delete": {
+            "question": "twilightManagementModule.delete.question"
+        }
     }
 }
