@@ -224,5 +224,59 @@
         "delete": {
             "question": "lightFixture.delete.question"
         }
+    },
+    "lightManagementMeasure": {
+        "detail": {
+            "title": "lightManagementMeasure.detail.title"
+        },
+        "mac": "lightManagementMeasure.mac",
+        "processingStatus": "lightManagementMeasure.processingStatus",
+        "nodeHMS": "lightManagementMeasure.nodeHMS",
+        "dayOfYear": "lightManagementMeasure.dayOfYear",
+        "measureType": "lightManagementMeasure.measureType",
+        "parentNode": "lightManagementMeasure.parentNode",
+        "lqi": "lightManagementMeasure.lqi",
+        "vac": "lightManagementMeasure.vac",
+        "vcc": "lightManagementMeasure.vcc",
+        "iac": "lightManagementMeasure.iac",
+        "activePower": "lightManagementMeasure.activePower",
+        "reactivePower": "lightManagementMeasure.reactivePower",
+        "activeEnergyCounter": "lightManagementMeasure.activeEnergyCounter",
+        "reactiveEnergyCounter": "lightManagementMeasure.reactiveEnergyCounter",
+        "lightLevel": "lightManagementMeasure.lightLevel",
+        "pw0": "lightManagementMeasure.pw0",
+        "pw1": "lightManagementMeasure.pw1",
+        "pw2": "lightManagementMeasure.pw2",
+        "pw3": "lightManagementMeasure.pw3",
+        "nodeTemp": "lightManagementMeasure.nodeTemp",
+        "ad0": "lightManagementMeasure.ad0",
+        "ad1": "lightManagementMeasure.ad1",
+        "ad2": "lightManagementMeasure.ad2",
+        "ad3": "lightManagementMeasure.ad3",
+        "packetsSent": "lightManagementMeasure.packetsSent",
+        "packetsReceived": "lightManagementMeasure.packetsReceived",
+        "packetsLost": "lightManagementMeasure.packetsLost",
+        "motionStatus": "lightManagementMeasure.motionStatus",
+        "manualStatus": "lightManagementMeasure.manualStatus",
+        "statusBitmask": "lightManagementMeasure.statusBitmask",
+        "parametersCRC": "lightManagementMeasure.parametersCRC",
+        "profileCRC": "lightManagementMeasure.profileCRC",
+        "measureTimestamp": "lightManagementMeasure.measureTimestamp",
+        "createdTimestamp": "lightManagementMeasure.createdTimestamp",
+        "sourceModule": "lightManagementMeasure.sourceModule",
+        "nodeFwVersion": "lightManagementMeasure.nodeFwVersion",
+        "lampLife": "lightManagementMeasure.lampLife",
+        "nodeLife": "lightManagementMeasure.nodeLife",
+        "activePowerCounter": "lightManagementMeasure.activePowerCounter",
+        "installationId": "lightManagementMeasure.installationId",
+        "lightManagementModule": "lightManagementMeasure.lightManagementModule",
+        "delete": {
+            "question": "lightManagementMeasure.delete.question"
+        },
+        "home": {
+            "title": "lightManagementMeasure.home.title",
+            "createLabel": "lightManagementMeasure.home.createLabel",
+            "createOrEditLabel": "lightManagementMeasure.home.createOrEditLabel"
+        }
     }
 }
