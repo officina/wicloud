@@ -13,7 +13,7 @@ export const addressRoute: Routes = [
         component: PagesComponent,
         children: [
             {
-                path: 'address-wilamp',
+                path: 'address',
                 component: AddressWilampComponent,
                 data: {
                     authorities: ['ROLE_USER'],
@@ -21,7 +21,7 @@ export const addressRoute: Routes = [
                 },
                 canActivate: [UserRouteAccessService],
             }, {
-                path: 'address-wilamp/:id',
+                path: 'address/:id',
                 component: AddressWilampDetailComponent,
                 data: {
                     authorities: ['ROLE_USER'],
@@ -36,7 +36,7 @@ export const addressRoute: Routes = [
 
 export const addressPopupRoute: Routes = [
     {
-        path: 'address-wilamp-new',
+        path: 'address-new',
         component: AddressWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -46,7 +46,7 @@ export const addressPopupRoute: Routes = [
         outlet: 'popup',
     },
     {
-        path: 'address-wilamp/:id/edit',
+        path: 'address/:id/edit',
         component: AddressWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -56,7 +56,7 @@ export const addressPopupRoute: Routes = [
         outlet: 'popup',
     },
     {
-        path: 'address-wilamp/:id/delete',
+        path: 'address/:id/delete',
         component: AddressWilampDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],

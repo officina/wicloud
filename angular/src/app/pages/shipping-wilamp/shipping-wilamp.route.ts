@@ -13,7 +13,7 @@ export const shippingRoute: Routes = [
         component: PagesComponent,
         children: [
             {
-                path: 'shipping-wilamp',
+                path: 'shipping',
                 component: ShippingWilampComponent,
                 data: {
                     authorities: ['ROLE_USER'],
@@ -21,7 +21,7 @@ export const shippingRoute: Routes = [
                 },
                 canActivate: [UserRouteAccessService],
             }, {
-                path: 'shipping-wilamp/:id',
+                path: 'shipping/:id',
                 component: ShippingWilampDetailComponent,
                 data: {
                     authorities: ['ROLE_USER'],
@@ -35,7 +35,7 @@ export const shippingRoute: Routes = [
 
 export const shippingPopupRoute: Routes = [
     {
-        path: 'shipping-wilamp-new',
+        path: 'shipping-new',
         component: ShippingWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -45,7 +45,7 @@ export const shippingPopupRoute: Routes = [
         outlet: 'popup',
     },
     {
-        path: 'shipping-wilamp/:id/edit',
+        path: 'shipping/:id/edit',
         component: ShippingWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -55,7 +55,7 @@ export const shippingPopupRoute: Routes = [
         outlet: 'popup',
     },
     {
-        path: 'shipping-wilamp/:id/delete',
+        path: 'shipping/:id/delete',
         component: ShippingWilampDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],

@@ -31,7 +31,7 @@ export const gatewayRoute: Routes = [
         component: PagesComponent,
         children: [
             {
-                path: 'gateway-wilamp',
+                path: 'gateway',
                 component: GatewayWilampComponent,
                 resolve: {
                     'pagingParams': GatewayWilampResolvePagingParams,
@@ -42,7 +42,7 @@ export const gatewayRoute: Routes = [
                 },
                 canActivate: [UserRouteAccessService],
             }, {
-                path: 'gateway-wilamp/:id',
+                path: 'gateway/:id',
                 component: GatewayWilampDetailComponent,
                 data: {
                     authorities: ['ROLE_USER'],
@@ -56,7 +56,7 @@ export const gatewayRoute: Routes = [
 
 export const gatewayPopupRoute: Routes = [
     {
-        path: 'gateway-wilamp-new',
+        path: 'gateway-new',
         component: GatewayWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -66,7 +66,7 @@ export const gatewayPopupRoute: Routes = [
         outlet: 'popup',
     },
     {
-        path: 'gateway-wilamp/:id/edit',
+        path: 'gateway/:id/edit',
         component: GatewayWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -76,7 +76,7 @@ export const gatewayPopupRoute: Routes = [
         outlet: 'popup',
     },
     {
-        path: 'gateway-wilamp/:id/delete',
+        path: 'gateway/:id/delete',
         component: GatewayWilampDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],

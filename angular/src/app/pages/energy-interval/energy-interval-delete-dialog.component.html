@@ -6,7 +6,7 @@
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <p [translate]="'energyInterval.delete.question'" translateValues="{id: '{{energyInterval.id}}'}">Are you sure you want to delete this Energy Interval?</p>
+        <p [translate]="'energyInterval.delete.question'" [translateParams]="{id: '{energyInterval.id}'}">Are you sure you want to delete this Energy Interval?</p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

@@ -13,7 +13,7 @@ export const lightProfileSlotRoute: Routes = [
         component: PagesComponent,
         children: [
             {
-                path: 'light-profile-slot-wilamp',
+                path: 'light-profile-slot',
                 component: LightProfileSlotWilampComponent,
                 data: {
                     authorities: ['ROLE_USER'],
@@ -21,7 +21,7 @@ export const lightProfileSlotRoute: Routes = [
                 },
                 canActivate: [UserRouteAccessService],
             }, {
-                path: 'light-profile-slot-wilamp/:id',
+                path: 'light-profile-slot/:id',
                 component: LightProfileSlotWilampDetailComponent,
                 data: {
                     authorities: ['ROLE_USER'],
@@ -35,7 +35,7 @@ export const lightProfileSlotRoute: Routes = [
 
 export const lightProfileSlotPopupRoute: Routes = [
     {
-        path: 'light-profile-slot-wilamp-new',
+        path: 'light-profile-slot-new',
         component: LightProfileSlotWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -45,7 +45,7 @@ export const lightProfileSlotPopupRoute: Routes = [
         outlet: 'popup',
     },
     {
-        path: 'light-profile-slot-wilamp/:id/edit',
+        path: 'light-profile-slot/:id/edit',
         component: LightProfileSlotWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -55,7 +55,7 @@ export const lightProfileSlotPopupRoute: Routes = [
         outlet: 'popup',
     },
     {
-        path: 'light-profile-slot-wilamp/:id/delete',
+        path: 'light-profile-slot/:id/delete',
         component: LightProfileSlotWilampDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],

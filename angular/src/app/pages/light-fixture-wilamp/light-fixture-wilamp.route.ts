@@ -13,7 +13,7 @@ export const lightFixtureRoute: Routes = [
         component: PagesComponent,
         children: [
             {
-                path: 'light-fixture-wilamp',
+                path: 'light-fixture',
                 component: LightFixtureWilampComponent,
                 data: {
                     authorities: ['ROLE_USER'],
@@ -21,7 +21,7 @@ export const lightFixtureRoute: Routes = [
                 },
                 canActivate: [UserRouteAccessService],
             }, {
-                path: 'light-fixture-wilamp/:id',
+                path: 'light-fixture/:id',
                 component: LightFixtureWilampDetailComponent,
                 data: {
                     authorities: ['ROLE_USER'],
@@ -36,7 +36,7 @@ export const lightFixtureRoute: Routes = [
 
 export const lightFixturePopupRoute: Routes = [
     {
-        path: 'light-fixture-wilamp-new',
+        path: 'light-fixture-new',
         component: LightFixtureWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -46,7 +46,7 @@ export const lightFixturePopupRoute: Routes = [
         outlet: 'popup',
     },
     {
-        path: 'light-fixture-wilamp/:id/edit',
+        path: 'light-fixture/:id/edit',
         component: LightFixtureWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -56,7 +56,7 @@ export const lightFixturePopupRoute: Routes = [
         outlet: 'popup',
     },
     {
-        path: 'light-fixture-wilamp/:id/delete',
+        path: 'light-fixture/:id/delete',
         component: LightFixtureWilampDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],

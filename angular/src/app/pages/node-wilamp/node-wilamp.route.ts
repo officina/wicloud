@@ -13,7 +13,7 @@ export const nodeRoute: Routes = [
         component: PagesComponent,
         children: [
             {
-                path: 'node-wilamp',
+                path: 'node',
                 component: NodeWilampComponent,
                 data: {
                     authorities: ['ROLE_USER'],
@@ -21,7 +21,7 @@ export const nodeRoute: Routes = [
                 },
                 canActivate: [UserRouteAccessService],
             }, {
-                path: 'node-wilamp/:id',
+                path: 'node/:id',
                 component: NodeWilampDetailComponent,
                 data: {
                     authorities: ['ROLE_USER'],
@@ -35,7 +35,7 @@ export const nodeRoute: Routes = [
 
 export const nodePopupRoute: Routes = [
     {
-        path: 'node-wilamp-new',
+        path: 'node-new',
         component: NodeWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -45,7 +45,7 @@ export const nodePopupRoute: Routes = [
         outlet: 'popup',
     },
     {
-        path: 'node-wilamp/:id/edit',
+        path: 'node/:id/edit',
         component: NodeWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -55,7 +55,7 @@ export const nodePopupRoute: Routes = [
         outlet: 'popup',
     },
     {
-        path: 'node-wilamp/:id/delete',
+        path: 'node/:id/delete',
         component: NodeWilampDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
