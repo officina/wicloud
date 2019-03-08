@@ -1,9 +1,9 @@
 <div>
     <h2>
-        <span jhiTranslate="wilampCloudApp.customer.home.title">Customers</span>
+        <span [translate]="'customer.home.title'">Customers</span>
         <button class="btn btn-primary float-right jh-create-entity create-customer-wilamp" [routerLink]="['/', { outlets: { popup: ['customer-wilamp-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span class="hidden-sm-down"  jhiTranslate="wilampCloudApp.customer.home.createLabel">
+            <span class="hidden-sm-down"  [translate]="'customer.home.createLabel'">
             Create new Customer
             </span>
         </button>
@@ -29,9 +29,9 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="companyName"><span jhiTranslate="wilampCloudApp.customer.companyName">Company Name</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="description"><span jhiTranslate="wilampCloudApp.customer.description">Description</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="id"><span [translate]="'global.field.id'">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="companyName"><span [translate]="'customer.companyName'">Company Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="description"><span [translate]="'customer.description'">Description</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -46,7 +46,7 @@
                                 [routerLink]="['../customer-wilamp', customer.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            <span class="d-none d-md-inline" [translate]="'entity.action.view'">View</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'customer-wilamp/'+ customer.id + '/edit'} }]"
@@ -54,7 +54,7 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            <span class="d-none d-md-inline" [translate]="'entity.action.edit'">Edit</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'customer-wilamp/'+ customer.id + '/delete'} }]"
@@ -62,7 +62,7 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">
                             <span class="fa fa-remove"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            <span class="d-none d-md-inline" [translate]="'entity.action.delete'">Delete</span>
                         </button>
                     </div>
                 </td>

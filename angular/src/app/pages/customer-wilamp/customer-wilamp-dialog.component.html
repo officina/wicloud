@@ -1,36 +1,36 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
-        <h4 class="modal-title" id="myCustomerLabel" jhiTranslate="wilampCloudApp.customer.home.createOrEditLabel">Create or edit a Customer</h4>
+        <h4 class="modal-title" id="myCustomerLabel" [translate]="'customer.home.createOrEditLabel'">Create or edit a Customer</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;</button>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group" [hidden]="!customer.id">
-            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <label for="id" [translate]="'global.field.id'">ID</label>
             <input type="text" class="form-control" id="id" name="id"
                    [(ngModel)]="customer.id" readonly />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.customer.companyName" for="field_companyName">Company Name</label>
+            <label class="form-control-label" [translate]="'customer.companyName'" for="field_companyName">Company Name</label>
             <input type="text" class="form-control" name="companyName" id="field_companyName"
                 [(ngModel)]="customer.companyName" required/>
             <div [hidden]="!(editForm.controls.companyName?.dirty && editForm.controls.companyName?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.companyName?.errors?.required" jhiTranslate="entity.validation.required">
+                   [hidden]="!editForm.controls.companyName?.errors?.required" [translate]="'entity.validation.required'">
                    This field is required.
                 </small>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.customer.description" for="field_description">Description</label>
+            <label class="form-control-label" [translate]="'customer.description'" for="field_description">Description</label>
             <input type="text" class="form-control" name="description" id="field_description"
                 [(ngModel)]="customer.description" />
         </div>
 
         <div class="form-group">
-            <label jhiTranslate="wilampCloudApp.customer.users" for="field_users">Users</label>
+            <label [translate]="'customer.users'" for="field_users">Users</label>
             <select class="form-control" id="field_users" multiple name="users" [(ngModel)]="customer.users">
                 <option [ngValue]="getSelected(customer.users, userOption)" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
             </select>
@@ -38,10 +38,10 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
-            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+            <span class="fa fa-ban"></span>&nbsp;<span [translate]="'entity.action.cancel'">Cancel</span>
         </button>
         <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+            <span class="fa fa-save"></span>&nbsp;<span [translate]="'entity.action.save'">Save</span>
         </button>
     </div>
 </form>
