@@ -49,9 +49,9 @@ dir_name = '/Users/nicola/Documents/repository/wicloud/angular/src/app/pages/ins
 
 dir_lists = [
     # 'address-wilamp',
-    'contact-wilamp',
+    # 'contact-wilamp',
     # 'customer-wilamp',
-    # 'energy-meter-module-wilamp',
+    'energy-meter-module-wilamp',
     # 'gateway-wilamp',
     # 'installation-wilamp',
     # 'light-fixture-wilamp',

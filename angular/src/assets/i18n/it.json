@@ -113,5 +113,43 @@
         "delete": {
             "question": "contact.delete.question"
         }
+    },
+    "customer": {
+        "delete": {
+            "question": "customer.delete.question"
+        },
+        "home": {
+            "title": "customer.home.title",
+            "createLabel": "customer.home.createLabel",
+            "createOrEditLabel": "customer.home.createOrEditLabel"
+        },
+        "companyName": "customer.companyName",
+        "description": "customer.description",
+        "users": "customer.users",
+        "detail": {
+            "title": "customer.detail.title"
+        }
+    },
+    "energyMeterModule": {
+        "home": {
+            "createOrEditLabel": "energyMeterModule.home.createOrEditLabel",
+            "title": "energyMeterModule.home.title",
+            "createLabel": "energyMeterModule.home.createLabel"
+        },
+        "name": "energyMeterModule.name",
+        "description": "energyMeterModule.description",
+        "iacCalibration": "energyMeterModule.iacCalibration",
+        "vacCalibration": "energyMeterModule.vacCalibration",
+        "patCalibration": "energyMeterModule.patCalibration",
+        "preCalibration": "energyMeterModule.preCalibration",
+        "nominalPower": "energyMeterModule.nominalPower",
+        "oldLampPower": "energyMeterModule.oldLampPower",
+        "powerLosses": "energyMeterModule.powerLosses",
+        "delete": {
+            "question": "energyMeterModule.delete.question"
+        },
+        "detail": {
+            "title": "energyMeterModule.detail.title"
+        }
     }
 }
