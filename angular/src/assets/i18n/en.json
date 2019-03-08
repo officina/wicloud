@@ -34,6 +34,7 @@
       "installationDate":"installation.installationDate",
       "notes":"installation.notes",
       "address":"installation.address",
-      "customer":"installation.customer"
+      "customer":"installation.customer",
+      "overview": "Panoramica"
    }
 }

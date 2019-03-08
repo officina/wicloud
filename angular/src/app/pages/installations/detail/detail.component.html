@@ -10,7 +10,7 @@
             <div class="row block align-items-center">
               <!-- COL INFO INSTALLAZIONE -->
                 <div class="col-12">
-                    <h2 [translate]="'dashboard.light'">{{'dashboard.light' | translate}}</h2>
+                    <h2 [translate]="'dashboard.light'">{{'dashboard.light' | translate}}end</h2>
                 </div>
                 <div class="col-12">
                     <h5>{{installation.customer.description}}</h5>
@@ -47,7 +47,7 @@
               <div class="col-9">
                   <div class="row">
                       <div class="col-11">
-                          <h5>Notifications</h5>
+                          <h5>{{ installation.notifications }}</h5>
                       </div>
                       <div class="col-1">
                           <nb-badge class="badge" text="2" status="danger"></nb-badge>

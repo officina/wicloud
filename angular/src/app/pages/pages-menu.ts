@@ -4,7 +4,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Installations',
     icon: 'nb-keypad',
-    link: '/pages/installation-wilamp',
+    link: '/pages/installation',
     home: true,
   },
   {
@@ -266,7 +266,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Installations',
-        link: '/pages/installation-wilamp',
+        link: '/pages/installation',
         icon: 'nb-tables',
       },
       {

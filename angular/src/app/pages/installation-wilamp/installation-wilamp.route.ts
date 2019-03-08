@@ -14,7 +14,7 @@ export const installationRoute: Routes = [
         component: PagesComponent,
         children: [
             {
-                path: 'installation-wilamp',
+                path: 'installation',
                 component: InstallationWilampComponent,
                 data: {
                     authorities: ['ROLE_USER'],
@@ -22,7 +22,7 @@ export const installationRoute: Routes = [
                 },
                 canActivate: [UserRouteAccessService],
             }, {
-                path: 'installation-wilamp/:id',
+                path: 'installation/:id',
                 component: InstallationWilampDashboardComponent,
                 data: {
                     authorities: ['ROLE_USER'],

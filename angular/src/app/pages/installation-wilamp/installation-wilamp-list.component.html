@@ -29,7 +29,7 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="id"><span [translate]="'global.field.id'">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="name"><span jhiTranslate="wilampCloudApp.installation.name">Name</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="description"><span jhiTranslate="wilampCloudApp.installation.description">Description</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="preparationDate"><span jhiTranslate="wilampCloudApp.installation.preparationDate">Preparation Date</span> <span class="fa fa-sort"></span></th>

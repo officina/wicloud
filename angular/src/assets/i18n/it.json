@@ -29,7 +29,8 @@
         "installationDate": "Data di installazione",
         "notes": "Note",
         "address": "Indirizzo",
-        "customer": "Cliente"
+        "customer": "Cliente",
+        "overview": "Panoramica"
     },
     "global": {
         "field": {
