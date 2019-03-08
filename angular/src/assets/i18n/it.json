@@ -182,5 +182,47 @@
         "delete": {
             "question": "gateway.delete.question"
         }
+    },
+    "lightFixture": {
+        "home": {
+            "createOrEditLabel": "lightFixture.home.createOrEditLabel",
+            "title": "lightFixture.home.title",
+            "createLabel": "lightFixture.home.createLabel"
+        },
+        "name": "lightFixture.name",
+        "serialNumber": "lightFixture.serialNumber",
+        "description": "lightFixture.description",
+        "deviceType": "lightFixture.deviceType",
+        "lampType": "lightFixture.lampType",
+        "lightZone": "lightFixture.lightZone",
+        "nominalPower": "lightFixture.nominalPower",
+        "oldLampPower": "lightFixture.oldLampPower",
+        "logicId": "lightFixture.logicId",
+        "pLCode": "lightFixture.pLCode",
+        "userOwner": "lightFixture.userOwner",
+        "userType": "lightFixture.userType",
+        "userAddress": "lightFixture.userAddress",
+        "userDistributionBox": "lightFixture.userDistributionBox",
+        "userLightpoleMaterial": "lightFixture.userLightpoleMaterial",
+        "userLightpoleShape": "lightFixture.userLightpoleShape",
+        "userLightpoleHeight": "lightFixture.userLightpoleHeight",
+        "userLampType": "lightFixture.userLampType",
+        "userLampPower": "lightFixture.userLampPower",
+        "userLampModel": "lightFixture.userLampModel",
+        "userLampManufacturer": "lightFixture.userLampManufacturer",
+        "timeZone": "lightFixture.timeZone",
+        "timeZoneCode": "lightFixture.timeZoneCode",
+        "latitude": "lightFixture.latitude",
+        "longitude": "lightFixture.longitude",
+        "altitude": "lightFixture.altitude",
+        "gateway": "lightFixture.gateway",
+        "installation": "lightFixture.installation",
+        "lightProfile": "lightFixture.lightProfile",
+        "detail": {
+            "title": "lightFixture.detail.title"
+        },
+        "delete": {
+            "question": "lightFixture.delete.question"
+        }
     }
 }
