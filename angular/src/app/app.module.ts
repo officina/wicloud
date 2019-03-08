@@ -46,14 +46,13 @@ import {Ng2SmartTableModule} from 'ng2-smart-table';
       ThemeModule.forRoot(),
       CoreModule.forRoot(),
       LeafletModule.forRoot(),
-      WiCloudSharedModule,
   ],
   bootstrap: [AppComponent],
   providers: [
       ScriptLoaderService,
       UserRouteAccessService,
       AuthGuard,
-        { provide: APP_BASE_HREF, useValue: '/' }, TranslateService,
+        { provide: APP_BASE_HREF, useValue: '/' },
         { provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER, useValue: authTokenInterceptorFilter },
         // quick fix for JWT Token on API calls
         // TODO:AT controlla, può provocare ricorsioni
