@@ -1,84 +1,84 @@
 
 <div *ngIf="node">
-    <h2><span jhiTranslate="wilampCloudApp.node.detail.title">Node</span> {{node.id}}</h2>
+    <h2><span [translate]="'node.detail.title'">Node</span> {{node.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="wilampCloudApp.node.name">Name</span></dt>
+        <dt><span [translate]="'node.name'">Name</span></dt>
         <dd>
             <span>{{node.name}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.node.description">Description</span></dt>
+        <dt><span [translate]="'node.description'">Description</span></dt>
         <dd>
             <span>{{node.description}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.node.nodeType">Node Type</span></dt>
+        <dt><span [translate]="'node.nodeType'">Node Type</span></dt>
         <dd>
             <span>{{node.nodeType}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.node.mac">Mac</span></dt>
+        <dt><span [translate]="'node.mac'">Mac</span></dt>
         <dd>
             <span>{{node.mac}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.node.logTimeIst">Log Time Ist</span></dt>
+        <dt><span [translate]="'node.logTimeIst'">Log Time Ist</span></dt>
         <dd>
             <span>{{node.logTimeIst}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.node.logTime0">Log Time 0</span></dt>
+        <dt><span [translate]="'node.logTime0'">Log Time 0</span></dt>
         <dd>
             <span>{{node.logTime0}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.node.logTime1">Log Time 1</span></dt>
+        <dt><span [translate]="'node.logTime1'">Log Time 1</span></dt>
         <dd>
             <span>{{node.logTime1}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.node.logTime2">Log Time 2</span></dt>
+        <dt><span [translate]="'node.logTime2'">Log Time 2</span></dt>
         <dd>
             <span>{{node.logTime2}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.node.logTime3">Log Time 3</span></dt>
+        <dt><span [translate]="'node.logTime3'">Log Time 3</span></dt>
         <dd>
             <span>{{node.logTime3}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.node.timeZone">Time Zone</span></dt>
+        <dt><span [translate]="'node.timeZone'">Time Zone</span></dt>
         <dd>
             <span>{{node.timeZone}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.node.timeZoneCode">Time Zone Code</span></dt>
+        <dt><span [translate]="'node.timeZoneCode'">Time Zone Code</span></dt>
         <dd>
             <span>{{node.timeZoneCode}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.node.latitude">Latitude</span></dt>
+        <dt><span [translate]="'node.latitude'">Latitude</span></dt>
         <dd>
             <span>{{node.latitude}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.node.longitude">Longitude</span></dt>
+        <dt><span [translate]="'node.longitude'">Longitude</span></dt>
         <dd>
             <span>{{node.longitude}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.node.altitude">Altitude</span></dt>
+        <dt><span [translate]="'node.altitude'">Altitude</span></dt>
         <dd>
             <span>{{node.altitude}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.node.modules">Modules</span></dt>
+        <dt><span [translate]="'node.modules'">Modules</span></dt>
         <dd>
             <div *ngIf="node.modulesId">
                 <a [routerLink]="['/node-modules-wilamp', node.modulesId]">{{node.modulesId}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.node.gateway">Gateway</span></dt>
+        <dt><span [translate]="'node.gateway'">Gateway</span></dt>
         <dd>
             <div *ngIf="node.gatewayId">
                 <a [routerLink]="['/gateway-wilamp', node.gatewayId]">{{node.gatewayGatewayHostname}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.node.shipping">Shipping</span></dt>
+        <dt><span [translate]="'node.shipping'">Shipping</span></dt>
         <dd>
             <div *ngIf="node.shippingId">
                 <a [routerLink]="['/shipping-wilamp', node.shippingId]">{{node.shippingShippingDate}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.node.order">Order</span></dt>
+        <dt><span [translate]="'node.order'">Order</span></dt>
         <dd>
             <div *ngIf="node.orderId">
                 <a [routerLink]="['/order-wilamp', node.orderId]">{{node.orderId}}</a>
@@ -89,7 +89,7 @@
     <button type="submit"
             (click)="previousState()"
             class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+        <span class="fa fa-arrow-left"></span>&nbsp;<span [translate]="'entity.action.back'"> Back</span>
     </button>
 
     <button type="button"
@@ -97,6 +97,6 @@
             replaceUrl="true"
             queryParamsHandling="merge"
             class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+        <span class="fa fa-pencil"></span>&nbsp;<span [translate]="'entity.action.edit'"> Edit</span>
     </button>
 </div>

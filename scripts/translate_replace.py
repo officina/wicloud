@@ -48,23 +48,23 @@ def add_key_to_json(value):
 dir_name = '/Users/nicola/Documents/repository/wicloud/angular/src/app/pages/installation-wilamp/'
 
 dir_lists = [
-    'address-wilamp',
-    'contact-wilamp',
-    'customer-wilamp',
-    'energy-meter-module-wilamp',
-    'gateway-wilamp',
+    # 'address-wilamp',
+    # 'contact-wilamp',
+    # 'customer-wilamp',
+    # 'energy-meter-module-wilamp',
+    # 'gateway-wilamp',
     # 'installation-wilamp',
-    'light-fixture-wilamp',
-    'light-management-measure-wilamp',
-    'light-management-module-wilamp',
-    'light-profile-slot-wilamp',
-    'light-profile-wilamp',
-    'motion-management-module-wilamp',
-    'node-modules-wilamp',
+    # 'light-fixture-wilamp',
+    # 'light-management-measure-wilamp',
+    # 'light-management-module-wilamp',
+    # 'light-profile-slot-wilamp',
+    # 'light-profile-wilamp',
+    # 'motion-management-module-wilamp',
+    # 'node-modules-wilamp',
     'node-wilamp',
-    'order-wilamp',
-    'shipping-wilamp',
-    'twilight-management-module-wilamp'
+    # 'order-wilamp',
+    # 'shipping-wilamp',
+    # 'twilight-management-module-wilamp'
 ]
 
 for single_name in dir_lists:

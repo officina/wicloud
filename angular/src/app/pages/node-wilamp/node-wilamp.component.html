@@ -1,9 +1,9 @@
 <div>
     <h2>
-        <span jhiTranslate="wilampCloudApp.node.home.title">Nodes</span>
+        <span [translate]="'node.home.title'">Nodes</span>
         <button class="btn btn-primary float-right jh-create-entity create-node-wilamp" [routerLink]="['/', { outlets: { popup: ['node-wilamp-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span class="hidden-sm-down"  jhiTranslate="wilampCloudApp.node.home.createLabel">
+            <span class="hidden-sm-down"  [translate]="'node.home.createLabel'">
             Create new Node
             </span>
         </button>
@@ -29,25 +29,25 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="name"><span jhiTranslate="wilampCloudApp.node.name">Name</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="description"><span jhiTranslate="wilampCloudApp.node.description">Description</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="nodeType"><span jhiTranslate="wilampCloudApp.node.nodeType">Node Type</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="mac"><span jhiTranslate="wilampCloudApp.node.mac">Mac</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="logTimeIst"><span jhiTranslate="wilampCloudApp.node.logTimeIst">Log Time Ist</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="logTime0"><span jhiTranslate="wilampCloudApp.node.logTime0">Log Time 0</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="logTime1"><span jhiTranslate="wilampCloudApp.node.logTime1">Log Time 1</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="logTime2"><span jhiTranslate="wilampCloudApp.node.logTime2">Log Time 2</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="logTime3"><span jhiTranslate="wilampCloudApp.node.logTime3">Log Time 3</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="timeZone"><span jhiTranslate="wilampCloudApp.node.timeZone">Time Zone</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="timeZoneCode"><span jhiTranslate="wilampCloudApp.node.timeZoneCode">Time Zone Code</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="latitude"><span jhiTranslate="wilampCloudApp.node.latitude">Latitude</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="longitude"><span jhiTranslate="wilampCloudApp.node.longitude">Longitude</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="altitude"><span jhiTranslate="wilampCloudApp.node.altitude">Altitude</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="modulesId"><span jhiTranslate="wilampCloudApp.node.modules">Modules</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="gatewayGatewayHostname"><span jhiTranslate="wilampCloudApp.node.gateway">Gateway</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="shippingShippingDate"><span jhiTranslate="wilampCloudApp.node.shipping">Shipping</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="orderId"><span jhiTranslate="wilampCloudApp.node.order">Order</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="id"><span [translate]="'global.field.id'">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span [translate]="'node.name'">Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="description"><span [translate]="'node.description'">Description</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nodeType"><span [translate]="'node.nodeType'">Node Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="mac"><span [translate]="'node.mac'">Mac</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="logTimeIst"><span [translate]="'node.logTimeIst'">Log Time Ist</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="logTime0"><span [translate]="'node.logTime0'">Log Time 0</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="logTime1"><span [translate]="'node.logTime1'">Log Time 1</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="logTime2"><span [translate]="'node.logTime2'">Log Time 2</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="logTime3"><span [translate]="'node.logTime3'">Log Time 3</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="timeZone"><span [translate]="'node.timeZone'">Time Zone</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="timeZoneCode"><span [translate]="'node.timeZoneCode'">Time Zone Code</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="latitude"><span [translate]="'node.latitude'">Latitude</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="longitude"><span [translate]="'node.longitude'">Longitude</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="altitude"><span [translate]="'node.altitude'">Altitude</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="modulesId"><span [translate]="'node.modules'">Modules</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="gatewayGatewayHostname"><span [translate]="'node.gateway'">Gateway</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="shippingShippingDate"><span [translate]="'node.shipping'">Shipping</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="orderId"><span [translate]="'node.order'">Order</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -94,7 +94,7 @@
                                 [routerLink]="['../node-wilamp', node.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            <span class="d-none d-md-inline" [translate]="'entity.action.view'">View</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'node-wilamp/'+ node.id + '/edit'} }]"
@@ -102,7 +102,7 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            <span class="d-none d-md-inline" [translate]="'entity.action.edit'">Edit</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'node-wilamp/'+ node.id + '/delete'} }]"
@@ -110,7 +110,7 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">
                             <span class="fa fa-remove"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            <span class="d-none d-md-inline" [translate]="'entity.action.delete'">Delete</span>
                         </button>
                     </div>
                 </td>
