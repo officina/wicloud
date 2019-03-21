@@ -3,17 +3,17 @@ import { Routes } from '@angular/router';
 import { UserRouteAccessService } from '../../shared';
 import { NodeWilampComponent } from './node-wilamp.component';
 import { NodeWilampDetailComponent } from './node-wilamp-detail.component';
-import { NodeWilampPopupComponent } from './node-wilamp-dialog.component';
+import {NodeWilampDialogComponent, NodeWilampPopupComponent} from './node-wilamp-dialog.component';
 import { NodeWilampDeletePopupComponent } from './node-wilamp-delete-dialog.component';
 import {PagesComponent} from '../pages.component';
 
 export const nodeRoute: Routes = [
     {
-        path: '',
+        path: 'node',
         component: PagesComponent,
         children: [
             {
-                path: 'node',
+                path: '',
                 component: NodeWilampComponent,
                 data: {
                     authorities: ['ROLE_USER'],
@@ -21,8 +21,8 @@ export const nodeRoute: Routes = [
                 },
                 canActivate: [UserRouteAccessService],
             }, {
-                path: 'node/:id',
-                component: NodeWilampDetailComponent,
+                path: 'add',
+                component: NodeWilampDialogComponent,
                 data: {
                     authorities: ['ROLE_USER'],
                     pageTitle: 'wilampCloudApp.node.home.title',
@@ -46,7 +46,7 @@ export const nodePopupRoute: Routes = [
     },
     {
         path: 'node/:id/edit',
-        component: NodeWilampPopupComponent,
+        component: NodeWilampDialogComponent,
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'wilampCloudApp.node.home.title',
