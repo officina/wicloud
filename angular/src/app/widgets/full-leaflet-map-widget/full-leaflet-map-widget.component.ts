@@ -87,7 +87,7 @@ export class FullLeafletMapWidgetComponent implements OnInit, OnDestroy, AfterVi
         id: 'lcuClusterCR',
         name: 'LCU - CR',
         enabled: true,
-        layer: undefined//L.canvasIconLayer(),
+        layer: undefined, // L.canvasIconLayer(),
     };
     dcuClusterGroup: L.MarkerClusterGroup = L.markerClusterGroup({
         spiderfyOnMaxZoom: true,

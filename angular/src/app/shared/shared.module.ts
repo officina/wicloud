@@ -16,8 +16,8 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
                 provide: TranslateLoader,
                 useFactory: (createTranslateLoader),
                 deps: [HttpClient],
-            }
-        })
+            },
+        }),
     ],
     providers: [
         DatePipe,
@@ -26,7 +26,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
     exports: [
         WilampCloudSharedCommonModule,
         DatePipe,
-        TranslateModule
+        TranslateModule,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 

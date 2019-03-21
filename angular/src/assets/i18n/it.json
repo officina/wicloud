@@ -1,15 +1,15 @@
 {
     "entity": {
         "delete": {
-            "title": "entity.delete.title"
+            "title": "Elimina"
         },
         "action": {
-            "cancel": "entity.action.cancel",
-            "delete": "entity.action.delete",
-            "save": "entity.action.save",
-            "view": "entity.action.view",
-            "edit": "entity.action.edit",
-            "back": "entity.action.back"
+            "cancel": "Annulla",
+            "delete": "Elimina",
+            "save": "Salva",
+            "view": "Visualizza",
+            "edit": "Modifica",
+            "back": "Indietro"
         },
         "validation": {
             "required": "entity.validation.required",
@@ -37,7 +37,7 @@
     },
     "global": {
         "field": {
-            "id": "global.field.id"
+            "id": "Id"
         },
         "messages": {
             "info": {
@@ -55,33 +55,35 @@
     },
     "node": {
         "delete": {
-            "question": "node.delete.question"
+            "question": "Confermi di rimuovere il nodo?"
         },
         "detail": {
-            "title": "node.detail.title"
+            "title": "Nodi"
         },
-        "name": "node.name",
-        "description": "node.description",
-        "nodeType": "node.nodeType",
-        "mac": "node.mac",
-        "logTimeIst": "node.logTimeIst",
-        "logTime0": "node.logTime0",
-        "logTime1": "node.logTime1",
-        "logTime2": "node.logTime2",
-        "logTime3": "node.logTime3",
-        "timeZone": "node.timeZone",
-        "timeZoneCode": "node.timeZoneCode",
-        "latitude": "node.latitude",
-        "longitude": "node.longitude",
-        "altitude": "node.altitude",
-        "modules": "node.modules",
-        "gateway": "node.gateway",
-        "shipping": "node.shipping",
-        "order": "node.order",
+        "name": "Nome",
+        "description": "Descrizione",
+        "nodeType": "Tipologia",
+        "mac": "Mac",
+        "logTimeIst": "logTimeIst",
+        "logTime0": "logTime0",
+        "logTime1": "logTime1",
+        "logTime2": "logTime2",
+        "logTime3": "logTime3",
+        "timeZone": "Time zone",
+        "timeZoneCode": "Time zone code",
+        "latitude": "Latitudine",
+        "longitude": "Longitudine",
+        "altitude": "Altitudine",
+        "modules": "Maguli",
+        "gateway": "Gateway",
+        "shipping": "Spedizione",
+        "order": "Ordine",
         "home": {
-            "title": "node.home.title",
-            "createLabel": "node.home.createLabel",
-            "createOrEditLabel": "node.home.createOrEditLabel"
+            "title": "Nodi",
+            "createLabel": "Crea nodo",
+            "createOrEditLabel": "Aggiorna",
+            "search": "Ricerca",
+            "create": "Nuovo nodo"
         }
     },
     "address": {

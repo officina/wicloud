@@ -69,7 +69,7 @@ export class InstallationSmallMapWidgetComponent implements OnInit, OnDestroy, A
         id: 'lcuClusterCR',
         name: 'LCU - CR',
         enabled: true,
-        layer: undefined//L.canvasIconLayer(),
+        layer: undefined, // L.canvasIconLayer(),
     };
     dcuClusterGroup: L.MarkerClusterGroup = L.markerClusterGroup({
         spiderfyOnMaxZoom: true,

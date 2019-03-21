@@ -17,7 +17,7 @@ const PAGES_COMPONENTS = [
       ThemeModule,
       NbBadgeModule,
       WiCloudSharedModule,
-      LeafletModule
+      LeafletModule,
   ],
   declarations: [
     ...PAGES_COMPONENTS,

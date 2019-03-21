@@ -271,17 +271,17 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'Nodes',
-        link: '/pages/node-wilamp',
+        link: '/pages/node',
         icon: 'nb-tables',
       },
       {
         title: 'Gateways',
-        link: '/pages/gateway-wilamp',
+        link: '/pages/gateway',
         icon: 'nb-tables',
       },
       {
         title: 'Light profiles',
-        link: '/pages/light-profile-wilamp',
+        link: '/pages/light-profile',
         icon: 'nb-tables',
       },
     ],
