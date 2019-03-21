@@ -9,6 +9,8 @@ import { NodeWilampService } from './node-wilamp.service';
 import { ITEMS_PER_PAGE, Principal } from '../../shared';
 import {TranslateService} from '@ngx-translate/core';
 
+import * as _ from "lodash";
+
 @Component({
     selector: '.m-grid__item.m-grid__item--fluid.m-wrapper.m-content',
     templateUrl: './node-wilamp.component.html',
@@ -28,7 +30,6 @@ export class NodeWilampComponent implements OnInit, OnDestroy {
     currentSearch: string;
     tableSettings: any;
 
-
     constructor(
         private nodeService: NodeWilampService,
         private jhiAlertService: JhiAlertService,
@@ -38,32 +39,6 @@ export class NodeWilampComponent implements OnInit, OnDestroy {
         private principal: Principal,
         private translateService: TranslateService,
     ) {
-        this.tableSettings = {
-            edit: {
-                editButtonContent: '<i class="nb-edit"></i>',
-                saveButtonContent: '<i class="nb-checkmark"></i>',
-                cancelButtonContent: '<i class="nb-close"></i>',
-            },
-            delete: {
-                deleteButtonContent: '<i class="nb-trash"></i>',
-                confirmDelete: true,
-            },
-            columns: {
-                id: {
-                    title: this.translateService.instant('global.field.id')
-                },
-                name: {
-                    title: 'Full Name'
-                },
-                username: {
-                    title: 'User Name'
-                },
-                email: {
-                    title: 'Email'
-                }
-            }
-        };
-
 
         this.nodes = [];
         this.itemsPerPage = ITEMS_PER_PAGE;
@@ -75,6 +50,7 @@ export class NodeWilampComponent implements OnInit, OnDestroy {
         this.reverse = true;
         this.currentSearch = this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search'] ?
             this.activatedRoute.snapshot.params['search'] : '';
+
     }
 
     loadAll() {
@@ -143,6 +119,40 @@ export class NodeWilampComponent implements OnInit, OnDestroy {
             this.currentAccount = account;
         });
         this.registerChangeInNodes();
+        // questo garantisce di aver caricato il translate json
+        this.translateService.get('global.field.id').subscribe((translated: string) => {
+            this.tableSettings = {
+                actions: {
+                    add: false
+                },
+                edit: {
+                    editButtonContent: '<i class="nb-edit"></i>',
+                    saveButtonContent: '<i class="nb-checkmark"></i>',
+                    cancelButtonContent: '<i class="nb-close"></i>',
+                },
+                delete: {
+                    deleteButtonContent: '<i class="nb-trash"></i>',
+                    confirmDelete: true,
+                },
+                columns: {
+                    id: {
+                        title: this.translateService.instant('global.field.id')
+                    },
+                    name: {
+                        title: this.translateService.instant('node.name')
+                    },
+                    description: {
+                        title: this.translateService.instant('node.description')
+                    },
+                    nodeType: {
+                        title: this.translateService.instant('node.nodeType')
+                    },
+                    mac: {
+                        title: this.translateService.instant('node.mac')
+                    }
+                }
+            };
+        });
     }
 
     ngOnDestroy() {
