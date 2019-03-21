@@ -19,6 +19,7 @@ import { OrderWilampService } from '../order-wilamp/order-wilamp.service';
 @Component({
     selector: 'jhi-node-wilamp-dialog',
     templateUrl: './node-wilamp-dialog.component.html',
+    styleUrls: ['../forms/form-inputs/form-inputs.component.scss'],
 })
 export class NodeWilampDialogComponent implements OnInit {
 

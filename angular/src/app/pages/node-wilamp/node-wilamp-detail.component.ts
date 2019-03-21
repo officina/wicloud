@@ -10,6 +10,7 @@ import { NodeWilampService } from './node-wilamp.service';
 @Component({
     selector: 'jhi-node-wilamp-detail',
     templateUrl: './node-wilamp-detail.component.html',
+    styleUrls: ['../modal-overlays/window/window.component.scss'],
 })
 export class NodeWilampDetailComponent implements OnInit, OnDestroy {
 
