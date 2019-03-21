@@ -25,7 +25,7 @@
         </div>
     </div>
     <br/>
-    <ng2-smart-table [(settings)]="tableSettings"></ng2-smart-table>
+    <ng2-smart-table [settings]="tableSettings" [source]="data"></ng2-smart-table>
     <div class="table-responsive" *ngIf="nodes">
         <table class="table table-striped">
             <thead>

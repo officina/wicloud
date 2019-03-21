@@ -9,8 +9,6 @@ import { NodeWilampService } from './node-wilamp.service';
 import { ITEMS_PER_PAGE, Principal } from '../../shared';
 import {TranslateService} from '@ngx-translate/core';
 
-import * as _ from "lodash";
-
 @Component({
     selector: '.m-grid__item.m-grid__item--fluid.m-wrapper.m-content',
     templateUrl: './node-wilamp.component.html',
@@ -29,6 +27,7 @@ export class NodeWilampComponent implements OnInit, OnDestroy {
     totalItems: number;
     currentSearch: string;
     tableSettings: any;
+    data: any;
 
     constructor(
         private nodeService: NodeWilampService,
@@ -122,8 +121,14 @@ export class NodeWilampComponent implements OnInit, OnDestroy {
         // questo garantisce di aver caricato il translate json
         this.translateService.get('global.field.id').subscribe((translated: string) => {
             this.tableSettings = {
+                pager: {
+                    perPage: 20
+                },
+                hideSubHeader: true,
                 actions: {
-                    add: false
+                    add: false,
+                    edit: true,
+                    delete: true
                 },
                 edit: {
                     editButtonContent: '<i class="nb-edit"></i>',
@@ -175,11 +180,14 @@ export class NodeWilampComponent implements OnInit, OnDestroy {
     }
 
     private onSuccess(data, headers) {
+        console.log(data);
+        console.log(headers);
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = headers.get('X-Total-Count');
         for (let i = 0; i < data.length; i++) {
             this.nodes.push(data[i]);
         }
+        this.data = this.nodes;
     }
 
     private onError(error) {
