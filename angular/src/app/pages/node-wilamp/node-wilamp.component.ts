@@ -7,6 +7,7 @@ import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 import { NodeWilamp } from './node-wilamp.model';
 import { NodeWilampService } from './node-wilamp.service';
 import { ITEMS_PER_PAGE, Principal } from '../../shared';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: '.m-grid__item.m-grid__item--fluid.m-wrapper.m-content',
@@ -25,6 +26,8 @@ export class NodeWilampComponent implements OnInit, OnDestroy {
     reverse: any;
     totalItems: number;
     currentSearch: string;
+    tableSettings: any;
+
 
     constructor(
         private nodeService: NodeWilampService,
@@ -33,7 +36,35 @@ export class NodeWilampComponent implements OnInit, OnDestroy {
         private parseLinks: JhiParseLinks,
         private activatedRoute: ActivatedRoute,
         private principal: Principal,
+        private translateService: TranslateService,
     ) {
+        this.tableSettings = {
+            edit: {
+                editButtonContent: '<i class="nb-edit"></i>',
+                saveButtonContent: '<i class="nb-checkmark"></i>',
+                cancelButtonContent: '<i class="nb-close"></i>',
+            },
+            delete: {
+                deleteButtonContent: '<i class="nb-trash"></i>',
+                confirmDelete: true,
+            },
+            columns: {
+                id: {
+                    title: this.translateService.instant('global.field.id')
+                },
+                name: {
+                    title: 'Full Name'
+                },
+                username: {
+                    title: 'User Name'
+                },
+                email: {
+                    title: 'Email'
+                }
+            }
+        };
+
+
         this.nodes = [];
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.page = 1;
