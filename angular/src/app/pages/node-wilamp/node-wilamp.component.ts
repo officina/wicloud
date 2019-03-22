@@ -141,19 +141,19 @@ export class NodeWilampComponent implements OnInit, OnDestroy {
                 },
                 columns: {
                     id: {
-                        title: this.translateService.instant('global.field.id')
+                        title: this.translateService.instant('global.field.id'),
                     },
                     name: {
-                        title: this.translateService.instant('node.name')
+                        title: this.translateService.instant('node.name'),
                     },
                     description: {
-                        title: this.translateService.instant('node.description')
+                        title: this.translateService.instant('node.description'),
                     },
                     nodeType: {
-                        title: this.translateService.instant('node.nodeType')
+                        title: this.translateService.instant('node.nodeType'),
                     },
                     mac: {
-                        title: this.translateService.instant('node.mac')
+                        title: this.translateService.instant('node.mac'),
                     },
                 }
             };
@@ -180,8 +180,6 @@ export class NodeWilampComponent implements OnInit, OnDestroy {
     }
 
     private onSuccess(data, headers) {
-        console.log(data);
-        console.log(headers);
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = headers.get('X-Total-Count');
         for (let i = 0; i < data.length; i++) {
