@@ -155,7 +155,7 @@ export class NodeWilampComponent implements OnInit, OnDestroy {
                     mac: {
                         title: this.translateService.instant('node.mac'),
                     },
-                }
+                },
             };
         });
     }
