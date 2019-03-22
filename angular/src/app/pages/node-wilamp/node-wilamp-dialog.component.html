@@ -2,9 +2,9 @@
     <div class="col-md-12">
         <h2>
             <span [translate]="'node.home.title'">Nodes</span>
-            <button class="btn btn-primary float-right jh-create-entity create-node-wilamp" [routerLink]="['/', { outlets: { popup: ['node-new'] } }]">
-                <span class="fa fa-plus"></span>
-                <span class="hidden-sm-down"  [translate]="'node.home.createLabel'">
+            <button class="btn btn-primary float-right jh-create-entity create-node-wilamp" [routerLink]="['../']">
+                <span class="fa fa-list"></span>
+                <span class="hidden-sm-down"  [translate]="'node.home.listLabel'">
             Create new Node
             </span>
             </button>
@@ -12,7 +12,7 @@
     </div>
     <div class="col-md-12">
         <nb-card>
-            <nb-card-header>Default Inputs</nb-card-header>
+            <nb-card-header [translate]="'node.new'">Default Inputs</nb-card-header>
             <nb-card-body>
                 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
                     <div class="form-group" [hidden]="!node.id">
@@ -185,10 +185,11 @@
                             <option [ngValue]="orderOption.id" *ngFor="let orderOption of orders; trackBy: trackOrderById">{{orderOption.id}}</option>
                         </select>
                     </div>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+
+                    <button type="submit" class="btn btn-primary" (click)="clear()">
                         <span class="fa fa-ban"></span>&nbsp;<span [translate]="'entity.action.cancel'">Cancel</span>
                     </button>
-                    <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <button type="submit" class="btn btn-success" [disabled]="editForm.form.invalid || isSaving">
                         <span class="fa fa-save"></span>&nbsp;<span [translate]="'entity.action.save'">Save</span>
                     </button>
                 </form>

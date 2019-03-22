@@ -61,6 +61,7 @@
             "title": "Nodi"
         },
         "name": "Nome",
+        "new": "Nuovo nodo",
         "description": "Descrizione",
         "nodeType": "Tipologia",
         "mac": "Mac",
@@ -81,6 +82,7 @@
         "home": {
             "title": "Nodi",
             "createLabel": "Crea nodo",
+            "listLabel": "Elenco",
             "createOrEditLabel": "Aggiorna",
             "search": "Ricerca",
             "create": "Nuovo nodo"
