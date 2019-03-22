@@ -122,13 +122,13 @@ export class NodeWilampComponent implements OnInit, OnDestroy {
         this.translateService.get('global.field.id').subscribe((translated: string) => {
             this.tableSettings = {
                 pager: {
-                    perPage: 20
+                    perPage: 20,
                 },
                 hideSubHeader: true,
                 actions: {
                     add: false,
                     edit: true,
-                    delete: true
+                    delete: true,
                 },
                 edit: {
                     editButtonContent: '<i class="nb-edit"></i>',
@@ -154,7 +154,7 @@ export class NodeWilampComponent implements OnInit, OnDestroy {
                     },
                     mac: {
                         title: this.translateService.instant('node.mac')
-                    }
+                    },
                 }
             };
         });

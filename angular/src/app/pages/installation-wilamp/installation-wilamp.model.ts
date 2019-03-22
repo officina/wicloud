@@ -13,6 +13,10 @@ export class InstallationWilamp implements BaseEntity {
         public customerCompanyName?: string,
         public customer?: number,
         public gateways?: BaseEntity[],
+        // TEMP
+        public customerId?: number,
+        public addressId?: number,
+
     ) {
     }
 }
