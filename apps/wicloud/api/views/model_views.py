@@ -99,11 +99,11 @@ class Avg_power_measureListCreateAPIView(views.ThuxListCreateViewMixin, ListCrea
                                 creator = self.user,
                                 last_modifier = self.user,
                            )
-                           energyInterval.parseAvgPowerMeasure(avgPowerMeasure
+                           # energyInterval.parseAvgPowerMeasure(avgPowerMeasure
                            
                            
 
-                           #result = super(Avg_power_measureListCreateAPIView, self).create(request, *args, **kwargs)
+                           result = super(Avg_power_measureListCreateAPIView, self).create(request, *args, **kwargs)
                            return result
                            #return super(Avg_power_measureListCreateAPIView, self).create(request, *args, **kwargs)
 
