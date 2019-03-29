@@ -1,162 +1,162 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
-        <h4 class="modal-title" id="myLightProfileSlotLabel" jhiTranslate="wilampCloudApp.lightProfileSlot.home.createOrEditLabel">Create or edit a Light Profile Slot</h4>
+        <h4 class="modal-title" id="myLightProfileSlotLabel" [translate]="'lightProfileSlot.home.createOrEditLabel'">Create or edit a Light Profile Slot</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;</button>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group" [hidden]="!lightProfileSlot.id">
-            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <label for="id" [translate]="'global.field.id'">ID</label>
             <input type="text" class="form-control" id="id" name="id"
                    [(ngModel)]="lightProfileSlot.id" readonly />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.name" for="field_name">Name</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.name'" for="field_name">Name</label>
             <input type="text" class="form-control" name="name" id="field_name"
                 [(ngModel)]="lightProfileSlot.name" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.description" for="field_description">Description</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.description'" for="field_description">Description</label>
             <input type="text" class="form-control" name="description" id="field_description"
                 [(ngModel)]="lightProfileSlot.description" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.don" for="field_don">Don</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.don'" for="field_don">Don</label>
             <input type="number" class="form-control" name="don" id="field_don"
                 [(ngModel)]="lightProfileSlot.don" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.dof" for="field_dof">Dof</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.dof'" for="field_dof">Dof</label>
             <input type="number" class="form-control" name="dof" id="field_dof"
                 [(ngModel)]="lightProfileSlot.dof" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.ton" for="field_ton">Ton</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.ton'" for="field_ton">Ton</label>
             <input type="text" class="form-control" name="ton" id="field_ton"
                 [(ngModel)]="lightProfileSlot.ton" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.tof" for="field_tof">Tof</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.tof'" for="field_tof">Tof</label>
             <input type="text" class="form-control" name="tof" id="field_tof"
                 [(ngModel)]="lightProfileSlot.tof" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.eas" for="field_eas">Eas</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.eas'" for="field_eas">Eas</label>
             <input type="checkbox" class="form-control" name="eas" id="field_eas"
                 [(ngModel)]="lightProfileSlot.eas" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.ecr" for="field_ecr">Ecr</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.ecr'" for="field_ecr">Ecr</label>
             <input type="checkbox" class="form-control" name="ecr" id="field_ecr"
                 [(ngModel)]="lightProfileSlot.ecr" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.emo" for="field_emo">Emo</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.emo'" for="field_emo">Emo</label>
             <input type="checkbox" class="form-control" name="emo" id="field_emo"
                 [(ngModel)]="lightProfileSlot.emo" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.edw" for="field_edw">Edw</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.edw'" for="field_edw">Edw</label>
             <input type="number" class="form-control" name="edw" id="field_edw"
                 [(ngModel)]="lightProfileSlot.edw" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.enabled" for="field_enabled">Enabled</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.enabled'" for="field_enabled">Enabled</label>
             <input type="checkbox" class="form-control" name="enabled" id="field_enabled"
                 [(ngModel)]="lightProfileSlot.enabled" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.lightProfileIndex" for="field_lightProfileIndex">Light Profile Index</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.lightProfileIndex'" for="field_lightProfileIndex">Light Profile Index</label>
             <input type="number" class="form-control" name="lightProfileIndex" id="field_lightProfileIndex"
                 [(ngModel)]="lightProfileSlot.lightProfileIndex" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.pw0" for="field_pw0">Pw 0</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.pw0'" for="field_pw0">Pw 0</label>
             <input type="number" class="form-control" name="pw0" id="field_pw0"
                 [(ngModel)]="lightProfileSlot.pw0" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.pw1" for="field_pw1">Pw 1</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.pw1'" for="field_pw1">Pw 1</label>
             <input type="number" class="form-control" name="pw1" id="field_pw1"
                 [(ngModel)]="lightProfileSlot.pw1" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.pw2" for="field_pw2">Pw 2</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.pw2'" for="field_pw2">Pw 2</label>
             <input type="number" class="form-control" name="pw2" id="field_pw2"
                 [(ngModel)]="lightProfileSlot.pw2" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.pw3" for="field_pw3">Pw 3</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.pw3'" for="field_pw3">Pw 3</label>
             <input type="number" class="form-control" name="pw3" id="field_pw3"
                 [(ngModel)]="lightProfileSlot.pw3" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.fadeIn" for="field_fadeIn">Fade In</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.fadeIn'" for="field_fadeIn">Fade In</label>
             <input type="number" class="form-control" name="fadeIn" id="field_fadeIn"
                 [(ngModel)]="lightProfileSlot.fadeIn" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.fadeOut" for="field_fadeOut">Fade Out</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.fadeOut'" for="field_fadeOut">Fade Out</label>
             <input type="number" class="form-control" name="fadeOut" id="field_fadeOut"
                 [(ngModel)]="lightProfileSlot.fadeOut" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.slot" for="field_slot">Slot</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.slot'" for="field_slot">Slot</label>
             <input type="number" class="form-control" name="slot" id="field_slot"
                 [(ngModel)]="lightProfileSlot.slot" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.createdTimestamp" for="field_createdTimestamp">Created Timestamp</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.createdTimestamp'" for="field_createdTimestamp">Created Timestamp</label>
             <div class="d-flex">
                 <input id="field_createdTimestamp" type="datetime-local" class="form-control" name="createdTimestamp" [(ngModel)]="lightProfileSlot.createdTimestamp"
                 />
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.motionDuration" for="field_motionDuration">Motion Duration</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.motionDuration'" for="field_motionDuration">Motion Duration</label>
             <input type="number" class="form-control" name="motionDuration" id="field_motionDuration"
                 [(ngModel)]="lightProfileSlot.motionDuration" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.motionDelay" for="field_motionDelay">Motion Delay</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.motionDelay'" for="field_motionDelay">Motion Delay</label>
             <input type="number" class="form-control" name="motionDelay" id="field_motionDelay"
                 [(ngModel)]="lightProfileSlot.motionDelay" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.mi0" for="field_mi0">Mi 0</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.mi0'" for="field_mi0">Mi 0</label>
             <input type="number" class="form-control" name="mi0" id="field_mi0"
                 [(ngModel)]="lightProfileSlot.mi0" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.mi1" for="field_mi1">Mi 1</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.mi1'" for="field_mi1">Mi 1</label>
             <input type="number" class="form-control" name="mi1" id="field_mi1"
                 [(ngModel)]="lightProfileSlot.mi1" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.mi2" for="field_mi2">Mi 2</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.mi2'" for="field_mi2">Mi 2</label>
             <input type="number" class="form-control" name="mi2" id="field_mi2"
                 [(ngModel)]="lightProfileSlot.mi2" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.mi3" for="field_mi3">Mi 3</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.mi3'" for="field_mi3">Mi 3</label>
             <input type="number" class="form-control" name="mi3" id="field_mi3"
                 [(ngModel)]="lightProfileSlot.mi3" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.motionFadeIn" for="field_motionFadeIn">Motion Fade In</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.motionFadeIn'" for="field_motionFadeIn">Motion Fade In</label>
             <input type="number" class="form-control" name="motionFadeIn" id="field_motionFadeIn"
                 [(ngModel)]="lightProfileSlot.motionFadeIn" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.motionFadeOut" for="field_motionFadeOut">Motion Fade Out</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.motionFadeOut'" for="field_motionFadeOut">Motion Fade Out</label>
             <input type="number" class="form-control" name="motionFadeOut" id="field_motionFadeOut"
                 [(ngModel)]="lightProfileSlot.motionFadeOut" />
         </div>
 
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.lightProfileSlot.lightProfile" for="field_lightProfile">Light Profile</label>
+            <label class="form-control-label" [translate]="'lightProfileSlot.lightProfile'" for="field_lightProfile">Light Profile</label>
             <select class="form-control" id="field_lightProfile" name="lightProfile" [(ngModel)]="lightProfileSlot.lightProfileId" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="lightProfileOption.id" *ngFor="let lightProfileOption of lightprofiles; trackBy: trackLightProfileById">{{lightProfileOption.name}}</option>
@@ -165,10 +165,10 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
-            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+            <span class="fa fa-ban"></span>&nbsp;<span [translate]="'entity.action.cancel'">Cancel</span>
         </button>
         <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+            <span class="fa fa-save"></span>&nbsp;<span [translate]="'entity.action.save'">Save</span>
         </button>
     </div>
 </form>

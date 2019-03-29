@@ -17,18 +17,14 @@ import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {NbAuthJWTInterceptor, NbTokenLocalStorage, NbTokenStorage} from '@nebular/auth';
 import {AuthGuard} from './_guard/auth-guard.service';
-import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { WiCloudSharedModule, UserRouteAccessService } from './shared';
+import { UserRouteAccessService } from './shared';
 import {AmChartsModule} from '@amcharts/amcharts3-angular';
 import { ScriptLoaderService } from './_services/script-loader.service';
 import {LeafletModule} from '@asymmetrik/ngx-leaflet';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {Ng2SmartTableModule} from 'ng2-smart-table';
-
-
 
 
 @NgModule({
@@ -50,21 +46,13 @@ import {Ng2SmartTableModule} from 'ng2-smart-table';
       ThemeModule.forRoot(),
       CoreModule.forRoot(),
       LeafletModule.forRoot(),
-      WiCloudSharedModule,
-      TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-    }),
   ],
   bootstrap: [AppComponent],
   providers: [
       ScriptLoaderService,
       UserRouteAccessService,
       AuthGuard,
-        { provide: APP_BASE_HREF, useValue: '/' }, TranslateService,
+        { provide: APP_BASE_HREF, useValue: '/' },
         { provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER, useValue: authTokenInterceptorFilter },
         // quick fix for JWT Token on API calls
         // TODO:AT controlla, può provocare ricorsioni
@@ -84,12 +72,4 @@ export function authTokenInterceptorFilter(req) {
         return false;
     }
 }
-
-// AoT requires an exported function for factories
-export function HttpLoaderFactory(http: HttpClient) {
-    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
-
-
-
 

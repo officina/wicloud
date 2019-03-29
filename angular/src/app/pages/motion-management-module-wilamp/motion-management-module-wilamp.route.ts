@@ -15,7 +15,7 @@ export const motionManagementModuleRoute: Routes = [
         component: PagesComponent,
         children: [
             {
-                path: 'motion-management-module-wilamp',
+                path: 'motion-management-module',
                 component: MotionManagementModuleWilampComponent,
                 data: {
                     authorities: ['ROLE_USER'],
@@ -23,7 +23,7 @@ export const motionManagementModuleRoute: Routes = [
                 },
                 canActivate: [UserRouteAccessService],
             }, {
-                path: 'motion-management-module-wilamp/:id',
+                path: 'motion-management-module/:id',
                 component: MotionManagementModuleWilampDetailComponent,
                 data: {
                     authorities: ['ROLE_USER'],
@@ -37,7 +37,7 @@ export const motionManagementModuleRoute: Routes = [
 
 export const motionManagementModulePopupRoute: Routes = [
     {
-        path: 'motion-management-module-wilamp-new',
+        path: 'motion-management-module-new',
         component: MotionManagementModuleWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -47,7 +47,7 @@ export const motionManagementModulePopupRoute: Routes = [
         outlet: 'popup',
     },
     {
-        path: 'motion-management-module-wilamp/:id/edit',
+        path: 'motion-management-module/:id/edit',
         component: MotionManagementModuleWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -57,7 +57,7 @@ export const motionManagementModulePopupRoute: Routes = [
         outlet: 'popup',
     },
     {
-        path: 'motion-management-module-wilamp/:id/delete',
+        path: 'motion-management-module/:id/delete',
         component: MotionManagementModuleWilampDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],

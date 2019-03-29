@@ -15,7 +15,7 @@ export const lightManagementMeasureRoute: Routes = [
         component: PagesComponent,
         children: [
             {
-                path: 'light-management-measure-wilamp',
+                path: 'light-management-measure',
                 component: LightManagementMeasureWilampComponent,
                 data: {
                     authorities: ['ROLE_USER'],
@@ -23,7 +23,7 @@ export const lightManagementMeasureRoute: Routes = [
                 },
                 canActivate: [UserRouteAccessService],
             }, {
-                path: 'light-management-measure-wilamp/:id',
+                path: 'light-management-measure/:id',
                 component: LightManagementMeasureWilampDetailComponent,
                 data: {
                     authorities: ['ROLE_USER'],
@@ -37,7 +37,7 @@ export const lightManagementMeasureRoute: Routes = [
 
 export const lightManagementMeasurePopupRoute: Routes = [
     {
-        path: 'light-management-measure-wilamp-new',
+        path: 'light-management-measure-new',
         component: LightManagementMeasureWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -47,7 +47,7 @@ export const lightManagementMeasurePopupRoute: Routes = [
         outlet: 'popup',
     },
     {
-        path: 'light-management-measure-wilamp/:id/edit',
+        path: 'light-management-measure/:id/edit',
         component: LightManagementMeasureWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -57,7 +57,7 @@ export const lightManagementMeasurePopupRoute: Routes = [
         outlet: 'popup',
     },
     {
-        path: 'light-management-measure-wilamp/:id/delete',
+        path: 'light-management-measure/:id/delete',
         component: LightManagementMeasureWilampDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],

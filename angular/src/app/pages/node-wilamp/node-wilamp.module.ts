@@ -1,6 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
+import { ThemeModule } from '../../@theme/theme.module';
+import {Ng2SmartTableModule} from 'ng2-smart-table';
 import { WiCloudSharedModule } from '../../shared';
 import {
     NodeWilampService,
@@ -24,6 +25,8 @@ const ENTITY_STATES = [
     imports: [
         WiCloudSharedModule,
         RouterModule.forChild(ENTITY_STATES),
+        ThemeModule,
+        Ng2SmartTableModule,
     ],
     declarations: [
         NodeWilampComponent,

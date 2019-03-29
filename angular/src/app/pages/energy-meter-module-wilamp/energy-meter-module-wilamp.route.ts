@@ -13,7 +13,7 @@ export const energyMeterModuleRoute: Routes = [
         component: PagesComponent,
         children: [
             {
-                path: 'energy-meter-module-wilamp',
+                path: 'energy-meter-module',
                 component: EnergyMeterModuleWilampComponent,
                 data: {
                     authorities: ['ROLE_USER'],
@@ -21,7 +21,7 @@ export const energyMeterModuleRoute: Routes = [
                 },
                 canActivate: [UserRouteAccessService],
             }, {
-                path: 'energy-meter-module-wilamp/:id',
+                path: 'energy-meter-module/:id',
                 component: EnergyMeterModuleWilampDetailComponent,
                 data: {
                     authorities: ['ROLE_USER'],
@@ -35,7 +35,7 @@ export const energyMeterModuleRoute: Routes = [
 
 export const energyMeterModulePopupRoute: Routes = [
     {
-        path: 'energy-meter-module-wilamp-new',
+        path: 'energy-meter-module-new',
         component: EnergyMeterModuleWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -45,7 +45,7 @@ export const energyMeterModulePopupRoute: Routes = [
         outlet: 'popup',
     },
     {
-        path: 'energy-meter-module-wilamp/:id/edit',
+        path: 'energy-meter-module/:id/edit',
         component: EnergyMeterModuleWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -55,7 +55,7 @@ export const energyMeterModulePopupRoute: Routes = [
         outlet: 'popup',
     },
     {
-        path: 'energy-meter-module-wilamp/:id/delete',
+        path: 'energy-meter-module/:id/delete',
         component: EnergyMeterModuleWilampDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],

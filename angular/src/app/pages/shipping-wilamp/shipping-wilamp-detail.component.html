@@ -1,43 +1,43 @@
 
 <div *ngIf="shipping">
-    <h2><span jhiTranslate="wilampCloudApp.shipping.detail.title">Shipping</span> {{shipping.id}}</h2>
+    <h2><span [translate]="'shipping.detail.title'">Shipping</span> {{shipping.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="wilampCloudApp.shipping.courier">Courier</span></dt>
+        <dt><span [translate]="'shipping.courier'">Courier</span></dt>
         <dd>
             <span>{{shipping.courier}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.shipping.trackingCode">Tracking Code</span></dt>
+        <dt><span [translate]="'shipping.trackingCode'">Tracking Code</span></dt>
         <dd>
             <span>{{shipping.trackingCode}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.shipping.shippingDate">Shipping Date</span></dt>
+        <dt><span [translate]="'shipping.shippingDate'">Shipping Date</span></dt>
         <dd>
             <span>{{shipping.shippingDate}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.shipping.estimatedArrival">Estimated Arrival</span></dt>
+        <dt><span [translate]="'shipping.estimatedArrival'">Estimated Arrival</span></dt>
         <dd>
             <span>{{shipping.estimatedArrival}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.shipping.transportDocument">Transport Document</span></dt>
+        <dt><span [translate]="'shipping.transportDocument'">Transport Document</span></dt>
         <dd>
             <span>{{shipping.transportDocument}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.shipping.isArrived">Is Arrived</span></dt>
+        <dt><span [translate]="'shipping.isArrived'">Is Arrived</span></dt>
         <dd>
             <span>{{shipping.isArrived}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.shipping.shippingContact">Shipping Contact</span></dt>
+        <dt><span [translate]="'shipping.shippingContact'">Shipping Contact</span></dt>
         <dd>
             <div *ngIf="shipping.shippingContactId">
-                <a [routerLink]="['/contact-wilamp', shipping.shippingContactId]">{{shipping.shippingContactContactDescription}}</a>
+                <a [routerLink]="['/contact', shipping.shippingContactId]">{{shipping.shippingContactContactDescription}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.shipping.order">Order</span></dt>
+        <dt><span [translate]="'shipping.order'">Order</span></dt>
         <dd>
             <span *ngFor="let order of shipping.orders; let last = last">
-                <a [routerLink]="['/order-wilamp', order?.id ]">{{order.orderDate}}</a>{{last ? '' : ', '}}
+                <a [routerLink]="['/order', order?.id ]">{{order.orderDate}}</a>{{last ? '' : ', '}}
             </span>
         </dd>
     </dl>
@@ -45,14 +45,14 @@
     <button type="submit"
             (click)="previousState()"
             class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+        <span class="fa fa-arrow-left"></span>&nbsp;<span [translate]="'entity.action.back'"> Back</span>
     </button>
 
     <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'shipping-wilamp/'+ shipping.id + '/edit'} }]"
+            [routerLink]="['/', { outlets: { popup: 'shipping/'+ shipping.id + '/edit'} }]"
             replaceUrl="true"
             queryParamsHandling="merge"
             class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+        <span class="fa fa-pencil"></span>&nbsp;<span [translate]="'entity.action.edit'"> Edit</span>
     </button>
 </div>

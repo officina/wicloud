@@ -13,7 +13,7 @@ export const orderRoute: Routes = [
         component: PagesComponent,
         children: [
             {
-                path: 'order-wilamp',
+                path: 'order',
                 component: OrderWilampComponent,
                 data: {
                     authorities: ['ROLE_USER'],
@@ -21,7 +21,7 @@ export const orderRoute: Routes = [
                 },
                 canActivate: [UserRouteAccessService],
             }, {
-                path: 'order-wilamp/:id',
+                path: 'order/:id',
                 component: OrderWilampDetailComponent,
                 data: {
                     authorities: ['ROLE_USER'],
@@ -35,7 +35,7 @@ export const orderRoute: Routes = [
 
 export const orderPopupRoute: Routes = [
     {
-        path: 'order-wilamp-new',
+        path: 'order-new',
         component: OrderWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -45,7 +45,7 @@ export const orderPopupRoute: Routes = [
         outlet: 'popup',
     },
     {
-        path: 'order-wilamp/:id/edit',
+        path: 'order/:id/edit',
         component: OrderWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -55,7 +55,7 @@ export const orderPopupRoute: Routes = [
         outlet: 'popup',
     },
     {
-        path: 'order-wilamp/:id/delete',
+        path: 'order/:id/delete',
         component: OrderWilampDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],

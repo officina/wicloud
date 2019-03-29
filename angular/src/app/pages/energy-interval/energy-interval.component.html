@@ -1,9 +1,9 @@
 <div>
     <h2>
-        <span jhiTranslate="wilampCloudApp.energyInterval.home.title">Energy Intervals</span>
+        <span [translate]="'energyInterval.home.title'">Energy Intervals</span>
         <button class="btn btn-primary float-right jh-create-entity create-energy-interval" [routerLink]="['/', { outlets: { popup: ['energy-interval-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span class="hidden-sm-down"  jhiTranslate="wilampCloudApp.energyInterval.home.createLabel">
+            <span class="hidden-sm-down"  [translate]="'energyInterval.home.createLabel'">
             Create new Energy Interval
             </span>
         </button>
@@ -29,31 +29,31 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="mac"><span jhiTranslate="wilampCloudApp.energyInterval.mac">Mac</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="lightManagementModuleId"><span jhiTranslate="wilampCloudApp.energyInterval.lightManagementModuleId">Light Management Module Id</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="installationId"><span jhiTranslate="wilampCloudApp.energyInterval.installationId">Installation Id</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="startInterval"><span jhiTranslate="wilampCloudApp.energyInterval.startInterval">Start Interval</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="endInterval"><span jhiTranslate="wilampCloudApp.energyInterval.endInterval">End Interval</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="startIntervalMeasureTimestamp"><span jhiTranslate="wilampCloudApp.energyInterval.startIntervalMeasureTimestamp">Start Interval Measure Timestamp</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="endIntervalMeasureTimestamp"><span jhiTranslate="wilampCloudApp.energyInterval.endIntervalMeasureTimestamp">End Interval Measure Timestamp</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="activePower"><span jhiTranslate="wilampCloudApp.energyInterval.activePower">Active Power</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="reactivePower"><span jhiTranslate="wilampCloudApp.energyInterval.reactivePower">Reactive Power</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="startIntervalActiveEnergyCounterValue"><span jhiTranslate="wilampCloudApp.energyInterval.startIntervalActiveEnergyCounterValue">Start Interval Active Energy Counter Value</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="endIntervalActiveEnergyCounterValue"><span jhiTranslate="wilampCloudApp.energyInterval.endIntervalActiveEnergyCounterValue">End Interval Active Energy Counter Value</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="activeEnergy"><span jhiTranslate="wilampCloudApp.energyInterval.activeEnergy">Active Energy</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="startIntervalReactiveEnergyCounterValue"><span jhiTranslate="wilampCloudApp.energyInterval.startIntervalReactiveEnergyCounterValue">Start Interval Reactive Energy Counter Value</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="endIntervalReactiveEnergyCounterValue"><span jhiTranslate="wilampCloudApp.energyInterval.endIntervalReactiveEnergyCounterValue">End Interval Reactive Energy Counter Value</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="reactiveEnergy"><span jhiTranslate="wilampCloudApp.energyInterval.reactiveEnergy">Reactive Energy</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="activeEnergyMty0"><span jhiTranslate="wilampCloudApp.energyInterval.activeEnergyMty0">Active Energy Mty 0</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="activeEnergyMty1"><span jhiTranslate="wilampCloudApp.energyInterval.activeEnergyMty1">Active Energy Mty 1</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="activeEnergyMty2"><span jhiTranslate="wilampCloudApp.energyInterval.activeEnergyMty2">Active Energy Mty 2</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="activeEnergyMty3"><span jhiTranslate="wilampCloudApp.energyInterval.activeEnergyMty3">Active Energy Mty 3</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="activeEnergyWithoutDim"><span jhiTranslate="wilampCloudApp.energyInterval.activeEnergyWithoutDim">Active Energy Without Dim</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="activeEnergyWithoutControl"><span jhiTranslate="wilampCloudApp.energyInterval.activeEnergyWithoutControl">Active Energy Without Control</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="activeEnergyOldLamps"><span jhiTranslate="wilampCloudApp.energyInterval.activeEnergyOldLamps">Active Energy Old Lamps</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="burningTime"><span jhiTranslate="wilampCloudApp.energyInterval.burningTime">Burning Time</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="nodeLife"><span jhiTranslate="wilampCloudApp.energyInterval.nodeLife">Node Life</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="id"><span [translate]="'global.field.id'">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="mac"><span [translate]="'energyInterval.mac'">Mac</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lightManagementModuleId"><span [translate]="'energyInterval.lightManagementModuleId'">Light Management Module Id</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="installationId"><span [translate]="'energyInterval.installationId'">Installation Id</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="startInterval"><span [translate]="'energyInterval.startInterval'">Start Interval</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="endInterval"><span [translate]="'energyInterval.endInterval'">End Interval</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="startIntervalMeasureTimestamp"><span [translate]="'energyInterval.startIntervalMeasureTimestamp'">Start Interval Measure Timestamp</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="endIntervalMeasureTimestamp"><span [translate]="'energyInterval.endIntervalMeasureTimestamp'">End Interval Measure Timestamp</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="activePower"><span [translate]="'energyInterval.activePower'">Active Power</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="reactivePower"><span [translate]="'energyInterval.reactivePower'">Reactive Power</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="startIntervalActiveEnergyCounterValue"><span [translate]="'energyInterval.startIntervalActiveEnergyCounterValue'">Start Interval Active Energy Counter Value</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="endIntervalActiveEnergyCounterValue"><span [translate]="'energyInterval.endIntervalActiveEnergyCounterValue'">End Interval Active Energy Counter Value</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="activeEnergy"><span [translate]="'energyInterval.activeEnergy'">Active Energy</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="startIntervalReactiveEnergyCounterValue"><span [translate]="'energyInterval.startIntervalReactiveEnergyCounterValue'">Start Interval Reactive Energy Counter Value</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="endIntervalReactiveEnergyCounterValue"><span [translate]="'energyInterval.endIntervalReactiveEnergyCounterValue'">End Interval Reactive Energy Counter Value</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="reactiveEnergy"><span [translate]="'energyInterval.reactiveEnergy'">Reactive Energy</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="activeEnergyMty0"><span [translate]="'energyInterval.activeEnergyMty0'">Active Energy Mty 0</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="activeEnergyMty1"><span [translate]="'energyInterval.activeEnergyMty1'">Active Energy Mty 1</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="activeEnergyMty2"><span [translate]="'energyInterval.activeEnergyMty2'">Active Energy Mty 2</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="activeEnergyMty3"><span [translate]="'energyInterval.activeEnergyMty3'">Active Energy Mty 3</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="activeEnergyWithoutDim"><span [translate]="'energyInterval.activeEnergyWithoutDim'">Active Energy Without Dim</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="activeEnergyWithoutControl"><span [translate]="'energyInterval.activeEnergyWithoutControl'">Active Energy Without Control</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="activeEnergyOldLamps"><span [translate]="'energyInterval.activeEnergyOldLamps'">Active Energy Old Lamps</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="burningTime"><span [translate]="'energyInterval.burningTime'">Burning Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nodeLife"><span [translate]="'energyInterval.nodeLife'">Node Life</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -90,7 +90,7 @@
                                 [routerLink]="['../energy-interval', energyInterval.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            <span class="d-none d-md-inline" [translate]="'entity.action.view'">View</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'energy-interval/'+ energyInterval.id + '/edit'} }]"
@@ -98,7 +98,7 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            <span class="d-none d-md-inline" [translate]="'entity.action.edit'">Edit</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'energy-interval/'+ energyInterval.id + '/delete'} }]"
@@ -106,7 +106,7 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">
                             <span class="fa fa-remove"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            <span class="d-none d-md-inline" [translate]="'entity.action.delete'">Delete</span>
                         </button>
                     </div>
                 </td>

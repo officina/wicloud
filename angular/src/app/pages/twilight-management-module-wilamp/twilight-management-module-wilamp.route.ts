@@ -15,7 +15,7 @@ export const twilightManagementModuleRoute: Routes = [
         component: PagesComponent,
         children: [
             {
-                path: 'twilight-management-module-wilamp',
+                path: 'twilight-management-module',
                 component: TwilightManagementModuleWilampComponent,
                 data: {
                     authorities: ['ROLE_USER'],
@@ -23,7 +23,7 @@ export const twilightManagementModuleRoute: Routes = [
                 },
                 canActivate: [UserRouteAccessService],
             }, {
-                path: 'twilight-management-module-wilamp/:id',
+                path: 'twilight-management-module/:id',
                 component: TwilightManagementModuleWilampDetailComponent,
                 data: {
                     authorities: ['ROLE_USER'],
@@ -37,7 +37,7 @@ export const twilightManagementModuleRoute: Routes = [
 
 export const twilightManagementModulePopupRoute: Routes = [
     {
-        path: 'twilight-management-module-wilamp-new',
+        path: 'twilight-management-module-new',
         component: TwilightManagementModuleWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -47,7 +47,7 @@ export const twilightManagementModulePopupRoute: Routes = [
         outlet: 'popup',
     },
     {
-        path: 'twilight-management-module-wilamp/:id/edit',
+        path: 'twilight-management-module/:id/edit',
         component: TwilightManagementModuleWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -57,7 +57,7 @@ export const twilightManagementModulePopupRoute: Routes = [
         outlet: 'popup',
     },
     {
-        path: 'twilight-management-module-wilamp/:id/delete',
+        path: 'twilight-management-module/:id/delete',
         component: TwilightManagementModuleWilampDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],

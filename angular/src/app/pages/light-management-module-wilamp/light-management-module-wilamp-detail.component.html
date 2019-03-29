@@ -1,43 +1,43 @@
 <!--
 
 <div *ngIf="lightManagementModule">
-    <h2><span jhiTranslate="wilampCloudApp.lightManagementModule.detail.title">Light Management Module</span> {{lightManagementModule.id}}</h2>
+    <h2><span [translate]="'lightManagementModule.detail.title'">Light Management Module</span> {{lightManagementModule.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="wilampCloudApp.lightManagementModule.name">Name</span></dt>
+        <dt><span [translate]="'lightManagementModule.name'">Name</span></dt>
         <dd>
             <span>{{lightManagementModule.name}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.lightManagementModule.description">Description</span></dt>
+        <dt><span [translate]="'lightManagementModule.description'">Description</span></dt>
         <dd>
             <span>{{lightManagementModule.description}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.lightManagementModule.deviceType">Device Type</span></dt>
+        <dt><span [translate]="'lightManagementModule.deviceType'">Device Type</span></dt>
         <dd>
             <span>{{lightManagementModule.deviceType}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.lightManagementModule.lampType">Lamp Type</span></dt>
+        <dt><span [translate]="'lightManagementModule.lampType'">Lamp Type</span></dt>
         <dd>
             <span>{{lightManagementModule.lampType}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.lightManagementModule.timerAutoMode">Timer Auto Mode</span></dt>
+        <dt><span [translate]="'lightManagementModule.timerAutoMode'">Timer Auto Mode</span></dt>
         <dd>
             <span>{{lightManagementModule.timerAutoMode}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.lightManagementModule.timerHPSProtection">Timer HPS Protection</span></dt>
+        <dt><span [translate]="'lightManagementModule.timerHPSProtection'">Timer HPS Protection</span></dt>
         <dd>
             <span>{{lightManagementModule.timerHPSProtection}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.lightManagementModule.lightZone">Light Zone</span></dt>
+        <dt><span [translate]="'lightManagementModule.lightZone'">Light Zone</span></dt>
         <dd>
             <span>{{lightManagementModule.lightZone}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.lightManagementModule.lightProfileId">Light Profile Id</span></dt>
+        <dt><span [translate]="'lightManagementModule.lightProfileId'">Light Profile Id</span></dt>
         <dd>
             <span>{{lightManagementModule.lightProfileId}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.lightManagementModule.lightProfileCRC">Light Profile CRC</span></dt>
+        <dt><span [translate]="'lightManagementModule.lightProfileCRC'">Light Profile CRC</span></dt>
         <dd>
             <span>{{lightManagementModule.lightProfileCRC}}</span>
         </dd>
@@ -46,15 +46,15 @@
     <button type="submit"
             (click)="previousState()"
             class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+        <span class="fa fa-arrow-left"></span>&nbsp;<span [translate]="'entity.action.back'"> Back</span>
     </button>
 
     <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'light-management-module-wilamp/'+ lightManagementModule.id + '/edit'} }]"
+            [routerLink]="['/', { outlets: { popup: 'light-management-module/'+ lightManagementModule.id + '/edit'} }]"
             replaceUrl="true"
             queryParamsHandling="merge"
             class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+        <span class="fa fa-pencil"></span>&nbsp;<span [translate]="'entity.action.edit'"> Edit</span>
     </button>
 </div>
 -->

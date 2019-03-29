@@ -1,7 +1,9 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
+import { NbButtonModule } from '@nebular/theme';
 import { WiCloudSharedModule } from '../../shared';
+// import { Ng2SmartTableModule } from 'ng2-smart-table';
+
 import {
     InstallationWilampService,
     InstallationWilampPopupService,
@@ -28,6 +30,7 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {NbAuthJWTInterceptor} from '@nebular/auth';  // TODO: AT wait for bug https://github.com/akveo/ng2-smart-table/issues/892"
 import {InstallationSmallMapWidgetComponent} from './installation-small-map-widget/installation-small-map-widget.component';
 
+
 const ENTITY_STATES = [
     ...installationRoute,
     ...installationPopupRoute,
@@ -40,6 +43,8 @@ const ENTITY_STATES = [
         LeafletModule,
         WiCloudSharedModule,
         RouterModule.forChild(ENTITY_STATES),
+        NbButtonModule,
+        // Ng2SmartTableModule
         WidgetsModule,
     ],
     declarations: [

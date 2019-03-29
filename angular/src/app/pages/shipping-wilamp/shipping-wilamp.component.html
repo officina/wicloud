@@ -1,9 +1,9 @@
 <div>
     <h2>
-        <span jhiTranslate="wilampCloudApp.shipping.home.title">Shippings</span>
-        <button class="btn btn-primary float-right jh-create-entity create-shipping-wilamp" [routerLink]="['/', { outlets: { popup: ['shipping-wilamp-new'] } }]">
+        <span [translate]="'shipping.home.title'">Shippings</span>
+        <button class="btn btn-primary float-right jh-create-entity create-shipping-wilamp" [routerLink]="['/', { outlets: { popup: ['shipping-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span class="hidden-sm-down"  jhiTranslate="wilampCloudApp.shipping.home.createLabel">
+            <span class="hidden-sm-down"  [translate]="'shipping.home.createLabel'">
             Create new Shipping
             </span>
         </button>
@@ -29,20 +29,20 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="courier"><span jhiTranslate="wilampCloudApp.shipping.courier">Courier</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="trackingCode"><span jhiTranslate="wilampCloudApp.shipping.trackingCode">Tracking Code</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="shippingDate"><span jhiTranslate="wilampCloudApp.shipping.shippingDate">Shipping Date</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="estimatedArrival"><span jhiTranslate="wilampCloudApp.shipping.estimatedArrival">Estimated Arrival</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="transportDocument"><span jhiTranslate="wilampCloudApp.shipping.transportDocument">Transport Document</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="isArrived"><span jhiTranslate="wilampCloudApp.shipping.isArrived">Is Arrived</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="shippingContactContactDescription"><span jhiTranslate="wilampCloudApp.shipping.shippingContact">Shipping Contact</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="id"><span [translate]="'global.field.id'">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="courier"><span [translate]="'shipping.courier'">Courier</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="trackingCode"><span [translate]="'shipping.trackingCode'">Tracking Code</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="shippingDate"><span [translate]="'shipping.shippingDate'">Shipping Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="estimatedArrival"><span [translate]="'shipping.estimatedArrival'">Estimated Arrival</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="transportDocument"><span [translate]="'shipping.transportDocument'">Transport Document</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="isArrived"><span [translate]="'shipping.isArrived'">Is Arrived</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="shippingContactContactDescription"><span [translate]="'shipping.shippingContact'">Shipping Contact</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
             <tr *ngFor="let shipping of shippings ;trackBy: trackId">
-                <td><a [routerLink]="['../shipping-wilamp', shipping.id ]">{{shipping.id}}</a></td>
+                <td><a [routerLink]="['../shipping', shipping.id ]">{{shipping.id}}</a></td>
                 <td>{{shipping.courier}}</td>
                 <td>{{shipping.trackingCode}}</td>
                 <td>{{shipping.shippingDate}}</td>
@@ -51,32 +51,32 @@
                 <td>{{shipping.isArrived}}</td>
                 <td>
                     <div *ngIf="shipping.shippingContactId">
-                        <a [routerLink]="['../contact-wilamp', shipping.shippingContactId  ]" >{{shipping.shippingContactContactDescription}}</a>
+                        <a [routerLink]="['../contact', shipping.shippingContactId  ]" >{{shipping.shippingContactContactDescription}}</a>
                     </div>
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                [routerLink]="['../shipping-wilamp', shipping.id ]"
+                                [routerLink]="['../shipping', shipping.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            <span class="d-none d-md-inline" [translate]="'entity.action.view'">View</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'shipping-wilamp/'+ shipping.id + '/edit'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'shipping/'+ shipping.id + '/edit'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            <span class="d-none d-md-inline" [translate]="'entity.action.edit'">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'shipping-wilamp/'+ shipping.id + '/delete'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'shipping/'+ shipping.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">
                             <span class="fa fa-remove"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            <span class="d-none d-md-inline" [translate]="'entity.action.delete'">Delete</span>
                         </button>
                     </div>
                 </td>

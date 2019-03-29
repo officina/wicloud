@@ -3,7 +3,7 @@
         <h2>{{installation.name}}</h2>
     </nb-card-header>
           <nb-tabset fullWidth>
-    <nb-tab tabTitle="Overview">
+    <nb-tab tabTitle="{{ installation.overview | translate }}">
       <div class="widget-tab-container" *ngIf="installation">
           <div class="row block align-items-center">
           <!-- COL INFO INSTALLAZIONE -->
@@ -80,7 +80,7 @@
               </div>
               <div class="col-9">
                   <div class="row">
-                      <button class="btn btn-success with-margins" [routerLink]="['../installation-wilamp', installation.id ]">Details</button>
+                      <button class="btn btn-success with-margins" [routerLink]="['../installation', installation.id ]">Details</button>
                   </div>
               </div>
             </div>

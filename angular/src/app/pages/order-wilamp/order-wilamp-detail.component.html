@@ -1,37 +1,37 @@
 
 <div *ngIf="order">
-    <h2><span jhiTranslate="wilampCloudApp.order.detail.title">Order</span> {{order.id}}</h2>
+    <h2><span [translate]="'order.detail.title'">Order</span> {{order.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="wilampCloudApp.order.name">Name</span></dt>
+        <dt><span [translate]="'order.name'">Name</span></dt>
         <dd>
             <span>{{order.name}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.order.description">Description</span></dt>
+        <dt><span [translate]="'order.description'">Description</span></dt>
         <dd>
             <span>{{order.description}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.order.notes">Notes</span></dt>
+        <dt><span [translate]="'order.notes'">Notes</span></dt>
         <dd>
             <span>{{order.notes}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.order.orderDate">Order Date</span></dt>
+        <dt><span [translate]="'order.orderDate'">Order Date</span></dt>
         <dd>
             <span>{{order.orderDate | date:'medium'}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.order.preparationDate">Preparation Date</span></dt>
+        <dt><span [translate]="'order.preparationDate'">Preparation Date</span></dt>
         <dd>
             <span>{{order.preparationDate | date:'medium'}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.order.totalAmount">Total Amount</span></dt>
+        <dt><span [translate]="'order.totalAmount'">Total Amount</span></dt>
         <dd>
             <span>{{order.totalAmount}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.order.customer">Customer</span></dt>
+        <dt><span [translate]="'order.customer'">Customer</span></dt>
         <dd>
             <div *ngIf="order.customer">
-                <a [routerLink]="['/customer-wilamp', order.customer]">{{order.customerCompanyName}}</a>
+                <a [routerLink]="['/customer', order.customer]">{{order.customerCompanyName}}</a>
             </div>
         </dd>
     </dl>
@@ -39,14 +39,14 @@
     <button type="submit"
             (click)="previousState()"
             class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+        <span class="fa fa-arrow-left"></span>&nbsp;<span [translate]="'entity.action.back'"> Back</span>
     </button>
 
     <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'order-wilamp/'+ order.id + '/edit'} }]"
+            [routerLink]="['/', { outlets: { popup: 'order/'+ order.id + '/edit'} }]"
             replaceUrl="true"
             queryParamsHandling="merge"
             class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+        <span class="fa fa-pencil"></span>&nbsp;<span [translate]="'entity.action.edit'"> Edit</span>
     </button>
 </div>

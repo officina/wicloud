@@ -1,9 +1,9 @@
 <div>
     <h2>
-        <span jhiTranslate="wilampCloudApp.energyMeterModule.home.title">Energy Meter Modules</span>
-        <button class="btn btn-primary float-right jh-create-entity create-energy-meter-module-wilamp" [routerLink]="['/', { outlets: { popup: ['energy-meter-module-wilamp-new'] } }]">
+        <span [translate]="'energyMeterModule.home.title'">Energy Meter Modules</span>
+        <button class="btn btn-primary float-right jh-create-entity create-energy-meter-module" [routerLink]="['/', { outlets: { popup: ['energy-meter-module-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span class="hidden-sm-down"  jhiTranslate="wilampCloudApp.energyMeterModule.home.createLabel">
+            <span class="hidden-sm-down"  [translate]="'energyMeterModule.home.createLabel'">
             Create new Energy Meter Module
             </span>
         </button>
@@ -29,22 +29,22 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="name"><span jhiTranslate="wilampCloudApp.energyMeterModule.name">Name</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="description"><span jhiTranslate="wilampCloudApp.energyMeterModule.description">Description</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="iacCalibration"><span jhiTranslate="wilampCloudApp.energyMeterModule.iacCalibration">Iac Calibration</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="vacCalibration"><span jhiTranslate="wilampCloudApp.energyMeterModule.vacCalibration">Vac Calibration</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="patCalibration"><span jhiTranslate="wilampCloudApp.energyMeterModule.patCalibration">Pat Calibration</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="preCalibration"><span jhiTranslate="wilampCloudApp.energyMeterModule.preCalibration">Pre Calibration</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="nominalPower"><span jhiTranslate="wilampCloudApp.energyMeterModule.nominalPower">Nominal Power</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="oldLampPower"><span jhiTranslate="wilampCloudApp.energyMeterModule.oldLampPower">Old Lamp Power</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="powerLosses"><span jhiTranslate="wilampCloudApp.energyMeterModule.powerLosses">Power Losses</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="id"><span [translate]="'global.field.id'">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span [translate]="'energyMeterModule.name'">Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="description"><span [translate]="'energyMeterModule.description'">Description</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="iacCalibration"><span [translate]="'energyMeterModule.iacCalibration'">Iac Calibration</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="vacCalibration"><span [translate]="'energyMeterModule.vacCalibration'">Vac Calibration</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="patCalibration"><span [translate]="'energyMeterModule.patCalibration'">Pat Calibration</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="preCalibration"><span [translate]="'energyMeterModule.preCalibration'">Pre Calibration</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nominalPower"><span [translate]="'energyMeterModule.nominalPower'">Nominal Power</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="oldLampPower"><span [translate]="'energyMeterModule.oldLampPower'">Old Lamp Power</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="powerLosses"><span [translate]="'energyMeterModule.powerLosses'">Power Losses</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
             <tr *ngFor="let energyMeterModule of energyMeterModules ;trackBy: trackId">
-                <td><a [routerLink]="['../energy-meter-module-wilamp', energyMeterModule.id ]">{{energyMeterModule.id}}</a></td>
+                <td><a [routerLink]="['../energy-meter-module', energyMeterModule.id ]">{{energyMeterModule.id}}</a></td>
                 <td>{{energyMeterModule.name}}</td>
                 <td>{{energyMeterModule.description}}</td>
                 <td>{{energyMeterModule.iacCalibration}}</td>
@@ -57,26 +57,26 @@
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                [routerLink]="['../energy-meter-module-wilamp', energyMeterModule.id ]"
+                                [routerLink]="['../energy-meter-module', energyMeterModule.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            <span class="d-none d-md-inline" [translate]="'entity.action.view'">View</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'energy-meter-module-wilamp/'+ energyMeterModule.id + '/edit'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'energy-meter-module/'+ energyMeterModule.id + '/edit'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            <span class="d-none d-md-inline" [translate]="'entity.action.edit'">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'energy-meter-module-wilamp/'+ energyMeterModule.id + '/delete'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'energy-meter-module/'+ energyMeterModule.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">
                             <span class="fa fa-remove"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            <span class="d-none d-md-inline" [translate]="'entity.action.delete'">Delete</span>
                         </button>
                     </div>
                 </td>

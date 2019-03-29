@@ -1,5 +1,556 @@
 {
-  "dashboard": {
-    "light": "Luce"
-  }
+    "entity": {
+        "delete": {
+            "title": "Elimina"
+        },
+        "action": {
+            "cancel": "Annulla",
+            "delete": "Elimina",
+            "save": "Salva",
+            "view": "Visualizza",
+            "edit": "Modifica",
+            "back": "Indietro"
+        },
+        "validation": {
+            "required": "entity.validation.required",
+            "number": "entity.validation.number",
+            "ZonedDateTimelocal": "entity.validation.ZonedDateTimelocal"
+        }
+    },
+    "installation": {
+        "delete": {
+            "question": "Cancella domanda"
+        },
+        "home": {
+            "createOrEditLabel": "Aggiorna",
+            "title": "installation.home.title",
+            "createLabel": "installation.home.createLabel"
+        },
+        "name": "installation.name",
+        "description": "installation.description",
+        "preparationDate": "installation.preparationDate",
+        "installationDate": "installation.installationDate",
+        "notes": "installation.notes",
+        "address": "installation.address",
+        "customer": "installation.customer",
+        "overview": "Panoramica"
+    },
+    "global": {
+        "field": {
+            "id": "Id"
+        },
+        "messages": {
+            "info": {
+                "authenticated": {
+                    "link": "global.messages.info.authenticated.link",
+                    "prefix": "global.messages.info.authenticated.prefix",
+                    "suffix": "global.messages.info.authenticated.suffix"
+                },
+                "register": {
+                    "noaccount": "global.messages.info.register.noaccount",
+                    "link": "global.messages.info.register.link"
+                }
+            }
+        }
+    },
+    "node": {
+        "delete": {
+            "question": "Confermi di rimuovere il nodo?"
+        },
+        "detail": {
+            "title": "Nodi"
+        },
+        "name": "Nome",
+        "new": "Nuovo nodo",
+        "description": "Descrizione",
+        "nodeType": "Tipologia",
+        "mac": "Mac",
+        "logTimeIst": "logTimeIst",
+        "logTime0": "logTime0",
+        "logTime1": "logTime1",
+        "logTime2": "logTime2",
+        "logTime3": "logTime3",
+        "timeZone": "Time zone",
+        "timeZoneCode": "Time zone code",
+        "latitude": "Latitudine",
+        "longitude": "Longitudine",
+        "altitude": "Altitudine",
+        "modules": "Maguli",
+        "gateway": "Gateway",
+        "shipping": "Spedizione",
+        "order": "Ordine",
+        "home": {
+            "title": "Nodi",
+            "createLabel": "Crea nodo",
+            "listLabel": "Elenco",
+            "createOrEditLabel": "Aggiorna",
+            "search": "Ricerca",
+            "create": "Nuovo nodo"
+        }
+    },
+    "address": {
+        "detail": {
+            "title": "address.detail.title"
+        },
+        "addressDescription": "address.addressDescription",
+        "fullName": "address.fullName",
+        "street": "address.street",
+        "houseNumber": "address.houseNumber",
+        "zipCode": "address.zipCode",
+        "city": "address.city",
+        "country": "address.country",
+        "lat": "address.lat",
+        "lng": "address.lng",
+        "timezoneCode": "address.timezoneCode",
+        "home": {
+            "createOrEditLabel": "address.home.createOrEditLabel",
+            "title": "address.home.title",
+            "createLabel": "address.home.createLabel"
+        },
+        "delete": {
+            "question": "address.delete.question"
+        }
+    },
+    "contact": {
+        "detail": {
+            "title": "contact.detail.title"
+        },
+        "contactDescription": "contact.contactDescription",
+        "firstName": "contact.firstName",
+        "lastName": "contact.lastName",
+        "phone": "contact.phone",
+        "mobile": "contact.mobile",
+        "email": "contact.email",
+        "address": "contact.address",
+        "customer": "contact.customer",
+        "home": {
+            "createOrEditLabel": "contact.home.createOrEditLabel",
+            "title": "contact.home.title",
+            "createLabel": "contact.home.createLabel"
+        },
+        "delete": {
+            "question": "contact.delete.question"
+        }
+    },
+    "customer": {
+        "delete": {
+            "question": "customer.delete.question"
+        },
+        "home": {
+            "title": "customer.home.title",
+            "createLabel": "customer.home.createLabel",
+            "createOrEditLabel": "customer.home.createOrEditLabel"
+        },
+        "companyName": "customer.companyName",
+        "description": "customer.description",
+        "users": "customer.users",
+        "detail": {
+            "title": "customer.detail.title"
+        }
+    },
+    "energyMeterModule": {
+        "home": {
+            "createOrEditLabel": "energyMeterModule.home.createOrEditLabel",
+            "title": "energyMeterModule.home.title",
+            "createLabel": "energyMeterModule.home.createLabel"
+        },
+        "name": "energyMeterModule.name",
+        "description": "energyMeterModule.description",
+        "iacCalibration": "energyMeterModule.iacCalibration",
+        "vacCalibration": "energyMeterModule.vacCalibration",
+        "patCalibration": "energyMeterModule.patCalibration",
+        "preCalibration": "energyMeterModule.preCalibration",
+        "nominalPower": "energyMeterModule.nominalPower",
+        "oldLampPower": "energyMeterModule.oldLampPower",
+        "powerLosses": "energyMeterModule.powerLosses",
+        "delete": {
+            "question": "energyMeterModule.delete.question"
+        },
+        "detail": {
+            "title": "energyMeterModule.detail.title"
+        }
+    },
+    "gateway": {
+        "detail": {
+            "title": "gateway.detail.title"
+        },
+        "name": "gateway.name",
+        "description": "gateway.description",
+        "gatewayUUID": "gateway.gatewayUUID",
+        "gatewayHostname": "gateway.gatewayHostname",
+        "gatewayType": "gateway.gatewayType",
+        "notes": "gateway.notes",
+        "creationDate": "gateway.creationDate",
+        "serialNumber": "gateway.serialNumber",
+        "deviceName": "gateway.deviceName",
+        "hardwareModel": "gateway.hardwareModel",
+        "macAddress": "gateway.macAddress",
+        "coordinatorMac": "gateway.coordinatorMac",
+        "fileNameEncryptionInfo": "gateway.fileNameEncryptionInfo",
+        "hardwareInformations": "gateway.hardwareInformations",
+        "readyToReceiveData": "gateway.readyToReceiveData",
+        "installation": "gateway.installation",
+        "shipping": "gateway.shipping",
+        "order": "gateway.order",
+        "home": {
+            "title": "gateway.home.title",
+            "createLabel": "gateway.home.createLabel",
+            "createOrEditLabel": "gateway.home.createOrEditLabel"
+        },
+        "delete": {
+            "question": "gateway.delete.question"
+        }
+    },
+    "lightFixture": {
+        "home": {
+            "createOrEditLabel": "lightFixture.home.createOrEditLabel",
+            "title": "lightFixture.home.title",
+            "createLabel": "lightFixture.home.createLabel"
+        },
+        "name": "lightFixture.name",
+        "serialNumber": "lightFixture.serialNumber",
+        "description": "lightFixture.description",
+        "deviceType": "lightFixture.deviceType",
+        "lampType": "lightFixture.lampType",
+        "lightZone": "lightFixture.lightZone",
+        "nominalPower": "lightFixture.nominalPower",
+        "oldLampPower": "lightFixture.oldLampPower",
+        "logicId": "lightFixture.logicId",
+        "pLCode": "lightFixture.pLCode",
+        "userOwner": "lightFixture.userOwner",
+        "userType": "lightFixture.userType",
+        "userAddress": "lightFixture.userAddress",
+        "userDistributionBox": "lightFixture.userDistributionBox",
+        "userLightpoleMaterial": "lightFixture.userLightpoleMaterial",
+        "userLightpoleShape": "lightFixture.userLightpoleShape",
+        "userLightpoleHeight": "lightFixture.userLightpoleHeight",
+        "userLampType": "lightFixture.userLampType",
+        "userLampPower": "lightFixture.userLampPower",
+        "userLampModel": "lightFixture.userLampModel",
+        "userLampManufacturer": "lightFixture.userLampManufacturer",
+        "timeZone": "lightFixture.timeZone",
+        "timeZoneCode": "lightFixture.timeZoneCode",
+        "latitude": "lightFixture.latitude",
+        "longitude": "lightFixture.longitude",
+        "altitude": "lightFixture.altitude",
+        "gateway": "lightFixture.gateway",
+        "installation": "lightFixture.installation",
+        "lightProfile": "lightFixture.lightProfile",
+        "detail": {
+            "title": "lightFixture.detail.title"
+        },
+        "delete": {
+            "question": "lightFixture.delete.question"
+        }
+    },
+    "lightManagementMeasure": {
+        "detail": {
+            "title": "lightManagementMeasure.detail.title"
+        },
+        "mac": "lightManagementMeasure.mac",
+        "processingStatus": "lightManagementMeasure.processingStatus",
+        "nodeHMS": "lightManagementMeasure.nodeHMS",
+        "dayOfYear": "lightManagementMeasure.dayOfYear",
+        "measureType": "lightManagementMeasure.measureType",
+        "parentNode": "lightManagementMeasure.parentNode",
+        "lqi": "lightManagementMeasure.lqi",
+        "vac": "lightManagementMeasure.vac",
+        "vcc": "lightManagementMeasure.vcc",
+        "iac": "lightManagementMeasure.iac",
+        "activePower": "lightManagementMeasure.activePower",
+        "reactivePower": "lightManagementMeasure.reactivePower",
+        "activeEnergyCounter": "lightManagementMeasure.activeEnergyCounter",
+        "reactiveEnergyCounter": "lightManagementMeasure.reactiveEnergyCounter",
+        "lightLevel": "lightManagementMeasure.lightLevel",
+        "pw0": "lightManagementMeasure.pw0",
+        "pw1": "lightManagementMeasure.pw1",
+        "pw2": "lightManagementMeasure.pw2",
+        "pw3": "lightManagementMeasure.pw3",
+        "nodeTemp": "lightManagementMeasure.nodeTemp",
+        "ad0": "lightManagementMeasure.ad0",
+        "ad1": "lightManagementMeasure.ad1",
+        "ad2": "lightManagementMeasure.ad2",
+        "ad3": "lightManagementMeasure.ad3",
+        "packetsSent": "lightManagementMeasure.packetsSent",
+        "packetsReceived": "lightManagementMeasure.packetsReceived",
+        "packetsLost": "lightManagementMeasure.packetsLost",
+        "motionStatus": "lightManagementMeasure.motionStatus",
+        "manualStatus": "lightManagementMeasure.manualStatus",
+        "statusBitmask": "lightManagementMeasure.statusBitmask",
+        "parametersCRC": "lightManagementMeasure.parametersCRC",
+        "profileCRC": "lightManagementMeasure.profileCRC",
+        "measureTimestamp": "lightManagementMeasure.measureTimestamp",
+        "createdTimestamp": "lightManagementMeasure.createdTimestamp",
+        "sourceModule": "lightManagementMeasure.sourceModule",
+        "nodeFwVersion": "lightManagementMeasure.nodeFwVersion",
+        "lampLife": "lightManagementMeasure.lampLife",
+        "nodeLife": "lightManagementMeasure.nodeLife",
+        "activePowerCounter": "lightManagementMeasure.activePowerCounter",
+        "installationId": "lightManagementMeasure.installationId",
+        "lightManagementModule": "lightManagementMeasure.lightManagementModule",
+        "delete": {
+            "question": "lightManagementMeasure.delete.question"
+        },
+        "home": {
+            "title": "lightManagementMeasure.home.title",
+            "createLabel": "lightManagementMeasure.home.createLabel",
+            "createOrEditLabel": "lightManagementMeasure.home.createOrEditLabel"
+        }
+    },
+    "lightManagementModule": {
+        "home": {
+            "title": "lightManagementModule.home.title",
+            "createLabel": "lightManagementModule.home.createLabel",
+            "createOrEditLabel": "lightManagementModule.home.createOrEditLabel"
+        },
+        "name": "lightManagementModule.name",
+        "description": "lightManagementModule.description",
+        "deviceType": "lightManagementModule.deviceType",
+        "lampType": "lightManagementModule.lampType",
+        "timerAutoMode": "lightManagementModule.timerAutoMode",
+        "timerHPSProtection": "lightManagementModule.timerHPSProtection",
+        "lightZone": "lightManagementModule.lightZone",
+        "lightProfileId": "lightManagementModule.lightProfileId",
+        "lightProfileCRC": "lightManagementModule.lightProfileCRC",
+        "detail": {
+            "title": "lightManagementModule.detail.title"
+        },
+        "delete": {
+            "question": "lightManagementModule.delete.question"
+        }
+    },
+    "lightProfileSlot": {
+        "detail": {
+            "title": "lightProfileSlot.detail.title"
+        },
+        "name": "lightProfileSlot.name",
+        "description": "lightProfileSlot.description",
+        "don": "lightProfileSlot.don",
+        "dof": "lightProfileSlot.dof",
+        "ton": "lightProfileSlot.ton",
+        "tof": "lightProfileSlot.tof",
+        "eas": "lightProfileSlot.eas",
+        "ecr": "lightProfileSlot.ecr",
+        "emo": "lightProfileSlot.emo",
+        "edw": "lightProfileSlot.edw",
+        "enabled": "lightProfileSlot.enabled",
+        "lightProfileIndex": "lightProfileSlot.lightProfileIndex",
+        "pw0": "lightProfileSlot.pw0",
+        "pw1": "lightProfileSlot.pw1",
+        "pw2": "lightProfileSlot.pw2",
+        "pw3": "lightProfileSlot.pw3",
+        "fadeIn": "lightProfileSlot.fadeIn",
+        "fadeOut": "lightProfileSlot.fadeOut",
+        "slot": "lightProfileSlot.slot",
+        "createdTimestamp": "lightProfileSlot.createdTimestamp",
+        "motionDuration": "lightProfileSlot.motionDuration",
+        "motionDelay": "lightProfileSlot.motionDelay",
+        "mi0": "lightProfileSlot.mi0",
+        "mi1": "lightProfileSlot.mi1",
+        "mi2": "lightProfileSlot.mi2",
+        "mi3": "lightProfileSlot.mi3",
+        "motionFadeIn": "lightProfileSlot.motionFadeIn",
+        "motionFadeOut": "lightProfileSlot.motionFadeOut",
+        "lightProfile": "lightProfileSlot.lightProfile",
+        "home": {
+            "title": "lightProfileSlot.home.title",
+            "createLabel": "lightProfileSlot.home.createLabel",
+            "createOrEditLabel": "lightProfileSlot.home.createOrEditLabel"
+        },
+        "delete": {
+            "question": "lightProfileSlot.delete.question"
+        }
+    },
+    "lightProfile": {
+        "delete": {
+            "question": "lightProfile.delete.question"
+        },
+        "home": {
+            "createOrEditLabel": "lightProfile.home.createOrEditLabel",
+            "title": "lightProfile.home.title",
+            "createLabel": "lightProfile.home.createLabel"
+        },
+        "name": "lightProfile.name",
+        "description": "lightProfile.description",
+        "type": "lightProfile.type",
+        "reference": "lightProfile.reference",
+        "profileCRC": "lightProfile.profileCRC",
+        "lightProfileId": "lightProfile.lightProfileId",
+        "gatewayId": "lightProfile.gatewayId",
+        "enabled": "lightProfile.enabled"
+    },
+    "motionManagementModule": {
+        "home": {
+            "title": "motionManagementModule.home.title",
+            "createLabel": "motionManagementModule.home.createLabel",
+            "createOrEditLabel": "motionManagementModule.home.createOrEditLabel"
+        },
+        "name": "motionManagementModule.name",
+        "description": "motionManagementModule.description",
+        "motionMode": "motionManagementModule.motionMode",
+        "motionType": "motionManagementModule.motionType",
+        "motionGroup": "motionManagementModule.motionGroup",
+        "delayAfter": "motionManagementModule.delayAfter",
+        "retriggerTime": "motionManagementModule.retriggerTime",
+        "triggerDelay": "motionManagementModule.triggerDelay",
+        "mi0": "motionManagementModule.mi0",
+        "mi1": "motionManagementModule.mi1",
+        "mi2": "motionManagementModule.mi2",
+        "mi3": "motionManagementModule.mi3",
+        "fadeIn": "motionManagementModule.fadeIn",
+        "fadeOut": "motionManagementModule.fadeOut",
+        "createdTimestamp": "motionManagementModule.createdTimestamp",
+        "adcInChannel": "motionManagementModule.adcInChannel",
+        "duration": "motionManagementModule.duration",
+        "detail": {
+            "title": "motionManagementModule.detail.title"
+        },
+        "delete": {
+            "question": "motionManagementModule.delete.question"
+        }
+    },
+    "nodeModules": {
+        "home": {
+            "title": "nodeModules.home.title",
+            "createLabel": "nodeModules.home.createLabel",
+            "createOrEditLabel": "nodeModules.home.createOrEditLabel"
+        },
+        "name": "nodeModules.name",
+        "lightManagement": "nodeModules.lightManagement",
+        "energyMeter": "nodeModules.energyMeter",
+        "twilightManagement": "nodeModules.twilightManagement",
+        "motionManagement": "nodeModules.motionManagement",
+        "detail": {
+            "title": "nodeModules.detail.title"
+        },
+        "delete": {
+            "question": "nodeModules.delete.question"
+        }
+    },
+    "order": {
+        "delete": {
+            "question": "order.delete.question"
+        },
+        "detail": {
+            "title": "order.detail.title"
+        },
+        "name": "order.name",
+        "description": "order.description",
+        "notes": "order.notes",
+        "orderDate": "order.orderDate",
+        "preparationDate": "order.preparationDate",
+        "totalAmount": "order.totalAmount",
+        "customer": "order.customer",
+        "home": {
+            "title": "order.home.title",
+            "createLabel": "order.home.createLabel",
+            "createOrEditLabel": "order.home.createOrEditLabel"
+        }
+    },
+    "shipping": {
+        "home": {
+            "createOrEditLabel": "shipping.home.createOrEditLabel",
+            "title": "shipping.home.title",
+            "createLabel": "shipping.home.createLabel"
+        },
+        "courier": "shipping.courier",
+        "trackingCode": "shipping.trackingCode",
+        "shippingDate": "shipping.shippingDate",
+        "estimatedArrival": "shipping.estimatedArrival",
+        "transportDocument": "shipping.transportDocument",
+        "isArrived": "shipping.isArrived",
+        "shippingContact": "shipping.shippingContact",
+        "order": "shipping.order",
+        "detail": {
+            "title": "shipping.detail.title"
+        },
+        "delete": {
+            "question": "shipping.delete.question"
+        }
+    },
+    "twilightManagementModule": {
+        "home": {
+            "title": "twilightManagementModule.home.title",
+            "createLabel": "twilightManagementModule.home.createLabel",
+            "createOrEditLabel": "twilightManagementModule.home.createOrEditLabel"
+        },
+        "name": "twilightManagementModule.name",
+        "description": "twilightManagementModule.description",
+        "twMode": "twilightManagementModule.twMode",
+        "twType": "twilightManagementModule.twType",
+        "twGroup": "twilightManagementModule.twGroup",
+        "validPeriod": "twilightManagementModule.validPeriod",
+        "thsSunsetOn": "twilightManagementModule.thsSunsetOn",
+        "thsSunsetOff": "twilightManagementModule.thsSunsetOff",
+        "thsSunriseOn": "twilightManagementModule.thsSunriseOn",
+        "thsSunriseOff": "twilightManagementModule.thsSunriseOff",
+        "persistencePeriod": "twilightManagementModule.persistencePeriod",
+        "delayOffset": "twilightManagementModule.delayOffset",
+        "voltagemV": "twilightManagementModule.voltagemV",
+        "luxMeasured": "twilightManagementModule.luxMeasured",
+        "samplingPeriod": "twilightManagementModule.samplingPeriod",
+        "numberAverageMeasures": "twilightManagementModule.numberAverageMeasures",
+        "adcInChannel": "twilightManagementModule.adcInChannel",
+        "programmingStatus": "twilightManagementModule.programmingStatus",
+        "createdTimestamp": "twilightManagementModule.createdTimestamp",
+        "detail": {
+            "title": "twilightManagementModule.detail.title"
+        },
+        "delete": {
+            "question": "twilightManagementModule.delete.question"
+        }
+    },
+    "home": {
+        "title": "home.title",
+        "logged": {
+            "message": "home.logged.message"
+        },
+        "question": "home.question",
+        "link": {
+            "homepage": "home.link.homepage",
+            "stackoverflow": "home.link.stackoverflow",
+            "bugtracker": "home.link.bugtracker",
+            "chat": "home.link.chat",
+            "follow": "home.link.follow"
+        },
+        "like": "home.like",
+        "github": "home.github"
+    },
+    "energyInterval": {
+        "delete": {
+            "question": "energyInterval.delete.question"
+        },
+        "detail": {
+            "title": "energyInterval.detail.title"
+        },
+        "mac": "energyInterval.mac",
+        "lightManagementModuleId": "energyInterval.lightManagementModuleId",
+        "installationId": "energyInterval.installationId",
+        "startInterval": "energyInterval.startInterval",
+        "endInterval": "energyInterval.endInterval",
+        "startIntervalMeasureTimestamp": "energyInterval.startIntervalMeasureTimestamp",
+        "endIntervalMeasureTimestamp": "energyInterval.endIntervalMeasureTimestamp",
+        "activePower": "energyInterval.activePower",
+        "reactivePower": "energyInterval.reactivePower",
+        "startIntervalActiveEnergyCounterValue": "energyInterval.startIntervalActiveEnergyCounterValue",
+        "endIntervalActiveEnergyCounterValue": "energyInterval.endIntervalActiveEnergyCounterValue",
+        "activeEnergy": "energyInterval.activeEnergy",
+        "startIntervalReactiveEnergyCounterValue": "energyInterval.startIntervalReactiveEnergyCounterValue",
+        "endIntervalReactiveEnergyCounterValue": "energyInterval.endIntervalReactiveEnergyCounterValue",
+        "reactiveEnergy": "energyInterval.reactiveEnergy",
+        "activeEnergyMty0": "energyInterval.activeEnergyMty0",
+        "activeEnergyMty1": "energyInterval.activeEnergyMty1",
+        "activeEnergyMty2": "energyInterval.activeEnergyMty2",
+        "activeEnergyMty3": "energyInterval.activeEnergyMty3",
+        "activeEnergyWithoutDim": "energyInterval.activeEnergyWithoutDim",
+        "activeEnergyWithoutControl": "energyInterval.activeEnergyWithoutControl",
+        "activeEnergyOldLamps": "energyInterval.activeEnergyOldLamps",
+        "burningTime": "energyInterval.burningTime",
+        "nodeLife": "energyInterval.nodeLife",
+        "home": {
+            "createOrEditLabel": "energyInterval.home.createOrEditLabel",
+            "title": "energyInterval.home.title",
+            "createLabel": "energyInterval.home.createLabel"
+        }
+    }
 }

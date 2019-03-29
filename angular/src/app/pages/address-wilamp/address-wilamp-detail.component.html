@@ -1,46 +1,46 @@
 
 <div *ngIf="address">
-    <h2><span jhiTranslate="wilampCloudApp.address.detail.title">Address</span> {{address.id}}</h2>
+    <h2><span [translate]="'address.detail.title'">Address</span> {{address.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="wilampCloudApp.address.addressDescription">Address Description</span></dt>
+        <dt><span [translate]="'address.addressDescription'">Address Description</span></dt>
         <dd>
             <span>{{address.addressDescription}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.address.fullName">Full Name</span></dt>
+        <dt><span [translate]="'address.fullName'">Full Name</span></dt>
         <dd>
             <span>{{address.fullName}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.address.street">Street</span></dt>
+        <dt><span [translate]="'address.street'">Street</span></dt>
         <dd>
             <span>{{address.street}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.address.houseNumber">House Number</span></dt>
+        <dt><span [translate]="'address.houseNumber'">House Number</span></dt>
         <dd>
             <span>{{address.houseNumber}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.address.zipCode">Zip Code</span></dt>
+        <dt><span [translate]="'address.zipCode'">Zip Code</span></dt>
         <dd>
             <span>{{address.zipCode}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.address.city">City</span></dt>
+        <dt><span [translate]="'address.city'">City</span></dt>
         <dd>
             <span>{{address.city}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.address.country">Country</span></dt>
+        <dt><span [translate]="'address.country'">Country</span></dt>
         <dd>
             <span>{{address.country}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.address.lat">Lat</span></dt>
+        <dt><span [translate]="'address.lat'">Lat</span></dt>
         <dd>
             <span>{{address.lat}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.address.lng">Lng</span></dt>
+        <dt><span [translate]="'address.lng'">Lng</span></dt>
         <dd>
             <span>{{address.lng}}</span>
         </dd>
-        <dt><span jhiTranslate="wilampCloudApp.address.timezoneCode">Timezone Code</span></dt>
+        <dt><span [translate]="'address.timezoneCode'">Timezone Code</span></dt>
         <dd>
             <span>{{address.timezoneCode}}</span>
         </dd>
@@ -49,14 +49,14 @@
     <button type="submit"
             (click)="previousState()"
             class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+        <span class="fa fa-arrow-left"></span>&nbsp;<span [translate]="'entity.action.back'"> Back</span>
     </button>
 
     <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'address-wilamp/'+ address.id + '/edit'} }]"
+            [routerLink]="['/', { outlets: { popup: 'address/'+ address.id + '/edit'} }]"
             replaceUrl="true"
             queryParamsHandling="merge"
             class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+        <span class="fa fa-pencil"></span>&nbsp;<span [translate]="'entity.action.edit'"> Edit</span>
     </button>
 </div>

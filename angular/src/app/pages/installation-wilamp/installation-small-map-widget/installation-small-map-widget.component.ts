@@ -15,7 +15,7 @@ import {Helpers, Principal} from '../../../shared';
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
 import 'leaflet.awesome-markers/dist/leaflet.awesome-markers';
-import 'leaflet-canvas-marker';
+// import 'leaflet-canvas-marker';
 import 'leaflet.awesome-markers';
 import {DomSanitizer} from '@angular/platform-browser';
 import {icon} from 'leaflet';
@@ -69,7 +69,7 @@ export class InstallationSmallMapWidgetComponent implements OnInit, OnDestroy, A
         id: 'lcuClusterCR',
         name: 'LCU - CR',
         enabled: true,
-        layer: L.canvasIconLayer(),
+        layer: undefined, // L.canvasIconLayer(),
     };
     dcuClusterGroup: L.MarkerClusterGroup = L.markerClusterGroup({
         spiderfyOnMaxZoom: true,

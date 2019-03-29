@@ -14,7 +14,7 @@ export const installationRoute: Routes = [
         component: PagesComponent,
         children: [
             {
-                path: 'installation-wilamp',
+                path: 'installation',
                 component: InstallationWilampComponent,
                 data: {
                     authorities: ['ROLE_USER'],
@@ -22,7 +22,7 @@ export const installationRoute: Routes = [
                 },
                 canActivate: [UserRouteAccessService],
             }, {
-                path: 'installation-wilamp/:id',
+                path: 'installation/:id',
                 component: InstallationWilampDashboardComponent,
                 data: {
                     authorities: ['ROLE_USER'],
@@ -36,7 +36,7 @@ export const installationRoute: Routes = [
 
 export const installationPopupRoute: Routes = [
     {
-        path: 'installation-wilamp-new',
+        path: 'installation-new',
         component: InstallationWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -46,7 +46,7 @@ export const installationPopupRoute: Routes = [
         outlet: 'popup',
     },
     {
-        path: 'installation-wilamp/:id/edit',
+        path: 'installation/:id/edit',
         component: InstallationWilampPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -56,7 +56,7 @@ export const installationPopupRoute: Routes = [
         outlet: 'popup',
     },
     {
-        path: 'installation-wilamp/:id/delete',
+        path: 'installation/:id/delete',
         component: InstallationWilampDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],

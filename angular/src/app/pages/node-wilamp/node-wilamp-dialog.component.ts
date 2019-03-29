@@ -19,6 +19,7 @@ import { OrderWilampService } from '../order-wilamp/order-wilamp.service';
 @Component({
     selector: 'jhi-node-wilamp-dialog',
     templateUrl: './node-wilamp-dialog.component.html',
+    styleUrls: ['../forms/form-inputs/form-inputs.component.scss'],
 })
 export class NodeWilampDialogComponent implements OnInit {
 
@@ -34,7 +35,6 @@ export class NodeWilampDialogComponent implements OnInit {
     orders: OrderWilamp[];
 
     constructor(
-        public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private nodeService: NodeWilampService,
         private nodeModulesService: NodeModulesWilampService,
@@ -46,6 +46,7 @@ export class NodeWilampDialogComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.node = new NodeWilamp();
         this.isSaving = false;
         this.nodeModulesService
             .query({filter: 'node(mac)-is-null'})
@@ -69,7 +70,7 @@ export class NodeWilampDialogComponent implements OnInit {
     }
 
     clear() {
-        this.activeModal.dismiss('cancel');
+
     }
 
     save() {
@@ -91,7 +92,7 @@ export class NodeWilampDialogComponent implements OnInit {
     private onSaveSuccess(result: NodeWilamp) {
         this.eventManager.broadcast({ name: 'nodeListModification', content: 'OK'});
         this.isSaving = false;
-        this.activeModal.dismiss(result);
+
     }
 
     private onSaveError() {

@@ -15,13 +15,7 @@ import {Router} from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private analytics: AnalyticsService, private translate: TranslateService) {
-
-    // init language
-    this.translate.addLangs(['en', 'it']);
-    this.translate.setDefaultLang('it');
-    this.translate.use('it'); // Fallback
-  }
+  constructor(private analytics: AnalyticsService) {}
 
   ngOnInit() {
     this.analytics.trackPageViews();

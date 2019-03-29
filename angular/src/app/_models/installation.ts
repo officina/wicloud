@@ -13,6 +13,10 @@ export class Installation {
         public customer?: Customer,
         public customerId?: number,
         public gateways?: any[],
+
+        // TEMP
+        public notifications?: any[],
+        public overview?: any[],
     ) {
     }
 

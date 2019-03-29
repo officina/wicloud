@@ -1,189 +1,199 @@
-<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+<div class="row">
+    <div class="col-md-12">
+        <h2>
+            <span [translate]="'node.home.title'">Nodes</span>
+            <button class="btn btn-primary float-right jh-create-entity create-node-wilamp" [routerLink]="['../']">
+                <span class="fa fa-list"></span>
+                <span class="hidden-sm-down"  [translate]="'node.home.listLabel'">
+            Create new Node
+            </span>
+            </button>
+        </h2>
+    </div>
+    <div class="col-md-12">
+        <nb-card>
+            <nb-card-header [translate]="'node.new'">Default Inputs</nb-card-header>
+            <nb-card-body>
+                <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+                    <div class="form-group" [hidden]="!node.id">
+                        <label for="id" [translate]="'global.field.id'">ID</label>
+                        <input type="text" class="form-control" id="id" name="id"
+                               [(ngModel)]="node.id" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" [translate]="'node.name'" for="field_name">Name</label>
+                        <input type="text" class="form-control" name="name" id="field_name"
+                            [(ngModel)]="node.name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" [translate]="'node.description'" for="field_description">Description</label>
+                        <input type="text" class="form-control" name="description" id="field_description"
+                            [(ngModel)]="node.description" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" [translate]="'node.nodeType'" for="field_nodeType">Node Type</label>
+                        <input type="number" class="form-control" name="nodeType" id="field_nodeType"
+                            [(ngModel)]="node.nodeType" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" [translate]="'node.mac'" for="field_mac">Mac</label>
+                        <input type="text" class="form-control" name="mac" id="field_mac"
+                            [(ngModel)]="node.mac" required/>
+                        <div [hidden]="!(editForm.controls.mac?.dirty && editForm.controls.mac?.invalid)">
+                            <small class="form-text text-danger"
+                               [hidden]="!editForm.controls.mac?.errors?.required" [translate]="'entity.validation.required'">
+                               This field is required.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" [translate]="'node.logTimeIst'" for="field_logTimeIst">Log Time Ist</label>
+                        <input type="number" class="form-control" name="logTimeIst" id="field_logTimeIst"
+                            [(ngModel)]="node.logTimeIst" required/>
+                        <div [hidden]="!(editForm.controls.logTimeIst?.dirty && editForm.controls.logTimeIst?.invalid)">
+                            <small class="form-text text-danger"
+                               [hidden]="!editForm.controls.logTimeIst?.errors?.required" [translate]="'entity.validation.required'">
+                               This field is required.
+                            </small>
+                            <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.logTimeIst?.errors?.number" [translate]="'entity.validation.number'">
+                                This field should be a number.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" [translate]="'node.logTime0'" for="field_logTime0">Log Time 0</label>
+                        <input type="number" class="form-control" name="logTime0" id="field_logTime0"
+                            [(ngModel)]="node.logTime0" required/>
+                        <div [hidden]="!(editForm.controls.logTime0?.dirty && editForm.controls.logTime0?.invalid)">
+                            <small class="form-text text-danger"
+                               [hidden]="!editForm.controls.logTime0?.errors?.required" [translate]="'entity.validation.required'">
+                               This field is required.
+                            </small>
+                            <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.logTime0?.errors?.number" [translate]="'entity.validation.number'">
+                                This field should be a number.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" [translate]="'node.logTime1'" for="field_logTime1">Log Time 1</label>
+                        <input type="number" class="form-control" name="logTime1" id="field_logTime1"
+                            [(ngModel)]="node.logTime1" required/>
+                        <div [hidden]="!(editForm.controls.logTime1?.dirty && editForm.controls.logTime1?.invalid)">
+                            <small class="form-text text-danger"
+                               [hidden]="!editForm.controls.logTime1?.errors?.required" [translate]="'entity.validation.required'">
+                               This field is required.
+                            </small>
+                            <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.logTime1?.errors?.number" [translate]="'entity.validation.number'">
+                                This field should be a number.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" [translate]="'node.logTime2'" for="field_logTime2">Log Time 2</label>
+                        <input type="number" class="form-control" name="logTime2" id="field_logTime2"
+                            [(ngModel)]="node.logTime2" required/>
+                        <div [hidden]="!(editForm.controls.logTime2?.dirty && editForm.controls.logTime2?.invalid)">
+                            <small class="form-text text-danger"
+                               [hidden]="!editForm.controls.logTime2?.errors?.required" [translate]="'entity.validation.required'">
+                               This field is required.
+                            </small>
+                            <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.logTime2?.errors?.number" [translate]="'entity.validation.number'">
+                                This field should be a number.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" [translate]="'node.logTime3'" for="field_logTime3">Log Time 3</label>
+                        <input type="number" class="form-control" name="logTime3" id="field_logTime3"
+                            [(ngModel)]="node.logTime3" required/>
+                        <div [hidden]="!(editForm.controls.logTime3?.dirty && editForm.controls.logTime3?.invalid)">
+                            <small class="form-text text-danger"
+                               [hidden]="!editForm.controls.logTime3?.errors?.required" [translate]="'entity.validation.required'">
+                               This field is required.
+                            </small>
+                            <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.logTime3?.errors?.number" [translate]="'entity.validation.number'">
+                                This field should be a number.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" [translate]="'node.timeZone'" for="field_timeZone">Time Zone</label>
+                        <input type="number" class="form-control" name="timeZone" id="field_timeZone"
+                            [(ngModel)]="node.timeZone" required/>
+                        <div [hidden]="!(editForm.controls.timeZone?.dirty && editForm.controls.timeZone?.invalid)">
+                            <small class="form-text text-danger"
+                               [hidden]="!editForm.controls.timeZone?.errors?.required" [translate]="'entity.validation.required'">
+                               This field is required.
+                            </small>
+                            <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.timeZone?.errors?.number" [translate]="'entity.validation.number'">
+                                This field should be a number.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" [translate]="'node.timeZoneCode'" for="field_timeZoneCode">Time Zone Code</label>
+                        <input type="text" class="form-control" name="timeZoneCode" id="field_timeZoneCode"
+                            [(ngModel)]="node.timeZoneCode" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" [translate]="'node.latitude'" for="field_latitude">Latitude</label>
+                        <input type="number" class="form-control" name="latitude" id="field_latitude"
+                            [(ngModel)]="node.latitude" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" [translate]="'node.longitude'" for="field_longitude">Longitude</label>
+                        <input type="number" class="form-control" name="longitude" id="field_longitude"
+                            [(ngModel)]="node.longitude" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" [translate]="'node.altitude'" for="field_altitude">Altitude</label>
+                        <input type="number" class="form-control" name="altitude" id="field_altitude"
+                            [(ngModel)]="node.altitude" />
+                    </div>
 
-    <div class="modal-header">
-        <h4 class="modal-title" id="myNodeLabel" jhiTranslate="wilampCloudApp.node.home.createOrEditLabel">Create or edit a Node</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                (click)="clear()">&times;</button>
-    </div>
-    <div class="modal-body">
-        <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" [hidden]="!node.id">
-            <label for="id" jhiTranslate="global.field.id">ID</label>
-            <input type="text" class="form-control" id="id" name="id"
-                   [(ngModel)]="node.id" readonly />
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.node.name" for="field_name">Name</label>
-            <input type="text" class="form-control" name="name" id="field_name"
-                [(ngModel)]="node.name" />
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.node.description" for="field_description">Description</label>
-            <input type="text" class="form-control" name="description" id="field_description"
-                [(ngModel)]="node.description" />
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.node.nodeType" for="field_nodeType">Node Type</label>
-            <input type="number" class="form-control" name="nodeType" id="field_nodeType"
-                [(ngModel)]="node.nodeType" />
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.node.mac" for="field_mac">Mac</label>
-            <input type="text" class="form-control" name="mac" id="field_mac"
-                [(ngModel)]="node.mac" required/>
-            <div [hidden]="!(editForm.controls.mac?.dirty && editForm.controls.mac?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.mac?.errors?.required" jhiTranslate="entity.validation.required">
-                   This field is required.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.node.logTimeIst" for="field_logTimeIst">Log Time Ist</label>
-            <input type="number" class="form-control" name="logTimeIst" id="field_logTimeIst"
-                [(ngModel)]="node.logTimeIst" required/>
-            <div [hidden]="!(editForm.controls.logTimeIst?.dirty && editForm.controls.logTimeIst?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.logTimeIst?.errors?.required" jhiTranslate="entity.validation.required">
-                   This field is required.
-                </small>
-                <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.logTimeIst?.errors?.number" jhiTranslate="entity.validation.number">
-                    This field should be a number.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.node.logTime0" for="field_logTime0">Log Time 0</label>
-            <input type="number" class="form-control" name="logTime0" id="field_logTime0"
-                [(ngModel)]="node.logTime0" required/>
-            <div [hidden]="!(editForm.controls.logTime0?.dirty && editForm.controls.logTime0?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.logTime0?.errors?.required" jhiTranslate="entity.validation.required">
-                   This field is required.
-                </small>
-                <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.logTime0?.errors?.number" jhiTranslate="entity.validation.number">
-                    This field should be a number.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.node.logTime1" for="field_logTime1">Log Time 1</label>
-            <input type="number" class="form-control" name="logTime1" id="field_logTime1"
-                [(ngModel)]="node.logTime1" required/>
-            <div [hidden]="!(editForm.controls.logTime1?.dirty && editForm.controls.logTime1?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.logTime1?.errors?.required" jhiTranslate="entity.validation.required">
-                   This field is required.
-                </small>
-                <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.logTime1?.errors?.number" jhiTranslate="entity.validation.number">
-                    This field should be a number.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.node.logTime2" for="field_logTime2">Log Time 2</label>
-            <input type="number" class="form-control" name="logTime2" id="field_logTime2"
-                [(ngModel)]="node.logTime2" required/>
-            <div [hidden]="!(editForm.controls.logTime2?.dirty && editForm.controls.logTime2?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.logTime2?.errors?.required" jhiTranslate="entity.validation.required">
-                   This field is required.
-                </small>
-                <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.logTime2?.errors?.number" jhiTranslate="entity.validation.number">
-                    This field should be a number.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.node.logTime3" for="field_logTime3">Log Time 3</label>
-            <input type="number" class="form-control" name="logTime3" id="field_logTime3"
-                [(ngModel)]="node.logTime3" required/>
-            <div [hidden]="!(editForm.controls.logTime3?.dirty && editForm.controls.logTime3?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.logTime3?.errors?.required" jhiTranslate="entity.validation.required">
-                   This field is required.
-                </small>
-                <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.logTime3?.errors?.number" jhiTranslate="entity.validation.number">
-                    This field should be a number.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.node.timeZone" for="field_timeZone">Time Zone</label>
-            <input type="number" class="form-control" name="timeZone" id="field_timeZone"
-                [(ngModel)]="node.timeZone" required/>
-            <div [hidden]="!(editForm.controls.timeZone?.dirty && editForm.controls.timeZone?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.timeZone?.errors?.required" jhiTranslate="entity.validation.required">
-                   This field is required.
-                </small>
-                <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.timeZone?.errors?.number" jhiTranslate="entity.validation.number">
-                    This field should be a number.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.node.timeZoneCode" for="field_timeZoneCode">Time Zone Code</label>
-            <input type="text" class="form-control" name="timeZoneCode" id="field_timeZoneCode"
-                [(ngModel)]="node.timeZoneCode" />
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.node.latitude" for="field_latitude">Latitude</label>
-            <input type="number" class="form-control" name="latitude" id="field_latitude"
-                [(ngModel)]="node.latitude" />
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.node.longitude" for="field_longitude">Longitude</label>
-            <input type="number" class="form-control" name="longitude" id="field_longitude"
-                [(ngModel)]="node.longitude" />
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.node.altitude" for="field_altitude">Altitude</label>
-            <input type="number" class="form-control" name="altitude" id="field_altitude"
-                [(ngModel)]="node.altitude" />
-        </div>
+                    <div class="form-group">
+                        <label class="form-control-label" [translate]="'node.modules'" for="field_modules">Modules</label>
+                        <select class="form-control" id="field_modules" name="modules" [(ngModel)]="node.modulesId">
+                            <option [ngValue]="null"></option>
+                            <option [ngValue]="nodeModulesOption.id" *ngFor="let nodeModulesOption of modules; trackBy: trackNodeModulesById">{{nodeModulesOption.id}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" [translate]="'node.gateway'" for="field_gateway">Gateway</label>
+                        <select class="form-control" id="field_gateway" name="gateway" [(ngModel)]="node.gatewayId" >
+                            <option [ngValue]="null"></option>
+                            <option [ngValue]="gatewayOption.id" *ngFor="let gatewayOption of gateways; trackBy: trackGatewayById">{{gatewayOption.gatewayHostname}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" [translate]="'node.shipping'" for="field_shipping">Shipping</label>
+                        <select class="form-control" id="field_shipping" name="shipping" [(ngModel)]="node.shippingId" >
+                            <option [ngValue]="null"></option>
+                            <option [ngValue]="shippingOption.id" *ngFor="let shippingOption of shippings; trackBy: trackShippingById">{{shippingOption.shippingDate}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" [translate]="'node.order'" for="field_order">Order</label>
+                        <select class="form-control" id="field_order" name="order" [(ngModel)]="node.orderId" >
+                            <option [ngValue]="null"></option>
+                            <option [ngValue]="orderOption.id" *ngFor="let orderOption of orders; trackBy: trackOrderById">{{orderOption.id}}</option>
+                        </select>
+                    </div>
 
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.node.modules" for="field_modules">Modules</label>
-            <select class="form-control" id="field_modules" name="modules" [(ngModel)]="node.modulesId">
-                <option [ngValue]="null"></option>
-                <option [ngValue]="nodeModulesOption.id" *ngFor="let nodeModulesOption of modules; trackBy: trackNodeModulesById">{{nodeModulesOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.node.gateway" for="field_gateway">Gateway</label>
-            <select class="form-control" id="field_gateway" name="gateway" [(ngModel)]="node.gatewayId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="gatewayOption.id" *ngFor="let gatewayOption of gateways; trackBy: trackGatewayById">{{gatewayOption.gatewayHostname}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.node.shipping" for="field_shipping">Shipping</label>
-            <select class="form-control" id="field_shipping" name="shipping" [(ngModel)]="node.shippingId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="shippingOption.id" *ngFor="let shippingOption of shippings; trackBy: trackShippingById">{{shippingOption.shippingDate}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wilampCloudApp.node.order" for="field_order">Order</label>
-            <select class="form-control" id="field_order" name="order" [(ngModel)]="node.orderId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="orderOption.id" *ngFor="let orderOption of orders; trackBy: trackOrderById">{{orderOption.id}}</option>
-            </select>
-        </div>
+                    <button type="submit" class="btn btn-primary" (click)="clear()">
+                        <span class="fa fa-ban"></span>&nbsp;<span [translate]="'entity.action.cancel'">Cancel</span>
+                    </button>
+                    <button type="submit" class="btn btn-success" [disabled]="editForm.form.invalid || isSaving">
+                        <span class="fa fa-save"></span>&nbsp;<span [translate]="'entity.action.save'">Save</span>
+                    </button>
+                </form>
+            </nb-card-body>
+        </nb-card>
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
-            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
-        </button>
-        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
-        </button>
-    </div>
-</form>
+</div>

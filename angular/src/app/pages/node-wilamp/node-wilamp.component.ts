@@ -7,6 +7,7 @@ import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 import { NodeWilamp } from './node-wilamp.model';
 import { NodeWilampService } from './node-wilamp.service';
 import { ITEMS_PER_PAGE, Principal } from '../../shared';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: '.m-grid__item.m-grid__item--fluid.m-wrapper.m-content',
@@ -25,6 +26,8 @@ export class NodeWilampComponent implements OnInit, OnDestroy {
     reverse: any;
     totalItems: number;
     currentSearch: string;
+    tableSettings: any;
+    data: any;
 
     constructor(
         private nodeService: NodeWilampService,
@@ -33,7 +36,9 @@ export class NodeWilampComponent implements OnInit, OnDestroy {
         private parseLinks: JhiParseLinks,
         private activatedRoute: ActivatedRoute,
         private principal: Principal,
+        private translateService: TranslateService,
     ) {
+
         this.nodes = [];
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.page = 1;
@@ -44,6 +49,7 @@ export class NodeWilampComponent implements OnInit, OnDestroy {
         this.reverse = true;
         this.currentSearch = this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search'] ?
             this.activatedRoute.snapshot.params['search'] : '';
+
     }
 
     loadAll() {
@@ -112,6 +118,46 @@ export class NodeWilampComponent implements OnInit, OnDestroy {
             this.currentAccount = account;
         });
         this.registerChangeInNodes();
+        // questo garantisce di aver caricato il translate json
+        this.translateService.get('global.field.id').subscribe((translated: string) => {
+            this.tableSettings = {
+                pager: {
+                    perPage: 20,
+                },
+                hideSubHeader: true,
+                actions: {
+                    add: false,
+                    edit: true,
+                    delete: true,
+                },
+                edit: {
+                    editButtonContent: '<i class="nb-edit"></i>',
+                    saveButtonContent: '<i class="nb-checkmark"></i>',
+                    cancelButtonContent: '<i class="nb-close"></i>',
+                },
+                delete: {
+                    deleteButtonContent: '<i class="nb-trash"></i>',
+                    confirmDelete: true,
+                },
+                columns: {
+                    id: {
+                        title: this.translateService.instant('global.field.id'),
+                    },
+                    name: {
+                        title: this.translateService.instant('node.name'),
+                    },
+                    description: {
+                        title: this.translateService.instant('node.description'),
+                    },
+                    nodeType: {
+                        title: this.translateService.instant('node.nodeType'),
+                    },
+                    mac: {
+                        title: this.translateService.instant('node.mac'),
+                    },
+                },
+            };
+        });
     }
 
     ngOnDestroy() {
@@ -139,6 +185,7 @@ export class NodeWilampComponent implements OnInit, OnDestroy {
         for (let i = 0; i < data.length; i++) {
             this.nodes.push(data[i]);
         }
+        this.data = this.nodes;
     }
 
     private onError(error) {
