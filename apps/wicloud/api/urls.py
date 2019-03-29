@@ -44,6 +44,31 @@ urlpatterns = [
         name='address_disable'
     ),
     url(
+        r'^avg-power-measure/$',
+        model_views.Avg_power_measureListCreateAPIView.as_view(),
+        name='avg_power_measure_list'
+    ),
+    url(
+        r'^avg-power-measure/(?P<id>[-\w]+)/$',
+        model_views.Avg_power_measureRetrieveUpdateDestroyAPIView.as_view(),
+        name='avg_power_measure_detail'
+    ),
+    url(
+        r'^avg-power-measure/set-status/(?P<pk>\w+)/$',
+        model_views.Avg_power_measureSetStatusView.as_view(),
+        name='avg_power_measure_set_status'
+    ),
+    url(
+        r'^avg-power-measure/enable/(?P<pk>\w+)/$',
+        model_views.Avg_power_measureEnableView.as_view(),
+        name='avg_power_measure_enable'
+    ),
+    url(
+        r'^avg-power-measure/disable/(?P<pk>\w+)/$',
+        model_views.Avg_power_measureDisableView.as_view(),
+        name='avg_power_measure_disable'
+    ),
+    url(
         r'^connected-device/$',
         model_views.Connected_deviceListCreateAPIView.as_view(),
         name='connected_device_list'

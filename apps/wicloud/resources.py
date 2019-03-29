@@ -21,6 +21,22 @@ class AddressResource(resources.ModelResource):
             instance.creator = self.user
         instance.last_modifier = self.user
 
+class Avg_power_measureResource(resources.ModelResource):
+    class Meta:
+        model = models.Avg_power_measure
+        exclude = ('id', 'creator', 'created_date', 'last_modifier', 'last_modified_date')
+        import_id_fields = ('id',)
+
+    def before_import(self, dataset, dry_run, *args, **kwargs):
+        self.user = kwargs.get('user')
+        return super().before_import(dataset, dry_run, *args, **kwargs)
+
+    def before_save_instance(self, instance, using_transactions, dry_run):
+        self.user
+        if not instance.id:
+            instance.creator = self.user
+        instance.last_modifier = self.user
+
 class Connected_deviceResource(resources.ModelResource):
     class Meta:
         model = models.Connected_device

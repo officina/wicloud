@@ -6,7 +6,8 @@ from django.db.models import OneToOneField
 from django.db.models.fields.related_descriptors import ReverseOneToOneDescriptor
 from django.core.exceptions import ObjectDoesNotExist
 from web.core.models import UserModel, DateModel, StatusModel, OrderedModel, CleanModel
-
+import dateutil.parser
+import datetime
 
 class SoftReverseOneToOneDescriptor(ReverseOneToOneDescriptor):
     def __get__(self, *args, **kwargs):
@@ -47,6 +48,67 @@ class Address(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
     def __str__(self):
         return f'{self.description}'
+
+class Avg_power_measure(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
+    mac = models.CharField(max_length=255)
+    measureTimestamp = models.DateTimeField(null=False)
+    intervalDuration = models.IntegerField(null=False)  # PTI
+    hms = models.CharField(max_length=255, blank=True, null=True)
+    nodeDate = models.CharField(max_length=255, blank=True, null=True)
+    mty = None
+    vac = models.FloatField(blank=True, null=True)
+    iac = models.FloatField(blank=True, null=True)
+    activePower = models.FloatField(blank=True, null=True)
+    reactivePower = models.FloatField(blank=True, null=True)
+    intervalActiveEnergy = models.FloatField(blank=True, null=True)  # 0.1 Wh dividi per 10000 per ottenere kWh
+    intervalReactiveEnergy = models.FloatField(blank=True, null=True)  # 0.1 VARh dividi per 10000 per ottenere kVAR
+    intervalBurningTime = models.FloatField(blank=True, null=True)  # secondi
+    intervalNodeLife = models.FloatField(blank=True, null=True)  # secondi
+    pw0 = models.FloatField(blank=True, null=True)
+    pw1 = models.FloatField(blank=True, null=True)
+    pw2 = models.FloatField(blank=True, null=True)
+    pw3 = models.FloatField(blank=True, null=True)
+    activeEnergyCounter = models.FloatField(blank=True, null=True)  # 0.1 Wh dividi per 10000 per ottenere kWh
+    reactiveEnergyCounter = models.FloatField(blank=True, null=True)  # 0.1 VARh dividi per 10000 per ottenere kVARh
+    burningTime = models.FloatField(blank=True, null=True)  # minuti
+    nodeLife = models.FloatField(blank=True, null=True)  # minuti
+    ad0 = models.FloatField(blank=True, null=True)
+    ad1 = models.FloatField(blank=True, null=True)
+    lqi = models.FloatField(blank=True, null=True)
+    pks = models.FloatField(blank=True, null=True)
+    pkr = models.FloatField(blank=True, null=True)
+    pkl = models.FloatField(blank=True, null=True)
+    lightManagementModule = models.ForeignKey('Light_management_module', models.DO_NOTHING, blank=True, null=True, related_name="avgPowerMeasures")
+    lightFixture = models.ForeignKey('Light_fixture', models.DO_NOTHING, blank=True, null=True, related_name="avgPowerMeasures")
+    _node = models.ForeignKey('Node', models.DO_NOTHING, blank=True, null=True, related_name="avgPowerMeasures")
+    installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True, related_name="avgPowerMeasures")
+
+    class Meta:
+        verbose_name = _('avg_power_measure')
+        verbose_name_plural = _('avg_power_measures')
+        ordering = ('ordering',)
+        permissions = (
+            ("list_avg_power_measure", "Can list AvgPower measure"),
+            ("detail_avg_power_measure", "Can detail AvgPower measure"),
+            ("disable_avg_power_measure", "Can disable AvgPower measure"),
+        )
+        unique_together = ('mac', 'measureTimestamp', 'intervalDuration')
+
+    def __str__(self):
+        return 'Avg measure'
+
+    @property
+    def node(self):
+        return self._node
+
+    @node.setter
+    def node(self, value):
+        try:
+            self.lightFixture = value.lightFixture
+            self.installation = value.lightFixture.installation
+        except Exception as ex:
+            print (ex)
+
 
 class Connected_device(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
         name = models.CharField(max_length=255, blank=True, null=True)
@@ -116,6 +178,7 @@ class Customer(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 
 class Energy_interval(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
     mac = models.CharField(max_length=255, null=True)
+    intervalDuration = models.FloatField(blank=True, null=True) #valore nell'intervallo
     startInterval = models.DateTimeField(blank=True, null=True)
     endInterval = models.DateTimeField(blank=True, null=True)
     startIintervalMeasureTimestamp = models.DateTimeField(blank=True, null=True)
@@ -138,7 +201,6 @@ class Energy_interval(CleanModel, UserModel, DateModel, StatusModel, OrderedMode
     nodeLife = models.FloatField(blank=True, null=True) #valore nell'intervallo
     burningTimeCounter = models.FloatField(blank=True, null=True) #valore nell'intervallo
     nodeLifeCounter = models.FloatField(blank=True, null=True) #valore nell'intervallo
-    duration = models.FloatField(blank=True, null=True) #valore nell'intervallo
     lightManagementModule = models.ForeignKey('Light_management_module', models.DO_NOTHING, blank=True, null=True, related_name="energyIntervals")
     lightFixture = models.ForeignKey('Light_fixture', models.DO_NOTHING, blank=True, null=True, related_name="energyIntervals")
     _node = models.ForeignKey('Node', models.DO_NOTHING, blank=True, null=True, related_name="energyIntervals")
@@ -153,6 +215,8 @@ class Energy_interval(CleanModel, UserModel, DateModel, StatusModel, OrderedMode
             ("detail_energy_interval", "Can detail energy_interval"),
             ("disable_energy_interval", "Can disable energy_interval"),
         )
+        unique_together = ('mac', 'startInterval', 'intervalDuration')
+
 
     def __str__(self):
         return 'Energy_interval'
@@ -169,6 +233,66 @@ class Energy_interval(CleanModel, UserModel, DateModel, StatusModel, OrderedMode
         except Exception as ex:
             print (ex)
 
+                
+    def parseDict(self, dictObject):
+        try:
+            #if not isinstance(dictObject, dict): objectToParse = dictObject.__dict__
+            #for k, w in dictObject.items():
+            #    if self.__dict__.has_key(k):
+            #        self.__dict__[k] = w
+
+            self.mac = dictObject['mac']
+            self.intervalDuration = int(dictObject['intervalDuration'])
+            self.endInterval = dateutil.parser.parse(dictObject['measureTimestamp'])
+            self.startInterval = self.endInterval - datetime.timedelta(minutes=self.intervalDuration)
+            # for key in dictObject:
+            #
+            #
+            # mac = models.CharField(max_length=255, null=True)
+            # intervalDuration = models.FloatField(blank=True, null=True)  # valore nell'intervallo
+            # startInterval = models.DateTimeField(blank=True, null=True)
+            # endInterval = models.DateTimeField(blank=True, null=True)
+            # startIintervalMeasureTimestamp = models.DateTimeField(blank=True, null=True)
+            # endIntervalMeasureTimestamp = models.DateTimeField(blank=True, null=True)
+            # dimLevel = models.FloatField(blank=True, null=True)
+            # adc0Value = models.FloatField(blank=True, null=True)
+            # adc1Value = models.FloatField(blank=True, null=True)
+            # activePower = models.FloatField(blank=True, null=True)
+            # reactivePower = models.FloatField(blank=True, null=True)
+            # startIntervalActiveEnergyCounterValue = models.FloatField(blank=True,
+            #                                                           null=True)  # da modificare
+            # endIntervalActiveEnergyCounterValue = models.FloatField(blank=True,
+            #                                                         null=True)  # da modificare valore assoluto dal reset del nodo
+            # activeEnergy = models.FloatField(blank=True, null=True)
+            # startIntervalReactiveEnergyCounterValue = models.FloatField(blank=True,
+            #                                                             null=True)  # da modificare
+            # endIntervalReactiveEnergyCounterValue = models.FloatField(blank=True,
+            #                                                           null=True)  # da modificare valore assoluto dal reset del nodo
+            # reactiveEnergy = models.FloatField(blank=True, null=True)
+            # activeEnergyWithoutDim = models.FloatField(blank=True,
+            #                                            null=True)  # Lo ottengo dal burning time moltiplicato la potenza nominale della lampada.
+            # activeEnergyWithoutControl = models.FloatField(blank=True,
+            #                                                null=True)  # Se ho burning time minore maggiore di 0, lo ottengo moltiplicando la durata dell'intervallo per la potenza nominale della lampada.
+            # activeEnergyOldLamps = models.FloatField(blank=True,
+            #                                          null=True)  # come con withouth control ma moltiplicando per la potenza delle vecchie lampade.
+            # burningTime = models.FloatField(blank=True, null=True)  # valore nell'intervallo
+            # nodeLife = models.FloatField(blank=True, null=True)  # valore nell'intervallo
+            # burningTimeCounter = models.FloatField(blank=True, null=True)  # valore nell'intervallo
+            # nodeLifeCounter = models.FloatField(blank=True, null=True)  # valore nell'intervallo
+            # lightManagementModule = models.ForeignKey('Light_management_module', models.DO_NOTHING,
+            #                                           blank=True, null=True,
+            #                                           related_name="energyIntervals")
+            # lightFixture = models.ForeignKey('Light_fixture', models.DO_NOTHING, blank=True, null=True,
+            #                                  related_name="energyIntervals")
+            # _node = models.ForeignKey('Node', models.DO_NOTHING, blank=True, null=True,
+            #                           related_name="energyIntervals")
+            # installation = models.ForeignKey('Installation', models.DO_NOTHING, blank=True, null=True,
+            #                                  related_name="energyIntervals")
+            #
+
+
+        except:
+            return False
 
 class Energy_meter_module(CleanModel, UserModel, DateModel, StatusModel, OrderedModel):
 

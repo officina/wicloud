@@ -63,6 +63,56 @@ class AddressStatusSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         return AddressRetrieveSerializer(instance).data
 
+class Avg_power_measureListSerializer(serializers.ModelSerializer):
+    node = serializers.SerializerMethodField('get_alternate_node')
+
+    class Meta:
+        model = models.Avg_power_measure
+        exclude = ('_node','created_date', 'last_modified_date', 'creator', 'last_modifier')
+
+    def get_alternate_node(self, obj):
+        return obj.node.id if obj.node else None
+
+
+class Avg_power_measureRetrieveSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Avg_power_measure
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
+
+
+class Avg_power_measureCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Avg_power_measure
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
+
+
+class Avg_power_measurePartialUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Avg_power_measure
+        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
+
+
+class Avg_power_measureSetStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Avg_power_measure
+        fields = ('status',)
+
+    def update(self, instance, validated_data):
+        instance.status = validated_data['status']
+        instance.save()
+        return instance
+
+    def to_representation(self, instance):
+        return Avg_power_measureRetrieveSerializer(instance).data
+
+
+class Avg_power_measureStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Avg_power_measure
+        fields = ()
+
+    def to_representation(self, instance):
+        return Avg_power_measureRetrieveSerializer(instance).data
 
 class Connected_deviceListSerializer(serializers.ModelSerializer):
     class Meta:
@@ -158,9 +208,14 @@ class CustomerStatusSerializer(serializers.ModelSerializer):
 
 
 class Energy_intervalListSerializer(serializers.ModelSerializer):
+    node = serializers.SerializerMethodField('get_alternate_node')
+
     class Meta:
-        model = models.Energy_interval
-        exclude = ('created_date', 'last_modified_date', 'creator', 'last_modifier')
+        model = models.Avg_power_measure
+        exclude = ('_node','created_date', 'last_modified_date', 'creator', 'last_modifier')
+
+    def get_alternate_node(self, obj):
+        return obj.node.id if obj.node else None
 
 
 class Energy_intervalRetrieveSerializer(serializers.ModelSerializer):

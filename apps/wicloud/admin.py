@@ -39,6 +39,19 @@ class AddressAdmin(UserAdminMixin, import_export_admin.ImportExportModelAdmin):
 
 admin.site.register(models.Address, AddressAdmin)
 
+class Avg_power_measureAdmin(UserAdminMixin, import_export_admin.ImportExportModelAdmin):
+    resource_class = resources.Avg_power_measureResource
+    formats = (
+        import_export_admin_formats.base_formats.XLS,
+        import_export_admin_formats.base_formats.CSV,
+        import_export_admin_formats.base_formats.JSON,
+    )
+    list_display = ('id', 'mac', 'installation')
+    readonly_fields = ('creator', 'created_date', 'last_modifier', 'last_modified_date')
+
+
+admin.site.register(models.Avg_power_measure, Avg_power_measureAdmin)
+
 class Connected_deviceAdmin(UserAdminMixin, import_export_admin.ImportExportModelAdmin):
     resource_class = resources.Connected_deviceResource
     formats = (
@@ -284,7 +297,7 @@ class GatewayAdmin(UserAdminMixin, import_export_admin.ImportExportModelAdmin):
     #         'fields': ('creator', 'created_date', 'last_modifier', 'last_modified_date')
     #     }),
     # )
-    list_display = ('get_status_display', 'ordering')
+    list_display = ('serialNumber', 'name', 'get_status_display', 'ordering')
     readonly_fields = ('creator', 'created_date', 'last_modifier', 'last_modified_date')
 
 
@@ -382,7 +395,7 @@ class Light_fixtureAdmin(UserAdminMixin, import_export_admin.ImportExportModelAd
         import_export_admin_formats.base_formats.JSON,
     )
 
-    list_display = ('get_status_display', 'ordering')
+    list_display = ('serialNumber', 'name', 'get_status_display', 'ordering')
     readonly_fields = ('creator', 'created_date', 'last_modifier', 'last_modified_date')
 
 

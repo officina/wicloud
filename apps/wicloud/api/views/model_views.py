@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 import collections
+
+from django.db import transaction, IntegrityError
 from django.http import Http404, HttpResponseNotFound, HttpResponse, HttpResponseBadRequest, HttpResponseServerError
 
 from rest_framework import generics, status
 from rest_framework.decorators import api_view
+from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from rest_framework.generics import (
@@ -17,12 +20,13 @@ from apps.wicloud.api import serializers
 from apps.wicloud import models
 from django.db.models import Q
 
+#https://dencode.com/date/iso8601
+
 class  AddressListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
     queryset = models.Address.objects.all()
     #permission_classes = (IsAuthenticated,)
     serializer_class = serializers.AddressListSerializer
     lookup_field = 'id'
-
 
 class  AddressRetrieveUpdateDestroyAPIView(views.ThuxUpdateViewMixin, RetrieveUpdateDestroyAPIView):
     queryset = models.Address.objects.all()
@@ -53,6 +57,103 @@ class AddressDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdateAPIVi
     """
     queryset = models.Address.objects.filter(status=1)
     serializer_class = serializers.AddressStatusSerializer
+    new_status = 0
+
+class Avg_power_measureListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
+    """
+    Get all  avg_power_measures
+    """
+    queryset = models.Avg_power_measure.objects.all()
+    serializer_class = serializers.Avg_power_measureListSerializer
+
+    def create(self, request, *args, **kwargs):
+        try:
+            # with transaction.atomic():
+            # Search the node the measure is belonging to
+            if "mac" in request.data:
+                b = models.Node.objects.filter(mac=request.data["mac"])
+                try:
+                   relatedNode = b.first()  #type: Node
+                   if relatedNode:
+                       with transaction.atomic():
+                           # This code executes inside a transaction.
+                           #Update nodeId etc..
+                           request.data["_node"] = relatedNode.id
+                           request.data["lightManagementModule"] = relatedNode.lightManagementModule.id if relatedNode.lightManagementModule else None
+                           request.data["lightFixture"] = relatedNode.lightFixture.id if relatedNode.lightFixture else None
+                           request.data["installation"] = relatedNode.lightFixture.installation.id if (relatedNode.lightFixture and relatedNode.lightFixture.installation) else None
+                           # TODO: AT - create energy interval from measure
+                           
+                           #energyInterval = models.Energy_interval.objects.create(
+                           # mac= request.data["mac"]
+                           #)
+
+                           serializer = self.get_serializer(data=request.data)
+                           serializer.is_valid(raise_exception=True)
+                           self.perform_create(serializer)
+                           headers = self.get_success_headers(serializer.data)
+                           result = Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+                           avgPowerMeasure = serializer.instance
+                           energyInterval = models.Energy_interval.objects.create(
+                                mac= request.data["mac"],
+                                creator = self.user,
+                                last_modifier = self.user,
+                           )
+                           energyInterval.parseAvgPowerMeasure(avgPowerMeasure
+                           
+                           
+
+                           #result = super(Avg_power_measureListCreateAPIView, self).create(request, *args, **kwargs)
+                           return result
+                           #return super(Avg_power_measureListCreateAPIView, self).create(request, *args, **kwargs)
+
+                   else:
+                       return HttpResponse(content="Cannot find a node with this mac address: {}".format(request.data["mac"]), status=500)
+                except ValidationError as ex:
+                   raise HttpResponse(content=ex.detail, status=500)
+                except Exception as ex:
+                   raise HttpResponse(content=ex, status=500)
+            else:
+                return HttpResponse(content="Wrong number of parameters", status=500)
+        except IntegrityError as err:
+            return HttpResponse(content=err, status=500)
+
+        except Exception as ex:
+            return HttpResponse(content=ex, status=500)
+
+
+class Avg_power_measureRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+    """
+    Get a single avg_power_measure
+    """
+    queryset = models.Avg_power_measure.objects.all()
+    serializer_class = serializers.Avg_power_measureRetrieveSerializer
+    lookup_field = 'id'
+
+
+class Avg_power_measureSetStatusView(views.ThuxUpdateViewMixin, generics.UpdateAPIView):
+    """
+    Set Status for a single avg_power_measure
+    """
+    queryset = models.Avg_power_measure.objects.all()
+    serializer_class = serializers.Avg_power_measureSetStatusSerializer
+    lookup_field = 'id'
+
+class Avg_power_measureEnableView(views.ThuxStatusViewMixin, generics.RetrieveUpdateAPIView):
+    """
+    Enable a single avg_power_measure
+    """
+    queryset = models.Avg_power_measure.objects.filter(status=0)
+    serializer_class = serializers.Avg_power_measureStatusSerializer
+    new_status = 1
+
+
+class Avg_power_measureDisableView(views.ThuxStatusViewMixin, generics.RetrieveUpdateAPIView):
+    """
+    Enable a single avg_power_measure
+    """
+    queryset = models.Avg_power_measure.objects.filter(status=1)
+    serializer_class = serializers.Avg_power_measureStatusSerializer
     new_status = 0
 
 class Connected_deviceListCreateAPIView(views.ThuxListCreateViewMixin, ListCreateAPIView):
